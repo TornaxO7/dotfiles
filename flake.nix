@@ -9,6 +9,7 @@
   outputs = inputs@{ self, nixpkgs }:
   let
     forEachSystem = init_function: nixpkgs.lib.genAttrs [
+      "x86_64-linux"
     ] (system: init_function nixpkgs.legacyPackages.${system});
   in {
     devShells = forEachSystem (pkgs: {
