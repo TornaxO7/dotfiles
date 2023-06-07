@@ -1,4 +1,5 @@
 { pkgs ? import <nixpkgs> {} }: pkgs.mkShell {
+    name = "main";
     packages = with pkgs; [
       alacritty
       bat
@@ -11,6 +12,7 @@
       fzf
       git
       highlight
+      home-manager
       man
       man-db
       man-pages

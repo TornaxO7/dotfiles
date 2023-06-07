@@ -12,8 +12,8 @@
       "x86_64-linux"
     ] (system: init_function nixpkgs.legacyPackages.${system});
   in {
-    devShells = forEachSystem (pkgs: {
-      default = import ./shell.nix {inherit pkgs;};
-    });
+    # devShells = forEachSystem (pkgs: {
+    #   default = import ./shell.nix {inherit pkgs;};
+    # });
   };
 }
