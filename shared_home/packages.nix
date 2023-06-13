@@ -16,4 +16,5 @@
   unzip
   vifm-full
   wiki-tui
+  xournalpp
 ]
