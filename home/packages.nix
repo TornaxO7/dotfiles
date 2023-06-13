@@ -5,7 +5,7 @@
   fd
   fira-code
   fira-code-symbols
-  liberation_tff
+  liberation_ttf
   pinentry
   powertop
   ripgrep
