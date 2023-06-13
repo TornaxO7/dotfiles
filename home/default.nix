@@ -11,7 +11,7 @@
       variant = "bone";
     };
 
-    language.base = "en";
+    language.base = "en_US.UTF-8";
     stateVersion = "23.05";
   };
 

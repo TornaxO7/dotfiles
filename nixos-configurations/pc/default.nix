@@ -8,6 +8,8 @@
     google-chrome
   ];
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nixpkgs.config.allowUnfree = true;
