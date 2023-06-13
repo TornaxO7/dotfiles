@@ -1,9 +1,9 @@
 { config, pkgs, lib, home-manager, ... }:
 {
   environment.systemPackages = with pkgs; [
-    neovim
     alacritty
     git
+    neovim
   ];
 
   imports = [
