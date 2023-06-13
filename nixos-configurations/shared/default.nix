@@ -6,6 +6,9 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
   environment.pathsToLink = [ "/share/zsh" ];
+  environment.systemPackages = with pkgs; [
+    tailscale
+  ];
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

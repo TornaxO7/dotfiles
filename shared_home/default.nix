@@ -3,7 +3,7 @@
   home = {
     packages = import ./packages.nix {
       inherit pkgs;
-    };
+    } ++ import ../shared_home/desktop/packages.nix {inherit pkgs;};
     sessionPath = import ./session_paths.nix;
 
     keyboard = {
@@ -18,5 +18,4 @@
   programs = import ./programs.nix {inherit pkgs lib;};
   services = import ./services.nix;
   gtk = import ./gtk.nix;
-  xdg.enable = true;
 }

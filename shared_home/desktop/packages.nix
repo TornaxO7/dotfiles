@@ -1,5 +1,7 @@
 { pkgs }: with pkgs; [
-  xclip
   discord
+  flameshot
   spotify
+  xclip
+  google-chrome
 ]

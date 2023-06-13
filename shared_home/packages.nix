@@ -12,7 +12,6 @@
   ripgrep-all
   rsync
   rustup
-  tailscale
   udisks
   unzip
   vifm-full

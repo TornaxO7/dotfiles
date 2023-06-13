@@ -30,9 +30,6 @@
       nixosConfigurations = {
         pc = init_system {
           configuration = ./nixos-configurations/pc;
-          extra_modules = [
-            ./nixos-configurations/shared/desktop/default.nix
-          ];
         };
       };
     };

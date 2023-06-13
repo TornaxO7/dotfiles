@@ -1,15 +1,14 @@
 { config, pkgs, lib, home-manager, ... }:
 {
   environment.systemPackages = with pkgs; [
-    i3
     neovim
     alacritty
     git
-    google-chrome
-  ] ++ import ../shared/desktop/packages.nix { inherit pkgs; };
+  ];
 
   imports = [
     ./hardware-configuration.nix
+    ../shared/desktop/default.nix
     home-manager.nixosModules.home-manager
     {
       home-manager = {
@@ -38,6 +37,7 @@
       enable = true;
       extraPackages = with pkgs; [
         dmenu
+        xwallpaper
       ];
     };
   };
