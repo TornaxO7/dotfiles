@@ -16,8 +16,9 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         users.tornax.imports = [
-          ../../shared_home/default.nix
-          ./home/default.nix
+          ../../shared_home
+          ../../shared_home/desktop
+          ./home
         ];
       };
     }

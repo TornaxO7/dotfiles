@@ -6,7 +6,7 @@
   redshift = {
     enable = true;
     latitude = 52.52;
-    longtitude = 13.4;
+    longitude = 13.4;
     provider = "manual";
     settings.redshift = {
       transition = 1;
