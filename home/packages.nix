@@ -1,16 +1,18 @@
 {pkgs}: with pkgs; [
   bandwhich
   borgbackup
+  du-dust
   fd
   fira-code
   fira-code-symbols
   pinentry
   powertop
   ripgrep
-  du-dust
   ripgrep-all
   rsync
   rustup
+  tailscale
+  udisks
   unzip
   vifm-full
   wiki-tui
