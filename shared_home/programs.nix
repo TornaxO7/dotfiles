@@ -76,10 +76,10 @@
 
       os.disabled = false;
 
-      battery.display = {
+      battery.display = [{
         threshold = 100;
         style = "bold #dbcf00";
-      };
+      }];
 
       git_status = {
         style = "bold fg:#ffcb00";
