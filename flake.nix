@@ -31,6 +31,9 @@
         pc = init_system {
           configuration = ./nixos-configurations/pc;
         };
+        laptop = init_system {
+          configuration = ./nixos-configurations/laptop;
+        };
       };
     };
 }

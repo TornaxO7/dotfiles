@@ -1,5 +1,6 @@
 { config, pkgs, lib, home-manager, ... }:
 {
+
   environment.systemPackages = with pkgs; [
     alacritty
     git
@@ -7,7 +8,7 @@
   ];
 
   imports = [
-    ./hardware-configuration.nix
+    # ./hardware-configuration.nix
     ../shared/desktop/default.nix
     home-manager.nixosModules.home-manager
     {
@@ -15,9 +16,8 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         users.tornax.imports = [
-          ../../shared_home
-          ../../shared_home/desktop
-          ./home
+          ../../shared_home/default.nix
+          ./home/default.nix
         ];
       };
     }
@@ -45,7 +45,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
 
-  networking.hostName = "pc";
+  networking.hostName = "laptop";
   time.timeZone = "Europe/Berlin";
 
   services.printing.enable = true;
