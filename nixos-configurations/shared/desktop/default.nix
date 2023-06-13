@@ -3,19 +3,8 @@
   services.xserver = {
     enable = true;
 
-    displayManager = {
-      defaultSession = "none+i3";
-      autoLogin = {
-        enable = true;
-        user = "tornax";
-      };
-    };
-
     desktopManager = {
       xterm.enable = false;
-    };
-
-    displayManager = {
     };
 
     layout = "de";

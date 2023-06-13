@@ -18,4 +18,5 @@
   programs = import ./programs.nix {inherit pkgs lib;};
   services = import ./services.nix;
   gtk = import ./gtk.nix;
+  xdg.enable = true;
 }

@@ -32,7 +32,6 @@
           configuration = ./nixos-configurations/pc;
           extra_modules = [
             ./nixos-configurations/shared/desktop/default.nix
-            ./nixos-configurations/shared/desktop/wm/i3.nix
           ];
         };
       };
