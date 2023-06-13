@@ -19,15 +19,11 @@
           modules = [
             configuration
             ./nixos-configurations/shared/default.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.tornax = import ./home/default.nix;
-              };
-            }
           ] ++ extra_modules;
+
+          specialArgs = {
+            inherit home-manager;
+          };
         };
     in
     {

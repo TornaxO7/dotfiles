@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, home-manager, ... }:
 {
   environment.systemPackages = with pkgs; [
     i3
@@ -10,6 +10,17 @@
 
   imports = [
     ./hardware-configuration.nix
+    home-manager.nixosModules.home-manager
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.tornax.imports = [
+          ../../shared_home/default.nix
+          ./home/default.nix
+        ];
+      };
+    }
   ];
 
   boot.loader.systemd-boot.enable = true;
