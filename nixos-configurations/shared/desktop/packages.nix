@@ -2,4 +2,5 @@
   xclip
   discord
   spotify
+  flameshot
 ]
