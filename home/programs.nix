@@ -110,7 +110,7 @@
     enableCompletion = true;
     shellAliases = import ./shell_aliases.nix;
     sessionVariables = import ./session_variables.nix;
-    initExtra = "bindkey '^ ' autosuggest-accept";
+    initExtra = "bindkey '^ ' autosuggest-accept; eval \"$(zoxide init --cmd cd sh)\"";
     oh-my-zsh = {
       enable = true;
       plugins = [

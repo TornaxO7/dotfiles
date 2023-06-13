@@ -7,6 +7,7 @@
   pinentry
   powertop
   ripgrep
+  du-dust
   ripgrep-all
   rsync
   rustup
