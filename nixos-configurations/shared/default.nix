@@ -32,6 +32,11 @@
     extraGroups = [ "wheel" "audio" "lp" "video"];
   };
 
+  security.sudo.extraConfig = "
+    Defaults insults
+    %wheel ALL=(ALL:ALL) NOPASSWD:/bin/reboot,/bin/poweroff
+  ";
+
   services.openssh.enable = true;
   system.stateVersion = "22.11";
 }
