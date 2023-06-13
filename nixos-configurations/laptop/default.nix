@@ -7,6 +7,11 @@
     neovim
   ];
 
+  environment.variables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+  };
+
   imports = [
     ./hardware-configuration.nix
     ../shared/desktop/default.nix
@@ -25,6 +30,7 @@
   ];
 
   services.xserver = {
+    dpi = 210;
     displayManager = {
       defaultSession = "none+i3";
       autoLogin = {
