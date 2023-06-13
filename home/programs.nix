@@ -101,10 +101,7 @@
 
   zellij.enable = true;
 
-  zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  zoxide.enable = true;
 
   zsh = {
     enable = true;
@@ -112,7 +109,8 @@
     enableSyntaxHighlighting = true;
     enableCompletion = true;
     shellAliases = import ./shell_aliases.nix;
-    initExtraFirst = "bindkey '^ ' autosuggest-accept";
+    sessionVariables = import ./session_variables.nix;
+    initExtra = "bindkey '^ ' autosuggest-accept";
     oh-my-zsh = {
       enable = true;
       plugins = [
