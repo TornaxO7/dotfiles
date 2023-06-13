@@ -18,24 +18,24 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.efiSysMountPoint = "/boot";
 
   networking.hostName = "pc";
   time.timeZone = "Europe/Berlin";
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "de_DE.UTF-8";
-      LC_IDENTIFICATION = "de_DE.UTF-8";
-      LC_MEASUREMENT = "de_DE.UTF-8";
-      LC_MONETARY = "de_DE.UTF-8";
-      LC_NAME = "de_DE.UTF-8";
-      LC_NUMERIC = "de_DE.UTF-8";
-      LC_PAPER = "de_DE.UTF-8";
-      LC_TELEPHONE = "de_DE.UTF-8";
-      LC_TIME = "de_DE.UTF-8";
-    };
+    # extraLocaleSettings = {
+    #   LC_ADDRESS = "de_DE.UTF-8";
+    #   LC_IDENTIFICATION = "de_DE.UTF-8";
+    #   LC_MEASUREMENT = "de_DE.UTF-8";
+    #   LC_MONETARY = "de_DE.UTF-8";
+    #   LC_NAME = "de_DE.UTF-8";
+    #   LC_NUMERIC = "de_DE.UTF-8";
+    #   LC_PAPER = "de_DE.UTF-8";
+    #   LC_TELEPHONE = "de_DE.UTF-8";
+    #   LC_TIME = "de_DE.UTF-8";
+    # };
   };
 
   # Enable the X11 windowing system.
@@ -48,6 +48,10 @@
 
     displayManager = {
       defaultSession = "none+i3";
+      autoLogin = {
+	  enable = true;
+      user = "tornax";
+      };
     };
 
     windowManager.i3 = {
@@ -88,9 +92,6 @@
     description = "tornax";
     extraGroups = [ "wheel" "audio" "lp" "video"];
   };
-
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "tornax";
 
   services.openssh.enable = true;
 
