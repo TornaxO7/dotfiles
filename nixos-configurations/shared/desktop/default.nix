@@ -22,6 +22,8 @@
     xkbVariant = "bone";
   };
 
+  qt.style = "adwaita-dark";
+
   security.rtkit.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = false;
