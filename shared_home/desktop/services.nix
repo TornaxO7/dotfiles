@@ -10,7 +10,7 @@
     provider = "manual";
     settings.redshift = {
       transition = 1;
-      brightness-day = 0.8;
+      brightness-day = 1;
       brightness-night = 0.6;
     };
 
