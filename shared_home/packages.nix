@@ -8,6 +8,7 @@
   liberation_ttf
   pinentry
   powertop
+  python312
   ripgrep
   ripgrep-all
   rsync
