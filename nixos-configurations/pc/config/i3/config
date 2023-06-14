@@ -1,9 +1,7 @@
 set $mod Mod1
 set $win Mod4
 
-hide_edge_borders smart_no_gaps
-smart_borders on
-default_border none
+default_border pixel 1
 
 font pango:FiraCode Nerd Font SemiBold 11
 
