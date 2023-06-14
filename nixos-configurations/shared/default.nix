@@ -10,6 +10,7 @@
     tailscale
     git
     neovim
+    tokyo-night-gtk
   ];
 
   i18n = {

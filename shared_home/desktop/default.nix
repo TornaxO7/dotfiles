@@ -13,8 +13,13 @@
 
   gtk = {
     enable = true;
+
+    # cursorTheme = {
+    #   name = 
+    # };
+
     theme = {
-      name = "Infinity-GTK";
+      name = "Tokyonight-Storm-B";
       package = pkgs.tokyo-night-gtk;
     };
   };

@@ -7,6 +7,7 @@
   fira-code-symbols
   highlight
   liberation_ttf
+  nodejs_20
   pinentry
   powertop
   python312
