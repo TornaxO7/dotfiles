@@ -37,6 +37,9 @@
 
   security.sudo.extraConfig = "Defaults insults\n%wheel ALL=(ALL:ALL) NOPASSWD:/bin/reboot,/bin/poweroff";
 
-  services.openssh.enable = true;
+  services = {
+    openssh.enable = true;
+    tailscale.enable = true;
+  };
   system.stateVersion = "22.11";
 }
