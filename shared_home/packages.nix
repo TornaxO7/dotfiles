@@ -16,6 +16,7 @@
   rsync
   rustup
   speedtest-cli
+  tokei
   udisks
   unzip
   vifm-full

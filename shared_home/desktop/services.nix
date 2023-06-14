@@ -4,7 +4,7 @@
   playerctld.enable = true;
 
   redshift = {
-    enable = true;
+    enable = false;
     latitude = 52.52;
     longitude = 13.4;
     provider = "manual";

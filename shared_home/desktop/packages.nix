@@ -1,9 +1,10 @@
 { pkgs }: with pkgs; [
   discord
   flameshot
-  pulseaudio
   google-chrome
   playerctl
+  pulseaudio
+  redshift
   spotify
   xclip
 ]
