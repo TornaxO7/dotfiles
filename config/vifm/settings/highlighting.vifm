@@ -20,3 +20,4 @@ fileviewer *.md, highlight -O ansi --syntax markdown --progress %c
 fileviewer *.xml, highlight -O ansi --syntax xml --progress %c
 fileviewer *.yml, highlight -O ansi --syntax yaml --progress %c
 fileviewer *.zig, highlight -O ansi --syntax zig --progress %c
+fileviewer *.nix, highlight -O ansi --syntax nix --progress %c
