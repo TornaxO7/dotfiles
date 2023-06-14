@@ -3,6 +3,8 @@ set $win Mod4
 
 default_border pixel 1
 
+exec --no-startup-id eww daemon
+
 font pango:FiraCode Nerd Font SemiBold 11
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
@@ -12,11 +14,13 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 floating_modifier $mod
 
+bindsym $mod+z exec --no-startup-id eww open --toggle dashboard
+
 bindsym $mod+n exec --no-startup-id "playerctl --player=sayonara,spotify next && $refresh_i3status"
 bindsym $mod+r exec --no-startup-id "playerctl --player=sayonara,spotify previous && $refresh_i3status"
 bindsym $mod+s exec --no-startup-id "playerctl --player=sayonara,spotify play-pause && $refresh_i3status"
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run
 
@@ -73,10 +77,10 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
-bindsym $mod+Shift+f exec flameshot gui
+bindsym $mod+Shift+f exec --no-startup-id flameshot gui
  
 # -- applications
-bindsym ctrl+shift+f exec google-chrome-stable
+bindsym ctrl+shift+f exec --no-startup-id google-chrome-stable
 
 # -- assigns
 assign [class = "discord"] 4
