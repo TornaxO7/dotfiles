@@ -71,6 +71,7 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Shift+f exec flameshot gui
  
 # -- applications
 bindsym ctrl+shift+f exec google-chrome-stable
