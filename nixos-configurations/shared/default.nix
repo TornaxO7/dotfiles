@@ -28,7 +28,6 @@
   console.keyMap = "bone";
 
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
   users.users.tornax = {
     isNormalUser = true;
     description = "tornax";
@@ -41,5 +40,11 @@
     openssh.enable = true;
     tailscale.enable = true;
   };
+
+  programs = {
+    zsh.enable = true;
+    ssh.enable = true;
+  };
+
   system.stateVersion = "22.11";
 }
