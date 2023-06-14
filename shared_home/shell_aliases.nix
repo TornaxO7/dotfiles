@@ -33,9 +33,9 @@
   cb = "cargo build";
 
   rx = "redshift -orx";
-  r1 = "redshift -orx -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000";
-  r2 = "redshift -orx -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1500";
-  r3 = "redshift -orx -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000";
+  r1 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000";
+  r2 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1500";
+  r3 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000";
 
   ew = "wiki-tui";
 }
