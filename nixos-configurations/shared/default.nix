@@ -8,6 +8,7 @@
   environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
     tailscale
+    git
     neovim
   ];
 
@@ -44,10 +45,7 @@
 
   programs = {
     zsh.enable = true;
-    git = {
-      enable = true;
-      package = pkgs.gitoxide;
-    };
+    git.enable = true;
   };
 
   system.stateVersion = "22.11";
