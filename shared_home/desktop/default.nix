@@ -10,4 +10,12 @@
     enable = true;
     initExtra = "xset r rate 250";
   };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Infinity-GTK";
+      package = pkgs.tokyo-night-gtk;
+    };
+  };
 }
