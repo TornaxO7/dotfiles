@@ -1,0 +1,12 @@
+(defwidget dashboard_sound[]
+  (scale
+    :class "dashboard_sound"
+    :flipped true
+    :draw-value true
+    :round-digits 0
+    :value "${global_volume_value}"
+    :min 0.0
+    :max 101.0
+    ; :onchange "pactl set-sink-volume @DEFAULT_SINK@ {} && update_volume.sh"
+    :onchange "amixer set Master {}% && update_volume.sh"
+    :orientation "horizontal"))

@@ -1,0 +1,18 @@
+(defwidget dashboard_battery_circular_progress[]
+  (circular-progress
+    :class "dashboard_battery_circular_progress"
+    :value "${EWW_BATTERY.BAT0.capacity}"
+    :start-at 0.0
+    :thickness 10.0
+    :clockwise true))
+
+(defwidget dashboard_battery_label[]
+  (label
+    :class "dashboard_battery_label"
+    :text "${EWW_BATTERY.BAT0.capacity}% - ${EWW_BATTERY.BAT0.status}"))
+
+(defwidget dashboard_battery[]
+  (overlay
+    :class "dashboard_battery"
+    (dashboard_battery_circular_progress)
+    (dashboard_battery_label)))

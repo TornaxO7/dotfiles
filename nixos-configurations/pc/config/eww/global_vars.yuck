@@ -1,0 +1,29 @@
+; volume
+; (deflisten global_volume_value
+;   :initial "0.0"
+;   `tail -F ~/.cache/leftwm_custom/volume 2> /dev/null`)
+
+; date
+(defpoll global_curr_day
+  :interval "1m"
+  :initial "1"
+  `date +"%d"`)
+
+(defpoll global_curr_month
+  :interval "1m"
+  :initial "1"
+  `date +"%m"`)
+
+(defpoll global_curr_year
+  :interval "1m"
+  :initial "1"
+  `date +"%y"`)
+
+(defpoll global_hour_and_minute
+  :interval "1m"
+  :initial "1"
+  `date +"%H:%M"`)
+
+; net
+(defpoll global_dns_name
+  :interval "1s" "./scripts/net.sh")

@@ -1,0 +1,12 @@
+(include "./dashboard/widgets/cpu.yuck")
+(include "./dashboard/widgets/ram.yuck")
+(include "./dashboard/widgets/swap.yuck")
+
+(defwidget middle[]
+  (box
+    :orientation "")
+  (centerbox
+    :orientation "vertical"
+    (cpu)
+    (ram)
+    (swap)))

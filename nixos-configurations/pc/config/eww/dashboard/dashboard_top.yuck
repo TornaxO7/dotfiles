@@ -1,0 +1,10 @@
+(include "./dashboard/widgets/date/date.yuck")
+(include "./dashboard/widgets/time/time.yuck")
+; (include "./dashboard/widgets/separator/separator.yuck")
+
+(defwidget dashboard_top[]
+  (box
+    :class "dashboard_top"
+    :orientation "vertical"
+    (dashboard_time)
+    (dashboard_date)))
