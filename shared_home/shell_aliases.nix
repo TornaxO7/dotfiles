@@ -33,9 +33,9 @@
   cb = "cargo build";
 
   rx = "redshift -orx";
-  r1 = "redshift -orc ~/.config/redshift/redshift.conf";
-  r2 = "redshift -orc ~/.config/redshift/redshift_med.conf";
-  r3 = "redshift -orc ~/.config/redshift/redshift_light.conf";
+  r1 = "redshift -orx -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000";
+  r2 = "redshift -orx -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1500";
+  r3 = "redshift -orx -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000";
 
   ew = "wiki-tui";
 }
