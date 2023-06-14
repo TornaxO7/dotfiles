@@ -13,6 +13,8 @@
 
   qt.style = "adwaita-dark";
 
+  programs.dconf.enable = true;
+
   environment.pathsToLink = [ "/libexec" ];
 
   security.rtkit.enable = true;

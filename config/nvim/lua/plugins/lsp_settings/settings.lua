@@ -52,7 +52,6 @@ local ls_dir = "plugins/lsp_settings/ls"
 local ls_files = {
     "bashls",
     "lua_ls",
-    -- "rust_analyzer",
     "rust_tools",
     "tsserver",
     "clangd",
@@ -63,8 +62,7 @@ local ls_files = {
     "texlab",
     "cssls",
     "rnix",
-    -- "denols",
-    -- "jdtls",
+    "svelte",
 }
 
 local capabilities = require("plugins.lsp_settings.capabilities")
