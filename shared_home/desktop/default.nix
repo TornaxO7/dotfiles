@@ -5,4 +5,9 @@
   };
   services = import ./services.nix;
   programs = import ./programs.nix;
+
+  xsession = {
+    enable = true;
+    initExtra = "xset r rate 250";
+  };
 }
