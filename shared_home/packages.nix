@@ -15,6 +15,7 @@
   ripgrep-all
   rsync
   rustup
+  speedtest-cli
   udisks
   unzip
   vifm-full
