@@ -12,7 +12,7 @@
   };
 
   gtk = {
-    enable = true;
+    enable = false;
 
     # cursorTheme = {
     #   name = 
