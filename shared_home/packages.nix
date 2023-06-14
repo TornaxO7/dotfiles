@@ -2,6 +2,7 @@
   bandwhich
   borgbackup
   du-dust
+  highlighter
   fd
   fira-code
   fira-code-symbols
