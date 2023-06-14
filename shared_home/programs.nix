@@ -38,7 +38,10 @@
 
   gpg.enable = true;
 
-  jq.enable = true;
+  jq = {
+    enable = true;
+    package = pkgs.jql;
+  };
 
   less.enable = true;
 
