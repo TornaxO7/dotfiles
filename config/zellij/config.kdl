@@ -1,0 +1,64 @@
+keybinds clear-defaults=true {
+    normal {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+
+        bind "r" { SwitchToMode "resize"; }
+        bind "t" { SwitchToMode "tab"; }
+        bind "s" { SwitchToMode "session"; }
+        bind "n" { NewPane "Right"; }
+        bind "N" { NewPane "Down"; }
+
+        bind "h" { MoveFocus "Left"; }
+        bind "l" { MoveFocus "Right"; }
+        bind "j" { MoveFocus "Down"; }
+        bind "k" { MoveFocus "Up"; }
+
+        bind "m" { SwitchToMode "move"; }
+
+        bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
+        bind "e" { EditScrollback; SwitchToMode "locked"; }
+
+        bind "Ctrl t" { NewTab; }
+        bind "Ctrl l" { GoToNextTab; }
+        bind "Ctrl h" { GoToPreviousTab; }
+    }
+    locked {
+        bind "Ctrl g" { SwitchToMode "normal"; }
+    }
+    tab {
+        bind "Ctrl g" "Esc" { SwitchToMode "locked"; }
+        bind "n" { NewTab; }
+        bind "l" { GoToNextTab; }
+        bind "h" { GoToPreviousTab; }
+        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "q" { CloseTab; }
+    }
+    resize {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "h" "Left" { Resize "Left"; }
+        bind "j" "Down" { Resize "Down"; }
+        bind "k" "Up" { Resize "Up"; }
+        bind "l" "Right" { Resize "Right"; }
+    }
+    move {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "h" { MovePane "Left"; }
+        bind "j" { MovePane "Down"; }
+        bind "k" { MovePane "Up"; }
+        bind "l" { MovePane "Right"; }
+    }
+    session {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "d" { Detach; }
+    }
+    RenameTab {
+        bind "Enter" "Esc" { SwitchToMode "locked"; }
+    }
+}
+
+theme "tokyo-night-storm"
+default_layout "default"
+default_mode "locked"
+copy_command "xclip -selection clipboard"
+scrollback_editor "nvim"
+pane_frames false
