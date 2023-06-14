@@ -1,0 +1,88 @@
+theme = "solarized-light"
+
+[icons]
+name = "awesome"
+
+[icons.overrides]
+backlight_empty = "盛"
+backlight_full  = "盛"
+backlight_1     = "盛"
+backlight_2     = "盛"
+backlight_3     = "盛"
+backlight_4     = "盛"
+backlight_5     = "盛"
+backlight_6     = "盛"
+backlight_7     = "盛"
+backlight_8     = "盛"
+backlight_9     = "盛"
+backlight_10    = "盛"
+backlight_11    = "盛"
+backlight_12    = "盛"
+backlight_13    = "盛"
+
+[[block]]
+block = "music"
+player = "spotify"
+buttons = ["prev", "play", "next"]
+on_collapsed_click = "spotify"
+format = "{title}"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "battery"
+interval = 10
+full_threshold = 95
+full_format = "Full {power}"
+format = "{percentage} {time}"
+good = 60
+info = 40
+warning = 20
+critical = 10
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "CPU: {utilization}"
+info = 25
+warning = 60
+critical = 75
+
+[[block]]
+block = "memory"
+format_mem = "{mem_used}/{mem_total}"
+format_swap = "{swap_used}/{swap_total}"
+display_type = "memory"
+clickable = true
+interval = 5
+warning_mem = 80
+warning_swap = 80
+critical_mem = 95
+critical_swap = 95
+
+[[block]]
+block = "net"
+device = "wlan0"
+format = "{ssid} {signal_strength}"
+interval = 5
+
+[[block]]
+block = "sound"
+step_width = 2
+max_vol = 8
+
+[[block]]
+block = "toggle"
+text = "冷"
+command_on = "~/coordinate_transformation_matrix.bash main"
+command_off = "~/coordinate_transformation_matrix.bash"
+command_state = "cat ~/.cache/coordinate_transformation_matrix/state"
+
+[[block]]
+block = "time"
+format = "%d/%m %R"
+timezone = "Europe/Berlin"
+interval = 60
+locale = "de_DE"
