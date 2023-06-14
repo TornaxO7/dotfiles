@@ -17,6 +17,7 @@
   udisks
   unzip
   vifm-full
+  vimiv-qt
   wiki-tui
   xournalpp
 ]
