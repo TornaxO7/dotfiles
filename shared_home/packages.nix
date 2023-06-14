@@ -2,10 +2,10 @@
   bandwhich
   borgbackup
   du-dust
-  highlighter
   fd
   fira-code
   fira-code-symbols
+  highlight
   liberation_ttf
   pinentry
   powertop
