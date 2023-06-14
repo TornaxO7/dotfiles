@@ -1,6 +1,4 @@
 {
-  enable = true;
-
   configFile = {
     neovim = {
       enable = true;
