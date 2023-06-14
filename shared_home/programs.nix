@@ -34,6 +34,18 @@
     };
     userEmail = "tornax@pm.me";
     userName = "TornaxO7";
+    extraConfig = {
+      core = {
+        editor = "nvim";
+      };
+
+      merge.tool = "nvimdiff";
+
+      mergetool = {
+        vimdiff.layout = "(LOCAL,REMOTE)/MERGED";
+        keepBackup = false;
+      };
+    };
   };
 
   gpg.enable = true;
