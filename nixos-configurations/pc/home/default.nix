@@ -6,6 +6,7 @@
         inherit pkgs;
       };
   };
+  programs = import ./programs.nix;
   services = import ./services.nix;
   xsession = import ./xsession.nix;
 }
