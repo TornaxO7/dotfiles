@@ -8,8 +8,6 @@
   environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
     tailscale
-    git
-    neovim
     tokyo-night-gtk
   ];
 
@@ -30,11 +28,13 @@
 
   console.keyMap = "bone";
 
-  users.defaultUserShell = pkgs.zsh;
-  users.users.tornax = {
-    isNormalUser = true;
-    description = "tornax";
-    extraGroups = [ "wheel" "audio" "lp" "video"];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.tornax = {
+      isNormalUser = true;
+      description = "tornax";
+      extraGroups = [ "wheel" "audio" "lp" "video"];
+    };
   };
 
   security.sudo.extraConfig = "Defaults insults\n%wheel ALL=(ALL:ALL) NOPASSWD:/bin/reboot,/bin/poweroff";
@@ -44,10 +44,7 @@
     tailscale.enable = true;
   };
 
-  programs = {
-    zsh.enable = true;
-    git.enable = true;
-  };
+  programs = import ./programs.nix {inherit lib;};
 
   system.stateVersion = "22.11";
 }
