@@ -15,7 +15,7 @@
     stateVersion = "23.05";
   };
 
-  programs = import ./programs.nix {inherit pkgs lib;};
+  programs = import ./programs/default.nix {inherit pkgs lib;};
   services = import ./services.nix;
   xdg = import ./xdg.nix;
 }

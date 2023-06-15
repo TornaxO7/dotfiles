@@ -115,8 +115,8 @@
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     enableCompletion = true;
-    shellAliases = import ./shell_aliases.nix;
-    sessionVariables = import ./session_variables.nix;
+    shellAliases = import ../shell_aliases.nix;
+    sessionVariables = import ../session_variables.nix;
     initExtra = "bindkey '^ ' autosuggest-accept; eval \"$(zoxide init --cmd cd zsh)\"";
     oh-my-zsh = {
       enable = true;

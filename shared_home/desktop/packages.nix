@@ -6,6 +6,7 @@
   playerctl
   pulseaudio
   redshift
+  signal-desktop
   spotify
   texlive.combined.scheme-full
   xclip
