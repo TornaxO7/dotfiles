@@ -2,6 +2,9 @@
 {
   home = {
     packages = import ./packages.nix {inherit pkgs;};
+    shellAliases = {
+      x = "xclip -selection clipboard";
+    };
   };
   services = import ./services.nix;
   programs = import ./programs.nix;
