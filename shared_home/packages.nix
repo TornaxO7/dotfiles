@@ -5,6 +5,7 @@
   fd
   fira-code
   fira-code-symbols
+  gcc13
   highlight
   liberation_ttf
   nodejs_20
