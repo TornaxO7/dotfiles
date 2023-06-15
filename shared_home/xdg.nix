@@ -1,10 +1,10 @@
 {
   configFile = {
     neovim = {
-      enable = true;
+      enable = false;
       recursive = true;
-      source = ../config/nvim;
-      target = "nvim";
+      text = "source ~/Programming/projects/dotfiles/config/nvim/init.vim";
+      target = "nvim/init.vim";
     };
 
     zellij = {
