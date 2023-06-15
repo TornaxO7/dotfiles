@@ -41,7 +41,6 @@
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
-        dmenu
         xwallpaper
       ];
     };

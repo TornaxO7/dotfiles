@@ -24,4 +24,9 @@
       startup_commands = "toggle_mouse_drag_mode";
     };
   };
+
+  rofi = {
+    enable = true;
+    font = "FiraCode Nerd Font 12";
+  };
 }

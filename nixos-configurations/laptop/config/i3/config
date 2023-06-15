@@ -16,7 +16,7 @@ bindsym $mod+n exec --no-startup-id "playerctl --player=sayonara,spotify next &&
 bindsym $mod+r exec --no-startup-id "playerctl --player=sayonara,spotify previous && $refresh_i3status"
 bindsym $mod+s exec --no-startup-id "playerctl --player=sayonara,spotify play-pause && $refresh_i3status"
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run
 
@@ -73,10 +73,10 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
-bindsym $mod+Shift+f exec flameshot gui
+bindsym $mod+Shift+f exec --no-startup-id flameshot gui
  
 # -- applications
-bindsym ctrl+shift+f exec google-chrome-stable
+bindsym ctrl+shift+f exec --no-startup-id google-chrome-stable
 
 # -- assigns
 assign [class = "discord"] 4
