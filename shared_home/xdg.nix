@@ -13,5 +13,12 @@
       source = ../config/zellij;
       target = "zellij";
     };
+
+    vifm = {
+      enable = true;
+      recursive = true;
+      source = ../config/vifm;
+      target = "vifm";
+    };
   };
 }
