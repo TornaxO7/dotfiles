@@ -39,9 +39,17 @@
     };
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+    };
+
+    initrd.kernelModules = ["amdgpu"];
+  };
+
+  hardware.opengl.driSupport = true;
 
   networking.hostName = "pc";
   time.timeZone = "Europe/Berlin";
