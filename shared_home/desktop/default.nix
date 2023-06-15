@@ -26,4 +26,6 @@
       package = pkgs.tokyo-night-gtk;
     };
   };
+
+  xdg = import ./xdg.nix;
 }
