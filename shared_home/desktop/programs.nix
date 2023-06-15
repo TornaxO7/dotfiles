@@ -24,6 +24,4 @@
       startup_commands = "toggle_mouse_drag_mode";
     };
   };
-
-  texlive.enable = true;
 }

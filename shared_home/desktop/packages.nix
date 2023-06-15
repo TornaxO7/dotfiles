@@ -6,5 +6,6 @@
   pulseaudio
   redshift
   spotify
+  texlive.combined.scheme-full
   xclip
 ]
