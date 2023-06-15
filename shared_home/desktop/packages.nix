@@ -2,6 +2,7 @@
   discord
   flameshot
   google-chrome
+  pavucontrol
   playerctl
   pulseaudio
   redshift
