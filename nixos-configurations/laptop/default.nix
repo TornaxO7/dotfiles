@@ -51,7 +51,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
 
-  networking.hostName = "laptop";
+  networking = {
+    hostName = "laptop";
+    wireless.iwd.enable = true;
+  };
   time.timeZone = "Europe/Berlin";
 
   services.printing.enable = true;
