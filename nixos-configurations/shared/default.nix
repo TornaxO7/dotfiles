@@ -5,11 +5,14 @@
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
-  environment.pathsToLink = [ "/share/zsh" ];
-  environment.systemPackages = with pkgs; [
-    tailscale
-    tokyo-night-gtk
-  ];
+  environment = {
+    pathsToLink = [ "/share/zsh" ];
+    variables.EDITOR = "nvim";
+    systemPackages = with pkgs; [
+      tailscale
+      tokyo-night-gtk
+    ];
+  };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
