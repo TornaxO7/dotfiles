@@ -1,4 +1,2 @@
-include ~/Programming/projects/dotfiles/config/i3/base
-
 exec --no-startup-id eww daemon
 bindsym $mod+z exec --no-startup-id eww open --toggle dashboard
