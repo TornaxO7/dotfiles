@@ -6,7 +6,6 @@
 
   imports = [
     ./hardware-configuration.nix
-    ../shared/desktop/default.nix
     home-manager.nixosModules.home-manager
     {
       home-manager = {

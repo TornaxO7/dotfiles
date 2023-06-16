@@ -30,10 +30,18 @@
       nixosConfigurations = {
         pc = init_system {
           configuration = ./nixos-configurations/pc;
+          extra_modules = [
+            ./nixos-configurations/shared/desktop/default.nix
+            ./modules/yubikey
+          ];
         };
 
         laptop = init_system {
           configuration = ./nixos-configurations/laptop;
+          extra_modules = [
+            ./nixos-configurations/shared/desktop/default.nix
+            ./modules/yubikey
+          ];
         };
       };
     };

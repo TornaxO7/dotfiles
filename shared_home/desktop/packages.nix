@@ -9,5 +9,6 @@
   signal-desktop
   spotify
   texlive.combined.scheme-full
+  yubikey-manager-qt
   xclip
 ]
