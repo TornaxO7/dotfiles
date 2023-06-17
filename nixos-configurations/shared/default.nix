@@ -58,7 +58,9 @@
 
   system.stateVersion = "22.11";
 
-  lib.meta = {
-    configPath = "teste";
+  config.lib.meta = {
+    configPath = "/home/tornax/dotfiles/config";
+    mkMutableSymlink = path: config.lib.file.mkOutOfStoreSymlink
+      (config.lib.meta.configPath + lib.string.removePrefix (toString inputs.self) (toString path));
   };
 }
