@@ -7,8 +7,15 @@ in {
   configFile = {
     neovim = {
       enable = true;
+<<<<<<< Updated upstream
       recursive = true;
       source = mkMutableSymlink ../config/nvim;
+=======
+      # recursive = true;
+      # text = "source ~/Programming/projects/dotfiles/config/nvim/init.vim";
+      # source = mkMutableSymlink ../config/nvim;
+      source = "${../config/nvim}";
+>>>>>>> Stashed changes
       target = "nvim";
     };
 

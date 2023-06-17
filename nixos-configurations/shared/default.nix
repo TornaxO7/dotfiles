@@ -57,4 +57,8 @@
   programs = import ./programs.nix {inherit lib;};
 
   system.stateVersion = "22.11";
+
+  lib.meta = {
+    configPath = "teste";
+  };
 }
