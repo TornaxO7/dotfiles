@@ -1,7 +1,14 @@
 {config, pkgs, lib, ...}:
 {
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    # enableParallelBuildingByDefault = true;
+    checkMeta = true;
+    warnUndeclaredOptions = true;
+  };
+
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
