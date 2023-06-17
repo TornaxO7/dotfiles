@@ -29,10 +29,10 @@
     package = pkgs.gitoxide;
     delta.enable = true;
     signing = {
-      key="7559312941F8AAAD9EB6D913F6520002D62D6194";
+      key = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194";
       signByDefault = true;
     };
-    userEmail = "tornax@pm.me";
+    userEmail = "tornax@proton.me";
     userName = "TornaxO7";
     extraConfig = {
       core = {
