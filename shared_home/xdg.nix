@@ -1,10 +1,15 @@
-{
+{inputs, config, lib}:
+let
+    configPath = "/home/tornax/dotfiles/config";
+    mkMutableSymlink = path: config.lib.file.mkOutOfStoreSymlink
+      (configPath + lib.strings.removePrefix (toString inputs.self) (toString path));
+in {
   configFile = {
     neovim = {
-      enable = false;
+      enable = true;
       recursive = true;
-      text = "source ~/Programming/projects/dotfiles/config/nvim/init.vim";
-      target = "nvim/init.vim";
+      source = mkMutableSymlink ../config/nvim;
+      target = "nvim";
     };
 
     zellij = {

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 {
   home = {
     packages = import ./packages.nix {
@@ -17,5 +17,5 @@
 
   programs = import ./programs/default.nix {inherit pkgs lib;};
   services = import ./services.nix;
-  xdg = import ./xdg.nix;
+  xdg = import ./xdg.nix {inherit inputs config lib;};
 }

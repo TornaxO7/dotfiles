@@ -17,8 +17,8 @@
         }: nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            configuration
             ./nixos-configurations/shared/default.nix
+            configuration
           ] ++ extra_modules;
 
           specialArgs = {
