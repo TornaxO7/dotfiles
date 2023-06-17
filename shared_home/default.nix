@@ -16,5 +16,5 @@
 
   programs = import ./programs/default.nix { inherit pkgs lib; };
   services = import ./services.nix;
-  xdg = import ./xdg.nix {inherit config;};
+  xdg = import ./xdg.nix { inherit config lib; };
 }

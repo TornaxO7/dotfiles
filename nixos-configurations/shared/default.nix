@@ -1,66 +1,60 @@
-{inputs, config, pkgs, lib, ...}:
+{ inputs, config, pkgs, lib, ... }:
 {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    # enableParallelBuildingByDefault = true;
-    checkMeta = true;
-    warnUndeclaredOptions = true;
-  };
+    nixpkgs.config = {
+      allowUnfree = true;
+      # enableParallelBuildingByDefault = true;
+      checkMeta = true;
+      warnUndeclaredOptions = true;
+    };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-  ];
-  environment = {
-    pathsToLink = [ "/share/zsh" ];
-    variables.EDITOR = "nvim";
-    systemPackages = with pkgs; [
-      tailscale
-      tokyo-night-gtk
+    fonts.fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
-  };
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "de_DE.UTF-8";
-      LC_IDENTIFICATION = "de_DE.UTF-8";
-      LC_MEASUREMENT = "de_DE.UTF-8";
-      LC_MONETARY = "de_DE.UTF-8";
-      LC_NAME = "de_DE.UTF-8";
-      LC_NUMERIC = "de_DE.UTF-8";
-      LC_PAPER = "de_DE.UTF-8";
-      LC_TELEPHONE = "de_DE.UTF-8";
-      LC_TIME = "de_DE.UTF-8";
+    environment = {
+      pathsToLink = [ "/share/zsh" ];
+      variables.EDITOR = "nvim";
+      systemPackages = with pkgs; [
+        tailscale
+        tokyo-night-gtk
+      ];
     };
-  };
 
-  console.keyMap = "bone";
-
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users.tornax = {
-      isNormalUser = true;
-      description = "tornax";
-      extraGroups = [ "wheel" "audio" "lp" "video"];
+    i18n = {
+      defaultLocale = "en_US.UTF-8";
+      extraLocaleSettings = {
+        LC_ADDRESS = "de_DE.UTF-8";
+        LC_IDENTIFICATION = "de_DE.UTF-8";
+        LC_MEASUREMENT = "de_DE.UTF-8";
+        LC_MONETARY = "de_DE.UTF-8";
+        LC_NAME = "de_DE.UTF-8";
+        LC_NUMERIC = "de_DE.UTF-8";
+        LC_PAPER = "de_DE.UTF-8";
+        LC_TELEPHONE = "de_DE.UTF-8";
+        LC_TIME = "de_DE.UTF-8";
+      };
     };
-  };
 
-  security.sudo.extraConfig = "Defaults insults\n%wheel ALL=(ALL:ALL) NOPASSWD:/bin/reboot,/bin/poweroff";
+    console.keyMap = "bone";
 
-  services = {
-    openssh.enable = true;
-    tailscale.enable = true;
-  };
+    users = {
+      defaultUserShell = pkgs.zsh;
+      users.tornax = {
+        isNormalUser = true;
+        description = "tornax";
+        extraGroups = [ "wheel" "audio" "lp" "video" ];
+      };
+    };
 
-  programs = import ./programs.nix {inherit lib;};
+    security.sudo.extraConfig = "Defaults insults\n%wheel ALL=(ALL:ALL) NOPASSWD:/bin/reboot,/bin/poweroff";
 
-  system.stateVersion = "22.11";
+    services = {
+      openssh.enable = true;
+      tailscale.enable = true;
+    };
 
-  config.lib.meta = {
-    configPath = "/home/tornax/dotfiles/config";
-    mkMutableSymlink = path: config.lib.file.mkOutOfStoreSymlink
-      (config.lib.meta.configPath + lib.string.removePrefix (toString inputs.self) (toString path));
-  };
+    programs = import ./programs.nix { inherit lib; };
+
+    system.stateVersion = "22.11";
 }
