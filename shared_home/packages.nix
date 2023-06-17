@@ -7,6 +7,7 @@
   fira-code-symbols
   gcc13
   highlight
+  imagemagick
   liberation_ttf
   nodejs_20
   pinentry
