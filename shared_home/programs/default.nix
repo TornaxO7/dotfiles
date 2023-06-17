@@ -45,6 +45,9 @@
         vimdiff.layout = "(LOCAL,REMOTE)/MERGED";
         keepBackup = false;
       };
+
+      push.autoSetupRemote = true;
+      pull.rebase = false;
     };
   };
 
