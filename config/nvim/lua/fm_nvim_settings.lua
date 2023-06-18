@@ -34,3 +34,4 @@ require('fm-nvim').setup {
 }
 
 vim.keymap.set("n", "<localleader>v", open_vifm, {desc = "vifm"})
+print("success!")

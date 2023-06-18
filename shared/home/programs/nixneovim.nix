@@ -10,6 +10,9 @@
         '';
 
         extraConfigVim = ''
+          let g:mapleader = " "
+          let g:maplocalleader = " "
+
           ${lib.strings.fileContents ../../../config/nvim/settings.vim}
           ${lib.strings.fileContents ../../../config/nvim/autocmds.vim}
           ${lib.strings.fileContents ../../../config/nvim/commands.vim}
@@ -73,8 +76,8 @@
           treesj
           lsp-zero-nvim
           nvim-surround
-          toggleterm-nvim
           cmp-vsnip
+          FTerm-nvim
           fm-nvim
           nvim-ts-autotag
           pantran-nvim
