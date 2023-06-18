@@ -1,4 +1,5 @@
 { pkgs }: with pkgs; [
+  arandr
   discord
   flameshot
   google-chrome
