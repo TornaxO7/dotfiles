@@ -1,13 +1,6 @@
 { config, lib }: 
 {
   configFile = {
-    neovim = {
-      enable = false;
-      recursive = true;
-      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/nvim;
-      target = "nvim";
-    };
-
     zellij = {
       enable = true;
       recursive = true;
