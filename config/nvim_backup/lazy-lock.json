@@ -1,0 +1,14 @@
+{
+  "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
+  "lazy.nvim": { "branch": "main", "commit": "67af46a7f53e06322753cdd8cfd524bbb8ca30a2" },
+  "loremipsum": { "branch": "master", "commit": "39354ae1c86c89bf36a4af7c6d4b9ca0c0a9eedf" },
+  "lualine.nvim": { "branch": "master", "commit": "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" },
+  "neogen": { "branch": "main", "commit": "1dd0319ccf41b2498f45a3c7607f2ee325ffc6a0" },
+  "neotest-rust": { "branch": "main", "commit": "cc1821d580e8ee36bdd13d67b3291b8cd1792ec9" },
+  "nvim-dap": { "branch": "master", "commit": "a6d48d23407fbad7a4c1451803b8f34cab31c441" },
+  "nvim-treesitter": { "branch": "master", "commit": "840e5d71787b02789f909315f646a6dd66a0de2c" },
+  "nvim-web-devicons": { "branch": "master", "commit": "2a125024a137677930efcfdf720f205504c97268" },
+  "peek.nvim": { "branch": "master", "commit": "67752e7581f88da6899838985a05705b008e4185" },
+  "playground": { "branch": "master", "commit": "2b81a018a49f8e476341dfcb228b7b808baba68b" },
+  "trouble.nvim": { "branch": "main", "commit": "2af0dd9767526410c88c628f1cbfcb6cf22dd683" }
+}

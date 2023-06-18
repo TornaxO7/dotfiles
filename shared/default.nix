@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, nixneovim, nixneovimplugins, ... }:
 {
   config = {
     home-manager = {
@@ -6,12 +6,19 @@
       useUserPackages = true;
       sharedModules = [
         ./home/default.nix
+        nixneovim.nixosModules.default
       ];
     };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs = {
+      config.allowUnfree = true;
+      overlays = [
+        nixneovim.overlays.default
+        nixneovimplugins.overlays.default
+      ];
+    };
 
     fonts.fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
