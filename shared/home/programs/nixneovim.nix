@@ -6,6 +6,7 @@
         defaultEditor = true;
 
         extraConfigLua = ''
+          require("fm_nvim_settings")
         '';
 
         extraConfigVim = ''
@@ -74,6 +75,7 @@
           nvim-surround
           toggleterm-nvim
           cmp-vsnip
+          fm-nvim
           nvim-ts-autotag
           pantran-nvim
           nvim-revJ-lua
@@ -92,12 +94,19 @@
     };
 
     xdg.configFile = {
-        nvim-ftplugin = {
-            enable = true;
-            recursive = true;
-            source = ../../../config/nvim/ftplugin;
-            target = "nvim/ftplugin";
-        };
+      nvim-ftplugin = {
+        enable = true;
+        recursive = true;
+        source = ../../../config/nvim/ftplugin;
+        target = "nvim/ftplugin";
+      };
+
+      nvim-lua = {
+        enable = true;
+        recursive = true;
+        source = ../../../config/nvim/lua;
+        target = "nvim/lua";
+      };
     };
   };
 }
