@@ -20,7 +20,6 @@ let
           peek-nvim
           overseer-nvim
           nvim-treesitter-refactor
-          neorg
           neogen
           presence-nvim
           hydra-nvim
@@ -37,6 +36,7 @@ let
     noice-nvim
     playground
 
+    neorg
     symbols-outline-nvim
   ];
 in
@@ -47,6 +47,7 @@ in
         defaultEditor = true;
 
         extraConfigLua = ''
+          require("plugins.lsp_settings.whichkey")
           require("plugins.neorg_settings")
           require("plugins.nvim_dap_settings")
           require("plugins.overseer_settings")
@@ -165,8 +166,8 @@ in
       nvim-lua = {
         enable = true;
         recursive = true;
-        source = ../../../config/nvim/lua/plugins;
-        target = "nvim/lua/plugins";
+        source = ../../../config/nvim/lua;
+        target = "nvim/lua";
       };
     };
   };

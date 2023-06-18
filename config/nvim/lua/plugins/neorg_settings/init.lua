@@ -21,7 +21,7 @@ neorg.setup({
                 zen_mode = "zen-mode",
             }
         },
-        ["core.integrations.telescope"] = {},
+        -- ["core.integrations.telescope"] = {},
     }
 })
 
