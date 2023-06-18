@@ -4,6 +4,9 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      sharedModules = [
+        ./home/default.nix
+      ];
     };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

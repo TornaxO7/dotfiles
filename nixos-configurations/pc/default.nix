@@ -6,7 +6,6 @@
 
   config = {
     home-manager.users.tornax.imports = [
-      ../../shared/home/default.nix
       ../../shared/home/desktop/default.nix
       ./home/default.nix
     ];
