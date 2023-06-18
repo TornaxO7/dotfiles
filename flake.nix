@@ -16,6 +16,7 @@
         ,
         }: nixpkgs.lib.nixosSystem {
           inherit system;
+
           modules = [
             ./nixos-configurations/shared/default.nix
             configuration

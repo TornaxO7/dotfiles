@@ -11,6 +11,7 @@
       pathsToLink = [ "/share/zsh" ];
       variables.EDITOR = "nvim";
       systemPackages = with pkgs; [
+        git
         tailscale
         tokyo-night-gtk
       ];
