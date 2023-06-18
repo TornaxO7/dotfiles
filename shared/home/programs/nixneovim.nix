@@ -1,4 +1,45 @@
 {config, pkgs, lib, ...}:
+let
+  vimExtraPlugins =  with pkgs.vimExtraPlugins; [
+          treesj
+
+          lsp-zero-nvim
+          fzf-lsp-nvim
+          lsp-colors-nvim
+          virtual-types-nvim
+          null-ls-nvim
+          mason-nvim
+          cmp-vsnip
+
+          nvim-surround
+          FTerm-nvim
+          fm-nvim
+          nvim-ts-autotag
+          pantran-nvim
+          nvim-revJ-lua
+          peek-nvim
+          overseer-nvim
+          nvim-treesitter-refactor
+          neorg
+          neogen
+          presence-nvim
+          hydra-nvim
+          nvim-bqf
+          nvim-notify
+          nvim-highlight-colors
+          toggleterm-nvim
+        ];
+
+  vimPlugins = with pkgs.vimPlugins; [
+    telescope-ui-select-nvim
+    project-nvim
+    fzf-lua
+    noice-nvim
+    playground
+
+    symbols-outline-nvim
+  ];
+in
 {
   config = {
     programs.nixneovim = {
@@ -6,7 +47,31 @@
         defaultEditor = true;
 
         extraConfigLua = ''
-          require("fm_nvim_settings")
+          require("plugins.neorg_settings")
+          require("plugins.nvim_dap_settings")
+          require("plugins.overseer_settings")
+          require("plugins.pantran_settings")
+          require("plugins.peek_settings")
+          require("plugins.telescope_settings")
+          require("plugins.fm_nvim_settings")
+          require("plugins.hydra_settings")
+          require("plugins.indent_blankline_settings")
+          require("plugins.lualine_settings")
+          require("plugins.lsp_lines_settings")
+          require("plugins.mason_settings")
+          require("plugins.neogen_settings")
+          require("plugins.noice_settings")
+          require("plugins.notify_settings")
+          require("plugins.nvim_cmp_settings")
+          require("plugins.nvim_surround_settings")
+          require("plugins.presence_settings")
+          require("plugins.project_nvim_settings")
+          require("plugins.symbols_outline_settings")
+          require("plugins.toggleterm_settings")
+          require("plugins.treesj_settings")
+          require("plugins.trouble_settings")
+          require("plugins.vimtex_settings")
+          require("plugins.whichkey_settings")
         '';
 
         extraConfigVim = ''
@@ -57,6 +122,18 @@
           nvim-cmp = {
             enable = true;
             snippet.luasnip.enable = true;
+
+            sources = {
+              nvim_lsp = {
+                enable = true;
+                priority = 10;
+              };
+
+              path = {
+                enable = true;
+                priority = 1;
+              };
+            };
           };
           nvim-dap.enable = true;
           nvim-dap-ui.enable = true;
@@ -64,7 +141,9 @@
           plenary-nvim.enable = true;
           rust-tools.enable = true;
           telescope.enable = true;
-          treesitter.enable = true;
+          treesitter = {
+            enable = true;
+          };
           treesitter-context.enable = true;
           trouble.enable = true;
           vim-easy-align.enable = true;
@@ -72,28 +151,7 @@
           which-key.enable = true;
         };
 
-        extraPlugins = with pkgs.vimExtraPlugins; [
-          treesj
-          lsp-zero-nvim
-          nvim-surround
-          cmp-vsnip
-          FTerm-nvim
-          fm-nvim
-          nvim-ts-autotag
-          pantran-nvim
-          nvim-revJ-lua
-          peek-nvim
-          mason-nvim
-          overseer-nvim
-          nvim-treesitter-refactor
-          neorg
-          virtual-types-nvim
-          neogen
-          fzf-lsp-nvim
-          presence-nvim
-          lsp-colors-nvim
-          hydra-nvim
-        ];
+        extraPlugins = vimExtraPlugins ++ vimPlugins;
     };
 
     xdg.configFile = {
@@ -107,8 +165,8 @@
       nvim-lua = {
         enable = true;
         recursive = true;
-        source = ../../../config/nvim/lua;
-        target = "nvim/lua";
+        source = ../../../config/nvim/lua/plugins;
+        target = "nvim/lua/plugins";
       };
     };
   };
