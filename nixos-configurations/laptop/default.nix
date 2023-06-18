@@ -11,14 +11,16 @@
       ./home/default.nix
     ];
 
-    environment.systemPackages = with pkgs; [
-      alacritty
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        alacritty
+      ];
 
-    environment.variables = {
-      GDK_SCALE = "2";
-      GDK_DPI_SCALE = "0.5";
-      QT_AUTO_SCREEN_SCALE_FACTOR = "2";
+      variables = {
+        GDK_SCALE = "2";
+        GDK_DPI_SCALE = "0.5";
+        QT_AUTO_SCREEN_SCALE_FACTOR = "2";
+      };
     };
 
     services.xserver = {

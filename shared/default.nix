@@ -16,6 +16,7 @@
     fonts.fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
+
     environment = {
       pathsToLink = [ "/share/zsh" ];
       variables.EDITOR = "nvim";
