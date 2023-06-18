@@ -12,15 +12,17 @@
       init_system =
         { configuration
         , system ? "x86_64-linux"
-        , extra_modules ? [ ]
+        , extra-modules ? [ ]
+        , extra-home-manager-modules ? [ ]
         ,
         }: nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
             ./shared/default.nix
+            home-manager.nixosModules.home-manager
             configuration
-          ] ++ extra_modules;
+          ] ++ extra-modules;
 
           specialArgs = {
             inherit home-manager;
@@ -31,7 +33,7 @@
       nixosConfigurations = {
         pc = init_system {
           configuration = ./nixos-configurations/pc;
-          extra_modules = [
+          extra-modules = [
             ./shared/desktop/default.nix
             ./modules/yubikey
           ];
@@ -39,7 +41,7 @@
 
         laptop = init_system {
           configuration = ./nixos-configurations/laptop;
-          extra_modules = [
+          extra-modules = [
             ./shared/desktop/default.nix
             ./modules/yubikey
           ];

@@ -3,21 +3,15 @@
 
   imports = [
     ./hardware-configuration.nix
-    home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.tornax.imports = [
-          ../../shared/home/default.nix
-          ../../shared/home/desktop/default.nix
-          ./home/default.nix
-        ];
-      };
-    }
   ];
 
   config = {
+    home-manager.users.tornax.imports = [
+      ../../shared/home/default.nix
+      ../../shared/home/desktop/default.nix
+      ./home/default.nix
+    ];
+
     environment.systemPackages = with pkgs; [
       alacritty
     ];

@@ -1,6 +1,11 @@
 { inputs, config, pkgs, lib, ... }:
 {
   config = {
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+    };
+
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     nixpkgs.config.allowUnfree = true;
