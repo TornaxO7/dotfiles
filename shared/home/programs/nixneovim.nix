@@ -103,6 +103,7 @@ in
               rnix-lsp.enable = true;
               rust-analyzer.enable = true;
               texlab.enable = true;
+              eslint.enable = true;
             };
           };
 
