@@ -28,12 +28,13 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+bindsym $mod+p split v
 bindsym $mod+h split h
-bindsym $mod+l split v
-bindsym $mod+m layout tabbed
-bindsym $mod+w layout toggle split
-bindsym $mod+p focus parent
+bindsym $mod+l layout toggle split
+bindsym $mod+m focus parent
+bindsym $mod+w layout tabbed
 bindsym $mod+f fullscreen toggle
+
 
 bindsym $mod+Shift+space floating toggle
 
