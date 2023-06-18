@@ -2,7 +2,7 @@
 {
   configFile = {
     neovim = {
-      enable = true;
+      enable = false;
       recursive = true;
       source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/nvim;
       target = "nvim";

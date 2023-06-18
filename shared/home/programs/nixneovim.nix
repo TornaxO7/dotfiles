@@ -1,15 +1,12 @@
-{pkgs}: {
+{pkgs, lib}: {
   enable = true;
   defaultEditor = true;
-
-  extraConfigLua = ''
-  '';
 
   extraConfigVim = ''
     ${lib.strings.fileContents ../../../config/nvim/settings.vim}
     ${lib.strings.fileContents ../../../config/nvim/autocmds.vim}
     ${lib.strings.fileContents ../../../config/nvim/commands.vim}
-    ${lib.strings.fileContents ../../../config/nvim/commands.vim}
+    ${lib.strings.fileContents ../../../config/nvim/mappings.vim}
     ${lib.strings.fileContents ../../../config/nvim/colorscheme.vim}
   '';
 
@@ -24,7 +21,6 @@
       servers = {
         bashls.enable = true;
         clangd.enable = true;
-        ccls.enable = true;
         html.enable = true;
         jsonls.enable = true;
         pyright.enable = true;
@@ -37,14 +33,21 @@
     barbar.enable = true;
     comment.enable = true;
     floaterm.enable = true;
-    gitsigns.enable = true;
+    gitsigns = {
+      enable = true;
+      numhl = true;
+      currentLineBlame = true;
+    };
     indent-blankline.enable = true;
     lsp-lines.enable = true;
     lspkind.enable = true;
     lualine.enable = true;
     luasnip.enable = true;
     notify.enable = true;
-    nvim-cmp.enable = true;
+    nvim-cmp = {
+      enable = true;
+      snippet.luasnip.enable = true;
+    };
     nvim-dap.enable = true;
     nvim-dap-ui.enable = true;
     plantuml-syntax.enable = true;
@@ -59,7 +62,7 @@
     which-key.enable = true;
   };
 
-  extraPlugins = with pkgs; [
+  extraPlugins = with pkgs.vimExtraPlugins; [
     treesj
     lsp-zero-nvim
     nvim-surround
@@ -74,7 +77,6 @@
     nvim-treesitter-refactor
     neorg
     virtual-types-nvim
-    FTerm-nvim
     neogen
     fzf-lsp-nvim
     presence-nvim
