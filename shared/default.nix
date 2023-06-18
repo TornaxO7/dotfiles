@@ -1,5 +1,6 @@
 { inputs, config, pkgs, lib, ... }:
 {
+  config = {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     nixpkgs.config.allowUnfree = true;
@@ -53,4 +54,5 @@
     programs = import ./programs.nix { inherit lib; };
 
     system.stateVersion = "22.11";
+  };
 }

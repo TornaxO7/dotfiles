@@ -11,14 +11,14 @@
     zellij = {
       enable = true;
       recursive = true;
-      source = ../config/zellij;
+      source = ../../config/zellij;
       target = "zellij";
     };
 
     vifm = {
       enable = true;
       recursive = true;
-      source = ../config/vifm;
+      source = ../../config/vifm;
       target = "vifm";
     };
   };

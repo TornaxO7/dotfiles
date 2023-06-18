@@ -1,9 +1,5 @@
 { config, pkgs, lib, home-manager, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    alacritty
-  ];
-
   imports = [
     ./hardware-configuration.nix
     home-manager.nixosModules.home-manager
@@ -12,46 +8,52 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         users.tornax.imports = [
-          ../../shared_home
-          ../../shared_home/desktop
-          ./home
+          ../../shared/home/default.nix
+          ../../shared/home/desktop/default.nix
+          ./home/default.nix
         ];
       };
     }
   ];
 
-  services.xserver = {
-    displayManager = {
-      defaultSession = "none+i3";
-      autoLogin = {
+  config = {
+    environment.systemPackages = with pkgs; [
+      alacritty
+    ];
+
+    services.xserver = {
+      displayManager = {
+        defaultSession = "none+i3";
+        autoLogin = {
+          enable = true;
+          user = "tornax";
+        };
+      };
+
+      windowManager.i3 = {
         enable = true;
-        user = "tornax";
+        extraPackages = with pkgs; [
+          rofi
+          xwallpaper
+        ];
       };
     };
 
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        rofi
-        xwallpaper
-      ];
-    };
-  };
+    boot = {
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        efi.efiSysMountPoint = "/boot";
+      };
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot";
+      initrd.kernelModules = [ "amdgpu" ];
     };
 
-    initrd.kernelModules = ["amdgpu"];
+    hardware.opengl.driSupport = true;
+
+    networking.hostName = "pc";
+    time.timeZone = "Europe/Berlin";
+
+    services.printing.enable = true;
   };
-
-  hardware.opengl.driSupport = true;
-
-  networking.hostName = "pc";
-  time.timeZone = "Europe/Berlin";
-
-  services.printing.enable = true;
 }
