@@ -1,5 +1,6 @@
 {pkgs}: with pkgs; [
   bandwhich
+  bitwarden
   borgbackup
   du-dust
   fd
