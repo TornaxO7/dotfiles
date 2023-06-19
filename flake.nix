@@ -7,6 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixneovim.url = "github:nixneovim/nixneovim";
+    # nixneovim.url = "path:/home/tornax/Programming/pull_requests/NixNeovim";
     nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
   };
 

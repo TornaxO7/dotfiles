@@ -104,6 +104,7 @@ in
               rust-analyzer.enable = true;
               texlab.enable = true;
               eslint.enable = true;
+              # svelte-language-server.enable = true;
             };
           };
 
@@ -145,6 +146,9 @@ in
           telescope.enable = true;
           treesitter = {
             enable = true;
+            extraConfig = {
+              autotag.enable = true;
+            };
           };
           treesitter-context.enable = true;
           trouble.enable = true;
