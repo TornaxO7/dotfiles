@@ -11,6 +11,7 @@
   imagemagick
   liberation_ttf
   nodejs_20
+  openvpn
   pinentry
   powertop
   python312
