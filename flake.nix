@@ -40,7 +40,6 @@
           extra-modules = [
             ./shared/desktop/default.nix
             ./modules/yubikey
-            ./modules/openvpn
           ];
         };
 
@@ -49,7 +48,6 @@
           extra-modules = [
             ./shared/desktop/default.nix
             ./modules/yubikey
-            ./modules/openvpn
           ];
         };
       };
