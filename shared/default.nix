@@ -1,6 +1,8 @@
 { inputs, config, pkgs, lib, nixneovim, nixneovimplugins, ... }:
 {
   config = {
+    boot.tmp.cleanOnBoot = true;
+
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
