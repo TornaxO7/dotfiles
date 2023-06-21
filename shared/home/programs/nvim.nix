@@ -4,6 +4,7 @@
   defaultEditor = true;
   extraPackages = with pkgs; [
     gcc13
+    deno
   ];
   withPython3 = true;
   vimdiffAlias = true;
