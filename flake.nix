@@ -5,11 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
   };
 
-  outputs = { nixpkgs, home-manager, nixneovimplugins, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
     let
       init_system =
         { configuration
@@ -27,7 +25,7 @@
           ] ++ extra-modules;
 
           specialArgs = {
-            inherit home-manager nixneovimplugins;
+            inherit home-manager;
           };
         };
     in

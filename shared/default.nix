@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, nixneovimplugins, ... }:
+{ inputs, config, pkgs, lib, ... }:
 {
   config = {
     boot.tmp.cleanOnBoot = true;
@@ -16,7 +16,6 @@
     nixpkgs = {
       config.allowUnfree = true;
       overlays = [
-        nixneovimplugins.overlays.default
       ];
     };
 
