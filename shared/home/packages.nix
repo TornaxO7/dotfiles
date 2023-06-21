@@ -7,9 +7,9 @@
   fira-code
   fira-code-symbols
   gcc13
-  irssi
   highlight
   imagemagick
+  irssi
   liberation_ttf
   nodejs_20
   openvpn
