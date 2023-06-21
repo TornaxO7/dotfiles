@@ -47,7 +47,10 @@
 
     networking = {
       hostName = "laptop";
-      wireless.iwd.enable = true;
+      # wireless.iwd.enable = true;
+      networkManager = {
+        enable = true;
+      };
     };
     time.timeZone = "Europe/Berlin";
 
