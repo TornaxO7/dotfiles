@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, nixneovim, nixneovimplugins, ... }:
+{ inputs, config, pkgs, lib, nixneovimplugins, ... }:
 {
   config = {
     boot.tmp.cleanOnBoot = true;
@@ -8,7 +8,6 @@
       useUserPackages = true;
       sharedModules = [
         ./home/default.nix
-        nixneovim.nixosModules.default
       ];
     };
 
@@ -17,7 +16,6 @@
     nixpkgs = {
       config.allowUnfree = true;
       overlays = [
-        nixneovim.overlays.default
         nixneovimplugins.overlays.default
       ];
     };

@@ -62,8 +62,7 @@
 
   man.enable = true;
 
-  # neovim = import ./nvim.nix {inherit pkgs;};
-  # nixneovim = import ./nixneovim.nix {inherit pkgs lib;};
+  neovim = import ./nvim.nix {inherit pkgs;};
 
   password-store.enable = true;
 

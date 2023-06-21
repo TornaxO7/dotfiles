@@ -6,12 +6,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixneovim.url = "github:nixneovim/nixneovim";
-    # nixneovim.url = "path:/home/tornax/Programming/pull_requests/NixNeovim";
     nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
   };
 
-  outputs = { nixpkgs, home-manager, nixneovim, nixneovimplugins, ... }:
+  outputs = { nixpkgs, home-manager, nixneovimplugins, ... }:
     let
       init_system =
         { configuration
@@ -29,7 +27,7 @@
           ] ++ extra-modules;
 
           specialArgs = {
-            inherit home-manager nixneovim nixneovimplugins;
+            inherit home-manager nixneovimplugins;
           };
         };
     in
