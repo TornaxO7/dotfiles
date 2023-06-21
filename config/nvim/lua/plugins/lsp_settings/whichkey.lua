@@ -11,7 +11,7 @@ end
 
 vim.keymap.set("n", "K", get_documentation, { desc = "documentation" })
 
-key.register({
+key.setup({
     l = {
         name = "+ LSP",
         a = { vim.lsp.buf.code_action, "code action" },
@@ -26,6 +26,6 @@ key.register({
     },
 }, { prefix = "<localleader>" })
 
-key.register({
+key.setup({
     r = { vim.lsp.buf.references, "references" },
 }, { prefix = "m" })

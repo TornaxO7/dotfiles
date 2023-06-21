@@ -43,7 +43,7 @@ in
 {
   config = {
     programs.nixneovim = {
-        enable = true;
+        enable = false;
         defaultEditor = true;
 
         extraConfigLua = ''
