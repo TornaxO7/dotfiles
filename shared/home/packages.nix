@@ -7,6 +7,7 @@
   fira-code
   fira-code-symbols
   gcc13
+  irssi
   highlight
   imagemagick
   liberation_ttf
