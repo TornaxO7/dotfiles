@@ -13,7 +13,6 @@
         { configuration
         , system ? "x86_64-linux"
         , extra-modules ? [ ]
-        , extra-home-manager-modules ? [ ]
         ,
         }: nixpkgs.lib.nixosSystem {
           inherit system;
@@ -35,6 +34,7 @@
           configuration = ./nixos-configurations/pc;
           extra-modules = [
             ./shared/desktop/default.nix
+            ./modules/game/steam.nix
             ./modules/yubikey
           ];
         };
