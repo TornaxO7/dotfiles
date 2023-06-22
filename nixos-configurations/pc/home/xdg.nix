@@ -1,6 +1,6 @@
 {
   configFile = {
-    i3 = {
+    i3pc = {
       enable = true;
       recursive = true;
       source = ../config/i3/pc.i3conf;
