@@ -51,7 +51,14 @@
     };
   };
 
-  gpg.enable = true;
+  gpg = {
+    enable = true;
+
+    scdaemonSettings = {
+      disable-ccid = true;
+      reader-port = "Yubico Yubi";
+    };
+  };
 
   jq = {
     enable = true;
