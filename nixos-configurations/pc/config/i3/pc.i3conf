@@ -1,4 +1,4 @@
 exec --no-startup-id eww daemon
 bindsym $mod+z exec --no-startup-id eww open --toggle dashboard
 
-# vim:ft=i3config
+#vim:ft=i3config
