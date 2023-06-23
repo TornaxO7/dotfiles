@@ -31,7 +31,7 @@
     {
       nixosConfigurations = {
         pc = init_system {
-          configuration = ./nixos-configurations/pc;
+          configuration = ./nixos-configurations/pc/default.nix;
           extra-modules = [
             ./shared/desktop/default.nix
             ./modules/game/steam.nix

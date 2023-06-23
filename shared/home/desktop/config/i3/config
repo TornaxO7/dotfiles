@@ -83,4 +83,4 @@ bindsym ctrl+shift+f exec --no-startup-id google-chrome-stable
 assign [class = "discord"] 4
 assign [class = "spotify"] 5
 
-include *.i3conf
+# include *.i3conf
