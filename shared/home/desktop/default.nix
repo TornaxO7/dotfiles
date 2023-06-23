@@ -17,6 +17,11 @@
   gtk = {
     enable = true;
 
+    cursorTheme = {
+      name = "breeze";
+      package = pkgs.libsForQt5.breeze-gtk;
+    };
+
     theme = {
       name = "Tokyonight-Storm-B";
       package = pkgs.tokyo-night-gtk;

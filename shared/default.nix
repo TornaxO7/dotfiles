@@ -33,7 +33,6 @@
       systemPackages = with pkgs; [
         git
         tailscale
-        tokyo-night-gtk
       ];
     };
 

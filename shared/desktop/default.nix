@@ -11,7 +11,10 @@
     xkbVariant = "bone";
   };
 
-  qt.style = "adwaita-dark";
+  qt = {
+    style = "adwaita-dark";
+    platformTheme = "gtk";
+  };
 
   programs.dconf.enable = true;
 
