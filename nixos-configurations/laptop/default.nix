@@ -47,11 +47,13 @@
 
     networking = {
       hostName = "laptop";
-      # wireless.iwd.enable = true;
       networkManager = {
         enable = true;
       };
     };
+
+    programs.nm-applet.enable = true;
+
     time.timeZone = "Europe/Berlin";
 
     services.printing.enable = true;
