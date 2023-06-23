@@ -73,6 +73,7 @@
     services = {
       openssh.enable = true;
       tailscale.enable = true;
+      pcscd.enable = true;
     };
 
     programs = import ./programs.nix { inherit lib; };
