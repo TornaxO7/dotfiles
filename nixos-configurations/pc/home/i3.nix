@@ -16,5 +16,7 @@ in
     keybindings = {
         "${alt}+z" = "exec --no-startup-id eww open --toggle dashboard";
     };
+
+    bars = [];
   };
 }
