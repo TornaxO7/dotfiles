@@ -4,7 +4,7 @@
     enable = true;
     bars.default = {
       icons = "awesome5";
-      settings.theme = "solarized-dark";
+      theme = "solarized-dark";
 
       blocks = [
         {
@@ -30,7 +30,7 @@
         }
         {
           block = "memory";
-          format = "$mem_used.eng(prefix:M)/$mem_total.eng(prefix:M)";
+          format = "$icon $mem_used.eng(prefix:M)/$mem_total.eng(prefix:M)";
           interval = 5;
           warning_mem = 80;
           warning_swap = 80;
@@ -39,7 +39,7 @@
         }
         {
           block = "net";
-          device = "wlan0";
+          device = "wlp0s20f3";
           format = "$icon $ssid $signal_strength";
           inactive_format = "$icon  Down";
           interval = 5;
