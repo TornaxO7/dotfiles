@@ -1,8 +1,7 @@
 {
   configFile = {
     i3status-rust = {
-      enable = true;
-      recursive = true;
+      enable = false;
       source = ../config/i3status-rust;
       target = "i3status-rust";
     };

@@ -27,7 +27,7 @@ in
 
       floating = {
         modifier = alt;
-        titlebar = false;
+
       };
 
       modifier = alt;
@@ -43,14 +43,14 @@ in
       };
 
       keybindings = {
-        "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status";
-        "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status";
-        "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status";
-        "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status";
+        "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%";
+        "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%";
+        "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-        "${alt}+n" = "exec --no-startup-id 'playerctl --player=sayonara,spotify next && $refresh_i3status'";
-        "${alt}+r" = "exec --no-startup-id 'playerctl --player=sayonara,spotify previous && $refresh_i3status'";
-        "${alt}+s" = "exec --no-startup-id 'playerctl --player=sayonara,spotify play-pause && $refresh_i3status'";
+        "${alt}+n" = "exec --no-startup-id playerctl --player=spotify next";
+        "${alt}+r" = "exec --no-startup-id playerctl --player=spotify previous";
+        "${alt}+s" = "exec --no-startup-id playerctl --player=spotify play-pause";
 
         "${alt}+Return" = "exec --no-startup-id alacritty";
         "${alt}+Shift+q" = "kill";
