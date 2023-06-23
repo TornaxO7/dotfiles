@@ -39,7 +39,6 @@
         }
         {
           block = "net";
-          device = "wlp0s20f3";
           format = "$icon $ssid $signal_strength";
           inactive_format = "$icon  Down";
           interval = 5;
