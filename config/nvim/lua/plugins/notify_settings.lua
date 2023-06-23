@@ -1,7 +1,13 @@
-vim.o.termguicolors = true
+return {
+    "rcarriga/nvim-notify",
+    init = function()
+        vim.o.termguicolors = true
 
-require("notify").setup({
-    max_width = 80,
-})
+        local notify = require("notify")
+        notify.setup({
+            max_width = 80,
+        })
 
-vim.notify = notify
+        vim.notify = notify
+    end,
+}

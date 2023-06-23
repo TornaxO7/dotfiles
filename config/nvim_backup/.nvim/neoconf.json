@@ -1,7 +1,0 @@
-{
-    "lspconfig": {
-        "sumneko_lua": {
-            "Lua.workspace.checkThirdParty": false
-        }
-    }
-}

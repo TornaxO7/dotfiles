@@ -17,15 +17,9 @@
   gtk = {
     enable = true;
 
-    # cursorTheme = {
-    #   name = 
-    # };
-
     theme = {
       name = "Tokyonight-Storm-B";
       package = pkgs.tokyo-night-gtk;
     };
   };
-
-  xdg = import ./xdg.nix;
 }

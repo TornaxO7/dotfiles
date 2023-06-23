@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -18,18 +18,18 @@
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/CEC3-7E88";
-      fsType = "vfat";
-    };
-
   fileSystems."/main" =
     { device = "/dev/disk/by-uuid/68ddf030-2e18-4ab4-a467-a7e0c4f4eb87";
       fsType = "ext4";
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/CEC3-7E88";
+      fsType = "vfat";
+    };
+
   fileSystems."/home/tornax/games" =
-    { device = "/dev/disk/by-uuid/a621e91c-3585-43d8-8dfa-d0c89ab96cd7";
+    { device = "/dev/disk/by-uuid/b1c74cf7-94c9-4c6f-b816-896886c26482";
       fsType = "ext4";
     };
 
@@ -43,6 +43,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

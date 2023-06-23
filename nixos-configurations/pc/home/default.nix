@@ -1,12 +1,10 @@
 { config, pkgs, lib, ... }:
 {
-  home = {
-    packages = import ./packages.nix
-      {
-        inherit pkgs;
-      };
-  };
-  programs = import ./programs.nix;
+  imports = [
+    ./i3.nix
+  ];
+
+  home.packages = import ./packages.nix { inherit pkgs; };
   services = import ./services.nix;
   xdg = import ./xdg.nix;
 }

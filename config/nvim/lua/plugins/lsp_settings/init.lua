@@ -35,6 +35,7 @@ return {
 						diagnostics.chktex,
 						diagnostics.clang_check,
 						diagnostics.cmake_lint,
+                        diagnostics.ruff,
 
 						formatting.rustfmt,
 						formatting.stylua,

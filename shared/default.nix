@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, nixneovim, nixneovimplugins, ... }:
+{ inputs, config, pkgs, lib, ... }:
 {
   config = {
     boot.tmp.cleanOnBoot = true;
@@ -8,17 +8,18 @@
       useUserPackages = true;
       sharedModules = [
         ./home/default.nix
-        nixneovim.nixosModules.default
       ];
     };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    networking.hosts = {
+      "127.0.0.1" = ["www.youtube.com"];
+    };
+
     nixpkgs = {
       config.allowUnfree = true;
       overlays = [
-        nixneovim.overlays.default
-        nixneovimplugins.overlays.default
       ];
     };
 
@@ -55,6 +56,7 @@
 
     users = {
       defaultUserShell = pkgs.zsh;
+
       users.tornax = {
         isNormalUser = true;
         description = "tornax";
@@ -67,7 +69,7 @@
       };
     };
 
-    security.sudo.extraConfig = "Defaults insults\n%wheel ALL=(ALL:ALL) NOPASSWD:/bin/reboot,/bin/poweroff";
+    security.sudo.extraConfig = "Defaults insults";
 
     services = {
       openssh.enable = true;

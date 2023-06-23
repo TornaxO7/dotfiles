@@ -1,12 +1,13 @@
 { pkgs }:
 {
-  # enable = true;
-  # defaultEditor = true;
-  # extraPackages = with pkgs; [
-  #   gcc13
-  # ];
-  # withPython3 = true;
-  # vimdiffAlias = true;
+  enable = true;
+  defaultEditor = true;
+  extraPackages = with pkgs; [
+    gcc13
+    deno
+  ];
+  withPython3 = true;
+  vimdiffAlias = true;
   # plugins = with pkgs.vimPlugins; [
   #   barbar-nvim
   #   comment-nvim

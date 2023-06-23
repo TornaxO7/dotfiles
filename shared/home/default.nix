@@ -1,9 +1,5 @@
 { config, pkgs, lib, ... }:
 {
-  imports = [
-    ./programs/nixneovim.nix
-  ];
-
   config = {
     home = {
       packages = import ./packages.nix { inherit pkgs; };
