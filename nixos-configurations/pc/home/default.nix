@@ -1,12 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  home = {
-    packages = import ./packages.nix
-      {
-        inherit pkgs;
-      };
-  };
-  programs = import ./programs.nix;
+  home.packages = import ./packages.nix { inherit pkgs; };
   services = import ./services.nix;
   xdg = import ./xdg.nix;
 }

@@ -56,6 +56,7 @@
 
     users = {
       defaultUserShell = pkgs.zsh;
+
       users.tornax = {
         isNormalUser = true;
         description = "tornax";
@@ -67,7 +68,7 @@
       };
     };
 
-    security.sudo.extraConfig = "Defaults insults\n%wheel ALL=(ALL:ALL) NOPASSWD:/bin/reboot,/bin/poweroff";
+    security.sudo.extraConfig = "Defaults insults";
 
     services = {
       openssh.enable = true;
