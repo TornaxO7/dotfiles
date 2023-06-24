@@ -31,6 +31,8 @@
           xwallpaper
         ];
       };
+
+      desktopManager.gnome.enable = true;
     };
 
     boot = {
