@@ -13,7 +13,7 @@
 
   qt = {
     style = "adwaita-dark";
-    platformTheme = "gtk";
+    # platformTheme = "gtk";
   };
 
   programs.dconf.enable = true;
