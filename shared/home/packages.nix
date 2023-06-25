@@ -4,6 +4,7 @@
   borgbackup
   du-dust
   fd
+  file
   fira-code
   fira-code-symbols
   gcc13
