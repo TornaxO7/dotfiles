@@ -11,6 +11,7 @@
   highlight
   imagemagick
   irssi
+  pkg-config-unwrapped
   liberation_ttf
   nodejs_20
   openvpn
