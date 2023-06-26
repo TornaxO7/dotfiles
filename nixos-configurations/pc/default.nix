@@ -47,7 +47,10 @@
 
     hardware.opengl.driSupport = true;
 
-    networking.hostName = "pc";
+    networking = {
+      hostName = "pc";
+      interfaces.enp6s0.wakeOnLan.enable = true;
+    };
     time.timeZone = "Europe/Berlin";
 
     services.printing.enable = true;
