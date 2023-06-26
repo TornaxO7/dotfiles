@@ -48,10 +48,7 @@
 
     networking = {
       hostName = "laptop";
-      networkmanager = {
-        enable = true;
-        wifi.backend = "iwd";
-      };
+      networkmanager.enable = true;
     };
 
     programs.nm-applet.enable = true;
