@@ -4,7 +4,7 @@
   borgbackup
   du-dust
   fd
-  ffmpeg
+  ffmpeg_6-full
   file
   fira-code
   fira-code-symbols
