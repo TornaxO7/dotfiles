@@ -4,6 +4,7 @@
   borgbackup
   du-dust
   fd
+  ffmpeg
   file
   fira-code
   fira-code-symbols
@@ -11,11 +12,11 @@
   highlight
   imagemagick
   irssi
-  pkg-config-unwrapped
   liberation_ttf
   nodejs_20
   openvpn
   pinentry
+  pkg-config-unwrapped
   powertop
   python312
   ripgrep
