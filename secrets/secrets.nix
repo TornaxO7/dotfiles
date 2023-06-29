@@ -5,5 +5,4 @@ let
   all = [pc laptop];
 in
 {
-  "test.age".publicKeys = all;
 }
