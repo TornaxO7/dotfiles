@@ -1,21 +1,20 @@
 { config, pkgs, lib, ... }:
 {
-  config = {
-    home = {
-      packages = import ./packages.nix { inherit pkgs; };
-      sessionPath = import ./session_paths.nix;
+  imports = [
+    ./packages.nix
+    ./session_paths.nix
+    ./programs/default.nix
+    ./services.nix
+    ./xdg.nix
+  ];
 
-      keyboard = {
-        layout = "de";
-        variant = "bone";
-      };
-
-      language.base = "en_US.UTF-8";
-      stateVersion = "23.05";
+  config.home = {
+    keyboard = {
+      layout = "de";
+      variant = "bone";
     };
 
-    programs = import ./programs/default.nix { inherit pkgs lib; };
-    services = import ./services.nix;
-    xdg = import ./xdg.nix { inherit config lib; };
+    language.base = "en_US.UTF-8";
+    stateVersion = "23.05";
   };
 }

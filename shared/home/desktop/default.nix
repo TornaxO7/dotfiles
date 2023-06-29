@@ -1,30 +1,35 @@
 { config, pkgs, lib, ... }:
 {
-  home = {
-    packages = import ./packages.nix {inherit pkgs;};
-    pointerCursor = {
-      package = pkgs.libsForQt5.breeze-gtk;
-      gtk.enable = true;
-      name = "breeze";
-      x11.enable = true;
+  imports = [
+    ./packages.nix
+    ./services.nix
+    ./programs.nix
+  ];
+
+  config = {
+    home = {
+      pointerCursor = {
+        package = pkgs.libsForQt5.breeze-gtk;
+        gtk.enable = true;
+        name = "breeze";
+        x11.enable = true;
+      };
+      shellAliases = {
+        x = "xclip -selection clipboard";
+      };
     };
-    shellAliases = {
-      x = "xclip -selection clipboard";
+
+    xsession = {
+      initExtra = "xset r rate 250";
     };
-  };
-  services = import ./services.nix;
-  programs = import ./programs.nix;
 
-  xsession = {
-    initExtra = "xset r rate 250";
-  };
+    gtk = {
+      enable = true;
 
-  gtk = {
-    enable = true;
-
-    theme = {
-      name = "Tokyonight-Storm-B";
-      package = pkgs.tokyo-night-gtk;
+      theme = {
+        name = "Tokyonight-Storm-B";
+        package = pkgs.tokyo-night-gtk;
+      };
     };
   };
 }

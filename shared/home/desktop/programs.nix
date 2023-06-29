@@ -1,32 +1,35 @@
+{ ... }:
 {
-  sioyek = {
-    enable = true;
-    bindings = {
-      move_up = "k";
-      move_down = "j";
+  config.programs = {
+    sioyek = {
+      enable = true;
+      bindings = {
+        move_up = "k";
+        move_down = "j";
 
-      previous_page = "K";
-      next_page = "J";
+        previous_page = "K";
+        next_page = "J";
 
-      zoom_in = "+";
-      zoom_out = "-";
+        zoom_in = "+";
+        zoom_out = "-";
 
-      reload = "<C-r>";
+        reload = "<C-r>";
 
-      fit_to_page_width = "s";
-      fit_to_page_height = "r";
+        fit_to_page_width = "s";
+        fit_to_page_height = "r";
 
-      goto_toc = "<tab>";
+        goto_toc = "<tab>";
 
-      command = ":";
+        command = ":";
+      };
+      config = {
+        startup_commands = "toggle_mouse_drag_mode";
+      };
     };
-    config = {
-      startup_commands = "toggle_mouse_drag_mode";
-    };
-  };
 
-  rofi = {
-    enable = true;
-    font = "FiraCode Nerd Font 12";
+    rofi = {
+      enable = true;
+      font = "FiraCode Nerd Font 12";
+    };
   };
 }

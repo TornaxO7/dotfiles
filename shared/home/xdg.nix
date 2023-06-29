@@ -1,6 +1,6 @@
-{ config, lib }: 
+{ config, lib, ... }:
 {
-  configFile = {
+  xdg.configFile = {
     nvim = {
       enable = true;
       recursive = true;
