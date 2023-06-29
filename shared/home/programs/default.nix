@@ -1,4 +1,4 @@
-{ pkgs, lib }:
+{pkgs, lib }:
 {
   bat.enable = true;
 
@@ -69,7 +69,7 @@
 
   man.enable = true;
 
-  neovim = import ./nvim.nix {inherit pkgs;};
+  neovim = import ./nvim.nix { inherit pkgs; };
 
   password-store.enable = true;
 

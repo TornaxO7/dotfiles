@@ -29,7 +29,10 @@
 
     environment = {
       pathsToLink = [ "/share/zsh" ];
-      variables.EDITOR = "nvim";
+      variables ={
+        EDITOR = "nvim";
+        MYTEST = config.age.secrets.test.path;
+      };
       systemPackages = with pkgs; [
         git
         tailscale
