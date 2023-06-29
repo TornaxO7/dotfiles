@@ -40,8 +40,9 @@
         pc = init_system {
           configuration = ./nixos-configurations/pc/default.nix;
           extra-modules = [
-            ./modules/desktop/default.nix
+            ./modules/desktop
             ./modules/game/steam.nix
+            ./modules/paperless
             ./modules/yubikey
           ];
         };
@@ -49,7 +50,7 @@
         laptop = init_system {
           configuration = ./nixos-configurations/laptop;
           extra-modules = [
-            ./modules/desktop/default.nix
+            ./modules/desktop
             ./modules/yubikey
           ];
         };
