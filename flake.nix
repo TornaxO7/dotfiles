@@ -18,7 +18,7 @@
           inherit system;
 
           modules = [
-            ./shared/default.nix
+            ./modules/default.nix
             home-manager.nixosModules.home-manager
             configuration
           ] ++ extra-modules;
@@ -33,7 +33,7 @@
         pc = init_system {
           configuration = ./nixos-configurations/pc/default.nix;
           extra-modules = [
-            ./shared/desktop/default.nix
+            ./modules/desktop/default.nix
             ./modules/game/steam.nix
             ./modules/yubikey
           ];
@@ -42,7 +42,7 @@
         laptop = init_system {
           configuration = ./nixos-configurations/laptop;
           extra-modules = [
-            ./shared/desktop/default.nix
+            ./modules/desktop/default.nix
             ./modules/yubikey
           ];
         };

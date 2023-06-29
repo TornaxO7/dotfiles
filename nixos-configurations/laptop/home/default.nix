@@ -3,6 +3,12 @@
   imports = [
     ./i3.nix
     ./i3status-rs.nix
+    ./packages.nix
   ];
-  home.packages = import ./packages.nix { inherit pkgs; };
+
+  config.home.packages = with pkgs; [
+    cacert
+    font-awesome
+    xournalpp
+  ];
 }

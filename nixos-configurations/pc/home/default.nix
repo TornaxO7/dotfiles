@@ -5,9 +5,25 @@
   ];
 
   home = {
-    packages = import ./packages.nix { inherit pkgs; };
+    packages = with pkgs; [
+      eww
+    ];
     pointerCursor.size = 20;
   };
-  services = import ./services.nix;
-  xdg = import ./xdg.nix;
+
+  services.picom = {
+    enable = true;
+    # activeOpacity = 0.75;
+    backend = "glx";
+    vSync = true;
+  };
+
+  xdg.configFile = {
+    eww = {
+      enable = true;
+      recursive = true;
+      source = ../config/eww;
+      target = "eww";
+    };
+  };
 }

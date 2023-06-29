@@ -76,7 +76,10 @@
       pcscd.enable = true;
     };
 
-    programs = import ./programs.nix { inherit lib; };
+    programs = {
+      zsh.enable = true;
+      git.enable = true;
+    };
 
     system.stateVersion = "22.11";
   };
