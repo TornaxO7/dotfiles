@@ -3,6 +3,7 @@
   config.home.packages = with pkgs; [
     arandr
     discord
+    element-desktop
     flameshot
     google-chrome
     pavucontrol
@@ -12,7 +13,7 @@
     signal-desktop
     spotify
     texlive.combined.scheme-full
-    yubikey-manager-qt
     xclip
+    yubikey-manager-qt
   ];
 }
