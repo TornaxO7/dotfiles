@@ -4,6 +4,7 @@
     bandwhich
     bitwarden
     borgbackup
+    iamb
     du-dust
     fd
     ffmpeg_6-full
