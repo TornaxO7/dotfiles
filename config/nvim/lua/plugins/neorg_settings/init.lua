@@ -23,7 +23,7 @@ return {
                 ["core.dirman"] = {
                     config = {
                         workspaces = {
-                            main = "/main/Dokumente/NeorgNotes",
+                            main = "/main/Docs/NeorgNotes",
                         }
                     }
                 },
