@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   config.home.packages = with pkgs; [
+    anki-bin
     arandr
     discord
     element-desktop
