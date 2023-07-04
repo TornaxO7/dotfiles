@@ -1,16 +1,5 @@
-{config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 {
-  services.xserver = {
-    enable = true;
-
-    desktopManager = {
-      xterm.enable = false;
-    };
-
-    layout = "de";
-    xkbVariant = "bone";
-  };
-
   qt = {
     style = "adwaita-dark";
     # platformTheme = "gtk";
@@ -23,10 +12,31 @@
   security.rtkit.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+
+
+  services = {
+    xserver = {
+      enable = true;
+
+      desktopManager = {
+        xterm.enable = false;
+      };
+
+      layout = "de";
+      xkbVariant = "bone";
+    };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
   };
 }
