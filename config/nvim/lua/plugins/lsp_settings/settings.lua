@@ -51,6 +51,7 @@ end
 local ls_dir = "plugins/lsp_settings/ls"
 local ls_files = {
     "bashls",
+    "eslint",
     "lua_ls",
     "rust_tools",
     "tsserver",
