@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     authy
+    ast-grep
     bandwhich
     bitwarden
     borgbackup
