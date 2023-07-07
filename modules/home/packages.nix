@@ -6,6 +6,7 @@
     bandwhich
     bitwarden
     borgbackup
+    gptfdisk
     iamb
     du-dust
     fd
