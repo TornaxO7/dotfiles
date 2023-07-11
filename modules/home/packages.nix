@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     authy
+    atool
     ast-grep
     bandwhich
     bitwarden
