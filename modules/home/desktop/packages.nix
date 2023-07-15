@@ -2,7 +2,7 @@
 {
   config.home.packages = with pkgs; [
     anki-bin
-  simplescreenrecorder
+    simplescreenrecorder
     arandr
     discord
     element-desktop
