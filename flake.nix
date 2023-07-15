@@ -53,6 +53,10 @@
             ./modules/yubikey
           ];
         };
+
+        pi = init_system {
+          configuration = ./nixos-configurations/pi;
+        };
       };
     };
 }
