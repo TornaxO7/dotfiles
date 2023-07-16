@@ -5,6 +5,7 @@
 
   config = {
     home-manager.users.tornax.imports = [
+      ./home/default.nix
     ];
     time.timeZone = "Europe/Berlin";
 
