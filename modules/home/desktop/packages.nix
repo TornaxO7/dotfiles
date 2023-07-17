@@ -2,8 +2,9 @@
 {
   config.home.packages = with pkgs; [
     anki-bin
-    simplescreenrecorder
     arandr
+    authy
+    bitwarden
     discord
     element-desktop
     flameshot
@@ -13,9 +14,12 @@
     pulseaudio
     redshift
     signal-desktop
+    simplescreenrecorder
     spotify
     texlive.combined.scheme-full
+    vimiv-qt
     xclip
+    xournalpp
     yubikey-manager-qt
   ];
 }
