@@ -1,11 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    authy
     atool
     ast-grep
     bandwhich
-    bitwarden
     borgbackup
     gptfdisk
     iamb
@@ -35,8 +33,6 @@
     udisks
     unzip
     vifm-full
-    vimiv-qt
     wiki-tui
-    xournalpp
   ];
 }
