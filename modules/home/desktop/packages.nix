@@ -17,6 +17,7 @@
     simplescreenrecorder
     spotify
     texlive.combined.scheme-full
+    thunderbird
     vimiv-qt
     xclip
     xournalpp
