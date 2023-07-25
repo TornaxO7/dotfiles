@@ -14,6 +14,13 @@
 
   outputs = { nixpkgs, home-manager, agenix, ... }:
     let
+      forAllSystems = function:
+        nixpkgs.lib.genAttrs [
+          "x86_64-linux"
+          "aarch64-linux"
+        ]
+          (system: function nixpkgs.legacyPackages.${system});
+
       init_system =
         { configuration
         , system ? "x86_64-linux"
@@ -54,5 +61,7 @@
           ];
         };
       };
+
+      devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
     };
 }
