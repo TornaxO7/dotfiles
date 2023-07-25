@@ -1,4 +1,11 @@
 {
+  backup = ''
+    borg delete --list --stats --progress /mnt::Previous2\
+        && borg rename --progress /mnt::Previous1 Previous2\
+        && borg rename --progress /mnt::Latest Previous1\
+        && borg create --stats --progress /mnt::Latest /main
+  '';
+
   p = "python";
 
   z = "zellij";
