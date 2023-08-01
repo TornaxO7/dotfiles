@@ -50,6 +50,7 @@
             ./modules/desktop/default.nix
             ./modules/game/steam.nix
             ./modules/yubikey
+            ./modules/udev_moonlander_rules.nix
           ];
         };
 
