@@ -56,6 +56,10 @@
     console.keyMap = "bone";
 
     users = {
+      groups = {
+        plugdev = {};
+      };
+
       defaultUserShell = pkgs.zsh;
 
       users.tornax = {
