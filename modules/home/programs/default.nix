@@ -182,7 +182,9 @@
     zsh = {
       enable = true;
       enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting = {
+        enable = true;
+      };
       enableCompletion = true;
       shellAliases = import ../shell_aliases.nix;
       sessionVariables = import ../session_variables.nix;
