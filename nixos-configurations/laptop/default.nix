@@ -12,6 +12,8 @@
       ./home/default.nix
     ];
 
+    hardware.bluetooth.enable = true;
+
     environment = {
       systemPackages = with pkgs; [
         alacritty
