@@ -24,23 +24,27 @@
       };
     };
 
-    services.xserver = {
-      dpi = 210;
-      displayManager = {
-        defaultSession = "none+i3";
-        autoLogin = {
+    services = {
+      blueman.enable = true;
+      xserver = {
+        dpi = 210;
+        displayManager = {
+          defaultSession = "none+i3";
+          autoLogin = {
+            enable = true;
+            user = "tornax";
+          };
+        };
+
+        windowManager.i3 = {
           enable = true;
-          user = "tornax";
+          extraPackages = with pkgs; [
+            xwallpaper
+          ];
         };
       };
-
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          xwallpaper
-        ];
-      };
     };
+
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
