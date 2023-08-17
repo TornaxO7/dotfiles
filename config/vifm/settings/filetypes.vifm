@@ -2,10 +2,7 @@
 " filextype: What should it do (which program should it use), when you want to open it
 " fileviewer: What should it do for the prievew?
 
-" filextype *.pdf sioyek %c %i &, apvlv %c, xpdf %c
-filextype *.pdf sioyek --new-window %c &
-" filextype *.pdf google-chrome-stable %c %i &
-""fileviewer *.pdf env -u COLORTERM viu -w %pw -h %ph -s %c
+filextype *.pdf zathura %c &
 
 filextype *.ps,*.eps,*.ps.gz
         \ {View in sioyek}
