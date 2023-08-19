@@ -56,17 +56,18 @@ in
         "${alt}+Shift+q" = "kill";
         "${alt}+d" = "exec --no-startup-id rofi -show run";
 
-        "${alt}+j" = "focus next";
-        "${alt}+k" = "focus prev";
+        "${alt}+l" = "focus right";
+        "${alt}+h" = "focus left";
+        "${alt}+j" = "focus down";
+        "${alt}+k" = "focus up";
+
         "${alt}+Shift+h" = "move left";
         "${alt}+Shift+j" = "move down";
         "${alt}+Shift+k" = "move up";
         "${alt}+Shift+l" = "move right";
 
-        "${alt}+p" = "split v";
-        "${alt}+h" = "split h";
-        "${alt}+l" = "layout toggle split";
-        "${alt}+m" = "focus parent";
+        "${alt}+e" = "split v";
+        "${alt}+i" = "split h";
         "${alt}+w" = "layout tabbed";
         "${alt}+f" = "fullscreen toggle";
 
