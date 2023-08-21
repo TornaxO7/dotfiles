@@ -161,6 +161,7 @@
         set recolor-lightcolor "#1a1725" # Background
         set recolor-darkcolor "#94cf95" # Foreground
       '';
+
       options = {
         adjust-open = "width";
         recolor = true;
@@ -170,7 +171,7 @@
         synctex-editor-command = "nvim --headless -c \"VimtexInverseSearch %l f\"";
         incremental-search = true;
         page-cache-size = 500;
-        font = "Liberation Sans:style=Bold:pixelsize=10";
+        font = "FiraCode";
         sandbox = "none";
       };
     };
