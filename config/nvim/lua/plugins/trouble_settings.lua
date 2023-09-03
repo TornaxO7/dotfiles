@@ -11,5 +11,7 @@ return {
                 toggle_fold = { "zt" },
             },
         })
+
+        vim.keymap.set("n", "T", function() trouble.trouble() end, {silent = true})
     end,
 }
