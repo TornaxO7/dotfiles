@@ -1,12 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    atool
     ast-grep
     bandwhich
     borgbackup
-    gptfdisk
-    iamb
     du-dust
     fd
     ffmpeg_6-full
@@ -14,12 +11,15 @@
     fira-code
     fira-code-symbols
     gcc13
+    gptfdisk
     highlight
+    iamb
     imagemagick
     irssi
     liberation_ttf
     nodejs_20
     openvpn
+    ouch
     pinentry
     pkg-config-unwrapped
     powertop
@@ -31,7 +31,6 @@
     speedtest-cli
     tokei
     udisks
-    unzip
     vifm-full
     wiki-tui
   ];

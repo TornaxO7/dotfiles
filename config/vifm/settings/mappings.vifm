@@ -2,10 +2,8 @@
 
 " Editing / Do something with the files
 nnoremap cd :cd
-nnoremap cu :unpack<CR>
 nnoremap cD :diff<CR>
 vnoremap cD :diff<CR>
-vnoremap ef :mergeFiles<CR>
 
 " start shell
 nmap S :shell<Cr>
