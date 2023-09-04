@@ -2,7 +2,7 @@
 {
   config.programs = {
     sioyek = {
-      enable = true;
+      enable = false;
       bindings = {
         move_up = "k";
         move_down = "j";

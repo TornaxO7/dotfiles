@@ -19,7 +19,7 @@
     liberation_ttf
     nodejs_20
     openvpn
-    ouch
+    # ouch
     pinentry
     pkg-config-unwrapped
     powertop
