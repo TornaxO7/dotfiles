@@ -25,7 +25,7 @@
     powertop
     python312
     ripgrep
-    ripgrep-all
+    # ripgrep-all
     rsync
     rustup
     speedtest-cli
