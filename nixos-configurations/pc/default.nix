@@ -48,6 +48,7 @@
     hardware.opengl.driSupport = true;
 
     networking = {
+      networkmanager.enable = false;
       hostName = "pc";
       interfaces.enp6s0.wakeOnLan.enable = true;
     };
