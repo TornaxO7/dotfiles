@@ -48,6 +48,7 @@
           configuration = ./nixos-configurations/pc/default.nix;
           extra-modules = [
             ./modules/desktop/default.nix
+            ./modules/desktop/xorg.nix
             ./modules/game/steam.nix
             ./modules/yubikey
             ./modules/udev_moonlander_rules.nix

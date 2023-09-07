@@ -14,17 +14,6 @@
   hardware.pulseaudio.enable = false;
 
   services = {
-    xserver = {
-      enable = true;
-
-      desktopManager = {
-        xterm.enable = false;
-      };
-
-      layout = "de";
-      xkbVariant = "bone";
-    };
-
     pipewire = {
       enable = true;
       alsa.enable = true;
