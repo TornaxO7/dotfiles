@@ -15,6 +15,6 @@ return {
     priority = 50,
     condition = {
         filetype = { "nix" },
-        dir = "/home/tornax/Programming/projects/dotfiles",
+        dir = "/home/tornax/dotfiles",
     },
 }
