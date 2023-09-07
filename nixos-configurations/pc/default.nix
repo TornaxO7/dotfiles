@@ -2,12 +2,19 @@
 {
   imports = [
     ./hardware-configuration.nix
+
+    ../../modules/desktop/default.nix
+    ../../modules/desktop/xorg.nix
+    ../../modules/game/steam.nix
+    ../../modules/yubikey
+    ../../modules/udev_moonlander_rules.nix
   ];
 
   config = {
     home-manager.users.tornax.imports = [
       ../../modules/home/desktop/default.nix
-      ../../modules/home/desktop/wm/i3.nix
+      ../../modules/home/desktop/xorg/default.nix
+      ../../modules/home/desktop/xorg/i3.nix
       ./home/default.nix
     ];
 

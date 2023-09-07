@@ -24,7 +24,6 @@
       init_system =
         { configuration
         , system ? "x86_64-linux"
-        , extra-modules ? [ ]
         ,
         }: nixpkgs.lib.nixosSystem {
           inherit system;
@@ -35,7 +34,7 @@
             home-manager.nixosModules.home-manager
             agenix.nixosModules.default
             configuration
-          ] ++ extra-modules;
+          ];
 
           specialArgs = {
             inherit home-manager;
@@ -46,21 +45,10 @@
       nixosConfigurations = {
         pc = init_system {
           configuration = ./nixos-configurations/pc/default.nix;
-          extra-modules = [
-            ./modules/desktop/default.nix
-            ./modules/desktop/xorg.nix
-            ./modules/game/steam.nix
-            ./modules/yubikey
-            ./modules/udev_moonlander_rules.nix
-          ];
         };
 
         laptop = init_system {
           configuration = ./nixos-configurations/laptop;
-          extra-modules = [
-            ./modules/desktop/default.nix
-            ./modules/yubikey
-          ];
         };
       };
 
