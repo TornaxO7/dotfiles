@@ -4,7 +4,8 @@
     ./hardware-configuration.nix
 
     ../../modules/desktop/default.nix
-    ../../modules/desktop/xorg.nix
+    ../../modules/desktop/xorg/default.nix
+    ../../modules/desktop/xorg/i3.nix
     ../../modules/game/steam.nix
     ../../modules/yubikey
     ../../modules/udev_moonlander_rules.nix
@@ -29,14 +30,6 @@
           enable = true;
           user = "tornax";
         };
-      };
-
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          rofi
-          xwallpaper
-        ];
       };
 
       desktopManager.gnome.enable = true;

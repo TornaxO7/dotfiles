@@ -13,17 +13,18 @@ in
 {
   xsession.windowManager.i3 = {
     enable = true;
+
     config = {
       fonts = {
-          names = [ "FiraCode Nerd Font" ];
-          style = "SemiBold";
-          size = 11.0;
+        names = [ "FiraCode Nerd Font" ];
+        style = "SemiBold";
+        size = 11.0;
       };
 
       menu = "\${pkgs.rofi}/bin/rofi -show run";
 
       gaps = null;
-      modes = {};
+      modes = { };
 
       floating = {
         modifier = alt;
