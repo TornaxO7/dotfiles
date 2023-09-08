@@ -1,10 +1,6 @@
 { ... }:
 {
   config.programs = {
-    firefox = {
-      enable = true;
-    };
-
     sioyek = {
       enable = false;
       bindings = {
