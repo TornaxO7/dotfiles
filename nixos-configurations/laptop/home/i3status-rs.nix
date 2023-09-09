@@ -38,13 +38,6 @@
           critical_swap = 95;
         }
         {
-          block = "net";
-          device = "wlp0s20f3";
-          format = "$icon $ssid $signal_strength";
-          inactive_format = "$icon  Down";
-          interval = 5;
-        }
-        {
           block = "sound";
           step_width = 2;
           max_vol = 100;
