@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # ripgrep-all
     ast-grep
     bandwhich
     borgbackup
@@ -18,6 +19,7 @@
     imagemagick
     irssi
     liberation_ttf
+    magic-wormhole-rs
     nodejs_20
     openvpn
     ouch
@@ -26,7 +28,6 @@
     powertop
     python312
     ripgrep
-    # ripgrep-all
     rsync
     rustup
     speedtest-cli
