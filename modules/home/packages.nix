@@ -15,6 +15,7 @@
     gcc13
     gptfdisk
     highlight
+    termusic
     iamb
     imagemagick
     irssi
