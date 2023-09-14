@@ -49,9 +49,9 @@ in
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-        "${alt}+n" = "exec --no-startup-id playerctl --player=spotify next";
-        "${alt}+r" = "exec --no-startup-id playerctl --player=spotify previous";
-        "${alt}+s" = "exec --no-startup-id playerctl --player=spotify play-pause";
+        "${alt}+n" = "exec --no-startup-id playerctl --player=spotify,termusic next";
+        "${alt}+r" = "exec --no-startup-id playerctl --player=spotify,termusic previous";
+        "${alt}+s" = "exec --no-startup-id playerctl --player=spotify,termusic play-pause";
 
         "${alt}+Return" = "exec --no-startup-id alacritty";
         "${alt}+Shift+q" = "kill";
