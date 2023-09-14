@@ -45,4 +45,6 @@
   r3 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000";
 
   ew = "wiki-tui";
+
+  tm = "termusic /main/Music/rest";
 }
