@@ -34,6 +34,7 @@
     speedtest-cli
     tokei
     udisks
+    yt-dlp
     vifm-full
     wiki-tui
   ];
