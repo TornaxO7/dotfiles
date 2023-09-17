@@ -1,1 +1,1 @@
-return { "python.tmp_test"}
+return { "python.tmp_test", "python.manim"}
