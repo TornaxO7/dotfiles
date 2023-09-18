@@ -13,7 +13,18 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    networking.hosts = {
+    networking = {
+      hosts = { };
+
+      firewall = {
+        enable = true;
+        allowedTCPPortRanges = [
+          { from = 1714; to = 1764; } # KDE Connect
+        ];
+        allowedUDPPortRanges = [
+          { from = 1714; to = 1764; } # KDE Connect
+        ];
+      };
     };
 
     nixpkgs = {
@@ -28,7 +39,7 @@
 
     environment = {
       pathsToLink = [ "/share/zsh" ];
-      variables ={
+      variables = {
         EDITOR = "nvim";
       };
       systemPackages = with pkgs; [
@@ -56,7 +67,7 @@
 
     users = {
       groups = {
-        plugdev = {};
+        plugdev = { };
       };
 
       defaultUserShell = pkgs.zsh;
