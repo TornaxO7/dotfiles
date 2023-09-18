@@ -35,6 +35,7 @@
     tokei
     udisks
     yt-dlp
+    wormhole-rs
     vifm-full
     wiki-tui
   ];
