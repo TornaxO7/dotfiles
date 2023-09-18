@@ -13,19 +13,7 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    networking = {
-      hosts = { };
-
-      firewall = {
-        enable = true;
-        allowedTCPPortRanges = [
-          { from = 1714; to = 1764; } # KDE Connect
-        ];
-        allowedUDPPortRanges = [
-          { from = 1714; to = 1764; } # KDE Connect
-        ];
-      };
-    };
+    networking.hosts = { };
 
     nixpkgs = {
       config.allowUnfree = true;
@@ -102,7 +90,6 @@
     programs = {
       zsh.enable = true;
       git.enable = true;
-      kdeconnect.enable = true;
     };
 
     system.stateVersion = "22.11";
