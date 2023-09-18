@@ -6,7 +6,5 @@
       enableZshIntegration = true;
       enableSshSupport = true;
     };
-
-    kdeconnect.enable = true;
-    };
+  };
 }

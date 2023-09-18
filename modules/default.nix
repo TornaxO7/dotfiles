@@ -91,6 +91,7 @@
     programs = {
       zsh.enable = true;
       git.enable = true;
+      kdeconnect.enable = true;
     };
 
     system.stateVersion = "22.11";
