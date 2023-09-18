@@ -5,6 +5,8 @@
 
     playerctld.enable = true;
 
+    kdeconnect.enable = true;
+
     redshift = {
       enable = false;
       latitude = 52.52;
