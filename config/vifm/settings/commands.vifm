@@ -22,7 +22,4 @@ command! reload :write | restart
 command! dragon dragon-drop -a -x %f
 command! clear vifmimg clear
 command! print lp -n 1 -o sides=two-sided-long-edge %f
-command! unpack aunpack %c
-command! mergeFiles merge_files.sh %d %f
-command! zip if [ -n "%a" ]; then zip -r '%a.zip' %f; fi
 command! sudoedit sudoedit %c

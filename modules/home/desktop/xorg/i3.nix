@@ -13,17 +13,18 @@ in
 {
   xsession.windowManager.i3 = {
     enable = true;
+
     config = {
       fonts = {
-          names = [ "FiraCode Nerd Font" ];
-          style = "SemiBold";
-          size = 11.0;
+        names = [ "FiraCode Nerd Font" ];
+        style = "SemiBold";
+        size = 11.0;
       };
 
       menu = "\${pkgs.rofi}/bin/rofi -show run";
 
       gaps = null;
-      modes = {};
+      modes = { };
 
       floating = {
         modifier = alt;
@@ -48,25 +49,26 @@ in
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-        "${alt}+n" = "exec --no-startup-id playerctl --player=spotify next";
-        "${alt}+r" = "exec --no-startup-id playerctl --player=spotify previous";
-        "${alt}+s" = "exec --no-startup-id playerctl --player=spotify play-pause";
+        "${alt}+n" = "exec --no-startup-id playerctl -p spotify next";
+        "${alt}+r" = "exec --no-startup-id playerctl -p spotify previous";
+        "${alt}+s" = "exec --no-startup-id playerctl -p spotify play-pause";
 
         "${alt}+Return" = "exec --no-startup-id alacritty";
         "${alt}+Shift+q" = "kill";
         "${alt}+d" = "exec --no-startup-id rofi -show run";
 
-        "${alt}+j" = "focus next";
-        "${alt}+k" = "focus prev";
+        "${alt}+l" = "focus right";
+        "${alt}+h" = "focus left";
+        "${alt}+j" = "focus down";
+        "${alt}+k" = "focus up";
+
         "${alt}+Shift+h" = "move left";
         "${alt}+Shift+j" = "move down";
         "${alt}+Shift+k" = "move up";
         "${alt}+Shift+l" = "move right";
 
-        "${alt}+p" = "split v";
-        "${alt}+h" = "split h";
-        "${alt}+l" = "layout toggle split";
-        "${alt}+m" = "focus parent";
+        "${alt}+e" = "split v";
+        "${alt}+i" = "split h";
         "${alt}+w" = "layout tabbed";
         "${alt}+f" = "fullscreen toggle";
 

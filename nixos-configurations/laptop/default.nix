@@ -3,14 +3,23 @@
 
   imports = [
     ./hardware-configuration.nix
+
+    ../../modules/desktop/default.nix
+    ../../modules/desktop/xorg/default.nix
+    ../../modules/desktop/xorg/i3.nix
+    ../../modules/yubikey/default.nix
+    ../../modules/kdeconnect.nix
   ];
 
   config = {
     home-manager.users.tornax.imports = [
       ../../modules/home/desktop/default.nix
-      ../../modules/home/desktop/wm/i3.nix
+      ../../modules/home/desktop/xorg/default.nix
+      ../../modules/home/desktop/xorg/i3.nix
       ./home/default.nix
     ];
+
+    hardware.bluetooth.enable = true;
 
     environment = {
       systemPackages = with pkgs; [
@@ -24,23 +33,27 @@
       };
     };
 
-    services.xserver = {
-      dpi = 210;
-      displayManager = {
-        defaultSession = "none+i3";
-        autoLogin = {
+    services = {
+      blueman.enable = true;
+      xserver = {
+        dpi = 210;
+        displayManager = {
+          defaultSession = "none+i3";
+          autoLogin = {
+            enable = true;
+            user = "tornax";
+          };
+        };
+
+        windowManager.i3 = {
           enable = true;
-          user = "tornax";
+          extraPackages = with pkgs; [
+            xwallpaper
+          ];
         };
       };
-
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          xwallpaper
-        ];
-      };
     };
+
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;

@@ -12,15 +12,7 @@
         package = pkgs.libsForQt5.breeze-gtk;
         gtk.enable = true;
         name = "breeze";
-        x11.enable = true;
       };
-      shellAliases = {
-        x = "xclip -selection clipboard";
-      };
-    };
-
-    xsession = {
-      initExtra = "xset r rate 250";
     };
 
     gtk = {

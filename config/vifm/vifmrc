@@ -2,7 +2,7 @@
 source ~/.config/vifm/settings/commands.vifm
 source ~/.config/vifm/settings/favicons.vifm
 source ~/.config/vifm/settings/filetypes.vifm
-source ~/.config/vifm/settings/highlighting.vifm
+source ~/.config/vifm/settings/fileviewer.vifm
 source ~/.config/vifm/settings/mappings.vifm
 source ~/.config/vifm/settings/abbreviations.vifm
 

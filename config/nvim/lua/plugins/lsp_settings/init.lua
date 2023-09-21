@@ -42,6 +42,7 @@ return {
 						formatting.prettier,
 						formatting.autopep8,
 						formatting.clang_format,
+                        formatting.sqlfmt,
 					},
 				})
 			end,

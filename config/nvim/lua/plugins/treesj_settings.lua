@@ -1,9 +1,9 @@
 return {
 	"Wansmer/treesj",
 	dependencies = {
-		"folke/which-key.nvim",
-		"nvim-treesitter/nvim-treesitter",
-	},
+        "folke/which-key.nvim",
+        "nvim-treesitter/nvim-treesitter",
+    },
 	init = function()
 		local key = require("which-key")
 		local treesj = require("treesj")

@@ -14,10 +14,16 @@
 
   outputs = { nixpkgs, home-manager, agenix, ... }:
     let
+      forAllSystems = function:
+        nixpkgs.lib.genAttrs [
+          "x86_64-linux"
+          "aarch64-linux"
+        ]
+          (system: function nixpkgs.legacyPackages.${system});
+
       init_system =
         { configuration
         , system ? "x86_64-linux"
-        , extra-modules ? [ ]
         ,
         }: nixpkgs.lib.nixosSystem {
           inherit system;
@@ -28,7 +34,7 @@
             home-manager.nixosModules.home-manager
             agenix.nixosModules.default
             configuration
-          ] ++ extra-modules;
+          ];
 
           specialArgs = {
             inherit home-manager;
@@ -39,21 +45,13 @@
       nixosConfigurations = {
         pc = init_system {
           configuration = ./nixos-configurations/pc/default.nix;
-          extra-modules = [
-            ./modules/desktop
-            ./modules/game/steam.nix
-            ./modules/paperless
-            ./modules/yubikey
-          ];
         };
 
         laptop = init_system {
           configuration = ./nixos-configurations/laptop;
-          extra-modules = [
-            ./modules/desktop
-            ./modules/yubikey
-          ];
         };
       };
+
+      devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
     };
 }

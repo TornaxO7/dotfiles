@@ -1,4 +1,11 @@
 {
+  backup = ''
+    borg delete --list --stats --progress /mnt::Previous2\
+        && borg rename --progress /mnt::Previous1 Previous2\
+        && borg rename --progress /mnt::Latest Previous1\
+        && borg create --stats --progress /mnt::Latest /main
+  '';
+
   p = "python";
 
   z = "zellij";
@@ -38,4 +45,8 @@
   r3 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000";
 
   ew = "wiki-tui";
+
+  tm = "termusic /main/Music/rest";
+  nsa = "nix-shell '<unstable>' --command 'zsh' -A";
+  nsp = "nix-shell '<unstable>' --command 'zsh' -p";
 }

@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # ripgrep-all
+    ast-grep
     bandwhich
-    bitwarden
     borgbackup
     du-dust
     fd
@@ -10,28 +11,32 @@
     file
     fira-code
     fira-code-symbols
+    firefox
     gcc13
+    gptfdisk
     highlight
+    termusic
+    iamb
     imagemagick
     irssi
     liberation_ttf
+    magic-wormhole-rs
     nodejs_20
     openvpn
+    ouch
     pinentry
     pkg-config-unwrapped
     powertop
     python312
     ripgrep
-    ripgrep-all
     rsync
     rustup
     speedtest-cli
     tokei
     udisks
-    unzip
+    yt-dlp
+    wormhole-rs
     vifm-full
-    vimiv-qt
     wiki-tui
-    xournalpp
   ];
 }

@@ -7,6 +7,7 @@
   home = {
     packages = with pkgs; [
       eww
+      rpi-imager
     ];
     pointerCursor.size = 20;
   };

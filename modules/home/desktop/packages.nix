@@ -1,8 +1,12 @@
 { pkgs, ... }:
 {
   config.home.packages = with pkgs; [
+    anki-bin
     arandr
+    authy
+    bitwarden
     discord
+    element-desktop
     flameshot
     google-chrome
     pavucontrol
@@ -10,9 +14,13 @@
     pulseaudio
     redshift
     signal-desktop
+    simplescreenrecorder
     spotify
     texlive.combined.scheme-full
-    yubikey-manager-qt
+    thunderbird
+    vimiv-qt
     xclip
+    xournalpp
+    yubikey-manager-qt
   ];
 }

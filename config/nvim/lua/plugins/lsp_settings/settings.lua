@@ -50,13 +50,11 @@ end
 -- --------------------------
 local ls_dir = "plugins/lsp_settings/ls"
 local ls_files = {
-    "bashls",
     "lua_ls",
     "rust_tools",
     "tsserver",
     "clangd",
     "phpactor",
-    "vimls",
     "json",
     "pyright",
     "texlab",

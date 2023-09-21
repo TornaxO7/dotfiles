@@ -8,7 +8,12 @@ local function loader(on_attach, capabilities)
             ["rust-analyzer"] = {
                 cargo = {
                     -- features = {"all"},
-                }
+                },
+                procMacro = {
+                    attributes = {
+                        enable = true,
+                    }
+                },
             }
         }
     })
