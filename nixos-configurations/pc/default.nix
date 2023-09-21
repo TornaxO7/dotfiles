@@ -10,6 +10,7 @@
     ../../modules/yubikey
     ../../modules/udev_moonlander_rules.nix
     ../../modules/kdeconnect.nix
+    ../../modules/paperless/default.nix
   ];
 
   config = {
