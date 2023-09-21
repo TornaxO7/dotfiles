@@ -14,7 +14,7 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     networking.hosts = {
-      "127.0.0.1" = ["www.youtube.com"];
+      "127.0.0.1" = [ "www.youtube.com" ];
     };
 
     nixpkgs = {
@@ -81,7 +81,21 @@
       };
     };
 
-    security.sudo.extraConfig = "Defaults insults";
+    security.sudo = {
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          options = [ "NOPASSWD" ];
+          commands = [
+            "/run/current-system/sw/bin/reboot"
+            "/run/current-system/sw/bin/poweroff"
+          ];
+        }
+      ];
+      extraConfig = ''
+        Defaults insults
+      '';
+    };
 
     services = {
       openssh.enable = true;
