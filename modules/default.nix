@@ -85,10 +85,15 @@
       extraRules = [
         {
           groups = [ "wheel" ];
-          options = [ "NOPASSWD" ];
           commands = [
-            "/run/current-system/sw/bin/reboot"
-            "/run/current-system/sw/bin/poweroff"
+            {
+              command = "/run/current-system/sw/bin/reboot";
+              options = [ "NOPASSWD" ];
+            }
+            {
+              command = "/run/current-system/sw/bin/poweroff";
+              options = [ "NOPASSWD" ];
+            }
           ];
         }
       ];
