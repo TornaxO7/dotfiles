@@ -2,5 +2,6 @@
 {
   services.paperless = {
     enable = true;
+    dataDir = "/main/paperless";
   };
 }
