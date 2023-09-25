@@ -11,10 +11,13 @@
       ];
     };
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
 
     networking.hosts = {
-      "127.0.0.1" = [ "www.youtube.com" ];
+      # "127.0.0.1" = [ "www.youtube.com" ];
     };
 
     nixpkgs = {
