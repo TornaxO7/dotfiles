@@ -189,7 +189,13 @@
       enableCompletion = true;
       shellAliases = import ../shell_aliases.nix;
       sessionVariables = import ../session_variables.nix;
-      initExtra = "bindkey '^ ' autosuggest-accept; eval \"$(zoxide init --cmd cd zsh)\"";
+      initExtra = ''
+        bindkey '^ ' autosuggest-accept; eval "$(zoxide init --cmd cd zsh)"
+
+        function she() {
+          command nix-shell --command 'zsh' "<$1>"
+        }
+      '';
       oh-my-zsh = {
         enable = true;
         plugins = [

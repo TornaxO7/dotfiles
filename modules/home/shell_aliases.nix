@@ -49,4 +49,5 @@
   tm = "termusic /main/Music/rest";
   nsa = "nix-shell '<unstable>' --command 'zsh' -A";
   nsp = "nix-shell '<unstable>' --command 'zsh' -p";
+  nd = "nix develop";
 }
