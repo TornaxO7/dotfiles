@@ -31,7 +31,6 @@
     ripgrep
     rsync
     rustic-rs
-    rustup
     speedtest-cli
     tokei
     udisks
