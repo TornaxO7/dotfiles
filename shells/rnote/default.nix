@@ -17,4 +17,6 @@ in
     inputsFrom = with pkgs; [
       rnote
     ];
+
+    GSETTINGS_SCHEMA_DIR = "/home/tornax/.local/share/glib-2.0/schemas";
   }
