@@ -30,6 +30,7 @@
     python312
     ripgrep
     rsync
+    sd
     rustic-rs
     speedtest-cli
     tokei
