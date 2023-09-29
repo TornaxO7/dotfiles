@@ -108,7 +108,7 @@
 
     services = {
       openssh.enable = true;
-      tailscale.enable = false;
+      tailscale.enable = true;
       pcscd.enable = true;
     };
 
