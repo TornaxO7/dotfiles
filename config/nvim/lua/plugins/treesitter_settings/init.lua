@@ -23,15 +23,6 @@ return {
 		local treesitter = require("nvim-treesitter.configs")
         local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
-		parser_config.xml = {
-			install_info = {
-				url = "https://github.com/Trivernis/tree-sitter-xml",
-				files = { "src/parser.c" },
-				generate_requires_npm = true,
-				branch = "main",
-			},
-		}
-
         parser_config.d2 = {
             install_info = {
               url = 'https://github.com/pleshevskiy/tree-sitter-d2',
