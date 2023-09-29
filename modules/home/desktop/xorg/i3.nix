@@ -106,7 +106,7 @@ in
         "${alt}+Shift+f" = "exec --no-startup-id flameshot gui";
 
         # applications
-        "ctrl+shift+f" = "exec --no-startup-id google-chrome-stable";
+        "ctrl+shift+f" = "exec --no-startup-id firefox";
       };
     };
   };
