@@ -37,6 +37,7 @@
       };
       systemPackages = with pkgs; [
         git
+        tailscale
       ];
     };
 
@@ -107,6 +108,7 @@
 
     services = {
       openssh.enable = true;
+      tailscale.enable = true;
       pcscd.enable = true;
     };
 
