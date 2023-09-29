@@ -1,5 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
 	init = function()
         vim.opt.list = true
 
@@ -15,7 +16,7 @@ return {
         vim.cmd [[highlight IndentBlanklineSpaceChar guifg=Gray]]
         vim.cmd [[highlight IndentBlanklineContextStart gui=underline]]
 
-        require("indent_blankline").setup {
+        require("ibl").setup {
             show_current_context_start = true,
             show_current_context = true,
             show_end_of_line = true
