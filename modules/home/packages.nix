@@ -11,7 +11,6 @@
     file
     fira-code
     fira-code-symbols
-    firefox
     gcc13
     gptfdisk
     highlight
