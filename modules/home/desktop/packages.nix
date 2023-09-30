@@ -8,7 +8,6 @@
     discord
     element-desktop
     flameshot
-    google-chrome
     pavucontrol
     playerctl
     pulseaudio

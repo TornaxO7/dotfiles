@@ -31,7 +31,7 @@ filextype *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \ ffplay -fs -autoexit -volume 100 %f &,
 
 filextype *.html,*.htm
-        \ google-chrome-stable %f &,
+        \ firefox %f &,
 filetype *.html,*.htm links, lynx
 fileviewer *.html
 	\ w3m %c
