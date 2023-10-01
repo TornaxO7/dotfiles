@@ -31,5 +31,7 @@
       enable = true;
       font = "FiraCode Nerd Font 12";
     };
+
+    firefox.enable = true;
   };
 }
