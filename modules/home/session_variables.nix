@@ -4,4 +4,5 @@
   MANPAGER = "nvim +Man!";
   PATH = "$PATH:~/.local/bin";
   NIX_PATH = "$NIX_PATH:/home/tornax/dotfiles/shells";
+  MOZ_USE_XINPUT2 = "1";
 }
