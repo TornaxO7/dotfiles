@@ -22,6 +22,7 @@ pkgs.mkShell rec {
     vulkan-validation-layers
 
     cmake
+    fontconfig
   ];
 
   shellHook = ''
