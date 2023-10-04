@@ -20,6 +20,8 @@ pkgs.mkShell rec {
     shaderc directx-shader-compiler libGL
     vulkan-headers vulkan-loader vulkan-tools vulkan-tools-lunarg
     vulkan-validation-layers
+
+    cmake
   ];
 
   shellHook = ''
