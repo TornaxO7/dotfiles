@@ -1,7 +1,7 @@
 { pkgs }:
 {
   enable = true;
-  defaultEditor = true;
+  defaultEditor = false;
   extraPackages = with pkgs; [
     gcc13
     deno

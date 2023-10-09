@@ -70,7 +70,7 @@
 
     man.enable = true;
 
-    # neovim = import ./nvim.nix { inherit pkgs; };
+    neovim = import ./nvim.nix { inherit pkgs; };
     helix = import ./helix.nix;
 
     password-store.enable = true;
