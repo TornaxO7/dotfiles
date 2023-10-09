@@ -8,6 +8,12 @@
       line-number = "relative";
       ilde-timeout = 0;
 
+      cursor-shape = {
+        normal = "block";
+        insert = "bar";
+        select = "underline";
+      };
+
       statusline = {
         left = [ "mode" "file-name" "file-modification-indicator" "spinner"];
         center = [ "version-control" ];
