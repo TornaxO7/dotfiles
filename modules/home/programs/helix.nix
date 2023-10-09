@@ -6,6 +6,7 @@
 
     editor = {
       line-number = "relative";
+      ilde-timeout = 0;
 
       statusline = {
         left = [ "mode" "file-name" "file-modification-indicator" "spinner"];
