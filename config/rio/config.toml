@@ -1,0 +1,151 @@
+# config: https://raphamorim.io/rio/docs/documentation/configuration-file
+cursor = '▇'
+performance = "High"
+theme = "tokyonight-storm"
+
+[fonts]
+family = "Hack"
+
+#
+# Example
+#   [fonts]
+#   size = 18
+#
+#   [fonts.regular]
+#   family = "cascadiamono"
+#   style = "normal"
+#   weight = 400
+#
+#   [fonts.bold]
+#   family = "cascadiamono"
+#   style = "normal"
+#   weight = 800
+#
+#   [fonts.italic]
+#   family = "cascadiamono"
+#   style = "italic"
+#   weight = 400
+#
+#   [fonts.bold-italic]
+#   family = "cascadiamono"
+#   style = "italic"
+#   weight = 800
+
+# Navigation
+#
+# "mode" - Define navigation mode
+#   • NativeTab (MacOs only)
+#   • CollapsedTab
+#   • BottomTab
+#   • TopTab
+#   • Breadcrumb
+#   • Plain
+#
+# "clickable" - Enable click on tabs to switch.
+# "use-current-path" - Use same path whenever a new tab is created.
+# "color-automation" - Set a specific color for the tab whenever a specific program is running.
+# "macos-hide-window-buttons" - (MacOS only) Hide window buttons
+#
+# Example
+#   [navigation]
+#   mode = "CollapsedTab"
+#   clickable = false
+#   use-current-path = false
+#   color-automation = []
+#   macos-hide-window-buttons = false
+
+# Shell
+#
+# You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
+# Entries in `shell.args` are passed unmodified as arguments to the shell.
+#
+# Default:
+#   - (macOS) user login shell
+#   - (Linux/BSD) user login shell
+#   - (Windows) powershell
+#
+# Example 1 using fish shell from bin path:
+#
+#   shell = { program = "/bin/fish", args = ["--login"] }
+#
+# Example 2 for Windows using powershell
+#
+#   shell = { program = "pwsh", args = [] }
+#
+# Example 3 for Windows using powershell with login
+#
+#   shell = { program = "pwsh", args = ["-l"] }
+
+# Startup directory
+#
+# Directory the shell is started in. If this is unset the working
+# directory of the parent process will be used.
+#
+# This configuration only has effect if use-fork is disabled
+#
+# Example
+#  working-dir = "/Users/raphael/Documents/"
+
+# Environment variables
+#
+# The example below sets fish as the default SHELL using env vars
+# please do not copy this if you do not need
+#
+# Example
+#   env-vars = []
+
+# Disable render when unfocused
+#
+# This property disable renderer processes while Rio is unfocused.
+#
+# Example
+#   disable-renderer-when-unfocused = false
+
+# Use fork
+#
+# Defaults for POSIX-based systems (Windows is not configurable):
+# MacOS: spawn processes
+# Linux/BSD: fork processes
+#
+# Example
+#   use-fork = false
+
+# Colors
+#
+# Colors definition will overwrite any property in theme
+# (considering if theme folder does exists and is being used)
+#
+# Example:
+#
+#   [colors]
+#   background = '#0F0D0E'
+#   foreground = '#F9F4DA'
+#   cursor = '#F38BA3'
+#   tabs = '#443d40'
+#   tabs-active = '#F38BA3'
+#   green = '#0BA95B'
+#   red = '#ED203D'
+#   blue = '#12B5E5'
+#   yellow = '#FCBA28'
+
+# Bindings
+#
+# Create custom Key bindings for Rio terminal
+# More information in: raphamorim.io/rio/docs/custom-key-bindings
+#
+# Example
+#   [bindings]
+#   keys = [
+#     { key = "q", with = "super", action = "Quit" },
+#     # Bytes[27, 91, 53, 126] is equivalent to "\x1b[5~"
+#     { key = "home", with = "super | shift", bytes = [27, 91, 53, 126] }
+#   ]
+
+# Log level
+#
+# This property enables log level filter. Default is "OFF".
+#
+# Example
+#   [developer]
+#   log-level = "OFF"
+

@@ -20,5 +20,11 @@
       source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
       target = "vifm";
     };
+
+    rio = {
+      enable = true;
+      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/rio;
+      target = "rio";
+    };
   };
 }
