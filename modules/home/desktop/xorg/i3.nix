@@ -32,7 +32,7 @@ in
       };
 
       modifier = alt;
-      terminal = "alacritty";
+      terminal = "rio";
 
       window = {
         border = 1;
@@ -53,7 +53,7 @@ in
         "${alt}+r" = "exec --no-startup-id playerctl -p spotify previous";
         "${alt}+s" = "exec --no-startup-id playerctl -p spotify play-pause";
 
-        "${alt}+Return" = "exec --no-startup-id alacritty";
+        "${alt}+Return" = "exec --no-startup-id rio";
         "${alt}+Shift+q" = "kill";
         "${alt}+d" = "exec --no-startup-id rofi -show run";
 

@@ -12,6 +12,7 @@
     playerctl
     pulseaudio
     redshift
+    rio
     signal-desktop
     simplescreenrecorder
     spotify

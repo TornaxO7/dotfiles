@@ -22,10 +22,6 @@
     hardware.bluetooth.enable = true;
 
     environment = {
-      systemPackages = with pkgs; [
-        alacritty
-      ];
-
       variables = {
         GDK_SCALE = "2";
         GDK_DPI_SCALE = "0.5";

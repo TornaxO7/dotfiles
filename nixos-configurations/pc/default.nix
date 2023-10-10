@@ -21,10 +21,6 @@
       ./home/default.nix
     ];
 
-    environment.systemPackages = with pkgs; [
-      alacritty
-    ];
-
     services.xserver = {
       displayManager = {
         defaultSession = "none+i3";
