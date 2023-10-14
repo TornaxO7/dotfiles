@@ -7,4 +7,4 @@ theme = "tokyonight-storm"
 # family = "FiraCode Nerd Font"
 
 [navigation]
-mode = "Plain"
+mode = "Breadcrumb"
