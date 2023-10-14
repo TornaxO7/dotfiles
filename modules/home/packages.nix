@@ -29,6 +29,7 @@
     python312
     ripgrep
     rsync
+    rustup
     sd
     rustic-rs
     speedtest-cli
