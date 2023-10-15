@@ -24,7 +24,6 @@ in
       startup = [
         {
           command = "flameshot";
-          notification = "false";
         }
       ];
 
