@@ -21,6 +21,13 @@ in
         size = 11.0;
       };
 
+      startup = [
+        {
+          command = "flameshot";
+          notification = "false";
+        }
+      ];
+
       menu = "\${pkgs.rofi}/bin/rofi -show run";
 
       gaps = null;
@@ -28,7 +35,6 @@ in
 
       floating = {
         modifier = alt;
-
       };
 
       modifier = alt;
