@@ -16,14 +16,4 @@ in
       age-plugin-yubikey
     ];
   };
-
-  rnote = pkgs.mkShell {
-    inputsFrom = with pkgs; [
-      rnote
-    ];
-
-    packages = [
-      cairo
-    ];
-  };
 }
