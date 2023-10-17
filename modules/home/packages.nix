@@ -20,6 +20,7 @@
     irssi
     liberation_ttf
     magic-wormhole-rs
+    mdcat
     nodejs_20
     openvpn
     ouch
