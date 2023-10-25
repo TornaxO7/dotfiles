@@ -24,6 +24,8 @@ pkgs.mkShell rec {
 
     pkg-config
 
+    cargo-nextest
+
     shaderc
     directx-shader-compiler
     libGL
