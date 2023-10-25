@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    ripgrep-all
+    # ripgrep-all
     ast-grep
     bandwhich
     borgbackup
