@@ -25,6 +25,7 @@ pkgs.mkShell rec {
     pkg-config
 
     cargo-nextest
+    cargo-cross
 
     shaderc
     directx-shader-compiler
