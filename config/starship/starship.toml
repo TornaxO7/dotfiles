@@ -1,0 +1,23 @@
+add_newline = false
+format = "┌─ $os$all"
+right_format = "$battery"
+
+[[battery.display]]
+style = "bold #dbcf00"
+threshold = 100
+
+[directory]
+style = "bold fg:#00affa"
+
+[git_branch]
+style = "bold fg:#00da00"
+
+[git_status]
+deleted = "-$count"
+format = "([\\[$all_status$ahead_behind\\]]($style) )"
+modified = "!$count"
+staged = "+$count"
+style = "bold fg:#ffcb00"
+
+[os]
+disabled = false
