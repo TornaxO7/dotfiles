@@ -1,0 +1,46 @@
+alias backup="borg delete --list --stats --progress /mnt::Previous2\
+    && borg rename --progress /mnt::Previous1 Previous2\
+    && borg rename --progress /mnt::Latest Previous1\
+    && borg create --stats --progress /mnt::Latest /main"
+
+alias p="python";
+
+alias z="zellij";
+alias za="zellij a";
+alias zs="zellij -s";
+alias zm="zellij -s main";
+
+alias v="vifm .";
+
+alias em="$EDITOR /tmp/test.md";
+alias et="$EDITOR /tmp/test.txt";
+alias ec="$EDITOR /tmp/test.c";
+alias er="if [ ! -d /tmp/rust_tmp ]; then cargo new /tmp/rust_tmp/; fi; $EDITOR /tmp/rust_tmp/src/main.rs";
+alias ed="$EDITOR /tmp/test.dot";
+alias ep="$EDITOR /tmp/test.py";
+alias elu="$EDITOR /tmp/test.lua";
+alias ejs="$EDITOR /tmp/test.json";
+alias ev="$EDITOR /tmp/test.vim";
+alias ela="$EDITOR /tmp/test.tex";
+alias ef="fzf | read yeet; if [[ \$yeet != '' ]]; then $EDITOR \$yeet; fi";
+alias eja="$EDITOR /tmp/Test.java";
+alias ea="$EDITOR /tmp/test.s";
+
+alias en="$EDITOR /tmp/test.norg";
+
+alias cc="cargo check";
+alias ct="cargo test";
+alias cr="cargo run";
+alias cb="cargo build";
+
+alias rx="redshift -orx";
+alias r1="redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000";
+alias r2="redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1500";
+alias r3="redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000";
+
+alias ew="wiki-tui";
+
+alias tm="termusic /main/Music/rest";
+alias nsa="nix-shell '<unstable>' --command 'zsh' -A";
+alias nsp="nix-shell '<unstable>' --command 'zsh' -p";
+alias nd="nix develop";
