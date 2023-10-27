@@ -1,8 +1,0 @@
-(include "./dashboard/widgets/circular_slot/circular_slot.yuck")
-
-(defwidget dashboard_cpu[]
-  (circular_slot
-    :label_name "CPU"
-    :label_value "${round(EWW_CPU.avg, 2)}%"
-    :graph_value "${EWW_CPU.avg}"
-    :color_class "dashboard_cpu"))

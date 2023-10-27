@@ -1,4 +1,0 @@
-(defwidget dashboard_separator[]
-  (label
-    :class "dashboard_separator"
-    :text "--------  --------"))

@@ -1,9 +1,0 @@
-(defpoll dashboard_curr_date
-  :interval "1s"
-  :initial "1"
-  `date +"%A, %d.%m.%y"`)
-
-(defwidget dashboard_date[]
-  (label
-    :class "dashboard_date"
-    :text "${dashboard_curr_date}"))
