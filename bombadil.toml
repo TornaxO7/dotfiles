@@ -1,7 +1,13 @@
 dotfiles_dir = "dotfiles"
 
 [settings]
-posthooks = []
+prehooks = [
+    "./install_packages.sh pre"
+]
+
+posthooks = [
+    "./install_packages.sh post"
+]
 
 [settings.dots]
 nvim = {source = "config/nvim", target = ".config/nvim"}
