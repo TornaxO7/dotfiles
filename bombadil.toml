@@ -6,3 +6,5 @@ posthooks = []
 [settings.dots]
 nvim = {source = "config/nvim", target = ".config/nvim"}
 vifm = {source = "config/vifm", target = ".config/vifm"}
+rio = {source = "config/rio", target = ".config/rio"}
+zellij = {source = "config/zellij", target = ".config/zellij"}
