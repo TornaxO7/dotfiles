@@ -1,0 +1,7 @@
+dotfiles_dir = "dotfiles"
+
+[settings]
+posthooks = []
+
+[settings.dots]
+
