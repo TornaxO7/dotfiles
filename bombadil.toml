@@ -4,4 +4,4 @@ dotfiles_dir = "dotfiles"
 posthooks = []
 
 [settings.dots]
-
+nvim = {source = "config/nvim", target = ".config/nvim"}
