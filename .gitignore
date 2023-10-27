@@ -1,3 +1,2 @@
-sessions/
-vifminfo*
-vifm-help.txt
+.dotter/cache.toml
+.dotter/cache
