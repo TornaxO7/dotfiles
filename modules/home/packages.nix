@@ -5,6 +5,7 @@
     ast-grep
     bandwhich
     borgbackup
+    difftastic
     du-dust
     fd
     ffmpeg_6-full
