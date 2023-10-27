@@ -1,9 +1,0 @@
-[helpers]
-
-[default]
-depends = []
-
-[default.files]
-dotter = ""
-
-[default.variables]
