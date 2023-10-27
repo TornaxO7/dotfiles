@@ -1,37 +1,37 @@
 # vim:ft=toml
 
 [commit]
-	gpgSign = true
+gpgSign = true
 
 [core]
-	editor = "nvim"
-	pager = "delta"
+editor = "nvim"
+pager = "delta"
 
 [gpg]
-	program = "rpgp"
+program = "rpgp"
 
 [interactive]
-	diffFilter = "delta --color-only"
+diffFilter = "delta --color-only"
 
 [merge]
-	tool = "nvimdiff"
+tool = "nvimdiff"
 
 [mergetool]
-	keepBackup = false
+keepBackup = false
 
 [mergetool "vimdiff"]
-	layout = "(LOCAL,REMOTE)/MERGED"
+layout = "(LOCAL,REMOTE)/MERGED"
 
 [pull]
-	rebase = false
+rebase = false
 
 [push]
-	autoSetupRemote = true
+autoSetupRemote = true
 
 [tag]
-	gpgSign = true
+gpgSign = true
 
 [user]
-	email = "tornax@proton.me"
-	name = "TornaxO7"
-	signingKey = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194"
+email = "tornax@proton.me"
+name = "TornaxO7"
+signingKey = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194"
