@@ -1,0 +1,4 @@
+# vim:ft=bash:tw=0
+
+FZF_DEFAULT_COMMAND="rg --files --engine=pcre2"
+FZF_DEFAULT_OPS="--prompt='> ' --cycle --preview='bat --color always {}' +i --bind=ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
