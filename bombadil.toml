@@ -9,3 +9,4 @@ vifm = {source = "config/vifm", target = ".config/vifm"}
 rio = {source = "config/rio", target = ".config/rio"}
 zellij = {source = "config/zellij", target = ".config/zellij"}
 git = {source = "config/git", target = ".config/git"}
+gnupg = {source = "config/gnupg", target = ".gnupg"}
