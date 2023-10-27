@@ -27,7 +27,6 @@
 
     git = {
       enable = true;
-      package = pkgs.gitoxide;
       delta.enable = true;
       signing = {
         key = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194";
