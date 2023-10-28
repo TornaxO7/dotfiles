@@ -70,6 +70,7 @@
 
       users.tornax = {
         isNormalUser = true;
+        passwordFile = config.age.secrets.tornax.path;
         description = "tornax";
         extraGroups = [
           "audio"
