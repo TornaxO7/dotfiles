@@ -1,12 +1,10 @@
 dotfiles_dir = "dotfiles"
 
 [settings]
-prehooks = [
-    "./install_packages.sh pre"
-]
+vars = ["themes/tokyo_night_storm.toml"]
 
 posthooks = [
-    "./install_packages.sh post"
+    ""
 ]
 
 [settings.dots]
@@ -19,10 +17,10 @@ gnupg = {source = "config/gnupg", target = ".gnupg"}
 starship = {source = "config/starship/starship.toml", target = ".config/starship.toml"}
 tealdeer = {source = "config/tealdeer", target = ".config/tealdeer"}
 zathura = {source = "config/zathura", target = ".config/zathura"}
-
-[profiles.pc]
-
-[profiles.laptop]
+paru = {source = "config/paru", target = ".config/paru"}
 
 [[import]]
-path = "profiles/desktop.toml"
+path = "profiles/pc.toml"
+
+[[import]]
+path = "profiles/laptop.toml"
