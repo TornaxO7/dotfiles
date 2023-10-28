@@ -4,7 +4,6 @@
     # ripgrep-all
     ast-grep
     bandwhich
-    borgbackup
     difftastic
     du-dust
     fd
