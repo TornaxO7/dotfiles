@@ -19,3 +19,6 @@ gnupg = {source = "config/gnupg", target = ".gnupg"}
 starship = {source = "config/starship/starship.toml", target = ".config/starship.toml"}
 tealdeer = {source = "config/tealdeer", target = ".config/tealdeer"}
 zathura = {source = "config/zathura", target = ".config/zathura"}
+
+[[import]]
+path = "profiles/desktop.toml"
