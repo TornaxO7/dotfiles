@@ -20,5 +20,9 @@ starship = {source = "config/starship/starship.toml", target = ".config/starship
 tealdeer = {source = "config/tealdeer", target = ".config/tealdeer"}
 zathura = {source = "config/zathura", target = ".config/zathura"}
 
+[profiles.pc]
+
+[profiles.laptop]
+
 [[import]]
 path = "profiles/desktop.toml"
