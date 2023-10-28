@@ -14,5 +14,7 @@ in
 
     age.ageBin = "PATH=${makeBinPath [pkgs.age-plugin-yubikey]}:$PATH ${pkgs.rage}/bin/rage";
     age.identityPaths = [ pc_key laptop_key ];
+
+    age.secrets.tornax.file = ../secrets/tornax.age;
   };
 }

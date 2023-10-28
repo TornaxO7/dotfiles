@@ -5,4 +5,5 @@ let
   all = [pc laptop];
 in
 {
+  "tornax.age".publicKeys = all;
 }
