@@ -17,8 +17,7 @@
 
     vifm = {
       enable = true;
-      source = ../../config/vifm;
-      recursive = true;
+      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
       target = "vifm";
     };
 
