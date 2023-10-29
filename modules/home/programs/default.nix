@@ -180,12 +180,11 @@
 
     zoxide = {
       enable = true;
-      enableNushellIntegration = true;
       enableZshIntegration = true;
     };
 
     nushell = {
-      enable = false;
+      enable = true;
 
       configFile.source = ../../../config/nushell/config.nu;
       envFile.source = ../../../config/nushell/env.nu;
@@ -195,7 +194,7 @@
     };
 
     zsh = {
-      enable = true;
+      enable = false;
       enableAutosuggestions = true;
       syntaxHighlighting = {
         enable = true;
@@ -204,7 +203,7 @@
       shellAliases = import ../shell_aliases.nix;
       sessionVariables = import ../session_variables.nix;
       initExtra = ''
-        bindkey '^ ' autosuggest-accept;
+        bindkey '^ ' autosuggest-accept
 
         function she() {
           command nix-shell --command 'zsh' "<$1>"
