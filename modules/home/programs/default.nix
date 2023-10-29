@@ -180,7 +180,7 @@
 
     zoxide.enable = true;
 
-    nushell.enable = true;
+    nushell.enable = false;
 
     zsh = {
       enable = true;
