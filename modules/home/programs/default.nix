@@ -184,17 +184,16 @@
     };
 
     nushell = {
-      enable = true;
+      enable = false;
 
       configFile.source = ../../../config/nushell/config.nu;
       envFile.source = ../../../config/nushell/env.nu;
 
-      environmentVariables = import ../session_variables.nix;
       shellAliases = import ../shell_aliases.nix;
     };
 
     zsh = {
-      enable = false;
+      enable = true;
       enableAutosuggestions = true;
       syntaxHighlighting = {
         enable = true;
