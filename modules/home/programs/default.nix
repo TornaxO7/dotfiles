@@ -7,7 +7,7 @@
 
     eza = {
       enable = true;
-      enableAliases = true;
+      # enableAliases = true;
       icons = true;
       git = true;
     };
@@ -188,8 +188,6 @@
 
       configFile.source = ../../../config/nushell/config.nu;
       envFile.source = ../../../config/nushell/env.nu;
-
-      # shellAliases = import ../shell_aliases.nix;
     };
 
     zsh = {

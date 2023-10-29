@@ -96,7 +96,7 @@ let dark_theme = {
 # }
 
 # The default config record. This is where much of your global configuration is setup.
-let-env config = {
+$env.config = {
   show_banner: false
   rm: {
     always_trash: true # always act as if -t was given. Can be overridden with -p
@@ -173,7 +173,6 @@ let-env config = {
     max_size: 10000 # Session has to be reloaded for this to take effect
     sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
     file_format: "plaintext" # "sqlite" or "plaintext"
-    history_isolation: true # true enables history isolation, false disables it. true will allow the history to be isolated to the current session. false will allow the history to be shared across all sessions.
   }
   completions: {
     case_sensitive: false # set to true to enable case-sensitive completions
