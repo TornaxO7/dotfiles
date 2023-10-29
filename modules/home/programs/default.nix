@@ -185,7 +185,7 @@
     };
 
     nushell = {
-      enable = true;
+      enable = false;
 
       configFile.source = ../../../config/nushell/config.nu;
       envFile.source = ../../../config/nushell/env.nu;
@@ -195,7 +195,7 @@
     };
 
     zsh = {
-      enable = false;
+      enable = true;
       enableAutosuggestions = true;
       syntaxHighlighting = {
         enable = true;
