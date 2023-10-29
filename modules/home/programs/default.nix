@@ -189,7 +189,7 @@
       configFile.source = ../../../config/nushell/config.nu;
       envFile.source = ../../../config/nushell/env.nu;
 
-      environmentVariables = ../session_variables.nix;
+      environmentVariables = import ../session_variables.nix;
     };
 
     zsh = {
