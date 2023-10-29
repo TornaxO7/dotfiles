@@ -178,10 +178,7 @@
 
     zellij.enable = true;
 
-    zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    zoxide.enable = true;
 
     nushell.enable = true;
 
@@ -195,7 +192,7 @@
       shellAliases = import ../shell_aliases.nix;
       sessionVariables = import ../session_variables.nix;
       initExtra = ''
-        bindkey '^ ' autosuggest-accept
+        bindkey '^ ' autosuggest-accept; eval "$(zoxide init zsh)";
 
         function she() {
           command nix-shell --command 'zsh' "<$1>"
