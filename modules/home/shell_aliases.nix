@@ -1,7 +1,6 @@
 {
   p = "python";
 
-  z = "zellij";
   za = "zellij a";
   zs = "zellij -s";
   zm = "zellij -s main";
