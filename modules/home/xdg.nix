@@ -18,11 +18,13 @@
     vifm = {
       enable = true;
       source = ../../config/vifm;
+      recursive = true;
       target = "vifm";
     };
 
     rio = {
       enable = true;
+      recursive = true;
       source = ../../config/rio;
       target = "rio";
     };
