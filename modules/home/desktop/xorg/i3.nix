@@ -56,8 +56,8 @@ in
         "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
         "${alt}+n" = "exec --no-startup-id playerctl -p spotify next";
-        "${alt}+r" = "exec --no-startup-id {playerctl} -p spotify previous";
-        "${alt}+s" = "exec --no-startup-id {playerctl} -p spotify play-pause";
+        "${alt}+r" = "exec --no-startup-id playerctl -p spotify previous";
+        "${alt}+s" = "exec --no-startup-id playerctl -p spotify play-pause";
 
         "${alt}+Return" = "exec --no-startup-id rio";
         "${alt}+Shift+q" = "kill";
