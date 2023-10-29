@@ -4,7 +4,7 @@
     nvim = {
       enable = true;
       recursive = true;
-      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/nvim;
+      source = ../../config/nvim;
       target = "nvim";
     };
 
@@ -17,13 +17,13 @@
 
     vifm = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
+      source = ../../config/vifm;
       target = "vifm";
     };
 
     rio = {
       enable = true;
-      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/rio;
+      source = ../../config/rio;
       target = "rio";
     };
   };

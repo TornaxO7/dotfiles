@@ -55,13 +55,13 @@ in
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-        "${alt}+n" = "exec --no-startup-id ${pkgs.playerctl} -p ${pkgs.spotify} next";
-        "${alt}+r" = "exec --no-startup-id ${pkgs.playerctl} -p ${pkgs.spotify} previous";
-        "${alt}+s" = "exec --no-startup-id ${pkgs.playerctl} -p ${pkgs.spotify} play-pause";
+        "${alt}+n" = "exec --no-startup-id playerctl -p spotify next";
+        "${alt}+r" = "exec --no-startup-id {playerctl} -p spotify previous";
+        "${alt}+s" = "exec --no-startup-id {playerctl} -p spotify play-pause";
 
         "${alt}+Return" = "exec --no-startup-id rio";
         "${alt}+Shift+q" = "kill";
-        "${alt}+d" = "exec --no-startup-id ${pkgs.rofi} -show run";
+        "${alt}+d" = "exec --no-startup-id rofi -show run";
 
         "${alt}+l" = "focus right";
         "${alt}+h" = "focus left";
@@ -109,10 +109,10 @@ in
 
         "${alt}+Shift+r" = "restart";
         "${alt}+Shift+e" = "exec i3-msg exit";
-        "${alt}+Shift+f" = "exec --no-startup-id ${pkgs.flameshot} gui";
+        "${alt}+Shift+f" = "exec --no-startup-id flameshot gui";
 
         # applications
-        "ctrl+shift+f" = "exec --no-startup-id ${pkgs.firefox}";
+        "ctrl+shift+f" = "exec --no-startup-id firefox";
       };
     };
   };
