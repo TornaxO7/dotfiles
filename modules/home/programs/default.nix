@@ -184,12 +184,12 @@
     };
 
     nushell = {
-      enable = false;
+      enable = true;
 
       configFile.source = ../../../config/nushell/config.nu;
       envFile.source = ../../../config/nushell/env.nu;
 
-      shellAliases = import ../shell_aliases.nix;
+      # shellAliases = import ../shell_aliases.nix;
     };
 
     zsh = {
