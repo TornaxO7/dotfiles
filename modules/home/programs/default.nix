@@ -80,6 +80,7 @@
     starship = {
       enable = true;
       enableZshIntegration = true;
+      enableNushellIntegration = true;
       settings = {
         add_newline = false;
 
@@ -177,10 +178,22 @@
 
     zellij.enable = true;
 
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+
+    nushell = {
+      enable = true;
+
+      configFile.source = ../../../config/nushell/config.nu;
+      envFile.source = ../../../config/nushell/env.nu;
+
+      environmentVariables = ../session_variables.nix;
+    };
 
     zsh = {
-      enable = true;
+      enable = false;
       enableAutosuggestions = true;
       syntaxHighlighting = {
         enable = true;
