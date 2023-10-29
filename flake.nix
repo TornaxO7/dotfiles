@@ -24,6 +24,7 @@
       init_system =
         { configuration
         , system ? "x86_64-linux"
+        , root ? "/home/tornax/dotfiles"
         ,
         }: nixpkgs.lib.nixosSystem {
           inherit system;
@@ -37,7 +38,7 @@
           ];
 
           specialArgs = {
-            inherit home-manager;
+            inherit home-manager root;
           };
         };
     in
