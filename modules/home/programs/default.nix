@@ -185,14 +185,13 @@
     zsh = {
       enable = true;
       enableAutosuggestions = true;
-      syntaxHighlighting = {
-        enable = true;
-      };
+      syntaxHighlighting.enable = true;
       enableCompletion = true;
       shellAliases = import ../shell_aliases.nix;
       sessionVariables = import ../session_variables.nix;
       initExtra = ''
-        bindkey '^ ' autosuggest-accept; eval "$(zoxide init zsh)";
+        bindkey '^ ' autosuggest-accept
+        eval "$(zoxide init zsh)"
 
         function she() {
           command nix-shell --command 'zsh' "<$1>"
