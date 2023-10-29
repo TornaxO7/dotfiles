@@ -183,12 +183,7 @@
       enableZshIntegration = true;
     };
 
-    nushell = {
-      enable = true;
-
-      configFile.source = ../../../config/nushell/config.nu;
-      envFile.source = ../../../config/nushell/env.nu;
-    };
+    nushell.enable = true;
 
     zsh = {
       enable = true;

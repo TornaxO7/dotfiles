@@ -28,5 +28,12 @@
       source = ../../config/rio;
       target = "rio";
     };
+
+    nushell = {
+      enable = true;
+      recursive = true;
+      source = ../../config/nushell;
+      target = "nushell";
+    };
   };
 }

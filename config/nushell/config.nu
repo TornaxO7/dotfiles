@@ -439,5 +439,8 @@ $env.config = {
   ]
 }
 
+alias x = xclip -selection clipboard
+
+use ~/.config/nushell/git-aliases.nu *
 use ~/.cache/starship/init.nu
 source ~/.zoxide.nu
