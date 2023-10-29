@@ -181,6 +181,7 @@
     zoxide = {
       enable = true;
       enableNushellIntegration = true;
+      enableZshIntegration = true;
     };
 
     nushell = {
@@ -190,6 +191,7 @@
       envFile.source = ../../../config/nushell/env.nu;
 
       environmentVariables = import ../session_variables.nix;
+      shellAliases = import ../shell_aliases.nix;
     };
 
     zsh = {
@@ -202,7 +204,7 @@
       shellAliases = import ../shell_aliases.nix;
       sessionVariables = import ../session_variables.nix;
       initExtra = ''
-        bindkey '^ ' autosuggest-accept; eval "$(zoxide init --cmd cd zsh)"
+        bindkey '^ ' autosuggest-accept;
 
         function she() {
           command nix-shell --command 'zsh' "<$1>"
