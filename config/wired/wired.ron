@@ -14,18 +14,18 @@
         (
             name: "root",
             parent: "",
-            hook: Hook(parent_anchor: TL, self_anchor: TL),
+            hook: Hook(parent_anchor: TR, self_anchor: TR),
             offset: Vec2(x: -7.0, y: 7.0),
             params: NotificationBlock((
                 monitor: 0,
                 border_width: 3.0,
                 border_rounding: 3.0,
                 //background_color: Color(r: 0.15686, g: 0.15686, b: 0.15686, a: 1.0),
-                background_color: Color(hex: "#EDE9D8"),
-                border_color: Color(hex: "#887588"),
-                border_color_low: Color(hex: "#82937D"),
-                border_color_critical: Color(hex: "#D1866B"),
-                border_color_paused: Color(hex: "#B2A8A7"),
+                background_color: Color(hex: "#24283b"),
+                border_color: Color(hex: "#a9b1d6"),
+                border_color_low: Color(hex: "#9ece6a"),
+                border_color_critical: Color(hex: "#f7768e"),
+                border_color_paused: Color(hex: "#bb9af7"),
 
                 gap: Vec2(x: 0.0, y: 8.0),
                 notification_hook: Hook(parent_anchor: BR, self_anchor: TR),
@@ -33,9 +33,9 @@
         ),
 
         (
-            name: "image",
+            name: "image-hint",
             parent: "root",
-            hook: Hook(parent_anchor: TL, self_anchor: TL),
+            hook: Hook(parent_anchor: ML, self_anchor: ML),
             offset: Vec2(x: 0.0, y: 0.0),
             // https://github.com/Toqozz/wired-notify/wiki/ImageBlock
             params: ImageBlock((
@@ -48,19 +48,36 @@
                 filter_mode: Lanczos3,
             )),
         ),
+        (
+            name: "image-app",
+            parent: "image-hint",
+            hook: Hook(parent_anchor: MR, self_anchor: ML),
+            offset: Vec2(x: 0.0, y: 0.0),
+            // https://github.com/Toqozz/wired-notify/wiki/ImageBlock
+            params: ImageBlock((
+                image_type: App,
+                // We actually want 4px padding, but the border is 3px.
+                padding: Padding(left: 7.0, right: 0.0, top: 7.0, bottom: 7.0),
+                rounding: 1.0,
+                scale_width: 100,
+                scale_height: 100,
+                filter_mode: Lanczos3,
+            )),
+        ),
 
         (
-            name: "summary",
-            parent: "image",
-            hook: Hook(parent_anchor: TR, self_anchor: TL),
+            name: "title",
+            parent: "image-app",
+            hook: Hook(parent_anchor: BR, self_anchor: BL),
             offset: Vec2(x: 0.0, y: 0.0),
             // https://github.com/Toqozz/wired-notify/wiki/TextBlock
             params: TextBlock((
                 text: "<span underline='low'>%s</span>",
-                font: "Liberation Sans Bold 17",
+                align: Center,
+                font: "Liberation Sans Bold 15",
                 ellipsize: Middle,
                 color: Color(hex: "#9AB9C0"),
-                color_hovered: Color(hex: "#00A7FF"),
+                color_hovered: Color(hex: "#364a82"),
                 padding: Padding(left: 7.0, right: 7.0, top: 7.0, bottom: 0.0),
                 dimensions: (width: (min: 300, max: 300), height: (min: 0, max: 0)),
             )),
@@ -68,15 +85,15 @@
 
         (
             name: "body",
-            parent: "summary",
-            hook: Hook(parent_anchor: BL, self_anchor: LM),
+            parent: "title",
+            hook: Hook(parent_anchor: MB, self_anchor: MT),
             offset: Vec2(x: 0.0, y: 20.0),
             // https://github.com/Toqozz/wired-notify/wiki/ScrollingTextBlock
             params: ScrollingTextBlock((
                 text: "%b",
-                font: "Liberation Sans Bold 15",
+                font: "Liberation Sans Bold 13",
                 color: Color(hex: "#9AB9C0"),
-                color_hovered: Color(hex: "#00A7FF"),
+                color_hovered: Color(hex: "#364a82"),
                 padding: Padding(left: 7.0, right: 7.0, top: 3.0, bottom: 7.0),
                 width: (min: 0, max: 300),
                 scroll_speed: 0.25,
@@ -85,6 +102,7 @@
                 scroll_t: 1.0,
             )),
         ),
+
     ],
 
     shortcuts: ShortcutsConfig (
