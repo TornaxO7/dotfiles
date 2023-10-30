@@ -36,6 +36,9 @@ pkgs.mkShell rec {
     vulkan-tools-lunarg
     vulkan-validation-layers
 
+    pcsctools
+    pcsclite
+
     cmake
     fontconfig
   ];
