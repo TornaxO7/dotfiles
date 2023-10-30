@@ -21,6 +21,7 @@
     liberation_ttf
     magic-wormhole-rs
     mdcat
+    nix-index
     nodejs_20
     openvpn
     ouch
