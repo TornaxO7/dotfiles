@@ -23,5 +23,10 @@
         night = 1000;
       };
     };
+
+    wired = {
+      enable = true;
+      config = ../../../config/wired;
+    };
   };
 }

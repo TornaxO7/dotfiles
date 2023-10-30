@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, wired, ... }:
 {
   config = {
     boot.tmp.cleanOnBoot = true;
@@ -8,6 +8,7 @@
       useUserPackages = true;
       sharedModules = [
         ./home/default.nix
+        wired.homeManagerModules.default
       ];
     };
 
@@ -23,6 +24,7 @@
     nixpkgs = {
       config.allowUnfree = true;
       overlays = [
+        wired.overlays.default
       ];
     };
 

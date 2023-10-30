@@ -6,13 +6,15 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    wired.url = "github:Toqozz/wired-notify";
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, agenix, ... }:
+  outputs = { nixpkgs, home-manager, agenix, wired, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -38,7 +40,7 @@
           ];
 
           specialArgs = {
-            inherit home-manager key;
+            inherit home-manager key wired;
           };
         };
     in
