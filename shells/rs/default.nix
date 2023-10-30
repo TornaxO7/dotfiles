@@ -20,7 +20,11 @@ pkgs.mkShell rec {
     xorg.libxkbfile
     xorg.xkbutils
     xorg.xkbevd
+    xorg.libXScrnSaver
     libxkbcommon
+
+    dbus
+    pango
 
     pkg-config
 
