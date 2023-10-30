@@ -23,6 +23,7 @@
 
       init_system =
         { configuration
+        , key
         , system ? "x86_64-linux"
         ,
         }: nixpkgs.lib.nixosSystem {
@@ -37,7 +38,7 @@
           ];
 
           specialArgs = {
-            inherit home-manager;
+            inherit home-manager key;
           };
         };
     in
@@ -45,10 +46,12 @@
       nixosConfigurations = {
         pc = init_system {
           configuration = ./nixos-configurations/pc/default.nix;
+          key = ./secrets/identities/pc;
         };
 
         laptop = init_system {
           configuration = ./nixos-configurations/laptop;
+          key = ./secrets/identities/laptop;
         };
       };
 

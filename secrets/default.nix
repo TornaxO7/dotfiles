@@ -1,9 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, key, ... }:
 let
   inherit (lib) makeBinPath;
-
-  pc_key = ./identities/pc;
-  laptop_key = ./identities/laptop;
 in
 {
   config = {
@@ -13,7 +10,7 @@ in
     ];
 
     age.ageBin = "PATH=${makeBinPath [pkgs.age-plugin-yubikey]}:$PATH ${pkgs.rage}/bin/rage";
-    age.identityPaths = [ pc_key laptop_key ];
+    age.identityPaths = [ key ];
 
     age.secrets.tornax.file = ../secrets/tornax.age;
   };
