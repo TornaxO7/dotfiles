@@ -9,6 +9,8 @@ let
   ws4 = "4";
   ws5 = "5";
   ws6 = "6";
+
+  flameshot = "${pkgs.flameshot}/bin/flameshot";
 in
 {
   xsession.windowManager.i3 = {
@@ -23,12 +25,12 @@ in
 
       startup = [
         {
-          command = "flameshot";
+          command = "${flameshot}";
           notification = false;
         }
       ];
 
-      menu = "\${pkgs.rofi}/bin/rofi -show run";
+      menu = "${pkgs.rofi}/bin/rofi -show run";
 
       gaps = null;
       modes = { };
@@ -61,7 +63,7 @@ in
 
         "${alt}+Return" = "exec --no-startup-id rio";
         "${alt}+Shift+q" = "kill";
-        "${alt}+d" = "exec --no-startup-id rofi -show run";
+        "${alt}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
 
         "${alt}+l" = "focus right";
         "${alt}+h" = "focus left";
@@ -109,10 +111,10 @@ in
 
         "${alt}+Shift+r" = "restart";
         "${alt}+Shift+e" = "exec i3-msg exit";
-        "${alt}+Shift+f" = "exec --no-startup-id flameshot gui";
+        "${alt}+Shift+f" = "exec --no-startup-id ${flameshot} gui";
 
         # applications
-        "ctrl+shift+f" = "exec --no-startup-id firefox";
+        "ctrl+shift+f" = "exec --no-startup-id ${pkgs.firefox}/bin/firefox";
       };
     };
   };
