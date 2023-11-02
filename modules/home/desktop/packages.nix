@@ -13,6 +13,7 @@
     pulseaudio
     redshift
     rio
+    slack
     signal-desktop
     simplescreenrecorder
     spotify
