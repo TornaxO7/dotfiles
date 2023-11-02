@@ -5,7 +5,7 @@ in
 {
   xsession.windowManager.i3.config = {
     keybindings = {
-      "${alt}+Ctrl+l" = "exec \${pkgs.i3lock}/bin/i3lock -i /main/Images/FSN/ArcherRinBlue.png -e";
+        "${alt}+Control+l" = "exec \${pkgs.i3lock}/bin/i3lock -i /main/Images/FSN/ArcherRinBlue.png -e";
     };
 
     bars = [
