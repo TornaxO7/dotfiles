@@ -62,6 +62,7 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
           modules = [
+            ./home
             ./modules/home/desktop/default.nix
             ./modules/home/desktop/xorg/default.nix
             ./modules/home/desktop/xorg/i3.nix
@@ -73,6 +74,7 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
           modules = [
+            ./home
             ./modules/home/desktop/default.nix
             ./modules/home/desktop/xorg/default.nix
             ./modules/home/desktop/xorg/i3.nix
