@@ -63,9 +63,9 @@
 
           modules = [
             ./home
-            ./modules/home/desktop/default.nix
-            ./modules/home/desktop/xorg/default.nix
-            ./modules/home/desktop/xorg/i3.nix
+            ./home/desktop/default.nix
+            ./home/desktop/xorg/default.nix
+            ./home/desktop/xorg/i3.nix
             ./nixos-configurations/pc/home/default.nix
           ];
         };
@@ -75,9 +75,9 @@
 
           modules = [
             ./home
-            ./modules/home/desktop/default.nix
-            ./modules/home/desktop/xorg/default.nix
-            ./modules/home/desktop/xorg/i3.nix
+            ./home/desktop/default.nix
+            ./home/desktop/xorg/default.nix
+            ./home/desktop/xorg/i3.nix
             ./nixos-configurations/laptop/home/default.nix
           ];
         };
