@@ -34,7 +34,6 @@
           modules = [
             ./secrets/default.nix
             ./modules/default.nix
-            home-manager.nixosModules.home-manager
             agenix.nixosModules.default
             configuration
           ];
