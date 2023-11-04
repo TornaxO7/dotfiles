@@ -4,14 +4,14 @@
     nvim = {
       enable = true;
       recursive = true;
-      source = ../../config/nvim;
+      source = ../config/nvim;
       target = "nvim";
     };
 
     zellij = {
       enable = true;
       recursive = true;
-      source = ../../config/zellij;
+      source = ../config/zellij;
       target = "zellij";
     };
 
@@ -24,14 +24,14 @@
     rio = {
       enable = true;
       recursive = true;
-      source = ../../config/rio;
+      source = ../config/rio;
       target = "rio";
     };
 
     nushell = {
       enable = config.programs.nushell.enable;
       recursive = true;
-      source = ../../config/nushell;
+      source = ../config/nushell;
       target = "nushell";
     };
   };
