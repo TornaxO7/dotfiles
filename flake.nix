@@ -39,7 +39,7 @@
           ];
 
           specialArgs = {
-            inherit home-manager key wired;
+            inherit key wired;
           };
         };
     in
