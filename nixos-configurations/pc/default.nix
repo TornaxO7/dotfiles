@@ -1,4 +1,4 @@
-{ config, pkgs, lib, home-manager, ... }:
+{ config, pkgs, lib, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -14,13 +14,6 @@
   ];
 
   config = {
-    home-manager.users.tornax.imports = [
-      ../../modules/home/desktop/default.nix
-      ../../modules/home/desktop/xorg/default.nix
-      ../../modules/home/desktop/xorg/i3.nix
-      ./home/default.nix
-    ];
-
     services.xserver = {
       displayManager = {
         defaultSession = "none+i3";

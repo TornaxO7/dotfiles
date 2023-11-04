@@ -1,4 +1,4 @@
-{ config, pkgs, lib, home-manager, ... }:
+{ config, pkgs, lib, ... }:
 {
 
   imports = [
@@ -12,13 +12,6 @@
   ];
 
   config = {
-    home-manager.users.tornax.imports = [
-      ../../modules/home/desktop/default.nix
-      ../../modules/home/desktop/xorg/default.nix
-      ../../modules/home/desktop/xorg/i3.nix
-      ./home/default.nix
-    ];
-
     hardware.bluetooth.enable = true;
 
     environment = {

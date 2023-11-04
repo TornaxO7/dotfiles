@@ -3,15 +3,6 @@
   config = {
     boot.tmp.cleanOnBoot = true;
 
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      sharedModules = [
-        ./home/default.nix
-        wired.homeManagerModules.default
-      ];
-    };
-
     nix.settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;

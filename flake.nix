@@ -34,13 +34,12 @@
           modules = [
             ./secrets/default.nix
             ./modules/default.nix
-            home-manager.nixosModules.home-manager
             agenix.nixosModules.default
             configuration
           ];
 
           specialArgs = {
-            inherit home-manager key wired;
+            inherit key wired;
           };
         };
     in
@@ -56,6 +55,43 @@
           key = ./secrets/identities/laptop;
         };
       };
+
+      homeConfigurations =
+        let
+          x86 = "x86_64-linux";
+          pkgs = import nixpkgs {
+            system = x86;
+
+            overlays = [
+              wired.overlays.default
+            ];
+          };
+
+          sharedModules = [
+            ./home
+            ./home/desktop/default.nix
+            ./home/desktop/xorg/default.nix
+            ./home/desktop/xorg/i3.nix
+            wired.homeManagerModules.default
+          ];
+        in
+        {
+          "tornax@pc" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+
+            modules = [
+              ./nixos-configurations/pc/home/default.nix
+            ] ++ sharedModules;
+          };
+
+          "tornax@laptop" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+
+            modules = [
+              ./nixos-configurations/laptop/home/default.nix
+            ] ++ sharedModules;
+          };
+        };
 
       devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
     };
