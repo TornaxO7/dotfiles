@@ -56,31 +56,42 @@
         };
       };
 
-      homeConfigurations = {
-        "tornax@pc" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      homeConfigurations =
+        let
+          x86 = "x86_64-linux";
+          pkgs = import nixpkgs {
+            system = x86;
 
-          modules = [
+            overlays = [
+              wired.overlays.default
+            ];
+          };
+
+          sharedModules = [
             ./home
             ./home/desktop/default.nix
             ./home/desktop/xorg/default.nix
             ./home/desktop/xorg/i3.nix
-            ./nixos-configurations/pc/home/default.nix
+            wired.homeManagerModules.default
           ];
-        };
+        in
+        {
+          "tornax@pc" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
 
-        "tornax@laptop" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+            modules = [
+              ./nixos-configurations/pc/home/default.nix
+            ] ++ sharedModules;
+          };
 
-          modules = [
-            ./home
-            ./home/desktop/default.nix
-            ./home/desktop/xorg/default.nix
-            ./home/desktop/xorg/i3.nix
-            ./nixos-configurations/laptop/home/default.nix
-          ];
+          "tornax@laptop" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+
+            modules = [
+              ./nixos-configurations/laptop/home/default.nix
+            ] ++ sharedModules;
+          };
         };
-      };
 
       devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
     };

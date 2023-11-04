@@ -26,7 +26,7 @@
 
     wired = {
       enable = true;
-      config = ../../../config/wired/wired.ron;
+      config = ../../config/wired/wired.ron;
     };
   };
 }
