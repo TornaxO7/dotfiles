@@ -107,9 +107,7 @@
           ];
         }
       ];
-      extraConfig = ''
-        Defaults insults
-      '';
+      extraConfig = "Defaults insults";
     };
 
     services = {
