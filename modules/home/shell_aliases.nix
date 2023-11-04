@@ -21,7 +21,6 @@
   ef = "fzf | read yeet; if [[ \$yeet != '' ]]; then $EDITOR \$yeet; fi";
   eja = "$EDITOR /tmp/Test.java";
   ea = "$EDITOR /tmp/test.s";
-  # eplug = "$EDITOR ~/.config/nvim/init.vim";
   en = "$EDITOR /tmp/test.norg";
 
   sp = "sudo poweroff";
