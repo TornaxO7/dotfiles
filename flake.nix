@@ -58,7 +58,7 @@
       };
 
       homeConfigurations = {
-        pc = home-manager.lib.homeManagerConfiguration {
+        "tornax@pc" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
           modules = [
@@ -69,7 +69,7 @@
           ];
         };
 
-        laptop = home-manager.lib.homeManagerConfiguration {
+        "tornax@laptop" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
           modules = [
