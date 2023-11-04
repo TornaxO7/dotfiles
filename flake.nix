@@ -57,6 +57,30 @@
         };
       };
 
+      homeConfigurations = {
+        pc = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+
+          modules = [
+            ./modules/home/desktop/default.nix
+            ./modules/home/desktop/xorg/default.nix
+            ./modules/home/desktop/xorg/i3.nix
+            ./nixos-configurations/pc/home/default.nix
+          ];
+        };
+
+        laptop = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+
+          modules = [
+            ./modules/home/desktop/default.nix
+            ./modules/home/desktop/xorg/default.nix
+            ./modules/home/desktop/xorg/i3.nix
+            ./nixos-configurations/laptop/home/default.nix
+          ];
+        };
+      };
+
       devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
     };
 }
