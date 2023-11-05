@@ -1,6 +1,4 @@
-let
-  pkgs = import <nixpkgs> {};
-in
+{ pkgs }:
 pkgs.mkShell {
   packages = with pkgs; [
     haskell.compiler.native-bignum.ghcHEAD

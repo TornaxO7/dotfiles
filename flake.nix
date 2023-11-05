@@ -8,20 +8,26 @@
 
     wired.url = "github:Toqozz/wired-notify";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, agenix, wired, ... }:
+  outputs = { nixpkgs, home-manager, agenix, wired, rust-overlay, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
           "x86_64-linux"
           "aarch64-linux"
         ]
-          (system: function nixpkgs.legacyPackages.${system});
+          (system: function (import nixpkgs {
+            inherit system;
+
+            overlays = [ (import rust-overlay) ];
+          }));
 
       init_system =
         { configuration
