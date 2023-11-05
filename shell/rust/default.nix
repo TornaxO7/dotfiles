@@ -1,9 +1,6 @@
 { pkgs }:
-let
-  toolchain = pkgs.rust-bin.fromRustupToolchainFile ./toolchain.toml;
-in
 pkgs.mkShell rec {
-  packages = [ toolchain ];
+  packages = with pkgs; [ rust-bin.stable.latest.default ];
 
   buildInputs = with pkgs; [
     rustup
