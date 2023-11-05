@@ -76,7 +76,6 @@
         theme = "tokyonight_storm";
 
         editor = {
-          auto-pairs = false;
           scrolloff = 7;
           line-number = "relative";
           idle-timeout = 0;
