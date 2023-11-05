@@ -86,7 +86,7 @@
           statusline = {
             left = [ "mode" "file-name" "read-only-indicator" "file-modification-indicator" ];
             center = [ "version-control" ];
-            right = [ "diagnostics" "selections" "register" "position" "file-encoding" "file-type" "spinner" ];
+            right = [ "diagnostics" "selections" "register" "position-percentage" "position" "file-encoding" "file-type" "spinner" ];
 
             mode = {
               normal = "NORMAL";
