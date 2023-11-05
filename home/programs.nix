@@ -71,7 +71,16 @@
 
     man.enable = true;
 
-    neovim = import ./nvim.nix { inherit pkgs; };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      extraPackages = with pkgs; [
+        gcc13
+        deno
+      ];
+      withPython3 = true;
+      vimdiffAlias = true;
+    };
 
     password-store.enable = true;
 

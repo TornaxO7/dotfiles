@@ -11,6 +11,7 @@ let
   ws6 = "6";
 
   flameshot = "${pkgs.flameshot}/bin/flameshot";
+  terminal = "${pkgs.rio}/bin/rio";
 in
 {
   xsession.windowManager.i3 = {
@@ -61,7 +62,7 @@ in
         "${alt}+r" = "exec --no-startup-id playerctl -p spotify previous";
         "${alt}+s" = "exec --no-startup-id playerctl -p spotify play-pause";
 
-        "${alt}+Return" = "exec --no-startup-id rio";
+        "${alt}+Return" = "exec --no-startup-id ${terminal}";
         "${alt}+Shift+q" = "kill";
         "${alt}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
 
