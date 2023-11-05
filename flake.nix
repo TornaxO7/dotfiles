@@ -16,7 +16,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, agenix, wired, rust-overlay, ... }:
+  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -79,6 +79,10 @@
             ./home/desktop/xorg/default.nix
             ./home/desktop/xorg/i3.nix
             wired.homeManagerModules.default
+
+            ({ ... }: {
+              nix.registry.my.flake = self;
+            })
           ];
         in
         {

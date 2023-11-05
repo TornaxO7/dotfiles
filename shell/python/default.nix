@@ -28,4 +28,6 @@ pkgs.mkShell {
     python310Packages.openpyxl
     python310Packages.kornia
   ];
+
+  shellHook = import ../shared_hook.nix;
 }

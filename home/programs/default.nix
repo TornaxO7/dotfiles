@@ -194,10 +194,6 @@
       initExtra = ''
         bindkey '^ ' autosuggest-accept
         eval "$(zoxide init zsh)"
-
-        function she() {
-          command nix-shell --command 'zsh' "<$1>"
-        }
       '';
       oh-my-zsh = {
         enable = true;

@@ -4,4 +4,6 @@ pkgs.mkShell {
     haskell.compiler.native-bignum.ghcHEAD
     haskellPackages.stack
   ];
+
+  shellHook = import ../shared_hook.nix;
 }
