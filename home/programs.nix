@@ -42,21 +42,34 @@
 
       languages = {
         language-server = {
-          rnix = with pkgs; {
+          rnix = {
             command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
             args = [ ];
           };
+
+          pylyzer = {
+            command = "${pkgs.pylyzer}/bin/pylyzer";
+            args = [ "--server" ];
+          };
         };
 
-        language = [{
-          name = "nix";
-          auto-format = true;
-          formatter = {
-            command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-          };
-          file-types = [ "nix" ];
-          language-servers = [ "rnix" ];
-        }];
+        language = [
+          {
+            name = "python";
+            auto-format = true;
+            file-types = [ "python" "py" ];
+            language-servers = [ "pylyzer" ];
+          }
+          {
+            name = "nix";
+            auto-format = true;
+            formatter = {
+              command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+            };
+            file-types = [ "nix" ];
+            language-servers = [ "rnix" ];
+          }
+        ];
       };
 
       settings = {
