@@ -30,6 +30,51 @@
         "--bind=ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
       ];
     };
+    
+    helix = {
+      enable = true;
+      defaultEditor = false;
+
+      extraPackages = with pkgs; [
+        rnix-lsp
+      ];
+
+      languages = {
+      };
+
+      settings = {
+        theme = "tokyonight_storm";
+
+        editor = {
+          auto-pairs = false;
+          scrolloff = 7;
+          line-number = "relative";
+          idle-timeout = 0;
+          color-modes = true;
+          insert-final-newline = false;
+
+          statusline = {
+            center = ["version-control"];
+            
+            mode = {
+              normal = "NORMAL";
+              insert = "INSERT";
+              select = "SELECT";
+            };
+          };
+
+          lsp.display-inlay-hints = true;
+
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
+          };
+
+          indent-guides.render = true;
+        };
+      };
+    };
 
     home-manager.enable = true;
 
