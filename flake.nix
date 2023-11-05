@@ -93,6 +93,6 @@
           };
         };
 
-      devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
+      devShells = forAllSystems (pkgs: import ./shell { inherit pkgs; });
     };
 }
