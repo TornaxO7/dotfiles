@@ -30,7 +30,7 @@
         "--bind=ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
       ];
     };
-    
+
     helix = {
       enable = true;
       defaultEditor = false;
@@ -39,8 +39,7 @@
         rnix-lsp
       ];
 
-      languages = {
-      };
+      languages = { };
 
       settings = {
         theme = "tokyonight_storm";
@@ -54,8 +53,10 @@
           insert-final-newline = false;
 
           statusline = {
-            center = ["version-control"];
-            
+            left = [ "mode" "file-name" "read-only-indicator" "file-modification-indicator" ];
+            center = [ "version-control" ];
+            right = ["diagnostics" "selections" "register" "position" "file-encoding" "spinner"];
+
             mode = {
               normal = "NORMAL";
               insert = "INSERT";
