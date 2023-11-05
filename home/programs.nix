@@ -39,7 +39,18 @@
         rnix-lsp
       ];
 
-      languages = { };
+      languages = {
+        language-server.rnix = with pkgs; {
+          command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+          args = [];
+        };
+
+        language = [{
+          name = "nix";
+          file-types = ["nix"];
+          language-servers = ["rnix"];
+        }];
+      };
 
       settings = {
         theme = "tokyonight_storm";
@@ -55,7 +66,7 @@
           statusline = {
             left = [ "mode" "file-name" "read-only-indicator" "file-modification-indicator" ];
             center = [ "version-control" ];
-            right = ["diagnostics" "selections" "register" "position" "file-encoding" "spinner"];
+            right = ["diagnostics" "selections" "register" "position" "file-encoding" "file-type" "spinner"];
 
             mode = {
               normal = "NORMAL";
