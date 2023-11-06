@@ -88,17 +88,17 @@ in
         "${win}+Shift+z" = "move container to workspace number ${ws6}";
 
         # == utilities + applications ==
-        # main row left
-        "${win}+e" = "exec --no-startup-id playerctl -p spotify next";
-        "${win}+i" = "exec --no-startup-id playerctl -p spotify previous";
-        "${win}+t" = "exec --no-startup-id playerctl -p spotify play-pause";
+        # top right row
+        "${win}+7" = "exec --no-startup-id playerctl -p spotify next";
+        "${win}+8" = "exec --no-startup-id playerctl -p spotify previous";
+        "${win}+9" = "exec --no-startup-id playerctl -p spotify play-pause";
 
         "${win}+Return" = "exec --no-startup-id ${terminal}";
 
         # left bottom row
-        "${win}+ä" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
-        "${win}+ü" = "exec --no-startup-id ${pkgs.firefox}/bin/firefox";
-        "${win}+v" = "exec --no-startup-id ${flameshot} gui";
+        "${win}+e" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
+        "${win}+i" = "exec --no-startup-id ${pkgs.firefox}/bin/firefox";
+        "${win}+t" = "exec --no-startup-id ${flameshot} gui";
 
         "${win}+Shift+f" = "move scratchpad";
         "${win}+f" = "scratchpad show";
@@ -107,8 +107,6 @@ in
         "${win}+Shift+a" = "kill";
         "${win}+Shift+d" = "restart";
         "${win}+Shift+u" = "exec i3-msg exit";
-
-
       };
     };
   };
