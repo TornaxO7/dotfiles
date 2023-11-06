@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
-  alt = "Mod1";
+  win = "Mod4";
 in
 {
   xsession.windowManager.i3.config = {
     keybindings = {
-      "${alt}+Control+l" = "exec ${pkgs.i3lock}/bin/i3lock -i /main/Images/FSN/ArcherRinBlue.png -e -t";
+      "${win}+Control+l" = "exec ${pkgs.i3lock}/bin/i3lock -i /main/Images/FSN/ArcherRinBlue.png -e -t";
     };
 
     bars = [

@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 let
-  alt = "Mod1";
   win = "Mod4";
 
   ws1 = "1";
@@ -37,10 +36,10 @@ in
       modes = { };
 
       floating = {
-        modifier = alt;
+        modifier = win;
       };
 
-      modifier = alt;
+      modifier = win;
       terminal = "rio";
 
       window = {
@@ -58,44 +57,22 @@ in
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-        "${alt}+n" = "exec --no-startup-id playerctl -p spotify next";
-        "${alt}+r" = "exec --no-startup-id playerctl -p spotify previous";
-        "${alt}+s" = "exec --no-startup-id playerctl -p spotify play-pause";
+        "${win}+l" = "focus right";
+        "${win}+h" = "focus left";
+        "${win}+j" = "focus down";
+        "${win}+k" = "focus up";
 
-        "${alt}+Return" = "exec --no-startup-id ${terminal}";
-        "${alt}+Shift+q" = "kill";
-        "${alt}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
+        "${win}+Shift+h" = "move left";
+        "${win}+Shift+j" = "move down";
+        "${win}+Shift+k" = "move up";
+        "${win}+Shift+l" = "move right";
 
-        "${alt}+l" = "focus right";
-        "${alt}+h" = "focus left";
-        "${alt}+j" = "focus down";
-        "${alt}+k" = "focus up";
+        "${win}+w" = "layout tabbed";
 
-        "${alt}+Shift+h" = "move left";
-        "${alt}+Shift+j" = "move down";
-        "${alt}+Shift+k" = "move up";
-        "${alt}+Shift+l" = "move right";
+        "${win}+Shift+space" = "floating toggle";
+        "${win}+space" = "focus mode_toggle";
 
-        "${alt}+e" = "split v";
-        "${alt}+i" = "split h";
-        "${alt}+w" = "layout tabbed";
-        "${alt}+f" = "fullscreen toggle";
-
-        "${alt}+Shift+space" = "floating toggle";
-
-        "${alt}+space" = "focus mode_toggle";
-
-        "${alt}+Shift+b" = "move scratchpad";
-        "${alt}+b" = "scratchpad show";
-
-        # workspaces
-        "${alt}+1" = "workspace number ${ws1}";
-        "${alt}+2" = "workspace number ${ws2}";
-        "${alt}+3" = "workspace number ${ws3}";
-        "${alt}+4" = "workspace number ${ws4}";
-        "${alt}+5" = "workspace number ${ws5}";
-        "${alt}+6" = "workspace number ${ws6}";
-
+        # workspaces; right main row and one bottom
         "${win}+n" = "workspace number ${ws1}";
         "${win}+r" = "workspace number ${ws2}";
         "${win}+s" = "workspace number ${ws3}";
@@ -103,19 +80,35 @@ in
         "${win}+q" = "workspace number ${ws5}";
         "${win}+z" = "workspace number ${ws6}";
 
-        "${alt}+Shift+1" = "move container to workspace number ${ws1}";
-        "${alt}+Shift+2" = "move container to workspace number ${ws2}";
-        "${alt}+Shift+3" = "move container to workspace number ${ws3}";
-        "${alt}+Shift+4" = "move container to workspace number ${ws4}";
-        "${alt}+Shift+5" = "move container to workspace number ${ws5}";
-        "${alt}+Shift+6" = "move container to workspace number ${ws6}";
+        "${win}+Shift+n" = "move container to workspace number ${ws1}";
+        "${win}+Shift+r" = "move container to workspace number ${ws2}";
+        "${win}+Shift+s" = "move container to workspace number ${ws3}";
+        "${win}+Shift+g" = "move container to workspace number ${ws4}";
+        "${win}+Shift+q" = "move container to workspace number ${ws5}";
+        "${win}+Shift+z" = "move container to workspace number ${ws6}";
 
-        "${alt}+Shift+r" = "restart";
-        "${alt}+Shift+e" = "exec i3-msg exit";
-        "${alt}+Shift+f" = "exec --no-startup-id ${flameshot} gui";
+        # == utilities + applications ==
+        # main row left
+        "${win}+e" = "exec --no-startup-id playerctl -p spotify next";
+        "${win}+i" = "exec --no-startup-id playerctl -p spotify previous";
+        "${win}+t" = "exec --no-startup-id playerctl -p spotify play-pause";
 
-        # applications
-        "ctrl+shift+f" = "exec --no-startup-id ${pkgs.firefox}/bin/firefox";
+        "${win}+Return" = "exec --no-startup-id ${terminal}";
+
+        # left bottom row
+        "${win}+ä" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
+        "${win}+ü" = "exec --no-startup-id ${pkgs.firefox}/bin/firefox";
+        "${win}+v" = "exec --no-startup-id ${flameshot} gui";
+
+        "${win}+Shift+f" = "move scratchpad";
+        "${win}+f" = "scratchpad show";
+
+        # left top row
+        "${win}+Shift+a" = "kill";
+        "${win}+Shift+d" = "restart";
+        "${win}+Shift+u" = "exec i3-msg exit";
+
+
       };
     };
   };
