@@ -54,6 +54,7 @@
 
           yaml = {
             command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
+            args = [ "--stdio" ];
           };
         };
 
