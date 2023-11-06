@@ -96,8 +96,8 @@ in
         "${win}+Return" = "exec --no-startup-id ${terminal}";
 
         # left bottom row
-        "${win}+e" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
-        "${win}+i" = "exec --no-startup-id ${pkgs.firefox}/bin/firefox";
+        "${win}+e" = "exec --no-startup-id ${pkgs.firefox}/bin/firefox";
+        "${win}+i" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show run";
         "${win}+t" = "exec --no-startup-id ${flameshot} gui";
 
         "${win}+Shift+f" = "move scratchpad";
