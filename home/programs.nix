@@ -273,10 +273,10 @@
 
     zoxide.enable = true;
 
-    nushell.enable = false;
+    nushell.enable = true;
 
     zsh = {
-      enable = true;
+      enable = false;
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
       enableCompletion = true;

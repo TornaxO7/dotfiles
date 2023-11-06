@@ -59,7 +59,7 @@
         plugdev = { };
       };
 
-      defaultUserShell = pkgs.zsh;
+      defaultUserShell = pkgs.nushell;
 
       users.tornax = {
         isNormalUser = true;
