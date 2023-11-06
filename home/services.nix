@@ -6,5 +6,7 @@
       enableZshIntegration = true;
       enableSshSupport = true;
     };
+
+    ssh-agent.enable = true;
   };
 }
