@@ -51,6 +51,10 @@
             command = "${pkgs.pylyzer}/bin/pylyzer";
             args = [ "--server" ];
           };
+
+          yaml = {
+            command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
+          };
         };
 
         language = [
@@ -68,6 +72,12 @@
             };
             file-types = [ "nix" ];
             language-servers = [ "rnix" ];
+          }
+          {
+            name = "yaml";
+            auto-format = true;
+            file-types = [ "yaml" "yml" ];
+            language-servers = [ "yaml" ];
           }
         ];
       };
