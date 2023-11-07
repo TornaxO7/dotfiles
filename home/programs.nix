@@ -95,6 +95,16 @@
         settings = {
           theme = "tokyonight_storm";
 
+          keys = {
+            insert = {
+              C-space = "normal_mode";
+            };
+
+            select = {
+              C-space = "normal_mode";
+            };
+          };
+
           editor = {
             scrolloff = 7;
             line-number = "relative";
