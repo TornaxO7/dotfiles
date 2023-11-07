@@ -81,49 +81,49 @@
             }
           ];
         };
+      };
 
-        settings = {
-          theme = "tokyonight_storm";
+      settings = {
+        theme = "tokyonight_storm";
 
-          keys = {
-            insert = {
-              C-space = "normal_mode";
-            };
+        keys = {
+          insert = {
+            C-space = "normal_mode";
+          };
 
-            select = {
-              C-space = "normal_mode";
+          select = {
+            C-space = "normal_mode";
+          };
+        };
+
+        editor = {
+          scrolloff = 7;
+          line-number = "relative";
+          idle-timeout = 0;
+          color-modes = true;
+          insert-final-newline = false;
+
+          statusline = {
+            left = [ "mode" "file-name" "read-only-indicator" "file-modification-indicator" ];
+            center = [ "version-control" ];
+            right = [ "diagnostics" "selections" "register" "position-percentage" "position" "file-encoding" "file-type" "spinner" ];
+
+            mode = {
+              normal = "NORMAL";
+              insert = "INSERT";
+              select = "SELECT";
             };
           };
 
-          editor = {
-            scrolloff = 7;
-            line-number = "relative";
-            idle-timeout = 0;
-            color-modes = true;
-            insert-final-newline = false;
+          lsp.display-inlay-hints = true;
 
-            statusline = {
-              left = [ "mode" "file-name" "read-only-indicator" "file-modification-indicator" ];
-              center = [ "version-control" ];
-              right = [ "diagnostics" "selections" "register" "position-percentage" "position" "file-encoding" "file-type" "spinner" ];
-
-              mode = {
-                normal = "NORMAL";
-                insert = "INSERT";
-                select = "SELECT";
-              };
-            };
-
-            lsp.display-inlay-hints = true;
-
-            cursor-shape = {
-              insert = "bar";
-              normal = "block";
-              select = "underline";
-            };
-
-            indent-guides.render = true;
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
           };
+
+          indent-guides.render = true;
         };
       };
     };
