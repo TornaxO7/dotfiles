@@ -57,30 +57,40 @@
             args = [ "--stdio" ];
           };
 
-          language = [
-            {
-              name = "python";
-              auto-format = true;
-              file-types = [ "python" "py" ];
-              language-servers = [ "pylyzer" ];
-            }
-            {
-              name = "nix";
-              auto-format = true;
-              formatter = {
-                command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-              };
-              file-types = [ "nix" ];
-              language-servers = [ "rnix" ];
-            }
-            {
-              name = "yaml";
-              auto-format = true;
-              file-types = [ "yaml" "yml" ];
-              language-servers = [ "yaml" ];
-            }
-          ];
+          clangd = {
+            command = "${pkgs.rocmPackages.llvm.clang-tools-extra}/bin/clangd";
+          };
         };
+
+        language = [
+          {
+            name = "python";
+            auto-format = true;
+            file-types = [ "python" "py" ];
+            language-servers = [ "pylyzer" ];
+          }
+          {
+            name = "nix";
+            auto-format = true;
+            formatter = {
+              command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+            };
+            file-types = [ "nix" ];
+            language-servers = [ "rnix" ];
+          }
+          {
+            name = "yaml";
+            auto-format = true;
+            file-types = [ "yaml" "yml" ];
+            language-servers = [ "yaml" ];
+          }
+          {
+            name = "c";
+            auto-format = true;
+            file-types = [ "c" "cpp" ];
+            language-servers = [ "clangd" ];
+          }
+        ];
       };
 
       settings = {
@@ -88,11 +98,11 @@
 
         keys = {
           insert = {
-            C-space = "normal_mode";
+            C-l = "normal_mode";
           };
 
           select = {
-            C-space = "normal_mode";
+            C-l = "normal_mode";
           };
         };
 
