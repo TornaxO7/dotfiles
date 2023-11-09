@@ -35,15 +35,10 @@
       enable = true;
       defaultEditor = false;
 
-      extraPackages = with pkgs; [
-        nil
-        nixpkgs-fmt
-      ];
-
       languages = {
         language-server = {
-          rnix = {
-            command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+          nil = {
+            command = "${pkgs.nil}/bin/nil";
             args = [ ];
           };
 
@@ -76,7 +71,7 @@
               command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
             };
             file-types = [ "nix" ];
-            language-servers = [ "rnix" ];
+            language-servers = [ "nil" ];
           }
           {
             name = "yaml";
