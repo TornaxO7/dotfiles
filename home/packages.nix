@@ -26,6 +26,7 @@
     openvpn
     ouch
     pinentry
+    pomsky
     pkg-config-unwrapped
     powertop
     python312
