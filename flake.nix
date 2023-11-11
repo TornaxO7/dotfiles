@@ -26,7 +26,7 @@
           (system: function (import nixpkgs {
             inherit system;
 
-            overlays = [ (import rust-overlay) ];
+            overlays = [ rust-overlay.overlays.default ];
           }));
 
       init_system =
