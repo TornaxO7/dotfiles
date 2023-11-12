@@ -3,8 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wired.url = "github:Toqozz/wired-notify";
 
@@ -26,7 +28,7 @@
           (system: function (import nixpkgs {
             inherit system;
 
-            overlays = [ (import rust-overlay) ];
+            overlays = [ rust-overlay.overlays.default ];
           }));
 
       init_system =
