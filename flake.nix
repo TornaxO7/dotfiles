@@ -12,15 +12,13 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
-    wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, wgsl-analyzer, ... }:
+  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -74,7 +72,6 @@
 
             overlays = [
               wired.overlays.default
-              wgsl-analyzer.overlays.default
             ];
           };
 

@@ -55,10 +55,6 @@
           clangd = {
             command = "${pkgs.rocmPackages.llvm.clang-tools-extra}/bin/clangd";
           };
-
-          wgsl-analyzer = {
-            command = "${pkgs.wgsl-analyzer}/bin/wgsl-analyzer";
-          };
         };
 
         language = [
@@ -88,12 +84,6 @@
             auto-format = true;
             file-types = [ "c" "cpp" ];
             language-servers = [ "clangd" ];
-          }
-          {
-            name = "wgsl";
-            auto-format = true;
-            file-types = [ "wgsl" ];
-            language-servers = [ "wgsl-analyzer" ];
           }
         ];
       };
