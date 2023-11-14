@@ -12,13 +12,15 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    wgsl-analyzer.url = "github:TornaxO7/wgsl-analyzer/fix/flake";
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, ... }:
+  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, wgsl-analyzer, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -28,7 +30,7 @@
           (system: function (import nixpkgs {
             inherit system;
 
-            overlays = [ rust-overlay.overlays.default ];
+            overlays = [ rust-overlay.overlays.default wgsl-analyzer.overlays.default ];
           }));
 
       init_system =
