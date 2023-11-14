@@ -1,13 +1,13 @@
 { pkgs, lib, ... }:
 {
-  config.programs = {
+  config.programs = rec {
     bat.enable = true;
 
     bottom.enable = true;
 
     eza = {
       enable = true;
-      # enableAliases = true;
+      enableAliases = !nushell.enable;
       icons = true;
       git = true;
     };
@@ -300,7 +300,7 @@
     zoxide.enable = true;
 
     nushell = {
-      enable = true;
+      enable = false;
 
       configFile.source = ../config/nushell/config.nu;
       envFile.source = ../config/nushell/env.nu;
