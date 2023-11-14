@@ -457,7 +457,7 @@ def ela [] {
 
 alias za = zellij a
 alias zs = zellij -s
-alias zm = zellij -m main
+alias zm = zellij -s main
 
 alias rx = redshift -orx;
 alias r1 = redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000;
@@ -467,6 +467,5 @@ alias r3 = redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000;
 alias nsa = nix-shell '<unstable>' --command 'nushell' -A;
 alias nsp = nix-shell '<unstable>' --command 'nushell' -p;
 
-use ~/.config/nushell/git-aliases.nu *
 use ~/.cache/starship/init.nu
 source ~/.zoxide.nu

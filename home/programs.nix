@@ -299,7 +299,12 @@
 
     zoxide.enable = true;
 
-    nushell.enable = false;
+    nushell = {
+      enable = true;
+
+      configFile.source = ../config/nushell/config.nu;
+      envFile.source = ../config/nushell/env.nu;
+    };
 
     zsh = {
       enable = true;

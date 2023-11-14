@@ -29,7 +29,7 @@
     };
 
     nushell = {
-      enable = config.programs.nushell.enable;
+      enable = false;
       recursive = true;
       source = ../config/nushell;
       target = "nushell";
