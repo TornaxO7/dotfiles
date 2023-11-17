@@ -6,7 +6,7 @@
     nix.settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
-      trusted-users = [ "@wheel" ];
+      trusted-users = [ config.users.users.tornax.name ];
     };
 
     networking.hosts = {
@@ -63,6 +63,7 @@
       defaultUserShell = pkgs.zsh;
 
       users.tornax = {
+        name = "tornax";
         isNormalUser = true;
         hashedPasswordFile = config.age.secrets.tornax.path;
         description = "tornax";
