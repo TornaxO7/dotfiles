@@ -43,4 +43,6 @@ rec {
 
   # VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
   LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}";
+
+  CARGO_BUILD_RUSTDOCFLAGS = "--default-theme=ayu";
 }
