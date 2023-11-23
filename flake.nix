@@ -32,19 +32,17 @@
             overlays = [ rust-overlay.overlays.default ];
           }));
 
+      pkgs_overlays = [
+        wired.overlays.default
+        helix.overlays.default
+      ];
+
       init_system =
         { configuration
         , key
         , system ? "x86_64-linux"
         ,
-        }:
-        let
-          pkgs_overlays = [
-            wired.overlays.default
-            helix.overlays.default
-          ];
-        in
-        nixpkgs.lib.nixosSystem {
+        }: nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
@@ -78,9 +76,7 @@
           pkgs = import nixpkgs {
             system = x86;
 
-            overlays = [
-              wired.overlays.default
-            ];
+            overlays = pkgs_overlays;
           };
 
           sharedModules = [
