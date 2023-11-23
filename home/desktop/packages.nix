@@ -8,6 +8,7 @@
     discord
     element-desktop
     flameshot
+    newsflash
     pavucontrol
     playerctl
     pulseaudio
