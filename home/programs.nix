@@ -55,6 +55,10 @@
           clangd = {
             command = "${pkgs.rocmPackages.llvm.clang-tools-extra}/bin/clangd";
           };
+
+          typst-lsp = {
+            command = "${pkgs.typst-lsp}/bin/typst-lsp";
+          };
         };
 
         language = [
@@ -84,6 +88,12 @@
             auto-format = true;
             file-types = [ "c" "cpp" ];
             language-servers = [ "clangd" ];
+          }
+          {
+            name = "typst";
+            auto-format = true;
+            file-types = [ "typst" ];
+            language-servers = [ "typst-lsp" ];
           }
         ];
       };
