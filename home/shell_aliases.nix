@@ -1,9 +1,7 @@
 {
   p = "python";
 
-  za = "zellij a";
-  zs = "zellij -s";
-  zm = "zellij -s main";
+  ze = "zellij";
 
   v = "vifm .";
 
