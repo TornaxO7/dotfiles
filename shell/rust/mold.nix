@@ -3,8 +3,8 @@ let
   shell_description = import ./data.nix { inherit pkgs; }
     //
     {
-      RUSTC_LINKER = "${pkgs.llvmPackages.clangUseLLVM}/bin/clang";
-      RUSTFLAGS = "-Clink-arg=-fuse-ld=${pkgs.mold}/bin/mold";
+      CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER = "${pkgs.llvmPackages.clangUseLLVM}/bin/clang";
+      CARGO_ENCODED_RUSTFLAGS = "-Clink-arg=-fuse-ld=${pkgs.mold}/bin/mold";
     };
 in
 pkgs.mkShell shell_description
