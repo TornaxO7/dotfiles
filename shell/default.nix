@@ -6,7 +6,7 @@
     '';
   };
 
-  rs = pkgs.mkShell import ./rust/data.nix;
+  rs = pkgs.mkShell ((import ./rust/data.nix) { inherit pkgs; });
   rsm = import ./rust/mold.nix { inherit pkgs; };
   hs = import ./haskell { inherit pkgs; };
   py = import ./python { inherit pkgs; };

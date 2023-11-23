@@ -29,8 +29,8 @@ rec {
     vulkan-headers
     vulkan-loader
     vulkan-tools
-    vulkan-tools-lunarg
-    vulkan-validation-layers
+    # vulkan-tools-lunarg
+    # vulkan-validation-layers
 
     pcsctools
     pcsclite
@@ -41,6 +41,6 @@ rec {
 
   shellHook = import ../shared_hook.nix;
 
-  VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+  # VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
   LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${builtins.toString (pkgs.lib.makeLibraryPath buildInputs)}";
 }
