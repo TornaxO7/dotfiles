@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    helix.url = "github:helix-editor/helix/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +19,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, ... }:
+  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, helix, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -36,7 +37,14 @@
         , key
         , system ? "x86_64-linux"
         ,
-        }: nixpkgs.lib.nixosSystem {
+        }:
+        let
+          pkgs_overlays = [
+            wired.overlays.default
+            helix.overlays.default
+          ];
+        in
+        nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
@@ -47,7 +55,7 @@
           ];
 
           specialArgs = {
-            inherit key wired;
+            inherit key pkgs_overlays;
           };
         };
     in

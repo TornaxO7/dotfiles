@@ -1,4 +1,4 @@
-{ config, pkgs, wired, ... }:
+{ config, pkgs, pkgs_overlays, ... }:
 {
   config = {
     boot.tmp.cleanOnBoot = true;
@@ -15,9 +15,7 @@
 
     nixpkgs = {
       config.allowUnfree = true;
-      overlays = [
-        wired.overlays.default
-      ];
+      overlays = pkgs_overlays;
     };
 
     fonts.packages = with pkgs; [
