@@ -93,6 +93,9 @@
             name = "typst";
             auto-format = true;
             file-types = [ "typst" ];
+            formatter = {
+              command = "${pkgs.typst-fmt}/bin/typst-fmt";
+            };
             language-servers = [ "typst-lsp" ];
           }
         ];
