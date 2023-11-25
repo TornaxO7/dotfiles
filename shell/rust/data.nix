@@ -1,7 +1,5 @@
 { pkgs }:
 rec {
-  packages = with pkgs; [ rust-bin.stable.latest.default ];
-
   buildInputs = with pkgs; [
     rustup
 
