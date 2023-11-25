@@ -58,12 +58,10 @@
         plugdev = { };
       };
 
-      defaultUserShell = pkgs.zsh;
-
       users = {
         tornax = {
           name = "tornax";
-          shell = pkgs.nushell;
+          shell = pkgs.zsh;
           isNormalUser = true;
           hashedPasswordFile = config.age.secrets.tornax.path;
           description = "tornax";
