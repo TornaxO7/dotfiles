@@ -61,7 +61,7 @@
       users = {
         tornax = {
           name = "tornax";
-          shell = pkgs.zsh;
+          shell = pkgs.nushell;
           isNormalUser = true;
           hashedPasswordFile = config.age.secrets.tornax.path;
           description = "tornax";
