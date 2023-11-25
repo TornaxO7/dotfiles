@@ -8,6 +8,7 @@
     packages = with pkgs; [
       eww
       rpi-imager
+      lact
     ];
     pointerCursor.size = 20;
   };

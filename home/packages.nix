@@ -22,6 +22,7 @@
     magic-wormhole-rs
     mdcat
     nix-index
+    hyperfine
     nodejs_20
     openvpn
     ouch
