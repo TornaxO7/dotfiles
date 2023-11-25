@@ -60,5 +60,5 @@ theme "tokyo-night-storm"
 default_layout "default"
 default_mode "locked"
 copy_command "xclip -selection clipboard"
-scrollback_editor "nvim"
+scrollback_editor "hx"
 pane_frames false
