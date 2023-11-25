@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     helix.url = "github:helix-editor/helix/master";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "path:/home/tornax/Programming/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
