@@ -8,6 +8,7 @@
     discord
     element-desktop
     flameshot
+    inlyne
     newsflash
     pavucontrol
     playerctl
