@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    ripgrep-all
     ast-grep
     bandwhich
     difftastic
@@ -14,33 +13,35 @@
     gcc13
     gptfdisk
     highlight
-    termusic
+    hyperfine
     iamb
     imagemagick
     irssi
+    jless
     liberation_ttf
     magic-wormhole-rs
     mdcat
     nix-index
-    hyperfine
     nodejs_20
     openvpn
     ouch
     pinentry
-    pomsky
     pkg-config-unwrapped
+    pomsky
     powertop
     python312
     ripgrep
+    ripgrep-all
     rsync
-    sd
     rustic-rs
+    sd
     speedtest-cli
+    termusic
     tokei
     udisks
-    yt-dlp
-    wormhole-rs
     vifm-full
     wiki-tui
+    wormhole-rs
+    yt-dlp
   ];
 }
