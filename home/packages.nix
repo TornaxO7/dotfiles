@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     ast-grep
     bandwhich
+    choose
     difftastic
     du-dust
     fd
