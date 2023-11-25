@@ -30,6 +30,7 @@
     pkg-config-unwrapped
     pomsky
     powertop
+    pastel
     python312
     ripgrep
     ripgrep-all
