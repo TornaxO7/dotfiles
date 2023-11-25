@@ -468,4 +468,3 @@ alias nsa = nix-shell '<unstable>' --command 'nushell' -A;
 alias nsp = nix-shell '<unstable>' --command 'nushell' -p;
 
 use ~/.cache/starship/init.nu
-source ~/.zoxide.nu

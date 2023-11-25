@@ -42,8 +42,3 @@ $env.NIX_PATH = $env.NIX_PATH
   | append ($env.HOME | path join dotfiles/shells)
 $env.MOZ_USE_XINPUT2 = "1";
 
-$env.STARSHIP_SHELL = "nu"
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
-
-zoxide init nushell | save -f ~/.zoxide.nu
