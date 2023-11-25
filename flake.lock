@@ -214,8 +214,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1700928637,
-        "narHash": "sha256-dZ05MJE1xBuLX7yjQ/+JswOIU0jv546jfA5kpJOpRaQ=",
+        "lastModified": 1700929237,
+        "narHash": "sha256-UKvAOYEPfAzsxyKcD9dNqhJTR6YxTGEBY3rEWMWicas=",
         "path": "/home/tornax/Programming/home-manager",
         "type": "path"
       },
