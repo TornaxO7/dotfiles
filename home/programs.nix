@@ -313,14 +313,14 @@
     zoxide.enable = true;
 
     nushell = {
-      enable = false;
+      enable = true;
 
       configFile.source = ../config/nushell/config.nu;
       envFile.source = ../config/nushell/env.nu;
     };
 
     zsh = {
-      enable = true;
+      enable = false;
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
       enableCompletion = true;
