@@ -2,5 +2,5 @@
 pkgs.mkShell (import ./data.nix {
   inherit pkgs;
 
-  rust-toolchain = pkgs.rust-bin.stable.latest.default;
+  rust-toolchain = pkgs.rust-bin.nightly.latest.default;
 })

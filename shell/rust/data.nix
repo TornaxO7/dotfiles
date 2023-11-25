@@ -1,5 +1,7 @@
-{ pkgs }:
+{ pkgs, rust-toolchain }:
 rec {
+  packages = [ rust-toolchain ];
+
   buildInputs = with pkgs; [
     rustup
 
