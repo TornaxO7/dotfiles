@@ -310,7 +310,10 @@
 
     zellij.enable = true;
 
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
 
     nushell = {
       enable = false;
