@@ -18,7 +18,7 @@
       displayManager = {
         defaultSession = "none+i3";
         autoLogin = {
-          enable = false;
+          enable = true;
           user = "tornax";
         };
       };
