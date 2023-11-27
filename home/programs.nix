@@ -173,7 +173,7 @@
       userName = "TornaxO7";
       extraConfig = {
         core = {
-          editor = "nvim";
+          editor = "hx";
         };
 
         merge.tool = "nvimdiff";
