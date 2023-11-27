@@ -59,6 +59,11 @@
           typst-lsp = {
             command = "${pkgs.typst-lsp}/bin/typst-lsp";
           };
+
+          taplo = {
+            command = "${pkgs.taplo}/bin/taplo";
+            args = [ "lsp" "stdio" ];
+          };
         };
 
         language = [
@@ -97,6 +102,15 @@
               command = "${pkgs.typst-fmt}/bin/typst-fmt";
             };
             language-servers = [ "typst-lsp" ];
+          }
+          {
+            name = "toml";
+            auto-format = true;
+            file-types = [ "toml" ];
+            formatter = {
+              command = "${pkgs.taplo}/bin/taplo format";
+            };
+            language-servers = [ "taplo" ];
           }
         ];
       };
