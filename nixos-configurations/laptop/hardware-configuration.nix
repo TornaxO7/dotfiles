@@ -8,24 +8,14 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "ums_realtek" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/c7a9a9a9-5f9a-4694-addf-73d8aa284ba8";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home/tornax" =
-    { device = "/dev/disk/by-uuid/f4efd5ff-dcaa-4ccf-a1ea-9ba7647b2220";
-      fsType = "ext4";
-    };
-
-  fileSystems."/main" =
-    { device = "/dev/disk/by-uuid/fe868a57-77b6-47f8-b7de-1e3f568f28d6";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/b4ffde00-653f-4c62-96e1-359464acb38e";
+      fsType = "btrfs";
     };
 
   fileSystems."/boot" =
@@ -42,10 +32,10 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s20f0u7u4.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp0s13f0u3u4.useDHCP = lib.mkDefault true;
+  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
