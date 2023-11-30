@@ -14,4 +14,6 @@
   hs = import ./haskell { inherit pkgs; };
   py = import ./python { inherit pkgs; };
   c = import ./c { inherit pkgs; };
+
+  typst = import ./typst { inherit pkgs; };
 }
