@@ -23,7 +23,7 @@
         };
       };
 
-      desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = false;
     };
 
     boot = {
