@@ -23,7 +23,8 @@
         };
       };
 
-      desktopManager.gnome.enable = false;
+      # desktopManager.gnome.enable = true;
+      desktopManager.plasma5.enable = true;
     };
 
     boot = {
