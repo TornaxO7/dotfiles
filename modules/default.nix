@@ -63,7 +63,6 @@
           name = "tornax";
           shell = pkgs.zsh;
           isNormalUser = true;
-          hashedPasswordFile = config.age.secrets.tornax.path;
           description = "tornax";
           extraGroups = [
             "audio"
