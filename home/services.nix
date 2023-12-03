@@ -6,5 +6,7 @@
       enableZshIntegration = true;
       enableSshSupport = true;
     };
+
+    gnome-keyring.enable = true;
   };
 }
