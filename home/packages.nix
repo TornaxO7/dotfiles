@@ -7,6 +7,7 @@
     difftastic
     du-dust
     fd
+    fend
     ffmpeg_6-full
     file
     fira-code
