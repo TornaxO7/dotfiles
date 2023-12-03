@@ -26,11 +26,11 @@
     nodejs_20
     openvpn
     ouch
+    pastel
     pinentry
     pkg-config-unwrapped
     pomsky
     powertop
-    pastel
     python312
     ripgrep
     ripgrep-all
@@ -38,6 +38,7 @@
     rustic-rs
     sd
     speedtest-cli
+    tailspin
     termusic
     tokei
     udisks
