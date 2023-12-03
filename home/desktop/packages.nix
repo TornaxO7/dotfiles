@@ -7,6 +7,7 @@
     bitwarden
     discord
     flameshot
+    fractal
     inlyne
     newsflash
     pavucontrol
