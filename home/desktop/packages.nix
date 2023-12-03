@@ -8,7 +8,6 @@
     discord
     evince
     flameshot
-    fractal
     inlyne
     logseq
     newsflash
