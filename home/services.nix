@@ -7,6 +7,9 @@
       enableSshSupport = true;
     };
 
-    gnome-keyring.enable = true;
+    gnome-keyring = {
+      enable = true;
+      components = [ "secrets" ];
+    };
   };
 }
