@@ -6,6 +6,7 @@
     authy
     bitwarden
     discord
+    evince
     flameshot
     fractal
     inlyne
