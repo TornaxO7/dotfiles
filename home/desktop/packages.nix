@@ -9,6 +9,7 @@
     flameshot
     fractal
     inlyne
+    logseq
     newsflash
     pavucontrol
     playerctl
