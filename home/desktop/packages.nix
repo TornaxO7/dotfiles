@@ -6,7 +6,6 @@
     authy
     bitwarden
     discord
-    element-desktop
     flameshot
     inlyne
     newsflash
