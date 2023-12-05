@@ -73,6 +73,7 @@
             "plugdev"
             "video"
             "wheel"
+            "docker"
           ];
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC7Xq+9744TurpKZrBz7WpriCne5mcbfYxb4vwwRjVrV openpgp:0x654A6D6C"
@@ -106,6 +107,8 @@
       tailscale.enable = true;
       pcscd.enable = true;
     };
+
+    virtualisation.docker.enable = true;
 
     programs = {
       zsh.enable = true;
