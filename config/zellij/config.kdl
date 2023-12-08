@@ -1,64 +1,104 @@
 keybinds clear-defaults=true {
     normal {
-        bind "Ctrl g" { SwitchToMode "locked"; }
+        bind "Alt L" { GoToNextTab; }
+        bind "Alt H" { GoToPreviousTab; }
 
-        bind "r" { SwitchToMode "resize"; }
-        bind "t" { SwitchToMode "tab"; }
-        bind "s" { SwitchToMode "session"; }
-        bind "n" { NewPane "Right"; }
-        bind "N" { NewPane "Down"; }
-
-        bind "h" { MoveFocus "Left"; }
-        bind "l" { MoveFocus "Right"; }
-        bind "j" { MoveFocus "Down"; }
-        bind "k" { MoveFocus "Up"; }
-
-        bind "m" { SwitchToMode "move"; }
-
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
-        bind "e" { EditScrollback; SwitchToMode "locked"; }
-
-        bind "Ctrl t" { NewTab; }
-        bind "Ctrl l" { GoToNextTab; }
-        bind "Ctrl h" { GoToPreviousTab; }
+        bind "Alt N" { NewTab; }
+        bind "Alt b" { BreakPane; SwitchToMode "Normal"; }
     }
     locked {
-        bind "Ctrl g" { SwitchToMode "normal"; }
-    }
-    tab {
-        bind "Ctrl g" "Esc" { SwitchToMode "locked"; }
-        bind "n" { NewTab; }
-        bind "l" { GoToNextTab; }
-        bind "h" { GoToPreviousTab; }
-        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "q" { CloseTab; }
+        bind "Ctrl g" { SwitchToMode "Normal"; }
     }
     resize {
-        bind "Ctrl g" { SwitchToMode "locked"; }
-        bind "h" "Left" { Resize "Left"; }
-        bind "j" "Down" { Resize "Down"; }
-        bind "k" "Up" { Resize "Up"; }
-        bind "l" "Right" { Resize "Right"; }
+        bind "=" "+" { Resize "Increase"; }
+        bind "-" { Resize "Decrease"; }
+
+        bind "h" { Resize "Increase Left"; }
+        bind "j" { Resize "Increase Down"; }
+        bind "k" { Resize "Increase Up"; }
+        bind "l" { Resize "Increase Right"; }
     }
-    move {
-        bind "Ctrl g" { SwitchToMode "locked"; }
-        bind "h" { MovePane "Left"; }
-        bind "j" { MovePane "Down"; }
-        bind "k" { MovePane "Up"; }
-        bind "l" { MovePane "Right"; }
+    pane {
+        bind "r" { TogglePaneFrames; SwitchToMode "Normal"; }
+        bind "s" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+
+        bind "H" { MovePane "Left"; }
+        bind "J" { MovePane "Down"; }
+        bind "K" { MovePane "Up"; }
+        bind "L" { MovePane "Right"; }
+
+        bind "j" { ScrollDown; }
+        bind "k" { ScrollUp; }
+
+        bind "n" { EditScrollback; SwitchToMode "Normal"; }
+
+        bind "Ctrl d" { HalfPageScrollDown; }
+        bind "Ctrl u" { HalfPageScrollUp; }
+
+        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "G" { ScrollToBottom; SwitchToMode "Normal"; }
+    }
+    search {
+        bind "j" { ScrollDown; }
+        bind "k" { ScrollUp; }
+        bind "Ctrl d" { HalfPageScrollDown; }
+        bind "Ctrl u" { HalfPageScrollUp; }
+        bind "n" { Search "down"; }
+        bind "p" { Search "up"; }
+        bind "c" { SearchToggleOption "CaseSensitivity"; }
+        bind "w" { SearchToggleOption "Wrap"; }
+        bind "o" { SearchToggleOption "WholeWord"; }
+
+        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
+    }
+    entersearch {
+        bind "Ctrl c" "Esc" { SwitchToMode "Scroll"; }
+        bind "Enter" { SwitchToMode "Search"; }
     }
     session {
-        bind "Ctrl g" { SwitchToMode "locked"; }
         bind "d" { Detach; }
     }
-    RenameTab {
-        bind "Enter" "Esc" { SwitchToMode "locked"; }
+
+    shared_except "locked" {
+        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Ctrl q" { Quit; }
+
+        bind "Alt n" { NewPane; }
+        bind "Alt h" { MoveFocusOrTab "Left"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+
+        bind "Alt d" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt D" { CloseTab; SwitchToMode "Normal"; }
+
+        bind "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
+    }
+    shared_except "normal" "locked" {
+        bind "Enter" "Esc" { SwitchToMode "Normal"; }
+    }
+
+    shared_except "pane" "locked" {
+        bind "Ctrl n" { SwitchToMode "Pane"; }
+    }
+    shared_except "resize" "locked" {
+        bind "Ctrl r" { SwitchToMode "Resize"; }
+    }
+    shared_except "session" "locked" {
+        bind "Ctrl s" { SwitchToMode "Session"; }
     }
 }
 
+plugins {
+    tab-bar { path "tab-bar"; }
+    status-bar { path "status-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+}
+
 theme "tokyo-night-storm"
-default_layout "default"
-default_mode "locked"
 copy_command "xclip -selection clipboard"
-scrollback_editor "hx"
-pane_frames false
