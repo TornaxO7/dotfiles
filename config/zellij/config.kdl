@@ -1,11 +1,5 @@
 keybinds clear-defaults=true {
-    normal {
-        bind "Alt L" { GoToNextTab; }
-        bind "Alt H" { GoToPreviousTab; }
-
-        bind "Alt N" { NewTab; }
-        bind "Alt b" { BreakPane; SwitchToMode "Normal"; }
-    }
+    normal { }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
@@ -59,11 +53,13 @@ keybinds clear-defaults=true {
         bind "d" { Detach; }
     }
 
-    shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
+    shared {
+        bind "Alt L" { GoToNextTab; }
+        bind "Alt H" { GoToPreviousTab; }
 
-        bind "Alt n" { NewPane; }
+        bind "Alt N" { NewTab; }
+        bind "Alt b" { BreakPane; SwitchToMode "Normal"; }
+
         bind "Alt h" { MoveFocusOrTab "Left"; }
         bind "Alt l" { MoveFocusOrTab "Right"; }
         bind "Alt j" { MoveFocus "Down"; }
@@ -75,9 +71,17 @@ keybinds clear-defaults=true {
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
 
+        bind "Alt n" { NewPane; }
+
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
     }
+
+    shared_except "locked" {
+        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Ctrl q" { Quit; }
+    }
+
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
