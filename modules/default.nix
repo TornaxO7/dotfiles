@@ -23,9 +23,6 @@
 
     environment = {
       pathsToLink = [ "/share/zsh" ];
-      variables = {
-        EDITOR = "nvim";
-      };
       sessionVariables = {
         MOZ_USE_XINPUT2 = "1";
       };
