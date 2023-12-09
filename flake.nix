@@ -71,7 +71,7 @@
           pkgs = import nixpkgs {
             system = x86;
 
-            overlays = [ helix.overlays.default ];
+            overlays = [ helix.overlays.default wired.overlays.default ];
           };
 
           sharedModules = [
