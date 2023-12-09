@@ -33,7 +33,7 @@
 
     helix = {
       enable = true;
-      defaultEditor = false;
+      defaultEditor = true;
 
       languages = {
         language-server = {
@@ -209,7 +209,7 @@
 
     neovim = {
       enable = true;
-      defaultEditor = true;
+      defaultEditor = false;
       extraPackages = with pkgs; [
         gcc13
         deno
