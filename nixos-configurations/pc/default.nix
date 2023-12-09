@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -23,7 +23,6 @@
         };
       };
 
-      # desktopManager.gnome.enable = true;
       desktopManager.plasma5.enable = true;
     };
 
