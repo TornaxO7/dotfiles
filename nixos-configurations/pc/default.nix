@@ -22,8 +22,6 @@
           user = "tornax";
         };
       };
-
-      desktopManager.plasma5.enable = true;
     };
 
     boot = {
