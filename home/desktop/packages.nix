@@ -9,7 +9,6 @@
     evince
     flameshot
     inlyne
-    logseq
     newsflash
     pavucontrol
     playerctl
