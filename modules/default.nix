@@ -27,7 +27,6 @@
         MOZ_USE_XINPUT2 = "1";
       };
       systemPackages = with pkgs; [
-        git
         tailscale
       ];
     };
