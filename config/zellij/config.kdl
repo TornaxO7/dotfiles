@@ -16,10 +16,10 @@ keybinds clear-defaults=true {
         bind "r" { TogglePaneFrames; SwitchToMode "Normal"; }
         bind "s" { ToggleFloatingPanes; SwitchToMode "Normal"; }
 
-        bind "H" { MovePane "Left"; }
-        bind "J" { MovePane "Down"; }
-        bind "K" { MovePane "Up"; }
-        bind "L" { MovePane "Right"; }
+        bind "h" { MovePane "Left"; }
+        bind "j" { MovePane "Down"; }
+        bind "k" { MovePane "Up"; }
+        bind "l" { MovePane "Right"; }
 
         bind "j" { ScrollDown; }
         bind "k" { ScrollUp; }
