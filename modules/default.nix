@@ -3,10 +3,13 @@
   config = {
     boot.tmp.cleanOnBoot = true;
 
-    nix.settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-      trusted-users = [ config.users.users.tornax.name ];
+    nix = {
+      package = pkgs.nix;
+      settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+        auto-optimise-store = true;
+        trusted-users = [ config.users.users.tornax.name ];
+      };
     };
 
     networking.hosts = {
