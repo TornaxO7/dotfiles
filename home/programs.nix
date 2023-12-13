@@ -56,9 +56,9 @@
             command = "${pkgs.rocmPackages.llvm.clang-tools-extra}/bin/clangd";
           };
 
-          typst-lsp = {
-            command = "${pkgs.typst-lsp}/bin/typst-lsp";
-          };
+          # typst-lsp = {
+          #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
+          # };
 
           taplo = {
             command = "${pkgs.taplo}/bin/taplo";
@@ -101,7 +101,7 @@
             formatter = {
               command = "${pkgs.typst-fmt}/bin/typst-fmt";
             };
-            language-servers = [ "typst-lsp" ];
+            # language-servers = [ "typst-lsp" ];
           }
           {
             name = "toml";
