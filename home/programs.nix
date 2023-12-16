@@ -326,11 +326,6 @@
     zellij = {
       enable = true;
       enableZshIntegration = true;
-      settings = lib.concatStrings [
-        (builtins.readFile ../config/zellij/config.kdl)
-        "\n"
-        "scrollback_editor ${pkgs.helix}/bin/hx"
-      ];
     };
 
     zoxide = {

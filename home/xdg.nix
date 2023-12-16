@@ -9,7 +9,7 @@
     };
 
     zellij = {
-      enable = false;
+      enable = true;
       recursive = true;
       source = ../config/zellij;
       target = "zellij";
