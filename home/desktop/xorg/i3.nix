@@ -10,7 +10,7 @@ let
   ws6 = "6";
 
   flameshot = "${pkgs.flameshot}/bin/flameshot";
-  terminal = "${pkgs.rio}/bin/rio -e ${pkgs.zellij}/bin/zellij";
+  terminal = "${pkgs.rio}/bin/rio";
 in
 {
   xsession.windowManager.i3 = {
