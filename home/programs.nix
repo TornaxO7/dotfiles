@@ -323,10 +323,7 @@
       };
     };
 
-    zellij = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    zellij.enable = true;
 
     zoxide = {
       enable = true;
