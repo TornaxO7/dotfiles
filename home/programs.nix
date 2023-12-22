@@ -60,6 +60,11 @@
           #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
           # };
 
+          json = {
+            command = "${pkgs.nodePackages_latest.vscode-json-languageserver}/bin/vscode-json-languageserver";
+            args = [ "--stdio" ];
+          };
+
           taplo = {
             command = "${pkgs.taplo}/bin/taplo";
             args = [ "lsp" "stdio" ];
@@ -111,6 +116,12 @@
               command = "${pkgs.taplo}/bin/taplo format";
             };
             language-servers = [ "taplo" ];
+          }
+          {
+            name = "json";
+            auto-format = false;
+            file-types = [ "json" ];
+            language-servers = [ "json" ];
           }
         ];
       };
