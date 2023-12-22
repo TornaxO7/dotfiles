@@ -69,6 +69,10 @@
             command = "${pkgs.taplo}/bin/taplo";
             args = [ "lsp" "stdio" ];
           };
+
+          jdtls = {
+            command = "${pkgs.jdt-language-server}/bin/jdt-language-server";
+          };
         };
 
         language = [
@@ -122,6 +126,11 @@
             auto-format = false;
             file-types = [ "json" ];
             language-servers = [ "json" ];
+          }
+          {
+            name = "java";
+            file-types = [ "java" ];
+            language-servers = [ "jdtls" ];
           }
         ];
       };
