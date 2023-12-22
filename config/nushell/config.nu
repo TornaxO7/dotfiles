@@ -135,7 +135,7 @@ $env.config = {
     completions: {
         case_sensitive: false # set to true to enable case-sensitive completions
         quick: true   # set this to false to prevent auto-selecting completions when only one remains
-        partial: true   # set this to false to prevent partial filling of the prompt
+        partial: false   # set this to false to prevent partial filling of the prompt
         algorithm: "fuzzy"    # prefix or fuzzy
         external: {
             enable: false # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
@@ -492,32 +492,11 @@ $env.config = {
             event: {edit: backspace}
         }
         {
-            name: delete_one_word_backward
-            modifier: control
-            keycode: backspace
-            mode: [emacs, vi_insert]
-            event: {edit: backspaceword}
-        }
-        {
             name: delete_one_character_forward
             modifier: none
             keycode: delete
             mode: [emacs, vi_insert]
             event: {edit: delete}
-        }
-        {
-            name: delete_one_character_forward
-            modifier: control
-            keycode: delete
-            mode: [emacs, vi_insert]
-            event: {edit: delete}
-        }
-        {
-            name: delete_one_character_forward
-            modifier: control
-            keycode: char_h
-            mode: [emacs, vi_insert]
-            event: {edit: backspace}
         }
         {
             name: delete_one_word_backward
@@ -525,13 +504,6 @@ $env.config = {
             keycode: char_w
             mode: [emacs, vi_insert]
             event: {edit: backspaceword}
-        }
-        {
-            name: move_left
-            modifier: none
-            keycode: backspace
-            mode: vi_normal
-            event: {edit: moveleft}
         }
         {
             name: newline_or_run_command
