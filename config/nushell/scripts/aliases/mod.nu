@@ -5,6 +5,8 @@ export alias cr = cargo run
 export alias ct = cargo test
 export alias cb = cargo build
 
+export alias x = xclip -selection clipboard
+
 export alias rx = redshift -orx
 export alias r1 = redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000
 export alias r2 = redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1500
