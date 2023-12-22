@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, config, lib, ... }:
 {
   config.programs = rec {
     bat.enable = true;
@@ -347,11 +347,16 @@
 
     zoxide = {
       enable = true;
-      enableNushellIntegration = true;
+      enableNushellIntegration = config.programs.nushell.enable;
     };
 
     nushell = {
       enable = true;
+
+      environmentVariables = {
+        EDITOR = "hx";
+        # MANPAGER = "${lib.getExe pkgs.neovim} +Man!";
+      };
 
       configFile.source = ../config/nushell/config.nu;
       envFile.source = ../config/nushell/env.nu;

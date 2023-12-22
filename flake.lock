@@ -189,15 +189,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1703155327,
-        "narHash": "sha256-Q25AEghhhOp+ImNN4PsAExi7DIB1INMlBSaggGz7q4w=",
-        "owner": "nix-community",
+        "lastModified": 1703258267,
+        "narHash": "sha256-Lt/NO+ctHxkG5MNq6geUQSLriL+nFXD70p5YAqyGIHc=",
+        "owner": "TornaxO7",
         "repo": "home-manager",
-        "rev": "8b797c8eea1eba7dfb47f6964103e6e0d134255f",
+        "rev": "45399c61536eada1f6a042b452e2689cbbed2eda",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "TornaxO7",
+        "ref": "fix/gpg-agent-ssh-nushell",
         "repo": "home-manager",
         "type": "github"
       }

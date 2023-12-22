@@ -1,3 +1,6 @@
+
+# aliases
+
 def git_current_branch [] {
     (gstat).branch
 }

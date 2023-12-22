@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 {
   xdg.configFile = {
     nvim = {
@@ -17,6 +17,7 @@
 
     vifm = {
       enable = true;
+      # cache has to writeable so we have to do it that way
       source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
       target = "vifm";
     };
@@ -28,11 +29,18 @@
       target = "rio";
     };
 
-    nushell = {
-      enable = false;
+    # nushell_plugins = {
+    #   enable = config.programs.nushell.enable;
+    #   recursive = true;
+    #   source = ../config/nushell/plugins;
+    #   target = "nushell/plugins";
+    # };
+
+    nushell_scripts = {
+      enable = config.programs.nushell.enable;
       recursive = true;
-      source = ../config/nushell;
-      target = "nushell";
+      source = ../config/nushell/scripts;
+      target = "nushell/scripts";
     };
   };
 }
