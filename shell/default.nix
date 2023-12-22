@@ -1,6 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 {
   default = pkgs.mkShell {
+    packages = with pkgs; [ home-manager ];
+
     shellHook = ''
       echo "success";
     '';
@@ -12,4 +14,6 @@
   hs = import ./haskell { inherit pkgs; };
   py = import ./python { inherit pkgs; };
   c = import ./c { inherit pkgs; };
+
+  typst = import ./typst { inherit pkgs; };
 }

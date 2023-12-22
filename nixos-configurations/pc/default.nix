@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -22,8 +22,6 @@
           user = "tornax";
         };
       };
-
-      desktopManager.gnome.enable = true;
     };
 
     boot = {

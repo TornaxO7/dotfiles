@@ -6,8 +6,9 @@
     authy
     bitwarden
     discord
-    element-desktop
+    evince
     flameshot
+    inlyne
     newsflash
     pavucontrol
     playerctl
@@ -19,6 +20,7 @@
     simplescreenrecorder
     spotify
     texlive.combined.scheme-full
+    todoist-electron
     thunderbird
     vimiv-qt
     xclip

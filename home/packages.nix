@@ -1,12 +1,14 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    ripgrep-all
+    act
     ast-grep
     bandwhich
+    choose
     difftastic
     du-dust
     fd
+    fend
     ffmpeg_6-full
     file
     fira-code
@@ -14,33 +16,37 @@
     gcc13
     gptfdisk
     highlight
-    termusic
+    hyperfine
     iamb
     imagemagick
     irssi
+    jless
     liberation_ttf
     magic-wormhole-rs
     mdcat
     nix-index
-    hyperfine
     nodejs_20
     openvpn
     ouch
+    pastel
     pinentry
-    pomsky
     pkg-config-unwrapped
+    pomsky
     powertop
     python312
     ripgrep
+    ripgrep-all
     rsync
-    sd
     rustic-rs
+    sd
     speedtest-cli
+    tailspin
+    termusic
     tokei
     udisks
-    yt-dlp
-    wormhole-rs
     vifm-full
     wiki-tui
+    wormhole-rs
+    yt-dlp
   ];
 }

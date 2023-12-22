@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     helix.url = "github:helix-editor/helix/master";
+
     home-manager = {
       url = "path:/home/tornax/Programming/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, agenix, wired, rust-overlay, helix, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, wired, rust-overlay, helix, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -31,11 +32,6 @@
 
             overlays = [ rust-overlay.overlays.default ];
           }));
-
-      pkgs_overlays = [
-        wired.overlays.default
-        helix.overlays.default
-      ];
 
       init_system =
         { configuration
@@ -53,7 +49,7 @@
           ];
 
           specialArgs = {
-            inherit key pkgs_overlays;
+            inherit key;
           };
         };
     in
@@ -76,7 +72,7 @@
           pkgs = import nixpkgs {
             system = x86;
 
-            overlays = pkgs_overlays;
+            overlays = [ helix.overlays.default wired.overlays.default ];
           };
 
           sharedModules = [
@@ -87,7 +83,10 @@
             wired.homeManagerModules.default
 
             ({ ... }: {
-              nix.registry.my.flake = self;
+              nix.registry = {
+                my.flake = self;
+                unstable.flake = inputs.nixpkgs;
+              };
             })
           ];
         in

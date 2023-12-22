@@ -1,12 +1,15 @@
-{ config, pkgs, pkgs_overlays, ... }:
+{ config, pkgs, ... }:
 {
   config = {
     boot.tmp.cleanOnBoot = true;
 
-    nix.settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
-      trusted-users = [ config.users.users.tornax.name ];
+    nix = {
+      package = pkgs.nix;
+      settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+        auto-optimise-store = true;
+        trusted-users = [ config.users.users.tornax.name ];
+      };
     };
 
     networking.hosts = {
@@ -15,7 +18,6 @@
 
     nixpkgs = {
       config.allowUnfree = true;
-      overlays = pkgs_overlays;
     };
 
     fonts.packages = with pkgs; [
@@ -24,14 +26,10 @@
 
     environment = {
       pathsToLink = [ "/share/zsh" ];
-      variables = {
-        EDITOR = "nvim";
-      };
       sessionVariables = {
         MOZ_USE_XINPUT2 = "1";
       };
       systemPackages = with pkgs; [
-        git
         tailscale
       ];
     };
@@ -63,7 +61,6 @@
           name = "tornax";
           shell = pkgs.nushell;
           isNormalUser = true;
-          hashedPasswordFile = config.age.secrets.tornax.path;
           description = "tornax";
           extraGroups = [
             "audio"
@@ -74,6 +71,7 @@
             "plugdev"
             "video"
             "wheel"
+            "docker"
           ];
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC7Xq+9744TurpKZrBz7WpriCne5mcbfYxb4vwwRjVrV openpgp:0x654A6D6C"
@@ -107,6 +105,8 @@
       tailscale.enable = true;
       pcscd.enable = true;
     };
+
+    virtualisation.docker.enable = true;
 
     programs = {
       zsh.enable = true;

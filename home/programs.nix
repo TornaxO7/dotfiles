@@ -33,7 +33,7 @@
 
     helix = {
       enable = true;
-      defaultEditor = false;
+      defaultEditor = true;
 
       languages = {
         language-server = {
@@ -56,8 +56,22 @@
             command = "${pkgs.rocmPackages.llvm.clang-tools-extra}/bin/clangd";
           };
 
-          typst-lsp = {
-            command = "${pkgs.typst-lsp}/bin/typst-lsp";
+          # typst-lsp = {
+          #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
+          # };
+
+          json = {
+            command = "${pkgs.nodePackages_latest.vscode-json-languageserver}/bin/vscode-json-languageserver";
+            args = [ "--stdio" ];
+          };
+
+          taplo = {
+            command = "${pkgs.taplo}/bin/taplo";
+            args = [ "lsp" "stdio" ];
+          };
+
+          jdtls = {
+            command = "${pkgs.jdt-language-server}/bin/jdt-language-server";
           };
         };
 
@@ -96,7 +110,27 @@
             formatter = {
               command = "${pkgs.typst-fmt}/bin/typst-fmt";
             };
-            language-servers = [ "typst-lsp" ];
+            # language-servers = [ "typst-lsp" ];
+          }
+          {
+            name = "toml";
+            auto-format = true;
+            file-types = [ "toml" ];
+            formatter = {
+              command = "${pkgs.taplo}/bin/taplo format";
+            };
+            language-servers = [ "taplo" ];
+          }
+          {
+            name = "json";
+            auto-format = false;
+            file-types = [ "json" ];
+            language-servers = [ "json" ];
+          }
+          {
+            name = "java";
+            file-types = [ "java" ];
+            language-servers = [ "jdtls" ];
           }
         ];
       };
@@ -150,6 +184,7 @@
 
     git = {
       enable = true;
+      package = pkgs.gitoxide;
       delta.enable = true;
       signing = {
         key = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194";
@@ -159,7 +194,7 @@
       userName = "TornaxO7";
       extraConfig = {
         core = {
-          editor = "nvim";
+          editor = "hx";
         };
 
         merge.tool = "nvimdiff";
@@ -194,7 +229,7 @@
 
     neovim = {
       enable = true;
-      defaultEditor = true;
+      defaultEditor = false;
       extraPackages = with pkgs; [
         gcc13
         deno
