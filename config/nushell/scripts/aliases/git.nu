@@ -21,9 +21,7 @@ def git_main_branch [] {
 
 export alias ga = git add
 export alias gaa = git add --all
-export alias gapa = git add --patch
 export alias gau = git add --update
-export alias gav = git add --verbose
 export alias gap = git apply
 export alias gapt = git apply --3way
 
@@ -41,20 +39,8 @@ export alias gbsr = git bisect reset
 export alias gbss = git bisect start
 
 export alias gc = git commit --verbose
-export alias gc! = git commit --verbose --amend
+export alias gca = git commit --verbose --amend
 export alias gcn = git commit --verbose --no-edit
-export alias gcn! = git commit --verbose --no-edit --amend
-export alias gca = git commit --verbose --all
-export alias gca! = git commit --verbose --all --amend
-export alias gcan! = git commit --verbose --all --no-edit --amend
-export alias gcans! = git commit --verbose --all --signoff --no-edit --amend
-export alias gcam = git commit --all --message
-export alias gcsm = git commit --signoff --message
-export alias gcas = git commit --all --signoff
-export alias gcasm = git commit --all --signoff --message
-export alias gcb = git checkout -b
-export alias gcd = git checkout develop
-export alias gcf = git config --list
 
 export alias gcl = git clone --recurse-submodules
 export alias gclean = git clean --interactive -d
@@ -89,19 +75,7 @@ export alias gfo = git fetch origin
 export alias gg = git gui citool
 export alias gga = git gui citool --amend
 
-export alias ghh = git help
-
-export alias gignore = git update-index --assume-unchanged
-
-export alias gl = git log
-export alias glg = git log --stat
-export alias glgp = git log --stat --patch
-export alias glgg = git log --graph
-export alias glgga = git log --graph --decorate --all
-export alias glgm = git log --graph --max-count=10
-export alias glo = git log --oneline --decorate
-export alias glog = git log --oneline --decorate --graph
-export alias gloga = git log --oneline --decorate --graph --all
+export alias gl = git pull
 
 export alias gm = git merge
 export alias gmtl = git mergetool --no-prompt
@@ -123,6 +97,10 @@ export def gpoat [] {
 export alias gpr = git pull --rebase
 export alias gpu = git push upstream
 export alias gpv = git push --verbose
+
+export alias gll = git log
+export alias gllo = git log --oneline
+export alias gllon = git log --oneline -n
 
 export alias gr = git remote
 export alias gpra = git pull --rebase --autostash
