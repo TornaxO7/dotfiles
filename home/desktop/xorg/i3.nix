@@ -68,6 +68,7 @@ in
         "${win}+Shift+l" = "move right";
 
         "${win}+w" = "layout tabbed";
+        "${win}+p" = "layout splith";
 
         "${win}+Shift+space" = "floating toggle";
         "${win}+space" = "focus mode_toggle";
