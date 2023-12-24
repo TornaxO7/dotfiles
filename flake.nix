@@ -6,7 +6,7 @@
     helix.url = "github:helix-editor/helix/master";
 
     home-manager = {
-      url = "github:TornaxO7/home-manager/fix/gpg-agent-ssh-nushell";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
