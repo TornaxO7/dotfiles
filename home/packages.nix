@@ -29,7 +29,6 @@
     openvpn
     ouch
     pastel
-    pinentry
     pkg-config-unwrapped
     pomsky
     powertop
