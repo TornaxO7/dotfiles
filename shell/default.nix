@@ -1,11 +1,9 @@
 { pkgs ? import <nixpkgs> { } }:
 {
   default = pkgs.mkShell {
-    packages = with pkgs; [ home-manager ];
+    packages = with pkgs; [ home-manager rage age-plugin-yubikey ];
 
-    shellHook = ''
-      echo "success";
-    '';
+    shellHook = import ./shared_hook.nix;
   };
 
   rs = import ./rust/default.nix { inherit pkgs; };
