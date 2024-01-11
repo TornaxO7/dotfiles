@@ -22,7 +22,15 @@
 
   rsm = import ./rust/mold.nix { inherit pkgs; };
   rsn = import ./rust/nightly.nix { inherit pkgs; };
-  hs = import ./haskell { inherit pkgs; };
+  hs = devenv.lib.mkShell {
+    inherit inputs pkgs;
+
+    modules = [
+      ({ pkgs, ... }: {
+        languages.haskell.enable = true;
+      })
+    ];
+  };
 
   py = devenv.lib.mkShell {
     inherit inputs pkgs;
@@ -36,6 +44,7 @@
             numpy
             matplotlib
             pandas
+            scikit-learn
           ]));
         };
       })
