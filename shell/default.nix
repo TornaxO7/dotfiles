@@ -28,6 +28,10 @@
     modules = [
       ({ pkgs, ... }: {
         languages.haskell.enable = true;
+
+        packages = with pkgs.haskellPackages; [
+          random
+        ];
       })
     ];
   };
