@@ -14,23 +14,30 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    devenv.url = "github:cachix/devenv";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, wired, rust-overlay, helix, ... }:
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+  };
+
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, wired, rust-overlay, helix, devenv, ... }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
           "x86_64-linux"
-          "aarch64-linux"
         ]
           (system: function (import nixpkgs {
             inherit system;
 
-            overlays = [ rust-overlay.overlays.default ];
+            overlays = [
+              rust-overlay.overlays.default
+            ];
           }));
 
       init_system =
@@ -72,7 +79,11 @@
           pkgs = import nixpkgs {
             system = x86;
 
-            overlays = [ helix.overlays.default wired.overlays.default ];
+            overlays = [
+              helix.overlays.default
+              wired.overlays.default
+              devenv.overlays.default
+            ];
           };
 
           sharedModules = [
@@ -108,6 +119,6 @@
           };
         };
 
-      devShells = forAllSystems (pkgs: import ./shell { inherit pkgs; });
+      devShells = forAllSystems (pkgs: import ./shell { inherit inputs pkgs devenv; });
     };
 }

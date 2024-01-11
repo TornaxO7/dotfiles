@@ -5,6 +5,7 @@
     ast-grep
     bandwhich
     choose
+    devenv
     difftastic
     du-dust
     fd
