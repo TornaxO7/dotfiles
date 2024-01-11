@@ -29,5 +29,9 @@ pkgs.mkShell {
     python310Packages.kornia
   ];
 
-  shellHook = import ../shared_hook.nix;
+  shellHook = (import ../shared_hook.nix)
+    +
+    ''
+      alias py=python
+    '';
 }
