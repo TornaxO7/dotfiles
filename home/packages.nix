@@ -23,7 +23,6 @@
     jless
     liberation_ttf
     magic-wormhole-rs
-    meli
     mdcat
     nix-index
     nodejs_20
