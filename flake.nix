@@ -81,7 +81,6 @@
 
             overlays = [
               helix.overlays.default
-              wired.overlays.default
               devenv.overlays.default
             ];
           };
