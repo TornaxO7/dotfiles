@@ -22,19 +22,7 @@
 
   rsm = import ./rust/mold.nix { inherit pkgs; };
   rsn = import ./rust/nightly.nix { inherit pkgs; };
-  hs = devenv.lib.mkShell {
-    inherit inputs pkgs;
-
-    modules = [
-      ({ pkgs, ... }: {
-        languages.haskell.enable = true;
-
-        packages = with pkgs.haskellPackages; [
-          random
-        ];
-      })
-    ];
-  };
+  hs = import ./haskell/default.nix { inherit pkgs; };
 
   py = devenv.lib.mkShell {
     inherit inputs pkgs;
