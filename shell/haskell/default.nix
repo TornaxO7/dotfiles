@@ -11,6 +11,7 @@ let
     hoogle # Lookup Haskell documentation
     haskell-language-server # LSP server for editor
     implicit-hie # auto generate LSP hie.yaml file from cabal
+    random
     retrie # Haskell refactoring tool
     zlib # External C library needed by some Haskell packages
   ] ++ [ stack-wrapped ];
