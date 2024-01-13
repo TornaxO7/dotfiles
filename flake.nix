@@ -3,14 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    helix.url = "github:helix-editor/helix/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
+    rio.url = "github:raphamorim/rio";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
@@ -26,7 +27,18 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, wired, rust-overlay, helix, devenv, ... }:
+  outputs =
+    inputs@{ self
+    , nixpkgs
+    , home-manager
+    , agenix
+    , wired
+    , rust-overlay
+    , helix
+    , devenv
+    , rio
+    , ...
+    }:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -82,6 +94,7 @@
             overlays = [
               helix.overlays.default
               wired.overlays.default
+              rio.overlays.default
               devenv.overlays.default
             ];
           };
