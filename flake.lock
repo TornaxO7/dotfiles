@@ -74,11 +74,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1704835383,
-        "narHash": "sha256-SoC0rYR9iHW0dVOEmxNEfa8vk9dTK86P5iXTgHafmwM=",
+        "lastModified": 1705094340,
+        "narHash": "sha256-T7d1d5PQXqDbZUnKjRTBf26yTCMSttDQULM8jU4jiro=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "18ef9849d1ecac7a9a7920eb4f2e4adcf67a8c3a",
+        "rev": "96b49eb381779bdd4f41ca176a762867c31db5da",
         "type": "github"
       },
       "original": {
@@ -265,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1704980804,
-        "narHash": "sha256-lPNNKdPqIYcjhhYIVwlajNt/HqVWbMOoSdNnwCvOP04=",
+        "lastModified": 1705104164,
+        "narHash": "sha256-pllCu3Hcm1wP/B0SUxgUXvHeEd4w8s2aVrEQRdIL1yo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "93e804e7f8a1eb88bde6117cd5046501e66aa4bd",
+        "rev": "0912d26b30332ae6a90e1b321ff88e80492127dd",
         "type": "github"
       },
       "original": {
@@ -534,11 +534,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1705025860,
-        "narHash": "sha256-9vcqo5CJLOHU63S7pVlP0u4OhgJxrXebQR4vqMPXLRg=",
+        "lastModified": 1705112162,
+        "narHash": "sha256-IAM0+Uijh/fwlfoeDrOwau9MxcZW3zeDoUHc6Z3xfqM=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "d458975da373a37422577886566fce8201bc1254",
+        "rev": "9e0af26ffe52bf955ad5575888f093e41fba0104",
         "type": "github"
       },
       "original": {
@@ -648,16 +648,15 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1705052031,
-        "narHash": "sha256-4gaVf0LD/KdO/MAG39IqR8AiXLsJyiCv1e89bwTpibg=",
-        "owner": "TornaxO7",
+        "lastModified": 1705141537,
+        "narHash": "sha256-CjcrCvhrtiQIozs7Ns6yWpcw5eOozjZ3XK1PU2pO/Y0=",
+        "owner": "Toqozz",
         "repo": "wired-notify",
-        "rev": "ce745976c149241a5653f3c97b637afc9152acd8",
+        "rev": "f0bca119f7914142e3bef1e019511f8ea7681fd4",
         "type": "github"
       },
       "original": {
-        "owner": "TornaxO7",
-        "ref": "improve-flake",
+        "owner": "Toqozz",
         "repo": "wired-notify",
         "type": "github"
       }
