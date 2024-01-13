@@ -586,15 +586,16 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1705170011,
-        "narHash": "sha256-aZ8RfDpYwNeAVB0Q9Ff1V1zNQS0Jxo1nRgsMUA6K4MA=",
-        "owner": "raphamorim",
+        "lastModified": 1705172385,
+        "narHash": "sha256-QZAY/tRM+aM/kUiFGiLz1MnQm62MOPsVhhbDEWT9Pys=",
+        "owner": "TornaxO7",
         "repo": "rio",
-        "rev": "ddd614009d538820c24b5ed59435241797518cfd",
+        "rev": "b9aa6530d818c6d8a46cf08574dd02efb1e18a8a",
         "type": "github"
       },
       "original": {
-        "owner": "raphamorim",
+        "owner": "TornaxO7",
+        "ref": "fix-flake",
         "repo": "rio",
         "type": "github"
       }
