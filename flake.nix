@@ -94,8 +94,10 @@
             overlays = [
               helix.overlays.default
               wired.overlays.default
-              rio.overlays.default
               devenv.overlays.default
+              (final: prev: {
+                rio = rio.packages.${x86}.default;
+              })
             ];
           };
 
