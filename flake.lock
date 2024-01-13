@@ -578,7 +578,7 @@
         "type": "github"
       }
     },
-    "rio": {
+    "rio_term": {
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs_4",
@@ -586,11 +586,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1705172385,
-        "narHash": "sha256-QZAY/tRM+aM/kUiFGiLz1MnQm62MOPsVhhbDEWT9Pys=",
+        "lastModified": 1705178985,
+        "narHash": "sha256-SjKiXtxpgWpZ1KTAlfvG/FA5SGSn6xr5xeNJYb47KUo=",
         "owner": "TornaxO7",
         "repo": "rio",
-        "rev": "b9aa6530d818c6d8a46cf08574dd02efb1e18a8a",
+        "rev": "557f14be4b6a08b477f3293680e44e0655d7f260",
         "type": "github"
       },
       "original": {
@@ -607,7 +607,7 @@
         "helix": "helix",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs_3",
-        "rio": "rio",
+        "rio_term": "rio_term",
         "rust-overlay": "rust-overlay_3",
         "wired": "wired"
       }

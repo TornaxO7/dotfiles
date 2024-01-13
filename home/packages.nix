@@ -40,6 +40,7 @@
     rustic-rs
     sd
     speedtest-cli
+    spotify-player
     tailspin
     termusic
     tokei
