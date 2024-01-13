@@ -10,8 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # wired.url = "github:Toqozz/wired-notify";
-    wired.url = "github:TornaxO7/wired-notify/improve-flake";
+    wired.url = "github:Toqozz/wired-notify";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
