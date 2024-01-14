@@ -225,6 +225,36 @@ export extern "git fetch" [
 ]
 
 # Push changes
+export extern "gp" [
+  remote?: string@"nu-complete git remotes",
+  ...refs: string@"nu-complete git local branches"
+  --all
+  --atomic
+  --delete(-d)
+    --dry-run(-n)
+    --exec: string
+    --follow-tags
+    --force-with-lease
+    --force(-f)
+    --ipv4(-4)
+    --ipv6(-6)
+    --mirror
+    --no-verify
+    --porcelain
+    --progress
+    --prune
+    --push-option(-o): string
+    --quiet(-q)
+    --receive-pack: string
+    --recurse-submodules: string
+    --repo: string
+    --set-upstream(-u)
+    --signed: string
+    --tags
+    --thin
+  --verbose(-v)
+]
+
 export extern "git push" [
   remote?: string@"nu-complete git remotes",         # the name of the remote
   ...refs: string@"nu-complete git local branches"   # the branch / refspec
@@ -256,6 +286,12 @@ export extern "git push" [
 ]
 
 # Pull changes
+export extern "gl" [
+  remote?: string@"nu-complete git remotes",
+  ...refs: string@"nu-complete git local branches"
+  --rebase
+]
+
 export extern "git pull" [
   remote?: string@"nu-complete git remotes",         # the name of the remote
   ...refs: string@"nu-complete git local branches"   # the branch / refspec
@@ -263,6 +299,26 @@ export extern "git pull" [
 ]
 
 # Switch between branches and commits
+export extern "gsw" [
+  switch?: string@"nu-complete git switch"
+  --create(-c)
+  --detach(-d): string@"nu-complete git log"
+  --force-create(-C): string
+  --force(-f)
+  --guess
+  --ignore-other-worktrees
+  --merge(-m)
+  --no-guess
+  --no-progress
+  --no-recurse-submodules
+  --no-track
+  --orphan: string
+  --progress
+  --quiet(-q)
+  --recurse-submodules
+  --track(-t)
+]
+
 export extern "git switch" [
   switch?: string@"nu-complete git switch"        # name of branch to switch to
   --create(-c)                                    # create a new branch
@@ -308,6 +364,30 @@ export extern "git rebase" [
 ]
 
 # List or change branches
+export extern "gb" [
+  branch?: string@"nu-complete git local branches"
+  --abbrev
+  --edit-description
+  --merged
+  --no-merged
+  --set-upstream-to: string@"nu-complete git available upstream"
+  --unset-upstream
+  --all
+  --copy
+  --format
+  --move
+  --points-at
+  --show-current
+  --verbose
+  --color
+  --quiet
+  --delete(-d)
+  --list
+  --contains: string@"nu-complete git commits all"
+  --no-contains
+  --track(-t)
+]
+
 export extern "git branch" [
   branch?: string@"nu-complete git local branches"               # name of branch to operate on
   --abbrev                                                       # use short commit hash prefixes
