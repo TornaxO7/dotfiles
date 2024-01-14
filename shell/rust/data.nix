@@ -1,6 +1,8 @@
 { pkgs, rust-toolchain }:
 rec {
-  packages = [ rust-toolchain ];
+  packages = with pkgs; [
+    evcxr
+  ] ++ [ rust-toolchain ];
 
   buildInputs = with pkgs; [
     rustup

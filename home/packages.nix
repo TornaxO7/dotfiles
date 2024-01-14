@@ -8,7 +8,6 @@
     devenv
     difftastic
     du-dust
-    evcxr
     fd
     fend
     ffmpeg_6-full
