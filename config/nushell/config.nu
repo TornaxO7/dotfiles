@@ -678,3 +678,5 @@ $env.config = {
 
 use aliases *
 use aliases git *
+
+use nu_scripts custom-completions *
