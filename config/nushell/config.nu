@@ -683,7 +683,6 @@ use custom-completions/ani-cli/ani-cli-completions.nu *
 use custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
 use custom-completions/btm/btm-completions.nu *
 use custom-completions/cargo/cargo-completions.nu *
-use custom-completions/gh/gh-completions.nu *
 use custom-completions/git/git-completions.nu *
 use custom-completions/glow/glow-completions.nu *
 use custom-completions/just/just-completions.nu *
