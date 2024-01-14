@@ -679,4 +679,31 @@ $env.config = {
 use aliases *
 use aliases git *
 
-use custom-completions *
+use custom-completions/ani-cli/ani-cli-completions.nu *
+use custom-completions/bitwarden-cli/bitwarden-cli-completions.nu *
+use custom-completions/btm/btm-completions.nu *
+use custom-completions/cargo/cargo-completions.nu *
+use custom-completions/gh/gh-completions.nu *
+use custom-completions/git/git-completions.nu *
+use custom-completions/glow/glow-completions.nu *
+use custom-completions/just/just-completions.nu *
+use custom-completions/make/make-completions.nu *
+use custom-completions/man/man-completions.nu *
+use custom-completions/mask/mask-completions.nu *
+use custom-completions/nano/nano-completions.nu *
+use custom-completions/nix/nix-completions.nu *
+use custom-completions/npm/npm-completions.nu *
+use custom-completions/pass/pass-completions.nu *
+use custom-completions/pdm/pdm-completions.nu *
+use custom-completions/pnpm/pnpm-completions.nu *
+use custom-completions/poetry/poetry-completions.nu *
+use custom-completions/reflector/reflector-completions.nu *
+use custom-completions/rustup/rustup-completions.nu *
+use custom-completions/scoop/scoop-completions.nu *
+use custom-completions/tealdeer/tldr-completions.nu *
+use custom-completions/toipe/toipe-completions.nu *
+use custom-completions/typst/typst-completions.nu *
+use custom-completions/vscode/vscode-completions.nu *
+use custom-completions/winget/winget-completions.nu *
+use custom-completions/yarn/yarn-v4-completions.nu *
+use custom-completions/zellij/zellij-completions.nu *
