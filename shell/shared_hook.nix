@@ -1,3 +1,3 @@
 ''
-  nu
+  fish && exit
 ''
