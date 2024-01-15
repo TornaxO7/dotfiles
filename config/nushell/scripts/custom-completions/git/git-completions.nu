@@ -225,6 +225,36 @@ export extern "git fetch" [
 ]
 
 # Push changes
+export extern "gp" [
+  remote?: string@"nu-complete git remotes",
+  ...refs: string@"nu-complete git local branches"
+  --all
+  --atomic
+  --delete(-d)
+  --dry-run(-n)
+  --exec: string
+  --follow-tags
+  --force-with-lease
+  --force(-f)
+  --ipv4(-4)
+  --ipv6(-6)
+  --mirror
+  --no-verify
+  --porcelain
+  --progress
+  --prune
+  --push-option(-o): string
+  --quiet(-q)
+  --receive-pack: string
+  --recurse-submodules: string
+  --repo: string
+  --set-upstream(-u)
+  --signed: string
+  --tags
+  --thin
+  --verbose(-v)
+]
+
 export extern "git push" [
   remote?: string@"nu-complete git remotes",         # the name of the remote
   ...refs: string@"nu-complete git local branches"   # the branch / refspec

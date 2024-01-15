@@ -72,7 +72,9 @@ export alias gfo = git fetch origin
 export alias gg = git gui citool
 export alias gga = git gui citool --amend
 
-export alias gl = git pull
+export def gl [] {
+    git pull
+}
 
 export alias gm = git merge
 export alias gmtl = git mergetool --no-prompt
@@ -83,7 +85,7 @@ export def gmom [] {
     git merge $"origin/($main)"
 }
 
-export alias gp = git push
+export def gp [] { git push }
 export alias gpd = git push --dry-run
 export alias gpf = git push --force-with-lease
 export alias gpf! = git push --force
@@ -148,7 +150,7 @@ export alias gsts = git stash show --text
 export alias gstu = gsta --include-untracked
 export alias gstall = git stash --all
 export alias gsu = git submodule update
-export alias gsw = git switch
+export def gsw [] { git switch }
 export alias gswc = git switch --create
 
 export alias gts = git tag --sign
