@@ -25,6 +25,6 @@
     vimiv-qt
     xclip
     xournalpp
-    yubikey-manager-qt
+    # yubikey-manager-qt
   ];
 }

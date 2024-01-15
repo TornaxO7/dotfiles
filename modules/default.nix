@@ -30,6 +30,8 @@
         MOZ_USE_XINPUT2 = "1";
       };
       systemPackages = with pkgs; [
+        # fix pcscd
+        pcscliteWithPolkit.out
         tailscale
       ];
     };
@@ -80,6 +82,7 @@
         };
       };
     };
+
 
     security.sudo = {
       extraRules = [
