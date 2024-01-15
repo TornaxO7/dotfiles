@@ -8,20 +8,15 @@
   em = "$EDITOR /tmp/test.md";
   et = "$EDITOR /tmp/test.txt";
   ec = "$EDITOR /tmp/test.c";
-  er = "if [ ! -d /tmp/rust_tmp ]; then cargo new /tmp/rust_tmp/; fi; $EDITOR
-  /tmp/rust_tmp/src/main.rs";
   ed = "$EDITOR /tmp/test.dot";
   ep = "$EDITOR /tmp/test.py";
   elu = "$EDITOR /tmp/test.lua";
   ejs = "$EDITOR /tmp/test.json";
   ev = "$EDITOR /tmp/test.vim";
   ela = "$EDITOR /tmp/test.tex";
-  ef = "fzf | read yeet; if [[ \$yeet != '' ]]; then $EDITOR \$yeet; fi";
   eja = "$EDITOR /tmp/Test.java";
   ea = "$EDITOR /tmp/test.s";
   en = "$EDITOR /tmp/test.norg";
-
-  sp = "sudo poweroff";
 
   cc = "cargo check";
   ct = "cargo test";
@@ -37,4 +32,30 @@
 
   tm = "termusic ~/main/Music/rest";
   nd = "nix develop";
+
+  # git
+  gaa = "git add -A";
+  gc = "git commit --verbose";
+  gca = "git commit --verbose --amend";
+
+  gsw = "git switch";
+  gswc = "git switch -c";
+
+  gst = "git status";
+  grhh = "git reset --hard";
+  gl = "git pull";
+  gp = "git push";
+  gpf = "git push --force-with-lease";
+
+  gd = "git diff";
+  gf = "git fetch";
+
+  gm = "git merge";
+  gr = "git remote";
+
+  gwt = "git worktree";
+
+  gb = "git brach";
+  gbd = "git branch --delete";
+  gbD = "git branch -D";
 }

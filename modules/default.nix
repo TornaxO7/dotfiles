@@ -53,15 +53,16 @@
 
     console.keyMap = "bone";
 
+    programs.fish.enable = true;
     users = {
       groups = {
         plugdev = { };
       };
 
-      users = rec {
+      users = {
         tornax = {
           name = "tornax";
-          shell = pkgs.nushell;
+          shell = pkgs.fish;
           isNormalUser = true;
           description = "tornax";
           extraGroups = [

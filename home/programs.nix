@@ -350,8 +350,16 @@
       enableNushellIntegration = config.programs.nushell.enable;
     };
 
-    nushell = {
+    fish = {
       enable = true;
+      shellAliases = import ./shell_aliases.nix;
+      interactiveShellInit = ''
+        bind -k nul accept-autosuggestion
+      '';
+    };
+
+    nushell = {
+      enable = false;
 
       environmentVariables = {
         EDITOR = "hx";
