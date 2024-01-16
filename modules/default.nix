@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nix, system, ... }:
 {
   config = {
     boot.tmp.cleanOnBoot = true;
 
     nix = {
-      package = pkgs.nix;
+      package = nix.packages.${system}.default;
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;

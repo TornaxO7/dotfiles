@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix.url = "github:nixos/nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -37,6 +38,7 @@
     , helix
     , devenv
     , rio_term
+    , nix
     , ...
     }:
     let
@@ -68,7 +70,7 @@
           ];
 
           specialArgs = {
-            inherit key;
+            inherit key nix;
           };
         };
     in
