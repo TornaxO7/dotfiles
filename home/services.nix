@@ -6,5 +6,7 @@
       enableSshSupport = true;
       pinentryFlavor = "curses";
     };
+
+    syncthing.enable = true;
   };
 }
