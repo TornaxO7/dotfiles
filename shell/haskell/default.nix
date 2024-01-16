@@ -4,7 +4,6 @@ let
 
 
   myDevTools = with hpkgs; [
-    ghc-vis
     ghc # GHC compiler in the desired version (will be available on PATH)
     ghcid # Continuous terminal Haskell compile checker
     ormolu # Haskell formatter
