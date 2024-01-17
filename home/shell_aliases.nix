@@ -55,7 +55,7 @@
 
   gwt = "git worktree";
 
-  gb = "git brach";
+  gb = "git branch";
   gbd = "git branch --delete";
   gbD = "git branch -D";
 }
