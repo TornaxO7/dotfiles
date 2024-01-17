@@ -14,9 +14,11 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b4ffde00-653f-4c62-96e1-359464acb38e";
+    { device = "/dev/disk/by-uuid/5adb7cb5-6403-44d8-a9df-a534d2d16e13";
       fsType = "btrfs";
     };
+
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/7a10a358-b3b3-418c-8658-6613c03e84e6";
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/5E6D-5055";
@@ -32,7 +34,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s13f0u3u4.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
