@@ -20,6 +20,8 @@ keybinds clear-defaults=true {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
     resize {
+        bind "Ctrl r" { SwitchToMode "Normal"; }
+
         bind "=" "+" { Resize "Increase"; }
         bind "-" { Resize "Decrease"; }
 
@@ -29,6 +31,8 @@ keybinds clear-defaults=true {
         bind "l" { Resize "Increase Right"; }
     }
     pane {
+        bind "Ctrl n" { SwitchToMode "Normal"; }
+
         bind "r" { TogglePaneFrames; SwitchToMode "Normal"; }
         bind "s" { ToggleFloatingPanes; SwitchToMode "Normal"; }
 
@@ -66,6 +70,8 @@ keybinds clear-defaults=true {
         bind "Enter" { SwitchToMode "Search"; }
     }
     session {
+        bind "Ctrl s" { SwitchToMode "Normal"; }
+        
         bind "d" { Detach; }
     }
 
