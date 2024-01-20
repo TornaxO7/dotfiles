@@ -11,7 +11,7 @@
 
     helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
-    rio_term.url = "github:TornaxO7/rio/fix-flake";
+    rio_term.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
