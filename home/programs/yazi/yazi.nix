@@ -21,6 +21,14 @@
   };
 
   opener = {
+    pdf = [
+      {
+        exec = "evince $1";
+        block = false;
+        orphan = true;
+      }
+    ];
+
     edit = [
       {
         exec = "$EDITOR $@";
@@ -69,6 +77,8 @@
     { mime = "application/x-7z-compressed"; use = [ "extract" "reveal" ]; }
     { mime = "application/x-rar"; use = [ "extract" "reveal" ]; }
     { mime = "application/xz"; use = [ "extract" "reveal" ]; }
+
+    { mime = "application/pdf"; use = [ "pdf" ]; }
 
     {
       mime = "*";
@@ -226,17 +236,3 @@
 
   log.enabled = false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
