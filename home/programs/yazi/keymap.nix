@@ -363,7 +363,7 @@
       desc = "Go to the temporary directory";
     }
     {
-      on = [ "g" "<Space>" ];
+      on = [ "g" "c" ];
       exec = "cd --interactive";
       desc = "Go to a directory interactively";
     }

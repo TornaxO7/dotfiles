@@ -372,7 +372,7 @@
 
     yazi = {
       enable = true;
-
+      settings = import ./programs/yazi/yazi.nix;
       keymap = import ./programs/yazi/keymap.nix;
     };
 

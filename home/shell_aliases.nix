@@ -4,6 +4,7 @@
   ze = "zellij";
 
   v = "vifm .";
+  y = "yazi";
 
   em = "$EDITOR /tmp/test.md";
   et = "$EDITOR /tmp/test.txt";
@@ -59,3 +60,4 @@
   gbd = "git branch --delete";
   gbD = "git branch -D";
 }
+
