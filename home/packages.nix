@@ -49,6 +49,5 @@
     vifm-full
     wiki-tui
     wormhole-rs
-    yt-dlp
   ];
 }
