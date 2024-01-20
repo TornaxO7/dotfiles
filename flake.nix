@@ -12,6 +12,7 @@
     helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
     rio_term.url = "github:TornaxO7/rio/fix-flake";
+    yazi.url = "github:sxyazi/yazi";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
@@ -37,6 +38,7 @@
     , helix
     , devenv
     , rio_term
+    , yazi
     , ...
     }:
     let
@@ -95,6 +97,7 @@
               helix.overlays.default
               wired.overlays.default
               devenv.overlays.default
+              yazi.overlays.default
               (final: prev: {
                 rio = rio_term.packages.${x86}.default;
               })

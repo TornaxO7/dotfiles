@@ -370,6 +370,12 @@
       envFile.source = ../config/nushell/env.nu;
     };
 
+    yazi = {
+      enable = true;
+
+      keymap = import ./programs/yazi/keymap.nix;
+    };
+
     zsh = {
       enable = false;
       enableAutosuggestions = true;
