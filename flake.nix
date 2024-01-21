@@ -54,25 +54,7 @@
             ];
           }));
 
-      init_system =
-        { configuration
-        , key
-        , system ? "x86_64-linux"
-        ,
-        }: nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            ./secrets/default.nix
-            ./modules/default.nix
-            agenix.nixosModules.default
-            configuration
-          ];
-
-          specialArgs = {
-            inherit key;
-          };
-        };
+      init_system = import ./nix/init-system.nix { inherit nixpkgs agenix; };
     in
     {
       nixosConfigurations = {
