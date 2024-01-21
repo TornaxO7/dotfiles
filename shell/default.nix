@@ -6,27 +6,53 @@
     shellHook = import ./shared_hook.nix;
   };
 
-  rs = import ./rust/default { inherit pkgs; };
+  rs = devenv.lib.mkShell {
+    inherit inputs pkgs;
+
+
+    modules = [
+      ({ pkgs, ... }: {
+        languages.rust = {
+          enable = true;
+          channel = "stable";
+        };
+      })
+    ];
+  };
+
   rsm = import ./rust/mold.nix { inherit pkgs; };
   rsn = import ./rust/nightly.nix { inherit pkgs; };
   hs = import ./haskell/default.nix { inherit pkgs; };
 
-  py =
-    let
-      packages = ps: with ps; [
-        numpy
-        matplotlib
-        pandas
-        scikit-learn
-      ];
-    in
-    pkgs.python3.withPackages packages;
+  py = devenv.lib.mkShell {
+    inherit inputs pkgs;
 
-  c = pkgs.mkShell {
-    packages = with pkgs; [
-      libgcc
+    modules = [
+      ({ pkgs, ... }: {
+        languages.python = {
+          enable = true;
+
+          package = (pkgs.python3.withPackages (ps: with ps; [
+            numpy
+            matplotlib
+            pandas
+            scikit-learn
+          ]));
+        };
+      })
     ];
   };
+
+  c = devenv.lib.mkShell
+    {
+      inherit inputs pkgs;
+
+      modules = [
+        ({ pkgs, ... }: {
+          languages.c.enable = true;
+        })
+      ];
+    };
 
   typst = import
     ./typst

@@ -16,10 +16,16 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    devenv.url = "github:cachix/devenv";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+  };
+
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
   };
 
   outputs =
@@ -30,6 +36,7 @@
     , wired
     , rust-overlay
     , helix
+    , devenv
     , rio_term
     , yazi
     , ...
@@ -89,6 +96,7 @@
             overlays = [
               helix.overlays.default
               wired.overlays.default
+              devenv.overlays.default
               yazi.overlays.default
               (final: prev: {
                 rio = rio_term.packages.${x86}.default;
@@ -129,6 +137,6 @@
           };
         };
 
-      devShells = forAllSystems (pkgs: import ./shell { inherit inputs pkgs; });
+      devShells = forAllSystems (pkgs: import ./shell { inherit inputs pkgs devenv; });
     };
 }
