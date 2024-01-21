@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./i3.nix
@@ -9,6 +9,7 @@
       eww
       rpi-imager
       lact
+      deploy-rs
     ];
     pointerCursor.size = 20;
   };

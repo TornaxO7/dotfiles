@@ -3,11 +3,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
 
     helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
@@ -17,10 +21,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     devenv.url = "github:cachix/devenv";
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   nixConfig = {
@@ -38,6 +39,7 @@
     , helix
     , devenv
     , rio_term
+    , deploy-rs
     , yazi
     , ...
     }:
@@ -69,6 +71,14 @@
         };
       };
 
+      deploy.nodes.laptop = {
+        hostname = "laptop";
+        profiles.home = {
+          user = "tornax";
+          path = deploy-rs.lib.${self.nixosConfigurations.laptop.pkgs.system}.activate.home-manager self.homeConfigurations."tornax@laptop";
+        };
+      };
+
       homeConfigurations =
         let
           x86 = "x86_64-linux";
@@ -82,6 +92,7 @@
               yazi.overlays.default
               (final: prev: {
                 rio = rio_term.packages.${x86}.default;
+                deploy-rs = deploy-rs.packages.${x86}.default;
               })
             ];
           };
@@ -120,5 +131,7 @@
         };
 
       devShells = forAllSystems (pkgs: import ./shell { inherit inputs pkgs; });
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
