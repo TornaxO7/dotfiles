@@ -86,7 +86,8 @@
     };
 
 
-    security.sudo = {
+    security.sudo-rs = {
+      enable = true;
       extraRules = [
         {
           groups = [ "wheel" ];
@@ -102,7 +103,6 @@
           ];
         }
       ];
-      extraConfig = "Defaults insults";
     };
 
     services = {
