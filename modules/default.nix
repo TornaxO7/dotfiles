@@ -1,6 +1,14 @@
 { config, pkgs, username, ... }:
 {
-  boot.tmp.cleanOnBoot = true;
+  boot = {
+    tmp.cleanOnBoot = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+    };
+  };
+
 
   nix = {
     package = pkgs.nix;
@@ -101,4 +109,5 @@
   virtualisation.docker.enable = true;
 
   system.stateVersion = "22.11";
+  time.timeZone = "Europe/Berlin";
 }

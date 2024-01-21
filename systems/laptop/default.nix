@@ -36,21 +36,12 @@
       };
     };
 
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot";
-    };
-
     networking = {
       hostName = "laptop";
       networkmanager.enable = true;
     };
 
     programs.nm-applet.enable = true;
-
-    time.timeZone = "Europe/Berlin";
-
     services.printing.enable = true;
   };
 }
