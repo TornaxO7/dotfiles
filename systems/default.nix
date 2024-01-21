@@ -87,26 +87,26 @@ in
       ];
     };
 
-    # laptop = mkSystem {
-    #   configuration = ./laptop/default.nix;
-    #   key = ./laptop/identity;
-    #   modules = [
-    #     ../modules/desktop/default.nix
-    #     ../modules/desktop/xorg/default.nix
-    #     ../modules/desktop/xorg/i3.nix
-    #     ../modules/yubikey/default.nix
-    #     ../modules/kdeconnect.nix
-    #   ];
+    laptop = mkSystem {
+      configuration = ./laptop/default.nix;
+      key = ./laptop/identity;
+      modules = [
+        ../modules/desktop/default.nix
+        ../modules/desktop/xorg/default.nix
+        ../modules/desktop/xorg/i3.nix
+        ../modules/yubikey/default.nix
+        ../modules/kdeconnect.nix
+      ];
 
-    #   hmModules = [
-    #     inputs.wired.homeManagerModules.default
+      hmModules = [
+        inputs.wired.homeManagerModules.default
 
-    #     ../home/desktop/default.nix
-    #     ../home/desktop/xorg/default.nix
-    #     ../home/desktop/xorg/i3.nix
+        ../home/desktop/default.nix
+        ../home/desktop/xorg/default.nix
+        ../home/desktop/xorg/i3.nix
 
-    #     ./laptop/home/default.nix
-    #   ];
-    # };
+        ./laptop/home/default.nix
+      ];
+    };
   };
 }

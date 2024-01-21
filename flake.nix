@@ -27,6 +27,8 @@
     flake-parts.lib.mkFlake { inherit self inputs; } {
       imports = [
         ./systems/default.nix
+
+        ./modules/deploy.nix
       ];
 
       systems = [ "x86_64-linux" ];
