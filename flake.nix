@@ -73,9 +73,17 @@
 
       deploy.nodes.laptop = {
         hostname = "laptop";
-        profiles.home = {
-          user = "tornax";
-          path = deploy-rs.lib.${self.nixosConfigurations.laptop.pkgs.system}.activate.home-manager self.homeConfigurations."tornax@laptop";
+
+        profiles = {
+          system = {
+            user = "root";
+            path = deploy-rs.lib.${self.nixosConfigurations.laptop.pkgs.system}.activate.nixos self.nixosConfigurations.laptop;
+          };
+
+          home = {
+            user = "tornax";
+            path = deploy-rs.lib.${self.nixosConfigurations.laptop.pkgs.system}.activate.home-manager self.homeConfigurations."tornax@laptop";
+          };
         };
       };
 
