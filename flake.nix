@@ -137,6 +137,6 @@
           };
         };
 
-      devShells = forAllSystems (pkgs: import ./shell { inherit inputs pkgs devenv; });
+      devShells = forAllSystems (pkgs: import ./shell { inherit inputs pkgs; });
     };
 }
