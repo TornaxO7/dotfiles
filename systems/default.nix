@@ -35,6 +35,8 @@ let
         inherit system;
 
         modules = coreModules ++ modules ++ [
+          configuration
+
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
@@ -62,27 +64,27 @@ in
       configuration = ./pc/default.nix;
       key = ./pc/identity;
       modules = [
-        # ../secrets
-        # inputs.agenix.nixosModules.default
-        # ../modules/desktop/default.nix
-        # ../modules/desktop/xorg/default.nix
-        # ../modules/desktop/xorg/i3.nix
-        # ../modules/game/steam.nix
-        # ../modules/yubikey/default.nix
-        # ../modules/udev_moonlander_rules.nix
-        # ../modules/kdeconnect.nix
-        # ../modules/paperless/default.nix
+        ../secrets
+        inputs.agenix.nixosModules.default
+        ../modules/desktop/default.nix
+        ../modules/desktop/xorg/default.nix
+        ../modules/desktop/xorg/i3.nix
+        ../modules/game/steam.nix
+        ../modules/yubikey/default.nix
+        ../modules/udev_moonlander_rules.nix
+        ../modules/kdeconnect.nix
+        ../modules/paperless/default.nix
       ];
 
-      # hmModules = [
-      #   inputs.wired.homeManagerModules.default
+      hmModules = [
+        inputs.wired.homeManagerModules.default
 
-      #   ../home/desktop/default.nix
-      #   ../home/desktop/xorg/default.nix
-      #   ../home/desktop/xorg/i3.nix
+        ../home/desktop/default.nix
+        ../home/desktop/xorg/default.nix
+        ../home/desktop/xorg/i3.nix
 
-      #   ./pc/home/default.nix
-      # ];
+        ./pc/home/default.nix
+      ];
     };
 
     # laptop = mkSystem {
