@@ -42,5 +42,12 @@
       source = ../config/nushell/scripts;
       target = "nushell/scripts";
     };
+
+    yazi_config = {
+      enable = config.programs.yazi.enable;
+      recursive = true;
+      source = ../config/yazi;
+      target = "yazi";
+    };
   };
 }
