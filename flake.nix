@@ -56,13 +56,17 @@
             ];
           }));
 
-      init_system = import ./nix/init-system.nix { inherit nixpkgs agenix; };
+      init_system = import ./nix/init-system.nix { inherit nixpkgs; };
     in
     {
       nixosConfigurations = {
         pc = init_system {
           configuration = ./nixos-configurations/pc/default.nix;
           key = ./secrets/identities/pc;
+          modules = [
+            ./secrets/default.nix
+            agenix.nixosModules.default
+          ];
         };
 
         laptop = init_system {

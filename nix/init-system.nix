@@ -1,17 +1,16 @@
-{ nixpkgs, agenix }:
+{ nixpkgs }:
 
 { configuration
 , key
 , system ? "x86_64-linux"
+, modules ? [ ]
 }: nixpkgs.lib.nixosSystem {
   inherit system;
 
   modules = [
-    ../secrets/default.nix
     ../modules/default.nix
-    agenix.nixosModules.default
     configuration
-  ];
+  ] ++ modules;
 
   specialArgs = {
     inherit key;
