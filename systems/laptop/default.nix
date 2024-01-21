@@ -1,14 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
-
   imports = [
     ./hardware-configuration.nix
-
-    ../../modules/desktop/default.nix
-    ../../modules/desktop/xorg/default.nix
-    ../../modules/desktop/xorg/i3.nix
-    ../../modules/yubikey/default.nix
-    ../../modules/kdeconnect.nix
   ];
 
   config = {
@@ -43,10 +36,11 @@
       };
     };
 
-
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.efi.efiSysMountPoint = "/boot";
+    boot.loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+    };
 
     networking = {
       hostName = "laptop";
