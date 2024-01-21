@@ -103,6 +103,7 @@
           ];
         }
       ];
+      wheelNeedsPassword = false;
     };
 
     services = {
