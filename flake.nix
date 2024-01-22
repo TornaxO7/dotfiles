@@ -38,7 +38,15 @@
             inherit system;
 
             overlays = with inputs; [
+              helix.overlays.default
               wired.overlays.default
+              devenv.overlays.default
+              yazi.overlays.default
+              rust-overlay.overlays.default
+              (final: prev: {
+                rio = rio_term.packages.${final.system}.default;
+                deploy-rs = deploy-rs.packages.${final.system}.default;
+              })
             ];
           };
         in
@@ -55,6 +63,11 @@
             ./home/default.nix
 
             ./systems/pc/home/default.nix
+            ({ ... }: {
+              home.sessionVariables = {
+                PATH = "\"$PATH\":/home/tornax/.nix-profile/bin";
+              };
+            })
           ];
         };
 

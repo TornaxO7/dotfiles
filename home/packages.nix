@@ -31,7 +31,7 @@
     openvpn
     ouch
     pastel
-    pkg-config-unwrapped
+    pkg-config
     pomsky
     powertop
     python312
