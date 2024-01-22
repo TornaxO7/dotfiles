@@ -31,6 +31,33 @@
         ./shell
       ];
 
+      flake.homeConfigurations."tornax@pc" =
+        let
+          system = "x86_64-linux";
+          pkgs = import inputs.nixpkgs {
+            inherit system;
+
+            overlays = with inputs; [
+              wired.overlays.default
+            ];
+          };
+        in
+        inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [
+            inputs.wired.homeManagerModules.default
+
+            ./home/desktop/default.nix
+            ./home/desktop/xorg/default.nix
+            ./home/desktop/xorg/i3.nix
+            ./home/syncthing.nix
+            ./home/default.nix
+
+            ./systems/pc/home/default.nix
+          ];
+        };
+
       systems = [ "x86_64-linux" ];
 
       perSystem = { system, ... }: {
