@@ -1,5 +1,6 @@
 {
   p = "python";
+  pac = "paru -Slq | fzf -m --preview \"paru -Si {1}\"| xargs -ro paru -S";
 
   ze = "zellij";
 
