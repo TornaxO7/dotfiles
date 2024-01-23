@@ -62,6 +62,7 @@
   programs = {
     git.enable = true;
     fish.enable = true;
+    ssh.askPassword = "";
   };
 
   users = {
