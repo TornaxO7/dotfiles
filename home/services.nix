@@ -3,7 +3,7 @@
   services = {
     gpg-agent = {
       enable = true;
-      pinentryFlavor = "curses";
+      pinentryFlavor = "tty";
     };
 
     ssh-agent.enable = true;

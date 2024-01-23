@@ -28,6 +28,7 @@
     mdcat
     nix-index
     nodejs_20
+    onefetch
     openvpn
     ouch
     pastel
