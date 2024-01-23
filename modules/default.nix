@@ -62,7 +62,7 @@
   programs = {
     git.enable = true;
     fish.enable = true;
-    ssh.askPassword = "";
+    ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   };
 
   users = {
