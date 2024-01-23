@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./i3.nix
@@ -18,7 +18,7 @@
     xdg.configFile.vifm = {
       enable = true;
       # cache has to writeable so we have to do it that way
-      source = lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
+      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
       target = "vifm";
     };
   };
