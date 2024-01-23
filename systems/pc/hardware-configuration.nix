@@ -14,18 +14,13 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4e128dbc-3510-48b6-a7e5-36dc6493c0f5";
+    { device = "/dev/disk/by-uuid/96a526c6-89ec-4cc3-b087-6d06737d4bc2";
       fsType = "btrfs";
     };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/CEC3-7E88";
       fsType = "vfat";
-    };
-
-  fileSystems."/home/tornax/games" =
-    { device = "/dev/disk/by-uuid/b1c74cf7-94c9-4c6f-b816-896886c26482";
-      fsType = "ext4";
     };
 
   swapDevices =
