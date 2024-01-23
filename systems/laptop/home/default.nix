@@ -13,7 +13,7 @@
       xournalpp
     ];
 
-    prorgams.rio.enable = true;
+    programs.rio.enable = true;
 
     xdg.configFile.vifm = {
       enable = true;
