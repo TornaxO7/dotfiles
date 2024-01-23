@@ -15,13 +15,6 @@
       target = "zellij";
     };
 
-    vifm = {
-      enable = builtins.getEnv "HOSTNAME" == "laptop";
-      # cache has to writeable so we have to do it that way
-      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
-      target = "vifm";
-    };
-
     rio = {
       enable = true;
       recursive = true;

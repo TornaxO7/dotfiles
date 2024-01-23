@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./i3.nix
@@ -6,9 +6,20 @@
     ./services.nix
   ];
 
-  config.home.packages = with pkgs; [
-    cacert
-    font-awesome
-    xournalpp
-  ];
+  config = {
+    home.packages = with pkgs; [
+      cacert
+      font-awesome
+      xournalpp
+    ];
+
+    prorgams.rio.enable = true;
+
+    xdg.configFile.vifm = {
+      enable = true;
+      # cache has to writeable so we have to do it that way
+      source = lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/vifm;
+      target = "vifm";
+    };
+  };
 }

@@ -33,7 +33,5 @@
     };
 
     firefox.enable = true;
-
-    rio.enable = builtins.getEnv "HOSTNAME" == "laptop";
   };
 }
