@@ -167,7 +167,10 @@
             };
           };
 
-          lsp.display-inlay-hints = true;
+          lsp = {
+            display-messages = true;
+            display-inlay-hints = true;
+          };
 
           cursor-shape = {
             insert = "bar";
