@@ -245,6 +245,7 @@
 
     ssh = {
       enable = true;
+      forwardAgent = true;
     };
 
     starship = {
