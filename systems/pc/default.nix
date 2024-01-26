@@ -27,7 +27,5 @@
     };
 
     services.printing.enable = true;
-
-    virtualisation.podman.enable = true;
   };
 }

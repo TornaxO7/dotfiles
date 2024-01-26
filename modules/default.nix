@@ -108,7 +108,7 @@
     tailscale.enable = true;
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
 
   system.stateVersion = "22.11";
   time.timeZone = "Europe/Berlin";
