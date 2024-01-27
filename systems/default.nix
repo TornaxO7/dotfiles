@@ -2,7 +2,9 @@
 let
   coreModules = [
     ../modules/default.nix
+    ../secrets/default.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.agenix.nixosModules.default
 
     ({ ... }: {
       nix.registry = {
@@ -64,8 +66,6 @@ in
       configuration = ./pc/default.nix;
       key = ./pc/identity;
       modules = [
-        ../secrets
-        inputs.agenix.nixosModules.default
         ../modules/desktop/default.nix
         ../modules/desktop/xorg/default.nix
         ../modules/desktop/xorg/i3.nix
