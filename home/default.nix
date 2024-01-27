@@ -3,6 +3,7 @@
   imports = [
     ./packages.nix
     ./session_paths.nix
+    ./session_variables.nix
     ./programs.nix
     ./services.nix
     ./xdg.nix
