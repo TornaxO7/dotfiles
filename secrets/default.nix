@@ -1,4 +1,4 @@
-{ pkgs, lib, key, ... }:
+{ config, pkgs, lib, key, ... }:
 let
   inherit (lib) makeBinPath;
 in
@@ -12,6 +12,13 @@ in
     age.ageBin = "PATH=${makeBinPath [pkgs.age-plugin-yubikey]}:$PATH ${pkgs.rage}/bin/rage";
     age.identityPaths = [ key ];
 
-    age.secrets.paperless.file = ./paperless.age;
+    age.secrets = {
+      paperless.file = ./paperless.age;
+
+      deepl = {
+        owner = config.users.users.tornax.name;
+        file = ./deepl.age;
+      };
+    };
   };
 }
