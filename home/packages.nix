@@ -5,6 +5,7 @@
     ast-grep
     bandwhich
     choose
+    python311Packages.deepl
     devenv
     difftastic
     du-dust
