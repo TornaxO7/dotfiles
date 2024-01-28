@@ -1,1 +1,13 @@
 {{ template "base/desktop/packages" }}
+
+{{- if true}}
+	#!/bin/sh
+	paru -S\
+		eww\
+		lact\
+		rpi-imager\
+		picom\
+		wol-systemd
+
+	sudo systemctl enable --now wol@enp6s0.service
+{{- end}}

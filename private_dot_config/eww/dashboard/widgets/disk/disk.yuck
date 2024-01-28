@@ -1,0 +1,8 @@
+(include "./dashboard/widgets/circular_slot/circular_slot.yuck")
+
+(defwidget dashboard_disk[]
+  (circular_slot
+    :label_name "Disk"
+    :label_value "${round(EWW_DISK['/'].free / 1000000000, 2)}GB"
+    :graph_value "${EWW_DISK['/'].used_perc}"
+    :color_class "dashboard_disk"))

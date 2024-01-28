@@ -2,10 +2,14 @@
 paru -S --norebuild --noredownload \
 	anki-bin\
 	arandr\
+	arch-install-scripts\
 	authy\
 	bitwarden\
 	discord\
 	evince\
+	rofi\
+	ttf-fira-code\
+	ttf-noto-nerd\
 	flameshot\
 	pavucontrol\
 	playerctl\
@@ -14,14 +18,13 @@ paru -S --norebuild --noredownload \
 	simplescreenrecorder\
 	spotify\
 	vimiv-qt\
+	xorg\
 	xclip\
 	xournalpp\
 	pipewire\
 	pipewire-pulse\
+	i3-wm\
 	wireplumber\
 
-systemctl disable --now --user wireplumber.service
 systemctl enable --now --user wireplumber.service
-
-systemctl disable --now --user pipewire-pulse.service
 systemctl enable --now --user pipewire-pulse.service

@@ -1,0 +1,7 @@
+(defwidget dashboard_bottom[]
+  (box
+    :class "dashboard_bottom"
+    :spacing 0
+    :orientation "horizontal"
+    :space-evenly true
+    (label :text "test")))

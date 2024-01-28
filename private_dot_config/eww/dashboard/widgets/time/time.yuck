@@ -1,0 +1,14 @@
+(defpoll dashboard_hour_value
+  :interval "1m"
+  :initial "1"
+  `date +"%H"`)
+
+(defpoll dashboard_minute_value
+  :interval "1m"
+  :initial "1"
+  `date +"%M"`)
+
+(defwidget dashboard_time[]
+  (label
+    :class "dashboard_time_label"
+   :markup '<span color="#F57900">${dashboard_hour_value}</span>:<span color="#8AE234">${dashboard_minute_value}</span>'))

@@ -29,10 +29,12 @@ paru -S --norebuild --noredownload --batchinstall\
 	hyperfine\
 	imagemagick\
 	ttf-liberation\
+	libfido2\
 	magic-wormhole\
 	onefetch\
 	openvpn\
 	ouch\
+	pcsclite\
 	python\
 	ripgrep\
 	rsync\
@@ -44,4 +46,10 @@ paru -S --norebuild --noredownload --batchinstall\
 	udisks2\
 	vifm\
 	fish\
-	git-delta
+	rustup\
+	git-delta\
+	gitoxide\
+	zoxide\
+	starship\
+	zellij\
+	eza

@@ -1,0 +1,8 @@
+(include "./dashboard/widgets/circular_slot/circular_slot.yuck")
+
+(defwidget dashboard_ram[]
+  (circular_slot
+    :label_name "Ram"
+    :label_value "${round(EWW_RAM.used_mem / 1000000000, 1)}GB/${round(EWW_RAM.total_mem/1000000000, 0)}GB"
+    :graph_value "${EWW_RAM.used_mem / 160000000}"
+    :color_class "dashboard_ram"))

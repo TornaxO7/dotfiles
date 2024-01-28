@@ -1,0 +1,8 @@
+(include "./dashboard/widgets/circular_slot/circular_slot.yuck")
+
+(defwidget dashboard_swap[]
+  (circular_slot
+    :label_name "Swap"
+    :label_value "${round((EWW_RAM.total_swap - EWW_RAM.free_swap) / 1000000000, 1)}GB/${round(EWW_RAM.total_swap/1000000000, 0)}GB"
+    :graph_value "${(EWW_RAM.total_swap - EWW_RAM.free_swap) / 160000000}"
+    :color_class "dashboard_swap"))
