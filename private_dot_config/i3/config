@@ -1,0 +1,67 @@
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 8
+
+#font pango:DejaVu Sans Mono 8
+
+tiling_drag modifier titlebar
+floating_modifier $mod
+
+# == keybindings ==
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym $mod+l focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+
+bindsym $mod+w layout tabbed
+bindsym $mod+p layout splith
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+bindsym $mod+n workspace number $ws1
+bindsym $mod+r workspace number $ws2
+bindsym $mod+s workspace number $ws3
+bindsym $mod+g workspace number $ws4
+bindsym $mod+q workspace number $ws5
+bindsym $mod+z workspace number $ws6
+
+bindsym $mod+Shift+n move workspace number $ws1
+bindsym $mod+Shift+r move workspace number $ws2
+bindsym $mod+Shift+s move workspace number $ws3
+bindsym $mod+Shift+g move workspace number $ws4
+bindsym $mod+Shift+q move workspace number $ws5
+bindsym $mod+Shift+z move workspace number $ws6
+
+# == utilities + applications ==
+bindsym $mod+Return exec --no-startup-id rio
+bindsym $mod+e exec --no-startup-id firefox
+bindsym $mod+i exec --no-startup-id rofi -show run
+bindsym $mod+t exec --no-startup-id flameshot gui
+
+bindsym $mod+Shift+f move scratchpad
+bindsym $mod+f scratchpad show
+
+bindsym $mod+Shift+a kill
+bindsym $mod+Shift+d restart
+bindsym $mod+Shift+u exec i3-msg exit
