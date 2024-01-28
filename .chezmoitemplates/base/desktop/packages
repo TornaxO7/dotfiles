@@ -1,0 +1,27 @@
+#!/bin/sh
+paru -S --norebuild --noredownload \
+	anki-bin\
+	arandr\
+	authy\
+	bitwarden\
+	discord\
+	evince\
+	flameshot\
+	pavucontrol\
+	playerctl\
+	redshift\
+	signal-desktop\
+	simplescreenrecorder\
+	spotify\
+	vimiv-qt\
+	xclip\
+	xournalpp\
+	pipewire\
+	pipewire-pulse\
+	wireplumber\
+
+systemctl disable --now --user wireplumber.service
+systemctl enable --now --user wireplumber.service
+
+systemctl disable --now --user pipewire-pulse.service
+systemctl enable --now --user pipewire-pulse.service

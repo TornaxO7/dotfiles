@@ -1,0 +1,47 @@
+#!/bin/sh
+if ! command -v paru &> /dev/null
+then
+	sudo pacman -S git base-devel
+	cd /tmp
+	git clone https://aur.archlinux.org/paru.git
+	cd paru
+	makepkg -si
+fi
+
+paru -S --norebuild --noredownload --batchinstall\
+	ast-grep\
+	base\
+	base-devel\
+	bat\
+	bottom\
+	direnv\
+	bandwhich\
+	choose\
+	python-deepl\
+	dust\
+	evcxr_repl\
+	fd\
+	fend\
+	ffmpeg\
+	ttf-fira-code\
+	gcc\
+	highlight\
+	hyperfine\
+	imagemagick\
+	ttf-liberation\
+	magic-wormhole\
+	onefetch\
+	openvpn\
+	ouch\
+	python\
+	ripgrep\
+	rsync\
+	rustic-rs\
+	sd\
+	spotify-player\
+	tailspin\
+	tokei\
+	udisks2\
+	vifm\
+	fish\
+	git-delta
