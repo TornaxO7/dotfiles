@@ -8,19 +8,24 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/96a526c6-89ec-4cc3-b087-6d06737d4bc2";
+    { device = "/dev/disk/by-uuid/c0768ad5-72ca-4235-b414-bdcdd4aa80f0";
       fsType = "btrfs";
     };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/CEC3-7E88";
       fsType = "vfat";
+    };
+
+  fileSystems."/home/tornax/games" =
+    { device = "/dev/disk/by-uuid/b1c74cf7-94c9-4c6f-b816-896886c26482";
+      fsType = "ext4";
     };
 
   swapDevices =
@@ -32,7 +37,6 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
 
