@@ -4,7 +4,9 @@ end
 
 # == exports ==
 set EDITOR "helix"
-set MANPAGER $EDITOR
+set PAGER "bat"
+set MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set TERMINAL "rio"
 
 # == alias ==
 alias p "python"

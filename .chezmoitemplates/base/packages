@@ -13,6 +13,7 @@ paru -S --norebuild --noredownload --batchinstall\
 	base\
 	base-devel\
 	bat\
+	bitwarden-cli\
 	bottom\
 	direnv\
 	bandwhich\
