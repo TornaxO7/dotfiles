@@ -6,5 +6,4 @@ let
 in
 {
   "paperless.age".publicKey = all;
-  "deepl.age".publicKey = all;
 }

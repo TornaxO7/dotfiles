@@ -1,4 +1,4 @@
-{ config, pkgs, lib, key, ... }:
+{ pkgs, lib, key, ... }:
 let
   inherit (lib) makeBinPath;
 in
@@ -14,11 +14,6 @@ in
 
     age.secrets = {
       paperless.file = ./paperless.age;
-
-      deepl = {
-        owner = config.users.users.tornax.name;
-        file = ./deepl.age;
-      };
     };
   };
 }
