@@ -11,7 +11,9 @@
       defaultSession = "none+i3";
     };
 
-    layout = "de";
-    xkbVariant = "bone";
+    xkb = {
+      layout = "de";
+      variant = "bone";
+    };
   };
 }
