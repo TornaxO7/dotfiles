@@ -14,6 +14,7 @@
     playerctl
     pulseaudio
     redshift
+    rustdesk
     slack
     signal-desktop
     simplescreenrecorder
