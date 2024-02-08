@@ -223,7 +223,7 @@
 
     jq = {
       enable = true;
-      package = pkgs.jql;
+      package = pkgs.jaq;
     };
 
     less.enable = true;
