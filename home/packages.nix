@@ -18,6 +18,7 @@
     fira-code-symbols
     gcc13
     gptfdisk
+    gpg-tui
     highlight
     hyperfine
     iamb
