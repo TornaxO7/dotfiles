@@ -27,7 +27,6 @@ let
 
   mkSystem =
     { configuration
-    , key
     , user ? "tornax"
     , system ? "x86_64-linux"
     , modules ? [ ]
@@ -55,7 +54,6 @@ let
         ];
 
         specialArgs = {
-          inherit key;
           username = user;
         };
       };
@@ -64,7 +62,6 @@ in
   flake.nixosConfigurations = {
     pc = mkSystem {
       configuration = ./pc/default.nix;
-      key = ./pc/identity;
       modules = [
         ../modules/desktop/default.nix
         ../modules/desktop/xorg/default.nix
@@ -90,7 +87,6 @@ in
 
     laptop = mkSystem {
       configuration = ./laptop/default.nix;
-      key = ./laptop/identity;
       modules = [
         ../modules/desktop/default.nix
         ../modules/desktop/xorg/default.nix

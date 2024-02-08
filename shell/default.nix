@@ -7,7 +7,6 @@
           [
             home-manager
             rage
-            age-plugin-yubikey
             deploy-rs
           ];
 
