@@ -2,7 +2,6 @@
 {
   config.home.packages = with pkgs; [
     anki-bin
-    anydesk
     arandr
     authy
     bitwarden
