@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     act
+    actionlint
     ast-grep
     bandwhich
     choose
