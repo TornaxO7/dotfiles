@@ -52,6 +52,8 @@
   gd = "git diff";
   gf = "git fetch";
 
+  grb = "git rebase";
+
   gm = "git merge";
   gr = "git remote";
 
