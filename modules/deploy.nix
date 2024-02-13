@@ -3,7 +3,7 @@
   flake = {
     deploy = {
       activationTimeout = 3;
-      confirmTimeout = 3;
+      confirmTimeout = 20;
       user = "root";
 
       nodes = {
