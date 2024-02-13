@@ -13,7 +13,6 @@ let
       };
 
       nixpkgs.overlays = with inputs; [
-        helix.overlays.default
         wired.overlays.default
         yazi.overlays.default
         (final: prev: {

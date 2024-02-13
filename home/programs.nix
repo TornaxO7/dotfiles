@@ -49,6 +49,7 @@ in
 
     helix = {
       enable = true;
+      package = inputs.helix.packages.${system}.default;
       defaultEditor = true;
 
       languages = {

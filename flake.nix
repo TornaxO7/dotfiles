@@ -38,7 +38,6 @@
             inherit system;
 
             overlays = with inputs; [
-              helix.overlays.default
               wired.overlays.default
               yazi.overlays.default
               rust-overlay.overlays.default
@@ -76,7 +75,6 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = with inputs; [
-            helix.overlays.default
             wired.overlays.default
             yazi.overlays.default
             rust-overlay.overlays.default
