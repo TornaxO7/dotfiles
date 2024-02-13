@@ -6,6 +6,7 @@
 
   config = {
     boot = {
+      initrd.systemd.network.wait-online.enable = false;
       tmp.cleanOnBoot = true;
       loader = {
         systemd-boot.enable = true;
