@@ -51,11 +51,6 @@ in
       ];
 
       hmModules = [
-        ../home/desktop/default.nix
-        ../home/desktop/xorg/default.nix
-        ../home/desktop/xorg/i3.nix
-        ../home/syncthing.nix
-
         ./pc/home/default.nix
       ];
     };
@@ -71,11 +66,6 @@ in
       ];
 
       hmModules = [
-        ../home/desktop/default.nix
-        ../home/desktop/xorg/default.nix
-        ../home/desktop/xorg/i3.nix
-        ../home/syncthing.nix
-
         ./laptop/home/default.nix
       ];
     };
