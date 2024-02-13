@@ -388,7 +388,7 @@
 
     yazi = {
       enable = true;
-      packages = inputs.yazi.packages.${system}.default;
+      package = inputs.yazi.packages.${system}.default;
     };
 
     zsh = {

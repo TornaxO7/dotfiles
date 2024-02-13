@@ -579,7 +579,7 @@
         "type": "github"
       }
     },
-    "rio_term": {
+    "rio": {
       "inputs": {
         "flake-parts": "flake-parts_3",
         "nixpkgs": "nixpkgs_5",
@@ -609,7 +609,7 @@
         "helix": "helix",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs_4",
-        "rio_term": "rio_term",
+        "rio": "rio",
         "rust-overlay": "rust-overlay_3",
         "wired": "wired",
         "yazi": "yazi"

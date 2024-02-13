@@ -7,7 +7,6 @@
     bandwhich
     choose
     python311Packages.deepl
-    devenv
     difftastic
     du-dust
     evcxr

@@ -1,4 +1,4 @@
-{ inputs, config, username, hmModules, ... }: {
+{ inputs, config, username, hmModules, system, ... }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -8,7 +8,7 @@
       inputs.wired.homeManagerModules.default
     ];
     extraSpecialArgs = {
-      inherit inputs;
+      inherit inputs system;
       age = config.age;
     };
   };
