@@ -13,8 +13,6 @@ let
       };
 
       nixpkgs.overlays = with inputs; [
-        wired.overlays.default
-        yazi.overlays.default
         (final: prev: {
           deploy-rs = deploy-rs.packages.${final.system}.default;
           agenix = agenix.packages.${final.system}.default;

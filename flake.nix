@@ -38,8 +38,6 @@
             inherit system;
 
             overlays = with inputs; [
-              wired.overlays.default
-              yazi.overlays.default
               rust-overlay.overlays.default
               (final: prev: {
                 rio = rio_term.packages.${final.system}.default;
@@ -75,8 +73,6 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = with inputs; [
-            wired.overlays.default
-            yazi.overlays.default
             rust-overlay.overlays.default
             (final: prev: {
               rio = rio_term.packages.${final.system}.default;
