@@ -103,6 +103,8 @@
       };
     };
 
+    systemd.network.wait-online.enable = false;
+
     security.sudo-rs = {
       enable = true;
       wheelNeedsPassword = false;
