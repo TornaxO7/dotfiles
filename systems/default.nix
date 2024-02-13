@@ -40,7 +40,7 @@ let
           configuration
 
           inputs.home-manager.nixosModules.home-manager
-          ({ config, ... }: {
+          ({ config, pkgs, ... }: {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -54,6 +54,7 @@ let
               config = {
                 programs.gtt = {
                   enable = true;
+                  package = inputs.gtt.packages.${system}.default;
                   settings.api_key.DeepL.file = config.age.secrets.deepl.path;
                   keymap = {
                     clear = "C-l";

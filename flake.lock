@@ -347,11 +347,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1707845338,
-        "narHash": "sha256-38OQUHLrbrLkDGbMV7DKGzCJVbPFzpHSqHomj/JToxw=",
+        "lastModified": 1707847626,
+        "narHash": "sha256-mpvjxYMk7l0ngh6xe4fahC6anQr2j3ZvzFZxhUeRVy0=",
         "owner": "TornaxO7",
         "repo": "gtt",
-        "rev": "ae0f8ca18478aff14d6a783261c4f89d39049ea1",
+        "rev": "56903e52e82a71db43940de1efe363199e830323",
         "type": "github"
       },
       "original": {
