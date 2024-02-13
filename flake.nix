@@ -14,6 +14,7 @@
     wired.url = "github:Toqozz/wired-notify";
     rio_term.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
+    gtt.url = "github:TornaxO7/gtt/add-flake";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 

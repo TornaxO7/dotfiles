@@ -40,7 +40,7 @@ let
           configuration
 
           inputs.home-manager.nixosModules.home-manager
-          {
+          ({ config, ... }: {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -50,8 +50,22 @@ let
               imports = [
                 ../home/default.nix
               ] ++ hmModules;
+
+              config = {
+                programs.gtt = {
+                  enable = true;
+                  settings.api_key.DeepL.file = config.age.secrets.deepl.path;
+                  keymap = {
+                    clear = "C-l";
+
+                    translate = "C-n";
+                    copy_destination = "C-r";
+                    exit = "C-s";
+                  };
+                };
+              };
             };
-          }
+          })
         ];
 
         specialArgs = {
@@ -76,6 +90,7 @@ in
 
       hmModules = [
         inputs.wired.homeManagerModules.default
+        inputs.gtt.homeManagerModules.default
 
         ../home/desktop/default.nix
         ../home/desktop/xorg/default.nix
