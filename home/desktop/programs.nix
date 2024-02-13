@@ -1,7 +1,4 @@
-{ inputs, ... }:
-let
-  system = pkgs.system;
-in
+{ inputs, system, ... }:
 {
   programs = {
     sioyek = {

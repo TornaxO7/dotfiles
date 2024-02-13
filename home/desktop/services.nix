@@ -1,7 +1,4 @@
-{ inputs, pkgs ... }:
-let
-  system = pkgs.system;
-in
+{ inputs, system, ... }:
 {
   config.services = {
     flameshot.enable = true;

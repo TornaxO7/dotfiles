@@ -1,7 +1,4 @@
-{ inputs, age, pkgs, config, lib, ... }:
-let
-  system = pkgs.system;
-in
+{ inputs, system, age, pkgs, config, lib, ... }:
 {
   config.programs = rec {
     bat.enable = true;

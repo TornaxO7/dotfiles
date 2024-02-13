@@ -37,7 +37,7 @@ let
         ];
 
         specialArgs = {
-          inherit inputs hmModules;
+          inherit inputs hmModules system;
           username = user;
         };
       };

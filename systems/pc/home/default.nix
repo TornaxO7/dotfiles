@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, system, pkgs, ... }:
 {
   imports = [
     ./i3.nix
@@ -9,8 +9,10 @@
       eww
       rpi-imager
       lact
-      deploy-rs
+    ] ++ [
+      inputs.deploy-rs.packages.${system}.default
     ];
+
     pointerCursor.size = 20;
   };
 
