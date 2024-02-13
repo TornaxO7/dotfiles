@@ -1,4 +1,7 @@
-{ pkgs, config, lib, ... }:
+{ inputs, age, pkgs, config, lib, ... }:
+let
+  system = pkgs.system;
+in
 {
   config.programs = rec {
     bat.enable = true;
@@ -29,6 +32,19 @@
         "+i"
         "--bind=ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
       ];
+    };
+
+    gtt = {
+      enable = true;
+      package = inputs.gtt.packages.${system}.default;
+      settings.api_key.DeepL.file = age.secrets.deepl.path;
+      keymap = {
+        clear = "C-l";
+
+        translate = "C-n";
+        copy_destination = "C-r";
+        exit = "C-s";
+      };
     };
 
     helix = {

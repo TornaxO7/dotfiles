@@ -38,38 +38,11 @@ let
 
         modules = coreModules ++ modules ++ [
           configuration
-
           inputs.home-manager.nixosModules.home-manager
-          ({ config, pkgs, ... }: {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-            };
-
-            home-manager.users.${user} = { ... }: {
-              imports = [
-                ../home/default.nix
-              ] ++ hmModules;
-
-              config = {
-                programs.gtt = {
-                  enable = true;
-                  package = inputs.gtt.packages.${system}.default;
-                  settings.api_key.DeepL.file = config.age.secrets.deepl.path;
-                  keymap = {
-                    clear = "C-l";
-
-                    translate = "C-n";
-                    copy_destination = "C-r";
-                    exit = "C-s";
-                  };
-                };
-              };
-            };
-          })
         ];
 
         specialArgs = {
+          inherit inputs hmModules;
           username = user;
         };
       };
@@ -90,9 +63,6 @@ in
       ];
 
       hmModules = [
-        inputs.wired.homeManagerModules.default
-        inputs.gtt.homeManagerModules.default
-
         ../home/desktop/default.nix
         ../home/desktop/xorg/default.nix
         ../home/desktop/xorg/i3.nix
@@ -113,8 +83,6 @@ in
       ];
 
       hmModules = [
-        inputs.wired.homeManagerModules.default
-
         ../home/desktop/default.nix
         ../home/desktop/xorg/default.nix
         ../home/desktop/xorg/i3.nix
