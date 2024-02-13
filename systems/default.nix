@@ -18,7 +18,6 @@ let
         devenv.overlays.default
         yazi.overlays.default
         (final: prev: {
-          rio = rio_term.packages.${final.system}.default;
           deploy-rs = deploy-rs.packages.${final.system}.default;
           agenix = agenix.packages.${final.system}.default;
         })

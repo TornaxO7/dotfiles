@@ -1,4 +1,7 @@
-{ ... }:
+{ inputs, ... }:
+let
+  system = pkgs.system;
+in
 {
   programs = {
     sioyek = {
@@ -34,6 +37,10 @@
 
     firefox.enable = true;
 
-    rio.enable = true;
+    rio = {
+      enable = true;
+      package = inputs.rio.packages.${system}.default;
+    };
   };
 }
+
