@@ -1,4 +1,13 @@
 { ... }:
+let
+  # only shared as long I only have PC and LAPTOP
+  forTheTimeBeingShared = [
+    ./desktop/default.nix
+    ./desktop/xorg/default.nix
+    ./desktop/xorg/i3.nix
+    ./syncthing.nix
+  ];
+in
 {
   imports = [
     ./packages.nix
@@ -7,7 +16,7 @@
     ./programs.nix
     ./services.nix
     ./xdg.nix
-  ];
+  ] ++ forTheTimeBeingShared;
 
   config = {
     home = {

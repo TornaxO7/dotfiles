@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ inputs, system, age, pkgs, config, lib, ... }:
 {
   config.programs = rec {
     bat.enable = true;
@@ -31,8 +31,22 @@
       ];
     };
 
+    gtt = {
+      enable = true;
+      package = inputs.gtt.packages.${system}.default;
+      settings.api_key.DeepL.file = age.secrets.deepl.path;
+      keymap = {
+        clear = "C-l";
+
+        translate = "C-n";
+        copy_destination = "C-r";
+        exit = "C-s";
+      };
+    };
+
     helix = {
       enable = true;
+      package = inputs.helix.packages.${system}.default;
       defaultEditor = true;
 
       languages = {
@@ -372,7 +386,10 @@
       envFile.source = ../config/nushell/env.nu;
     };
 
-    yazi.enable = true;
+    yazi = {
+      enable = true;
+      packages = inputs.yazi.packages.${system}.default;
+    };
 
     zsh = {
       enable = false;

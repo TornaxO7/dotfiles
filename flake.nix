@@ -14,12 +14,12 @@
     wired.url = "github:Toqozz/wired-notify";
     rio_term.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
+    gtt.url = "github:TornaxO7/gtt/add-flake";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    devenv.url = "github:cachix/devenv";
     deploy-rs.url = "github:serokell/deploy-rs";
   };
 
@@ -31,61 +31,13 @@
         ./shell
       ];
 
-      flake.homeConfigurations."tornax@pc" =
-        let
-          system = "x86_64-linux";
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-
-            overlays = with inputs; [
-              helix.overlays.default
-              wired.overlays.default
-              devenv.overlays.default
-              yazi.overlays.default
-              rust-overlay.overlays.default
-              (final: prev: {
-                rio = rio_term.packages.${final.system}.default;
-                deploy-rs = deploy-rs.packages.${final.system}.default;
-              })
-            ];
-          };
-        in
-        inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [
-            inputs.wired.homeManagerModules.default
-
-            ./home/desktop/default.nix
-            ./home/desktop/xorg/default.nix
-            ./home/desktop/xorg/i3.nix
-            ./home/syncthing.nix
-            ./home/default.nix
-
-            ./systems/pc/home/default.nix
-            ({ ... }: {
-              home.sessionVariables = {
-                PATH = "\"$PATH\":/home/tornax/.nix-profile/bin";
-              };
-            })
-          ];
-        };
-
       systems = [ "x86_64-linux" ];
 
       perSystem = { system, ... }: {
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = with inputs; [
-            helix.overlays.default
-            wired.overlays.default
-            devenv.overlays.default
-            yazi.overlays.default
             rust-overlay.overlays.default
-            (final: prev: {
-              rio = rio_term.packages.${final.system}.default;
-              deploy-rs = deploy-rs.packages.${final.system}.default;
-            })
           ];
         };
       };

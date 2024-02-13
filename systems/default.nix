@@ -11,18 +11,6 @@ let
         my.flake = self;
         unstable.flake = inputs.nixpkgs;
       };
-
-      nixpkgs.overlays = with inputs; [
-        helix.overlays.default
-        wired.overlays.default
-        devenv.overlays.default
-        yazi.overlays.default
-        (final: prev: {
-          rio = rio_term.packages.${final.system}.default;
-          deploy-rs = deploy-rs.packages.${final.system}.default;
-          agenix = agenix.packages.${final.system}.default;
-        })
-      ];
     })
   ];
 
@@ -38,23 +26,11 @@ let
 
         modules = coreModules ++ modules ++ [
           configuration
-
           inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-            };
-
-            home-manager.users.${user} = { ... }: {
-              imports = [
-                ../home/default.nix
-              ] ++ hmModules;
-            };
-          }
         ];
 
         specialArgs = {
+          inherit inputs hmModules system;
           username = user;
         };
       };
@@ -75,13 +51,6 @@ in
       ];
 
       hmModules = [
-        inputs.wired.homeManagerModules.default
-
-        ../home/desktop/default.nix
-        ../home/desktop/xorg/default.nix
-        ../home/desktop/xorg/i3.nix
-        ../home/syncthing.nix
-
         ./pc/home/default.nix
       ];
     };
@@ -97,13 +66,6 @@ in
       ];
 
       hmModules = [
-        inputs.wired.homeManagerModules.default
-
-        ../home/desktop/default.nix
-        ../home/desktop/xorg/default.nix
-        ../home/desktop/xorg/i3.nix
-        ../home/syncthing.nix
-
         ./laptop/home/default.nix
       ];
     };
