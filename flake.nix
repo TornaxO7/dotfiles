@@ -20,7 +20,6 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    devenv.url = "github:cachix/devenv";
     deploy-rs.url = "github:serokell/deploy-rs";
   };
 
@@ -41,7 +40,6 @@
             overlays = with inputs; [
               helix.overlays.default
               wired.overlays.default
-              devenv.overlays.default
               yazi.overlays.default
               rust-overlay.overlays.default
               (final: prev: {
@@ -80,7 +78,6 @@
           overlays = with inputs; [
             helix.overlays.default
             wired.overlays.default
-            devenv.overlays.default
             yazi.overlays.default
             rust-overlay.overlays.default
             (final: prev: {

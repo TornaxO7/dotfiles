@@ -15,7 +15,6 @@ let
       nixpkgs.overlays = with inputs; [
         helix.overlays.default
         wired.overlays.default
-        devenv.overlays.default
         yazi.overlays.default
         (final: prev: {
           deploy-rs = deploy-rs.packages.${final.system}.default;
