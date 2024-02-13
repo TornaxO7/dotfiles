@@ -39,10 +39,6 @@
 
             overlays = with inputs; [
               rust-overlay.overlays.default
-              (final: prev: {
-                rio = rio_term.packages.${final.system}.default;
-                deploy-rs = deploy-rs.packages.${final.system}.default;
-              })
             ];
           };
         in
@@ -74,10 +70,6 @@
           inherit system;
           overlays = with inputs; [
             rust-overlay.overlays.default
-            (final: prev: {
-              rio = rio_term.packages.${final.system}.default;
-              deploy-rs = deploy-rs.packages.${final.system}.default;
-            })
           ];
         };
       };

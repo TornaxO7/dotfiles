@@ -11,13 +11,6 @@ let
         my.flake = self;
         unstable.flake = inputs.nixpkgs;
       };
-
-      nixpkgs.overlays = with inputs; [
-        (final: prev: {
-          deploy-rs = deploy-rs.packages.${final.system}.default;
-          agenix = agenix.packages.${final.system}.default;
-        })
-      ];
     })
   ];
 
