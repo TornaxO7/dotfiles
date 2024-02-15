@@ -3,6 +3,6 @@
   services.paperless = {
     enable = true;
     passwordFile = config.age.secrets.paperless.path;
-    address = "100.84.194.151";
+    address = "pc.tail5bf2.ts.net";
   };
 }
