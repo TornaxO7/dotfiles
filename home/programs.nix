@@ -41,7 +41,7 @@
         translate = "C-n";
         copy_destination = "C-r";
         exit = "C-s";
-        swap_language = "C-g";
+        swap_language = "C-z";
       };
     };
 
