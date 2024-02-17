@@ -65,19 +65,12 @@ keymap = [
   ], desc = "Toggle the current selection state" },
   { on = [
     "v",
-    "n",
   ], exec = "visual_mode", desc = "Enter visual mode (selection mode)" },
   { on = [
-    "v",
-    "r",
+    "V",
   ], exec = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
   { on = [
-    "v",
-    "s",
-  ], exec = "select_all --state=true", desc = "Select all files" },
-  { on = [
-    "v",
-    "g",
+    "<C-v>",
   ], exec = "select_all --state=none", desc = "Inverse selection of all files" },
 
   # Operation
@@ -131,14 +124,14 @@ keymap = [
   ], exec = "link --relative", desc = "Symlink the relative path of files" },
   { on = [
     "d",
-    "n",
+    "d",
   ], exec = [
     "remove",
     "escape --visual --select",
   ], desc = "Move the files to the trash" },
   { on = [
     "d",
-    "r",
+    "D",
   ], exec = [
     "remove --permanently",
     "escape --visual --select",
@@ -281,8 +274,8 @@ keymap = [
     "t",
   ], exec = "cd /tmp", desc = "Go to the temporary directory" },
   { on = [
-    "g",
     "c",
+    "d",
   ], exec = "cd --interactive", desc = "Go to a directory interactively" },
   { on = [
     "g",
@@ -361,7 +354,7 @@ keymap = [
   ], exec = "close --submit", desc = "Submit the input" },
   { on = [
     "<Esc>",
-  ], exec = "escape", desc = "Go back the normal mode, or cancel input" },
+  ], exec = "close", desc = "Go back the normal mode, or cancel input" },
 
   # Mode
   { on = [
