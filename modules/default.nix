@@ -111,7 +111,6 @@
     services = {
       openssh.enable = true;
       tailscale.enable = true;
-      bustd.enable = true;
     };
 
     virtualisation.podman.enable = true;

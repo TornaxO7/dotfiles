@@ -15,7 +15,6 @@
     rio.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
     gtt.url = "github:TornaxO7/gtt/add-flake";
-    bustd.url = "github:TornaxO7/bustd/add-nix";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
