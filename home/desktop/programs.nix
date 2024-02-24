@@ -38,6 +38,8 @@
       enable = true;
       package = inputs.rio.packages.${system}.default;
     };
+
+    alacritty.enable = true;
   };
 }
 
