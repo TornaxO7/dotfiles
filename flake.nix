@@ -33,12 +33,16 @@
 
       systems = [ "x86_64-linux" ];
 
-      perSystem = { system, ... }: {
+      perSystem = { system, pkgs, ... }: {
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = with inputs; [
             rust-overlay.overlays.default
           ];
+        };
+
+        packages = {
+          bustd = pkgs.callPackage ./pkgs/bustd.nix { };
         };
       };
     };
