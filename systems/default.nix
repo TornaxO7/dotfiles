@@ -27,6 +27,8 @@ let
         modules = coreModules ++ modules ++ [
           configuration
           inputs.home-manager.nixosModules.home-manager
+
+          self.nixosModules.bustd
         ];
 
         specialArgs = {

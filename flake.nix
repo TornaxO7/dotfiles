@@ -45,5 +45,9 @@
           bustd = pkgs.callPackage ./pkgs/bustd.nix { };
         };
       };
+
+      flake = {
+        nixosModules.bustd = import ./nixosModules/bustd.nix self;
+      };
     };
 }
