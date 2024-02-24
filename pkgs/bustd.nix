@@ -10,7 +10,7 @@
   src = fetchFromGitHub {
     owner = "vrmiguel";
     repo = "bustd";
-    rev = "v${version}";
+    rev = "5cf0867";
     hash = "sha256-UmigoFWaF/+lSUKv0DZFL4BRW69tayfzs7rkI3tUrAc=";
   };
 
