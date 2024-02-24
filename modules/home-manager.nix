@@ -1,10 +1,10 @@
-{ inputs, config, username, hmModules, system, ... }: {
+{ self, inputs, config, username, hmModules, system, ... }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     sharedModules = [
       ../home/default.nix
-      inputs.gtt.homeManagerModules.default
+      self.homeManagerModules.gtt
       inputs.wired.homeManagerModules.default
     ];
     extraSpecialArgs = {

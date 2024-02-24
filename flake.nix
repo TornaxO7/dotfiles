@@ -48,6 +48,10 @@
 
       flake = {
         nixosModules.bustd = import ./nixosModules/bustd.nix self;
+
+        homeManagerModules = {
+          gtt = import ./homeManagerModules/gtt.nix;
+        };
       };
     };
 }
