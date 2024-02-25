@@ -114,6 +114,8 @@
       bustd.enable = true;
     };
 
+    systemd.services.NetworkManager-wait-online.enable = false;
+
     virtualisation.podman.enable = true;
 
     system.stateVersion = "22.11";
