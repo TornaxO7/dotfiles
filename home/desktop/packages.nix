@@ -18,7 +18,6 @@
     signal-desktop
     simplescreenrecorder
     spotify
-    todoist-electron
     thunderbird
     vimiv-qt
     xclip
