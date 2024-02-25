@@ -18,7 +18,6 @@
     signal-desktop
     simplescreenrecorder
     spotify
-    texlive.combined.scheme-full
     todoist-electron
     thunderbird
     vimiv-qt
