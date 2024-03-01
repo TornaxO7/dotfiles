@@ -2,7 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./containers.nix
+    ./containers
   ];
 
   config = {

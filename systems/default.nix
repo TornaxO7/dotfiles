@@ -49,7 +49,6 @@ in
         ../modules/yubikey/default.nix
         ../modules/udev_moonlander_rules.nix
         ../modules/kdeconnect.nix
-        ../modules/paperless/default.nix
       ];
 
       hmModules = [
