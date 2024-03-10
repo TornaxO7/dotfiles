@@ -32,7 +32,7 @@
 
   ew = "wiki-tui";
 
-  tm = "termusic ~/main/Music/rest";
+  tm = "termusic";
   nd = "nix develop";
 
   # git
