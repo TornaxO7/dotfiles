@@ -11,6 +11,8 @@
       inherit inputs system;
       age = config.age;
     };
+
+    backupFileExtension = "backup";
   };
 
   home-manager.users.${username} = { ... }: {
