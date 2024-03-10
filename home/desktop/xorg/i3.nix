@@ -91,9 +91,9 @@ in
 
         # == utilities + applications ==
         # top right row
-        "${win}+7" = "exec --no-startup-id playerctl -p spotify next";
-        "${win}+8" = "exec --no-startup-id playerctl -p spotify previous";
-        "${win}+9" = "exec --no-startup-id playerctl -p spotify play-pause";
+        "${win}+7" = "exec --no-startup-id playerctl next";
+        "${win}+8" = "exec --no-startup-id playerctl previous";
+        "${win}+9" = "exec --no-startup-id playerctl play-pause";
 
         "${win}+Return" = "exec --no-startup-id ${terminal}";
 
