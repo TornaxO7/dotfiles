@@ -52,5 +52,6 @@
     vifm-full
     wiki-tui
     wormhole-rs
+    youtube-dl
   ];
 }
