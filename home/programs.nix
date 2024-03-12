@@ -246,7 +246,7 @@
     man.enable = true;
 
     neovim = {
-      enable = true;
+      enable = false;
       defaultEditor = false;
       extraPackages = with pkgs; [
         gcc13
