@@ -74,18 +74,18 @@ keymap = [
   ], run = "select_all --state=none", desc = "Inverse selection of all files" },
 
   # Operation
-  { on = [
-    "e",
-  ], run = "open", desc = "Open the selected files" },
-  { on = [
-    "E",
-  ], run = "open --interactive", desc = "Open the selected files interactively" },
-  { on = [
-    "<Enter>",
-  ], run = "open", desc = "Open the selected files" },
-  { on = [
-    "<C-Enter>",
-  ], run = "open --interactive", desc = "Open the selected files interactively" },
+  # { on = [
+  #   "e",
+  # ], run = "open", desc = "Open the selected files" },
+  # { on = [
+  #   "E",
+  # ], run = "open --interactive", desc = "Open the selected files interactively" },
+  # { on = [
+  #   "<Enter>",
+  # ], run = "open", desc = "Open the selected files" },
+  # { on = [
+  #   "<C-Enter>",
+  # ], run = "open --interactive", desc = "Open the selected files interactively" },
   # yank
   { on = [
     "y",
@@ -196,9 +196,6 @@ keymap = [
     "/",
   ], run = "find --smart", desc = "Find next file" },
   { on = [
-    "?",
-  ], run = "find --previous --smart", desc = "Find previous file" },
-  { on = [
     "n",
   ], run = "find_arrow", desc = "Go to next found file" },
   { on = [
@@ -288,7 +285,7 @@ keymap = [
 
   # Help
   { on = [
-    "~",
+    "?",
   ], run = "help", desc = "Open help" },
 ]
 
