@@ -1,3 +1,6 @@
 [submodule "config/nushell/scripts/nu_scripts"]
 	path = config/nushell/scripts/nu_scripts
 	url = git@github.com:nushell/nu_scripts.git
+[submodule "config/yazi/plugins/bookmarks.yazi"]
+	path = config/yazi/plugins/bookmarks.yazi
+	url = git@github.com:dedukun/bookmarks.yazi.git

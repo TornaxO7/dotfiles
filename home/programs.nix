@@ -386,10 +386,10 @@
       envFile.source = ../config/nushell/env.nu;
     };
 
-    # yazi = {
-    #   enable = true;
-    #   package = inputs.yazi.packages.${system}.default;
-    # };
+    yazi = {
+      enable = true;
+      package = inputs.yazi.packages.${system}.default;
+    };
 
     zsh = {
       enable = false;
