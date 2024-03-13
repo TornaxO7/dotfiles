@@ -46,7 +46,7 @@
     yazi_config = {
       enable = config.programs.yazi.enable;
       recursive = true;
-      source = ../config/yazi;
+      source = config.lib.file.mkOutOfStoreSymlink /home/tornax/dotfiles/config/yazi;
       target = "yazi";
     };
   };
