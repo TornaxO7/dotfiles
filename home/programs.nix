@@ -1,13 +1,12 @@
 { inputs, system, age, pkgs, config, lib, ... }:
 {
-  config.programs = rec {
+  config.programs = {
     bat.enable = true;
 
     bottom.enable = true;
 
     eza = {
       enable = true;
-      enableAliases = !nushell.enable;
       icons = true;
       git = true;
     };
