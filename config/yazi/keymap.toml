@@ -292,6 +292,23 @@ keymap = [
   ], exec = "help", desc = "Open help" },
 ]
 
+prepend_keymap = [
+  { on = [
+    "m",
+  ], exec = "plugin bookmarks --args=save", desc = "Save current position as a bookmark" },
+  { on = [
+    "'",
+  ], exec = "plugin bookmarks --args=jump", desc = "Jump to a bookmark" },
+  { on = [
+    "b",
+    "d",
+  ], exec = "plugin bookmarks --args=delete", desc = "Delete a bookmark" },
+  { on = [
+    "b",
+    "D",
+  ], exec = "plugin bookmarks --args=delete_all", desc = "Delete all bookmarks" },
+]
+
 [tasks]
 keymap = [
   { on = [
