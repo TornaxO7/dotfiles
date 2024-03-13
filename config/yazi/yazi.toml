@@ -21,10 +21,10 @@ ueberzug_scale = 1
 ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
-pdf = [{ exec = "evince $1", block = false, orphan = true }]
-edit = [{ exec = "$EDITOR $@", block = true, for = "unix" }]
-open = [{ exec = "xdg-open $@", desc = "Open", for = "linux" }]
-extract = [{ exec = "ouch d $1", desc = "Extract here", for = "unix" }]
+pdf = [{ run = "evince $1", block = false, orphan = true }]
+edit = [{ run = "$EDITOR $@", block = true, for = "unix" }]
+open = [{ run = "xdg-open $@", desc = "Open", for = "linux" }]
+extract = [{ run = "ouch d $1", desc = "Extract here", for = "unix" }]
 
 [open]
 rules = [
@@ -117,43 +117,43 @@ suppress_preload = false
 
 [plugin]
 preloaders = [
-	{ name = "*", cond = "!mime", exec = "mime", multi = true, prio = "high" },
+	{ name = "*", cond = "!mime", run = "mime", multi = true, prio = "high" },
 	# Image
-	{ mime = "image/vnd.djvu", exec = "noop" },
-	{ mime = "image/*", exec = "image" },
+	{ mime = "image/vnd.djvu", run = "noop" },
+	{ mime = "image/*", run = "image" },
 	# Video
-	{ mime = "video/*", exec = "video" },
+	{ mime = "video/*", run = "video" },
 	# PDF
-	{ mime = "application/pdf", exec = "pdf" },
+	{ mime = "application/pdf", run = "pdf" },
 ]
 
 previewers = [
-	{ name = "*/", exec = "folder", sync = true },
+	{ name = "*/", run = "folder", sync = true },
 	# Code
-	{ mime = "text/*", exec = "code" },
-	{ mime = "*/xml", exec = "code" },
-	{ mime = "*/javascript", exec = "code" },
-	{ mime = "*/x-wine-extension-ini", exec = "code" },
+	{ mime = "text/*", run = "code" },
+	{ mime = "*/xml", run = "code" },
+	{ mime = "*/javascript", run = "code" },
+	{ mime = "*/x-wine-extension-ini", run = "code" },
 	# JSON
-	{ mime = "application/json", exec = "json" },
+	{ mime = "application/json", run = "json" },
 	# Image
-	{ mime = "image/vnd.djvu", exec = "noop" },
-	{ mime = "image/*", exec = "image" },
+	{ mime = "image/vnd.djvu", run = "noop" },
+	{ mime = "image/*", run = "image" },
 	# Video
-	{ mime = "video/*", exec = "video" },
+	{ mime = "video/*", run = "video" },
 	# PDF
-	{ mime = "application/pdf", exec = "pdf" },
+	{ mime = "application/pdf", run = "pdf" },
 	# Archive
-	{ mime = "application/zip", exec = "ouch l" },
-	{ mime = "application/gzip", exec = "ouch l" },
-	{ mime = "application/x-tar", exec = "ouch l" },
-	{ mime = "application/x-bzip", exec = "ouch l" },
-	{ mime = "application/x-bzip2", exec = "ouch l" },
-	{ mime = "application/x-7z-compressed", exec = "ouch l" },
-	{ mime = "application/x-rar", exec = "ouch l" },
-	{ mime = "application/xz", exec = "ouch l" },
+	{ mime = "application/zip", run = "ouch l" },
+	{ mime = "application/gzip", run = "ouch l" },
+	{ mime = "application/x-tar", run = "ouch l" },
+	{ mime = "application/x-bzip", run = "ouch l" },
+	{ mime = "application/x-bzip2", run = "ouch l" },
+	{ mime = "application/x-7z-compressed", run = "ouch l" },
+	{ mime = "application/x-rar", run = "ouch l" },
+	{ mime = "application/xz", run = "ouch l" },
 	# Fallback
-	{ name = "*", exec = "file" },
+	{ name = "*", run = "file" },
 ]
 
 [input]
