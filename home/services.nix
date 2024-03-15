@@ -1,9 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
     gpg-agent = {
       enable = true;
-      pinentryFlavor = "curses";
+      pinentryPackage = pkgs.pinentry-tty;
     };
 
     ssh-agent.enable = true;
