@@ -393,7 +393,7 @@
 
     zsh = {
       enable = false;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       enableCompletion = true;
       shellAliases = import ./shell_aliases.nix;
