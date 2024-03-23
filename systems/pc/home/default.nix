@@ -9,6 +9,7 @@
       eww
       rpi-imager
       lact
+      prismlauncher
     ] ++ [
       inputs.deploy-rs.packages.${system}.default
     ];
