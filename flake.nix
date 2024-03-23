@@ -43,6 +43,7 @@
 
         packages = {
           bustd = pkgs.callPackage ./pkgs/bustd.nix { };
+          crates-tui = pkgs.callPackage ./pkgs/crates-tui.nix { };
         };
       };
 
