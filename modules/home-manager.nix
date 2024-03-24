@@ -10,6 +10,7 @@
     extraSpecialArgs = {
       inherit inputs system;
       age = config.age;
+      my_flake = self;
     };
 
     backupFileExtension = "backup";

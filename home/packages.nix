@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ my_flake, pkgs, system, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages = with my_flake.packages.${system}; [
+    crates-tui
+  ]
+  ++ (with pkgs; [
     act
     actionlint
     ast-grep
@@ -53,5 +56,5 @@
     wiki-tui
     wormhole-rs
     youtube-dl
-  ];
+  ]);
 }
