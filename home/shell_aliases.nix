@@ -24,6 +24,7 @@
   ct = "cargo test";
   cr = "cargo run";
   cb = "cargo build";
+  ctt = "crates-tui";
 
   rx = "redshift -orx";
   r1 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000";
