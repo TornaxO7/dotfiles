@@ -74,6 +74,10 @@
           #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
           # };
 
+          markdown-oxide = {
+            command = "${lib.getExe pkgs.markdown-oxide}";
+          };
+
           json = {
             command = "${pkgs.nodePackages_latest.vscode-json-languageserver}/bin/vscode-json-languageserver";
             args = [ "--stdio" ];
@@ -145,6 +149,12 @@
             name = "java";
             file-types = [ "java" ];
             language-servers = [ "jdtls" ];
+          }
+          {
+            name = "markdown";
+            auto-format = true;
+            file-types = [ "markdown" ];
+            language-servers = [ "markdown-oxide" ];
           }
         ];
       };

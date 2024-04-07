@@ -168,7 +168,7 @@ keymap = [
 
   { on = [
     "z",
-  ], run = "jump zoxide", desc = "Jump to a directory using zoxide" },
+  ], run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
   { on = [
     "Z",
   ], run = "jump fzf", desc = "Jump to a directory, or reveal a file using fzf" },
