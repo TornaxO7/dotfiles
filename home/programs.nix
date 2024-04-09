@@ -56,10 +56,10 @@
             args = [ ];
           };
 
-          # pylyzer = {
-          #   command = "${pkgs.pylyzer}/bin/pylyzer";
-          #   args = [ "--server" ];
-          # };
+          pylyzer = {
+            command = "${pkgs.pylyzer}/bin/pylyzer";
+            args = [ "--server" ];
+          };
 
           yaml = {
             command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
@@ -98,7 +98,7 @@
             name = "python";
             auto-format = true;
             file-types = [ "python" "py" ];
-            # language-servers = [ "pylyzer" ];
+            language-servers = [ "pylyzer" ];
           }
           {
             name = "nix";
