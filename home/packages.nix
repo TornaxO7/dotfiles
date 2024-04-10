@@ -9,6 +9,7 @@
     ast-grep
     bandwhich
     choose
+    distrobox
     python311Packages.deepl
     difftastic
     du-dust
