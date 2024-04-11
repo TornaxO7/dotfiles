@@ -4,7 +4,6 @@
     anki-bin
     arandr
     authy
-    bitwarden
     discord
     evince
     flameshot
