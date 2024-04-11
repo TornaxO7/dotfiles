@@ -8,7 +8,10 @@
     boot = {
       tmp.cleanOnBoot = true;
       loader = {
-        systemd-boot.enable = true;
+        systemd-boot = {
+          enable = true;
+          configurationLimit = 5;
+        };
         efi.canTouchEfiVariables = true;
         efi.efiSysMountPoint = "/boot";
       };
