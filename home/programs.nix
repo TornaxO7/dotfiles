@@ -178,6 +178,7 @@
           idle-timeout = 0;
           color-modes = true;
           insert-final-newline = false;
+          popup-border = "all";
 
           statusline = {
             left = [ "mode" "file-name" "read-only-indicator" "file-modification-indicator" ];
