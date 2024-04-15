@@ -3,7 +3,6 @@
   config.home.packages = with pkgs; [
     anki-bin
     arandr
-    authy
     discord
     evince
     flameshot
