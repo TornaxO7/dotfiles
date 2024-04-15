@@ -6,7 +6,7 @@
   ];
 
   config = {
-    services.xserver = {
+    services = {
       displayManager = {
         defaultSession = "none+i3";
         autoLogin = {

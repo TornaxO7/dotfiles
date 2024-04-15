@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
-  services.xserver = {
+  services = {
     displayManager = {
       defaultSession = "none+i3";
     };
 
-    windowManager.i3 = {
+    xserver.windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
         rofi

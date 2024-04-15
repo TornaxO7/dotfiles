@@ -17,15 +17,16 @@
 
     services = {
       blueman.enable = true;
+      displayManager = {
+        defaultSession = "none+i3";
+        autoLogin = {
+          enable = true;
+          user = "tornax";
+        };
+      };
+
       xserver = {
         dpi = 210;
-        displayManager = {
-          defaultSession = "none+i3";
-          autoLogin = {
-            enable = true;
-            user = "tornax";
-          };
-        };
 
         windowManager.i3 = {
           enable = true;

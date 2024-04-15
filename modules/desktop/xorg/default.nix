@@ -1,19 +1,21 @@
 { ... }:
 {
-  services.xserver = {
-    enable = true;
-
-    desktopManager = {
-      xterm.enable = false;
-    };
-
+  services = {
     displayManager = {
       defaultSession = "none+i3";
     };
 
-    xkb = {
-      layout = "de";
-      variant = "bone";
+    xserver = {
+      enable = true;
+
+      desktopManager = {
+        xterm.enable = false;
+      };
+
+      xkb = {
+        layout = "de";
+        variant = "bone";
+      };
     };
   };
 }
