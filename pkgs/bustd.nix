@@ -11,10 +11,10 @@
     owner = "vrmiguel";
     repo = "bustd";
     rev = "5cf0867";
-    hash = "sha256-UmigoFWaF/+lSUKv0DZFL4BRW69tayfzs7rkI3tUrAc=";
+    hash = "sha256-STyPsfJTpJqucOvoUmBYz38sZmlJCLMt81/8/8akzgQ=";
   };
 
-  cargoHash = "sha256-75OqHACEUiwdboIHAdvLTSISUzSbRvxw1sBdLyldJe8=";
+  cargoHash = "sha256-Gb6DXww/9mapmLAQBe7zgjkeluxszPLfuE7/enAtA7U=";
 
   meta = {
     description = "Process killer daemon for out-of-memory scenarios";
