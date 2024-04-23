@@ -1,6 +1,12 @@
-[profiles.user]
+default_profile = "main"
+
+[profiles.main]
 user_id = "@tornax:matrix.org"
 
+[profiles.uni]
+user_id = "@ufobz:kit.edu"
+
 [settings]
+default_room = "Helix"
 image_preview = {}
 username_display = "localpart"
