@@ -1,9 +1,14 @@
-{ my_flake, pkgs, system, ... }:
-{
-  home.packages = with my_flake.packages.${system}; [
+{ inputs, my_flake, pkgs, system, ... }:
+let
+  custom-packages = with my_flake.packages.${system}; [
     crates-tui
-  ]
-  ++ (with pkgs; [
+  ];
+
+  inputs-packages = [
+    inputs.iamb.packages.${system}.default
+  ];
+
+  nixpkgs-packages = with pkgs; [
     act
     actionlint
     ast-grep
@@ -25,7 +30,6 @@
     gpg-tui
     highlight
     hyperfine
-    iamb
     imagemagick
     irssi
     jless
@@ -57,5 +61,8 @@
     wiki-tui
     wormhole-rs
     youtube-dl
-  ]);
+  ];
+in
+{
+  home.packages = custom-packages ++ nixpkgs-packages ++ inputs-packages;
 }
