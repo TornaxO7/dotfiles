@@ -22,6 +22,13 @@
       target = "rio";
     };
 
+    iamb = {
+      enable = true;
+      recursive = true;
+      source = ../config/iamb;
+      target = "iamb";
+    };
+
     # nushell_plugins = {
     #   enable = config.programs.nushell.enable;
     #   recursive = true;

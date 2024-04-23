@@ -1,0 +1,7 @@
+[profiles.user]
+user_id = "@tornax:matrix.org"
+
+[settings]
+image_preview = {}
+notifications.enabled = true
+username_display = "localpart"
