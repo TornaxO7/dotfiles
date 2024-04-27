@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   win = "Mod4";
 
@@ -10,7 +10,6 @@ let
   ws6 = "6";
 
   flameshot = "${pkgs.flameshot}/bin/flameshot";
-  # terminal = "${pkgs.rio}/bin/rio";
   terminal = "rio";
 in
 {

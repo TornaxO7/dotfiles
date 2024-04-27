@@ -8,7 +8,5 @@
         x = "xclip -selection clipboard";
       };
     };
-
-    xsession.initExtra = "xset r rate 250";
   };
 }

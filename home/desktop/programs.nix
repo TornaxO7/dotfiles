@@ -35,7 +35,7 @@
     firefox.enable = true;
 
     rio = {
-      enable = true;
+      enable = false;
       package = inputs.rio.packages.${system}.default;
     };
 
