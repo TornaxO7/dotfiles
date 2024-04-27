@@ -25,6 +25,7 @@ pdf = [{ run = "evince $1", block = false, orphan = true }]
 edit = [{ run = "$EDITOR $@", block = true, for = "unix" }]
 open = [{ run = "xdg-open $@", desc = "Open", for = "linux" }]
 extract = [{ run = "ouch d $1", desc = "Extract here", for = "unix" }]
+open-image = [{ run = "vimiv $@", block = false, orphan = true, for = "unix" }]
 
 [open]
 rules = [
@@ -39,7 +40,7 @@ rules = [
 		"reveal",
 	] },
 	{ mime = "image/*", use = [
-		"open",
+		"open-image",
 		"reveal",
 	] },
 	{ mime = "video/*", use = [
