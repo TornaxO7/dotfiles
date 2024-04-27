@@ -8,6 +8,13 @@
       target = "nvim";
     };
 
+    alacritty = {
+      enable = config.programs.alacritty.enable;
+      recursive = true;
+      source = ../config/alacritty;
+      target = "alacritty";
+    };
+
     zellij = {
       enable = true;
       recursive = true;

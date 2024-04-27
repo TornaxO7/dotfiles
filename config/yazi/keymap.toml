@@ -368,7 +368,7 @@ keymap = [
   ], run = "close --submit", desc = "Submit the input" },
   { on = [
     "<Esc>",
-  ], run = "close", desc = "Go back the normal mode, or cancel input" },
+  ], run = "escape", desc = "Go back the normal mode, or cancel input" },
 
   # Mode
   { on = [

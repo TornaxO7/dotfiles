@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   win = "Mod4";
 
@@ -10,13 +10,20 @@ let
   ws6 = "6";
 
   flameshot = "${pkgs.flameshot}/bin/flameshot";
-  terminal = "rio";
+  terminal =
+    if config.programs.rio.enable then
+      "rio"
+    else
+      "alacritty";
 in
 {
   xsession.windowManager.i3 = {
+
     enable = true;
 
     config = {
+      inherit terminal;
+
       fonts = {
         names = [ "FiraCode Nerd Font" ];
         style = "SemiBold";
@@ -40,7 +47,6 @@ in
       };
 
       modifier = win;
-      terminal = "rio";
 
       window = {
         border = 1;
