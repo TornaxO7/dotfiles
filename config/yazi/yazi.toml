@@ -26,6 +26,7 @@ edit = [{ run = "$EDITOR $@", block = true, for = "unix" }]
 open = [{ run = "xdg-open $@", desc = "Open", for = "linux" }]
 extract = [{ run = "ouch d $1", desc = "Extract here", for = "unix" }]
 open-image = [{ run = "vimiv $@", block = false, orphan = true, for = "unix" }]
+xournalpp = [{ run = "xournalpp", block = false, orphan = true }]
 
 [open]
 rules = [
@@ -63,6 +64,10 @@ rules = [
 	{ mime = "*/javascript", use = [
 		"edit",
 		"reveal",
+	] },
+
+	{ mime = "application/x-xopp", use = [
+		"xournalpp",
 	] },
 
 	{ mime = "application/zip", use = [
