@@ -14,15 +14,16 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/5adb7cb5-6403-44d8-a9df-a534d2d16e13";
+    { device = "/dev/disk/by-uuid/facb1551-ef3c-48e3-a507-1f3f180875d0";
       fsType = "btrfs";
     };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/7a10a358-b3b3-418c-8658-6613c03e84e6";
+  boot.initrd.luks.devices."main".device = "/dev/disk/by-uuid/3bda66fc-d22f-4251-88f9-2be3ca80bc6b";
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/5E6D-5055";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
@@ -34,7 +35,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp0s13f0u3u4.useDHCP = lib.mkDefault true;
   # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
