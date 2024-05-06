@@ -13,7 +13,7 @@ in
     ./packages.nix
     ./session_paths.nix
     ./session_variables.nix
-    ./programs.nix
+    ./programs
     ./services.nix
     ./xdg.nix
   ] ++ forTheTimeBeingShared;
