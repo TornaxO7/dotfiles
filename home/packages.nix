@@ -10,12 +10,10 @@ let
 
   nixpkgs-packages = with pkgs; [
     act
-    actionlint
     ast-grep
     bandwhich
     choose
     distrobox
-    python311Packages.deepl
     difftastic
     du-dust
     evcxr
@@ -31,7 +29,6 @@ let
     highlight
     hyperfine
     imagemagick
-    irssi
     jless
     liberation_ttf
     magic-wormhole-rs
@@ -43,7 +40,6 @@ let
     ouch
     pastel
     pkg-config
-    pomsky
     powertop
     python312
     ripgrep
@@ -53,13 +49,10 @@ let
     sd
     speedtest-cli
     spotify-player
-    tailspin
     termusic
     tokei
     udisks
     vifm-full
-    wiki-tui
-    wormhole-rs
     youtube-dl
   ];
 in
