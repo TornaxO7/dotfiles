@@ -79,7 +79,7 @@
         plugdev = { };
       };
 
-      users = rec {
+      users = {
         tornax = {
           name = username;
           isNormalUser = true;
@@ -102,7 +102,6 @@
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwQ1FO2lkd7ecYc/3GCo2yTWgo1V86uYUpX87bzFPhU tornax@pc"
           ];
         };
-        root.openssh.authorizedKeys.keys = tornax.openssh.authorizedKeys.keys;
       };
     };
 
