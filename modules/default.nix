@@ -40,7 +40,7 @@
     ];
 
     environment = {
-      pathsToLink = [ "/share/zsh" ];
+      pathsToLink = if config.users.defaultUserShell == pkgs.zsh then [ "/share/zsh" ] else [ ];
       sessionVariables = {
         MOZ_USE_XINPUT2 = "1";
       };
