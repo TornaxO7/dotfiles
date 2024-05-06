@@ -1,5 +1,9 @@
 { inputs, system, age, pkgs, config, lib, ... }:
 {
+  imports = [
+    ./yazi.nix
+  ];
+
   config.programs = {
     bat.enable = true;
 
@@ -395,11 +399,6 @@
 
       configFile.source = ../config/nushell/config.nu;
       envFile.source = ../config/nushell/env.nu;
-    };
-
-    yazi = {
-      enable = true;
-      package = inputs.yazi.packages.${system}.default;
     };
 
     zsh = {
