@@ -13,8 +13,8 @@ let
     ast-grep
     bandwhich
     choose
-    distrobox
     difftastic
+    distrobox
     du-dust
     evcxr
     fd
@@ -24,8 +24,8 @@ let
     fira-code
     fira-code-symbols
     gcc13
-    gptfdisk
     gpg-tui
+    gptfdisk
     highlight
     hyperfine
     imagemagick
@@ -39,6 +39,7 @@ let
     openvpn
     ouch
     pastel
+    pferd
     pkg-config
     powertop
     python312
