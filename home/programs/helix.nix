@@ -28,7 +28,7 @@
         };
 
         clangd = {
-          command = "${pkgs.rocmPackages.llvm.clang-tools-extra}/bin/clangd";
+          command = "${pkgs.clang-tools}/bin/clangd";
         };
 
         # typst-lsp = {
