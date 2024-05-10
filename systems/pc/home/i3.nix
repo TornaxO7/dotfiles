@@ -1,4 +1,4 @@
-{config, pkgs, lib, ...}:
+{ ... }:
 let
   win = "Mod4";
 in
@@ -13,9 +13,9 @@ in
     ];
 
     keybindings = {
-        "${win}+b" = "exec --no-startup-id eww open --toggle dashboard";
+      "${win}+b" = "exec --no-startup-id eww open --toggle dashboard";
     };
 
-    bars = [];
+    bars = [ ];
   };
 }
