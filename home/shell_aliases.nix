@@ -52,6 +52,7 @@
 
   gd = "git diff";
   gf = "git fetch";
+  gfa = "git fetch --all";
 
   grb = "git rebase";
 
