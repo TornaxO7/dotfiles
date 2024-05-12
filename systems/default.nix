@@ -27,6 +27,7 @@ let
         modules = coreModules ++ modules ++ [
           configuration
           inputs.home-manager.nixosModules.home-manager
+          inputs.nixos-cosmic.nixosModules.default
 
           self.nixosModules.bustd
         ];
@@ -45,6 +46,7 @@ in
         ../modules/desktop/default.nix
         ../modules/desktop/xorg/default.nix
         ../modules/desktop/xorg/i3.nix
+        ../modules/desktop/cosmic.nix
         ../modules/game/steam.nix
         ../modules/yubikey/default.nix
         ../modules/udev_moonlander_rules.nix

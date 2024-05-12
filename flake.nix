@@ -21,6 +21,11 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     deploy-rs.url = "github:serokell/deploy-rs";
   };
 
