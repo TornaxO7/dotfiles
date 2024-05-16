@@ -5,6 +5,7 @@ let
     ../secrets/default.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.agenix.nixosModules.default
+    self.nixosModules.bustd
 
     ({ ... }: {
       nix.registry = {
@@ -26,10 +27,6 @@ let
 
         modules = coreModules ++ modules ++ [
           configuration
-          inputs.home-manager.nixosModules.home-manager
-          inputs.nixos-cosmic.nixosModules.default
-
-          self.nixosModules.bustd
         ];
 
         specialArgs = {
