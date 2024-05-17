@@ -2,6 +2,9 @@
 {
   perSystem = { pkgs, ... }: {
     devShells = {
+
+      rev = import ./rev.nix { inherit pkgs; };
+
       default = pkgs.mkShell {
         packages = with pkgs;
           [
