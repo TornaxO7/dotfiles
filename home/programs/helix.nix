@@ -81,6 +81,9 @@
           auto-format = true;
           file-types = [ "c" "cpp" ];
           language-servers = [ "clangd" ];
+          formatter = {
+            command = "${pkgs.clang-tools}/bin/clang-format";
+          };
         }
         {
           name = "typst";
