@@ -2,13 +2,14 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.nixpkgs.follows = "unstable";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "stable";
 
     helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
@@ -35,7 +36,7 @@
       systems = [ "x86_64-linux" ];
 
       perSystem = { system, pkgs, ... }: {
-        _module.args.pkgs = import inputs.nixpkgs {
+        _module.args.pkgs = import inputs.unstable {
           inherit system;
           overlays = with inputs; [
             rust-overlay.overlays.default

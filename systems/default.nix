@@ -5,14 +5,13 @@ let
     ../secrets/default.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.agenix.nixosModules.default
-    inputs.home-manager.nixosModules.home-manager
 
     self.nixosModules.bustd
 
     ({ ... }: {
       nix.registry = {
         my.flake = self;
-        unstable.flake = inputs.nixpkgs;
+        unstable.flake = inputs.unstable;
       };
     })
   ];
@@ -23,7 +22,7 @@ let
     , system ? "x86_64-linux"
     , modules ? [ ]
     , hmModules ? [ ]
-    }: inputs.nixpkgs.lib.nixosSystem
+    }: inputs.stable.lib.nixosSystem
       {
         inherit system;
 
