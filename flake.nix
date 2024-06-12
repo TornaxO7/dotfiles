@@ -17,7 +17,7 @@
     yazi.url = "github:sxyazi/yazi";
     gtt.url = "github:TornaxO7/gtt/add-flake";
     iamb.url = "github:ulyssa/iamb";
-    bs.url = "path:/home/tornax/projects/BugStalker";
+    bs.url = "github:godzie44/BugStalker";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
