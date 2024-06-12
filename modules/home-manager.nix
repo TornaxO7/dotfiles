@@ -6,6 +6,7 @@
       ../home/default.nix
       self.homeManagerModules.gtt
       inputs.wired.homeManagerModules.default
+      inputs.bs.homeManagerModules.bugstalker
     ];
     extraSpecialArgs = {
       inherit inputs system;

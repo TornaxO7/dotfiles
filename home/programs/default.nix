@@ -4,7 +4,7 @@
     ./yazi.nix
     ./helix.nix
     ./zathura.nix
-    ./bugstalker
+    ./bugstalker.nix
   ];
 
   config.programs = {

@@ -30,18 +30,14 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1718132576,
-        "narHash": "sha256-cj8u5dJfDUsCrEGoN+uaEUMYJsfLKCaErNregjTPx4A=",
-        "owner": "TornaxO7",
-        "repo": "BugStalker",
-        "rev": "88f97851309687e5cc5cddeb0f75d960766b1e2e",
-        "type": "github"
+        "lastModified": 1718217544,
+        "narHash": "sha256-38K5eREKXkdkvcfT5JA8Mt+J1h/zIHmOl0+YOjZGXKU=",
+        "path": "/home/tornax/projects/BugStalker",
+        "type": "path"
       },
       "original": {
-        "owner": "TornaxO7",
-        "ref": "nix-flake",
-        "repo": "BugStalker",
-        "type": "github"
+        "path": "/home/tornax/projects/BugStalker",
+        "type": "path"
       }
     },
     "crane": {
