@@ -27,8 +27,8 @@ step_out = ["r"]
 
 # common control buttons
 [common]
-up = ["j"]
-down = ["k"]
+up = ["k"]
+down = ["j"]
 scroll_down = ["Ctrl-d"]
 scroll_up = ["Ctrl-u"]
 goto_begin = ["Home"]
