@@ -33,6 +33,9 @@ let
         specialArgs = {
           inherit inputs hmModules system self;
           username = user;
+          unstable = import inputs.unstable {
+            inherit system;
+          };
         };
       };
 in

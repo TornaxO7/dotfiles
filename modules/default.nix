@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ config, pkgs, username, unstable, ... }:
 {
   imports = [
     ./home-manager.nix
@@ -18,7 +18,7 @@
     };
 
     nix = {
-      package = pkgs.nix;
+      package = unstable.lix;
 
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
