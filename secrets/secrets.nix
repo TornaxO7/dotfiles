@@ -6,6 +6,6 @@ let
   all = [ pc laptop nas ];
 in
 {
-  "paperless.age".publicKey = all;
-  "deepl.age".publicKey = all;
+  "paperless.age".publicKeys = all;
+  "deepl.age".publicKeys = all;
 }
