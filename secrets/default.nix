@@ -1,17 +1,12 @@
-{ pkgs, lib, config, ... }:
-let
-  inherit (lib) makeBinPath;
-in
+{ inputs, config, system, ... }:
 {
   config = {
-    environment.systemPackages = with pkgs; [
-      rage
-    ];
+    environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
 
-    age.ageBin = "PATH=${makeBinPath [pkgs.age-plugin-yubikey]}:$PATH ${pkgs.rage}/bin/rage";
     age.identityPaths = [
       "/etc/ssh/pc"
       "/etc/ssh/laptop"
+      "/etc/ssh/nas"
     ];
 
     age.secrets = {

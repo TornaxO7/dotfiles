@@ -72,5 +72,10 @@ in
         ./laptop/home/default.nix
       ];
     };
+
+    # nas = mkSystem {
+    #   configuration = ./nas/default.nix;
+    #   modules = [ ];
+    # };
   };
 }

@@ -5,12 +5,17 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    deploy-rs.url = "github:serokell/deploy-rs";
+
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "stable";
 
+    # programs
     helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
     rio.url = "github:raphamorim/rio";
@@ -18,12 +23,6 @@
     gtt.url = "github:TornaxO7/gtt/add-flake";
     iamb.url = "github:ulyssa/iamb";
     bs.url = "github:godzie44/BugStalker";
-
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
-    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs = inputs@{ self, flake-parts, ... }:
