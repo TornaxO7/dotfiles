@@ -2,6 +2,7 @@
 {
   imports = [
     ./i3.nix
+    ./minecraft.nix
   ];
 
   home = {
@@ -9,7 +10,6 @@
       eww
       rpi-imager
       lact
-      prismlauncher
     ] ++ [
       inputs.deploy-rs.packages.${system}.default
     ];
