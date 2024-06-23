@@ -1,10 +1,14 @@
 { inputs, system, age, pkgs, lib, ... }:
 {
   imports = [
-    ./yazi.nix
+    ./yazi
     ./helix.nix
     ./zathura.nix
     ./bugstalker.nix
+    ./nushell
+    ./neovim
+    ./zellij
+    ./iamb
   ];
 
   config.programs = {
@@ -98,17 +102,6 @@
 
     man.enable = true;
 
-    neovim = {
-      enable = false;
-      defaultEditor = false;
-      extraPackages = with pkgs; [
-        gcc13
-        deno
-      ];
-      withPython3 = true;
-      vimdiffAlias = true;
-    };
-
     password-store.enable = true;
 
     ssh = {
@@ -154,7 +147,6 @@
       settings.updates.auto_update = true;
     };
 
-    zellij.enable = true;
     zoxide.enable = true;
 
     fish = {
@@ -163,18 +155,6 @@
       interactiveShellInit = ''
         bind -k nul accept-autosuggestion
       '';
-    };
-
-    nushell = {
-      enable = false;
-
-      environmentVariables = {
-        EDITOR = "hx";
-        # MANPAGER = "${lib.getExe pkgs.neovim} +Man!";
-      };
-
-      configFile.source = ../../config/nushell/config.nu;
-      envFile.source = ../../config/nushell/env.nu;
     };
 
     zsh = {

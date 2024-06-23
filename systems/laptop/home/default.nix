@@ -4,6 +4,8 @@
     ./i3.nix
     ./i3status-rs.nix
     ./services.nix
+
+    ../../../home/client.nix
   ];
 
   config = {

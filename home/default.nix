@@ -1,22 +1,8 @@
 { ... }:
-let
-  # only shared as long I only have PC and LAPTOP
-  forTheTimeBeingShared = [
-    ./desktop/default.nix
-    ./desktop/xorg/default.nix
-    ./desktop/xorg/i3.nix
-    ./syncthing.nix
-  ];
-in
 {
   imports = [
-    ./packages.nix
-    ./session_paths.nix
-    ./session_variables.nix
-    ./programs
-    ./services.nix
-    ./xdg.nix
-  ] ++ forTheTimeBeingShared;
+    ./auto
+  ];
 
   config = {
     home = {

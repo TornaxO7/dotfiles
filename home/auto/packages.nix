@@ -1,11 +1,7 @@
-{ inputs, my_flake, pkgs, system, ... }:
+{ my_flake, pkgs, system, ... }:
 let
   custom-packages = with my_flake.packages.${system}; [
     crates-tui
-  ];
-
-  inputs-packages = [
-    inputs.iamb.packages.${system}.default
   ];
 
   nixpkgs-packages = with pkgs; [
@@ -58,5 +54,5 @@ let
   ];
 in
 {
-  home.packages = custom-packages ++ nixpkgs-packages ++ inputs-packages;
+  home.packages = custom-packages ++ nixpkgs-packages;
 }

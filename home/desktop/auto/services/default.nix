@@ -1,5 +1,9 @@
 { inputs, system, ... }:
 {
+  imports = [
+    ./wired
+  ];
+
   config.services = {
     flameshot.enable = true;
 
@@ -22,12 +26,6 @@
         day = 5700;
         night = 1000;
       };
-    };
-
-    wired = {
-      enable = true;
-      package = inputs.wired.packages.${system}.default;
-      config = ../../config/wired/wired.ron;
     };
   };
 }

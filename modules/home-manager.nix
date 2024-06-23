@@ -1,4 +1,4 @@
-{ self, inputs, config, username, hmModules, system, ... }: {
+{ self, inputs, config, username, home-configuration, system, ... }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -18,6 +18,6 @@
   };
 
   home-manager.users.${username} = { ... }: {
-    imports = hmModules;
+    imports = [ home-configuration ];
   };
 }

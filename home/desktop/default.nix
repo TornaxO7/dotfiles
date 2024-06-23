@@ -1,9 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./packages.nix
-    ./services.nix
-    ./programs.nix
+    ./auto
   ];
 
   config = {

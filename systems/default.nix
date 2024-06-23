@@ -18,20 +18,16 @@ let
 
   mkSystem =
     { configuration
+    , home-configuration
     , user ? "tornax"
     , system ? "x86_64-linux"
-    , modules ? [ ]
-    , hmModules ? [ ]
     }: inputs.stable.lib.nixosSystem
       {
         inherit system;
 
-        modules = coreModules ++ modules ++ [
-          configuration
-        ];
-
+        modules = coreModules ++ [ configuration ];
         specialArgs = {
-          inherit inputs hmModules system self;
+          inherit inputs home-configuration system self;
           username = user;
           unstable = import inputs.unstable {
             inherit system;
@@ -43,34 +39,12 @@ in
   flake.nixosConfigurations = {
     pc = mkSystem {
       configuration = ./pc/default.nix;
-      modules = [
-        ../modules/desktop/default.nix
-        ../modules/desktop/xorg/default.nix
-        ../modules/desktop/xorg/i3.nix
-        ../modules/game/steam.nix
-        ../modules/yubikey/default.nix
-        ../modules/udev_moonlander_rules.nix
-        ../modules/kdeconnect.nix
-      ];
-
-      hmModules = [
-        ./pc/home/default.nix
-      ];
+      home-configuration = ./pc/home/default.nix;
     };
 
     laptop = mkSystem {
       configuration = ./laptop/default.nix;
-      modules = [
-        ../modules/desktop/default.nix
-        ../modules/desktop/xorg/default.nix
-        ../modules/desktop/xorg/i3.nix
-        ../modules/yubikey/default.nix
-        ../modules/kdeconnect.nix
-      ];
-
-      hmModules = [
-        ./laptop/home/default.nix
-      ];
+      home-configuration = ./laptop/home/default.nix;
     };
   };
 }
