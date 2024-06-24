@@ -1,7 +1,7 @@
 { config, ... }:
 {
   config = {
-    programs.alacritty = { };
+    programs.alacritty.enable = true;
 
     xdg.configFile.alacritty = {
       enable = config.programs.alacritty.enable;
