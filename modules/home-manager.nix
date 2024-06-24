@@ -3,7 +3,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     sharedModules = [
-      ../home/default.nix
+      ../home/default
       self.homeManagerModules.gtt
       inputs.wired.homeManagerModules.default
       inputs.bs.homeManagerModules.bugstalker

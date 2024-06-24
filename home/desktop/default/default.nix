@@ -1,10 +1,13 @@
 { pkgs, ... }:
 {
   imports = [
-    ./auto
+    ./packages.nix
+    ./services
+    ./programs
   ];
 
   config = {
+
     home = {
       pointerCursor = {
         package = pkgs.libsForQt5.breeze-gtk;
@@ -21,5 +24,6 @@
         package = pkgs.tokyo-night-gtk;
       };
     };
+
   };
 }
