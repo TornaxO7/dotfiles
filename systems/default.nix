@@ -46,5 +46,10 @@ in
       configuration = ./laptop/default.nix;
       home-configuration = ./laptop/home/default.nix;
     };
+
+    # nas = mkSystem {
+    #   configuration = ./nas/default.nix;
+    #   home-configuration = ./nas/home;
+    # };
   };
 }

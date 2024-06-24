@@ -9,7 +9,6 @@
         packages = with pkgs;
           [
             home-manager
-            rage
             deploy-rs
           ];
 
