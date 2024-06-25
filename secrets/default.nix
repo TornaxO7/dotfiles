@@ -1,6 +1,8 @@
 { inputs, pkgs, lib, config, system, ... }:
 let
   inherit (lib) makeBinPath;
+
+  owner = config.users.users.tornax.name;
 in
 {
   config = {
@@ -14,10 +16,19 @@ in
     ];
 
     age.secrets = {
-      paperless.file = ./paperless.age;
       deepl = {
-        owner = config.users.users.tornax.name;
+        inherit owner;
         file = ./deepl.age;
+      };
+
+      tornax-nas = {
+        inherit owner;
+        file = ./tornax-nas.age;
+      };
+
+      discord-webhook = {
+        inherit owner;
+        file = ./discord-webhook.age;
       };
     };
   };

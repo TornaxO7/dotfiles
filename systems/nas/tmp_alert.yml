@@ -1,0 +1,20 @@
+groups:
+- name: demo-service-alerts
+  rules:
+  - alert: DemoServiceHighErrorRate
+    expr: |
+      (
+        sum without(status, instance) (
+          rate(demo_api_request_duration_seconds_count{status=~"5..",job="demo"}[1m])
+        )
+      /
+        sum without(status, instance) (
+          rate(demo_api_request_duration_seconds_count{job="demo"}[1m])
+        ) * 100 > 0.5
+      )
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      title: 'High 5xx rate for {{ $labels.method }} on {{ $labels.path }}'
+      description: 'The 5xx error rate for path {{$labels.path}} with method {{ $labels.method }} in {{ $labels.job }} is {{ printf "%.2f" $value }}%.'

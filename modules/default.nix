@@ -46,6 +46,7 @@
       };
       systemPackages = with pkgs; [
         tailscale
+        cacert
       ];
     };
 

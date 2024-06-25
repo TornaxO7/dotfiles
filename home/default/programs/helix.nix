@@ -108,6 +108,9 @@
           auto-format = false;
           file-types = [ "json" ];
           language-servers = [ "json" ];
+          formatter = {
+            command = "${pkgs.jaq}/bin/jaq";
+          };
         }
         {
           name = "java";

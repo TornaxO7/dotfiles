@@ -18,6 +18,13 @@
             path = inputs.deploy-rs.lib.${self.nixosConfigurations.laptop.pkgs.system}.activate.nixos self.nixosConfigurations.laptop;
           };
         };
+
+        nas = {
+          hostname = "nas";
+          profiles.system = {
+            path = inputs.deploy-rs.lib.${self.nixosConfigurations.nas.pkgs.system}.activate.nixos self.nixosConfigurations.nas;
+          };
+        };
       };
     };
 
