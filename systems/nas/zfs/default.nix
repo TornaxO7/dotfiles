@@ -28,9 +28,10 @@ in
           fi
         '';
 
+        wants = [ "zfs-scrub.service" ];
+        after = [ "zfs-scrub.service" ];
+
         serviceConfig = {
-          After = "zfs-scrub.service";
-          Wants = "zfs-scrub.service";
           Type = "oneshot";
           User = "root";
         };
