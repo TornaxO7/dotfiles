@@ -21,11 +21,6 @@ in
         file = ./deepl.age;
       };
 
-      tornax-nas = {
-        inherit owner;
-        file = ./tornax-nas.age;
-      };
-
       discord-webhook = {
         inherit owner;
         file = ./discord-webhook.age;

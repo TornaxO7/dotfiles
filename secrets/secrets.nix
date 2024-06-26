@@ -6,7 +6,6 @@ let
   all = [ pc laptop nas ];
 in
 {
-  "tornax-nas.age".publicKeys = all;
   "deepl.age".publicKeys = all;
   "discord-webhook.age".publicKeys = all;
 }
