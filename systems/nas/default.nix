@@ -5,6 +5,8 @@
     ./zfs
     ./traefik.nix
     ./paperless.nix
+    ./atomic-server.nix
+    ./metube.nix
   ];
 
   config = {
