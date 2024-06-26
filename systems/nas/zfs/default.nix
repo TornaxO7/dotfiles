@@ -1,10 +1,8 @@
-{ config, username, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   ip-address = "100.88.51.57";
   zpool-name = "hdds";
-  zpool-root = "/${zpool-name}";
-
-  paperless-dir = "${zpool-root}/paperless";
+  discord-notify = msg: ''${pkgs.curl}/bin/curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"'' + msg + ''\"}" $(${pkgs.coreutils}/bin/cat ${config.age.secrets.discord-webhook.path})'';
 in
 {
   imports = [ ];
@@ -22,9 +20,9 @@ in
           STATUS=$(${pkgs.zfs}/bin/zpool get -H health ${zpool-name} | ${pkgs.gawk}/bin/awk '{print $3}')
 
           if [[ "$STATUS" != "ONLINE" ]]; then
-            ${pkgs.curl}/bin/curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"zpool has a problem!\"}" $(${pkgs.coreutils}/bin/cat ${config.age.secrets.discord-webhook.path})
+            ${discord-notify "zpool has a problem!"}
           else
-            ${pkgs.curl}/bin/curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"zpool is clean.\"}" $(${pkgs.coreutils}/bin/cat ${config.age.secrets.discord-webhook.path})
+            ${discord-notify "zpool is clean."}
           fi
         '';
 
@@ -150,17 +148,6 @@ in
         };
       };
 
-      paperless = {
-        address = "127.0.0.7";
-
-        enable = true;
-        user = username;
-        mediaDir = "${paperless-dir}/media";
-        settings = {
-          PAPERLESS_EMPTY_TRASH_DIR = "${config.services.paperless.dataDir}/media-trash";
-        };
-      };
-
       zfs = {
         autoScrub = {
           enable = true;
@@ -171,6 +158,13 @@ in
           enable = true;
           interval = "quarterly";
         };
+      };
+
+      smartd = {
+        enable = true;
+        extraOptions = [
+          "-w '${discord-notify "smart-test failed!"}'"
+        ];
       };
     };
   };
