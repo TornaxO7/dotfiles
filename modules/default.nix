@@ -1,10 +1,11 @@
-{ config, pkgs, username, unstable, ... }:
+{ self, config, pkgs, username, unstable, system, ... }:
 {
   imports = [
     ./home-manager.nix
   ];
 
   config = {
+
     boot = {
       tmp.cleanOnBoot = true;
       loader = {
@@ -33,6 +34,9 @@
 
     nixpkgs = {
       config.allowUnfree = true;
+      config.packageOverrides = pkgs-arg: {
+        prometheus-alertmanager = self.packages.${system}.prometheus-alertmanager;
+      };
     };
 
     fonts.packages = with pkgs; [
