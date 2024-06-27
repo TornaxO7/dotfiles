@@ -1,8 +1,15 @@
-{ ... }:
+{ username, ... }:
+let
+  host-path = "/hdds/music/songs";
+in
 {
-  config.virtualisation.oci-containers.containers.metube = {
-    image = "ghcr.io/alexta69/metube";
-    ports = [ "8200:8081" ];
-    volumes = [ "/hdds/music/downloads:/downloads" ];
+  config = {
+    systemd.tmpfiles.settings.metube.${host-path}.d.user = username;
+
+    virtualisation.oci-containers.containers.metube = {
+      image = "ghcr.io/alexta69/metube";
+      ports = [ "8200:8081" ];
+      volumes = [ "${host-path}:/downloads" ];
+    };
   };
 }

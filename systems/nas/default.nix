@@ -7,6 +7,8 @@
     ./paperless.nix
     ./atomic-server.nix
     ./metube.nix
+    ./dashy.nix
+    ./glances.nix
   ];
 
   config = {
