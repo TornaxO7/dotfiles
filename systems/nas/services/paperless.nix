@@ -33,7 +33,7 @@ in
               "POSTGRES_USER" = "paperless";
               "POSTGRES_PASSWORD" = "paperless";
             };
-            ports = [ "8012:5432" ];
+            ports = [ "5432:5432" ];
             volumes = [
               "${postgres-path}:/var/lib/postgresql/data"
             ];
@@ -42,10 +42,12 @@ in
           # use `docker exec` to get into the paperless container and do the stuff there
           paperless = {
             image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
+            labels = {
+              "traefik.http.routers.paperless.rule" = "Host(`paperless.docker`)";
+            };
             environment = {
-              "PAPERLESS_DBHOST" = "paperless-postgres";
-              "PAPERLESS_DBPORT" = 8012;
-              "PAPERLESS_REDIS" = "redis://paperless-redis:8011";
+              "PAPERLESS_DBHOST" = "postgres";
+              "PAPERLESS_REDIS" = "redis://redis:6379";
             };
             ports = [ "8010:8000" ];
             volumes = [
@@ -55,13 +57,13 @@ in
             ];
             dependsOn = [
               "postgres"
-              "paperless-redis"
+              "redis"
             ];
           };
 
-          paperless-redis = {
+          redis = {
             image = "docker.io/library/redis";
-            ports = [ "8011:6379" ];
+            ports = [ "6379:6379" ];
           };
         };
       };

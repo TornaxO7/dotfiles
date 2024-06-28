@@ -8,8 +8,12 @@ in
 
     virtualisation.oci-containers.containers.metube = {
       image = "ghcr.io/alexta69/metube";
-      ports = [ "8200:8081" ];
+      ports = [ "8030:8081" ];
       volumes = [ "${host-path}:/downloads" ];
+      # labels = {
+      #   "traefik.http.routers.metube.rule" = "PathPrefix(`/metube`)";
+      # };
+      # dependsOn = [ "traefik" ];
     };
   };
 }

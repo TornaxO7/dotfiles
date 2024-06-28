@@ -3,12 +3,25 @@
   imports = [
     ./hardware-configuration.nix
     ./zfs
-    ./traefik.nix
-    ./paperless.nix
-    ./atomic-server.nix
-    ./metube.nix
-    ./dashy.nix
-    ./glances.nix
+    # ./traefik.nix
+    # ports which are reserveed, starting from port 8000 (incremented by 10)
+    # 8000
+    ./services/dashy.nix
+    # 8010
+    ./services/paperless.nix
+    # 8020
+    ./services/atomic-server.nix
+    # 8030
+    ./services/metube.nix
+    # 8040
+    # ./services/appflowy
+    # 8050
+    ./services/jellyfin.nix
+    # 8060
+    ./services/photoprism.nix
+
+    # background services
+    ./services/glances.nix
   ];
 
   config = {

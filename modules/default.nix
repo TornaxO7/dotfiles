@@ -30,6 +30,7 @@
 
     networking.hosts = {
       # "127.0.0.1" = [ "www.youtube.com" ];
+      # "100.88.51.57" = [ "nas" ];
     };
 
     nixpkgs = {

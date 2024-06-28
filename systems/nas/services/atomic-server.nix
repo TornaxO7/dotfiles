@@ -10,10 +10,13 @@ in
 
     virtualisation.oci-containers.containers.atomic-server = {
       image = "joepmeneer/atomic-server";
-      ports = [ "8100:80" ];
+      ports = [ "8020:80" ];
       volumes = [
         "/hdds/atomic-server:/atomic-server"
       ];
+      environment = {
+        "ATOMIC_DOMAIN" = "nas:8020";
+      };
     };
   };
 }
