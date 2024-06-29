@@ -49,7 +49,6 @@ let
     termusic
     tokei
     udisks
-    vifm-full
     youtube-dl
   ];
 in
