@@ -13,6 +13,8 @@
     ./services/atomic-server.nix
     # 8030
     ./services/metube.nix
+    # 8400
+    # reserved for syncthing
     # 8050
     ./services/jellyfin.nix
     # 8060
