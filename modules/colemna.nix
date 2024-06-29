@@ -31,16 +31,25 @@ let
     } // other;
 in
 {
-  flake.colemna = {
+  flake.colmena = {
     meta = {
-      inherit self inputs username;
+      specialArgs = {
+        inherit self inputs username;
+        unstable = import inputs.unstable {
+          system = "x86_64-linux";
+        };
+      };
+
+      nixpkgs = import inputs.stable {
+        system = "x86_64-linux";
+      };
     };
 
     defaults = { pkgs, ... }:
       {
         imports = [
-          ./modules
-          ./secrets
+          ./.
+          ../secrets
           inputs.home-manager.nixosModules.home-manager
           inputs.agenix.nixosModules.default
 
