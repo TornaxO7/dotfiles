@@ -1,21 +1,5 @@
 { self, inputs, ... }:
 let
-  coreModules = [
-    ../modules/default.nix
-    ../secrets/default.nix
-    inputs.home-manager.nixosModules.home-manager
-    inputs.agenix.nixosModules.default
-
-    self.nixosModules.bustd
-
-    ({ ... }: {
-      nix.registry = {
-        my.flake = self;
-        unstable.flake = inputs.unstable;
-      };
-    })
-  ];
-
   mkSystem =
     { configuration
     , home-configuration
@@ -25,7 +9,7 @@ let
       {
         inherit system;
 
-        modules = coreModules ++ [ configuration ];
+        modules = [ configuration ];
         specialArgs = {
           inherit inputs home-configuration system self;
           username = user;

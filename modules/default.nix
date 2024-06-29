@@ -1,9 +1,5 @@
 { self, config, pkgs, username, unstable, system, ... }:
 {
-  imports = [
-    ./home-manager.nix
-  ];
-
   config = {
 
     boot = {
@@ -30,7 +26,6 @@
 
     networking.hosts = {
       # "127.0.0.1" = [ "www.youtube.com" ];
-      # "100.88.51.57" = [ "nas" ];
     };
 
     nixpkgs = {

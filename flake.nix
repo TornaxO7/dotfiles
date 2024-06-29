@@ -18,19 +18,20 @@
     gtt.url = "github:TornaxO7/gtt/add-flake";
     iamb.url = "github:ulyssa/iamb";
     bs.url = "github:godzie44/BugStalker";
+    deploy-rs.url = "github:serokell/deploy-rs";
+    colemna.url = "github:zhaofengli/colmena";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-
-    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = inputs@{ self, flake-parts, ... }:
+  outputs = inputs@{ self, flake-parts, stable, ... }:
     flake-parts.lib.mkFlake { inherit self inputs; } {
       imports = [
-        ./systems/default.nix
-        ./modules/deploy.nix
+        # ./systems/default.nix
+        # ./modules/deploy.nix
+        ./modules/colemna.nix
         ./shell
       ];
 
