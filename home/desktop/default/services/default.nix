@@ -1,4 +1,4 @@
-{ inputs, system, ... }:
+{ ... }:
 {
   imports = [
     ./wired

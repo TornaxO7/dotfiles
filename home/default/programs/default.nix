@@ -1,4 +1,4 @@
-{ inputs, system, age, pkgs, lib, ... }:
+{ inputs, age, pkgs, lib, ... }:
 {
   imports = [
     ./yazi
@@ -43,7 +43,7 @@
 
     gtt = {
       enable = true;
-      package = inputs.gtt.packages.${system}.default;
+      package = inputs.gtt.packages.${pkgs.system}.default;
       settings.api_key.DeepL.file = age.secrets.deepl.path;
       keymap = {
         clear = "C-l";

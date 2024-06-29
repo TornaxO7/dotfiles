@@ -1,4 +1,4 @@
-{ pkgs, system, inputs, lib, ... }:
+{ pkgs, inputs, lib, ... }:
 {
   nix.settings = {
     extra-substituters = [ "https://helix.cachix.org" ];
@@ -7,7 +7,7 @@
 
   programs.helix = {
     enable = true;
-    package = inputs.helix.packages.${system}.default;
+    package = inputs.helix.packages.${pkgs.system}.default;
     defaultEditor = true;
 
     languages = {

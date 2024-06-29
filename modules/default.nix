@@ -1,4 +1,4 @@
-{ self, config, pkgs, username, unstable, system, ... }:
+{ self, config, pkgs, username, unstable, ... }:
 {
   config = {
 
@@ -31,7 +31,7 @@
     nixpkgs = {
       config.allowUnfree = true;
       config.packageOverrides = pkgs-arg: {
-        prometheus-alertmanager = self.packages.${system}.prometheus-alertmanager;
+        prometheus-alertmanager = self.packages.${pkgs.system}.prometheus-alertmanager;
       };
     };
 

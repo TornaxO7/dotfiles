@@ -11,7 +11,7 @@ let
 
         modules = [ configuration ];
         specialArgs = {
-          inherit inputs home-configuration system self;
+          inherit inputs home-configuration self;
           username = user;
           unstable = import inputs.unstable {
             inherit system;
