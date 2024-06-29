@@ -1,4 +1,4 @@
-{ config, inputs, system, ... }:
+{ config, inputs, pkgs, ... }:
 {
   config = {
     nix.settings = {
@@ -8,7 +8,7 @@
 
     programs.yazi = {
       enable = true;
-      package = inputs.yazi.packages.${system}.default;
+      package = inputs.yazi.packages.${pkgs.system}.default;
     };
 
     xdg.configFile.yazi = {

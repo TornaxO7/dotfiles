@@ -1,9 +1,9 @@
-{ config, inputs, system, ... }:
+{ config, inputs, pkgs, ... }:
 {
   config = {
     programs.rio = {
       enable = false;
-      package = inputs.rio.packages.${system}.default;
+      package = inputs.rio.packages.${pkgs.system}.default;
     };
 
     xdg.configFile.rio = {

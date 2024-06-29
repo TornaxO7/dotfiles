@@ -1,4 +1,4 @@
-{ self, inputs, config, username, home-configuration, system, ... }: {
+{ self, inputs, config, username, home-configuration, ... }: {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -9,7 +9,7 @@
       inputs.bs.homeManagerModules.bugstalker
     ];
     extraSpecialArgs = {
-      inherit inputs system;
+      inherit inputs;
       age = config.age;
       my_flake = self;
     };

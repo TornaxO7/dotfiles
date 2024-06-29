@@ -1,7 +1,7 @@
-{ inputs, system, ... }:
+{ inputs, pkgs, ... }:
 {
   config = {
-    home.packages = [ inputs.iamb.packages.${system}.default ];
+    home.packages = [ inputs.iamb.packages.${pkgs.system}.default ];
 
     xdg.configFile.iamb = {
       recursive = true;
