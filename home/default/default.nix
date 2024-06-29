@@ -6,7 +6,6 @@
     ./session_variables.nix
     ./programs
     ./services.nix
-    ./xdg.nix
   ];
 
   config = {
