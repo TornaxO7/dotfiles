@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   config = {
     services.syncthing = {
@@ -10,6 +10,8 @@
 
     home.packages = with pkgs; [
       zfs
+    ] ++ [
+      inputs.deploy-rs.packages.${pkgs.system}.default
     ];
   };
 }
