@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -25,6 +25,11 @@
   ];
 
   config = {
+    environment.systemPackages = with pkgs; [
+      podman
+      podman-compose
+    ];
+
     networking = {
       hostId = "17b02087";
       networkmanager.enable = false;
