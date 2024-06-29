@@ -19,8 +19,6 @@
     ./services/jellyfin.nix
     # 8060
     ./services/photoprism.nix
-    # 8070
-    ./services/minecraft.nix
 
     # background services
     ./services/glances.nix
