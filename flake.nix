@@ -19,7 +19,7 @@
     iamb.url = "github:ulyssa/iamb";
     bs.url = "github:godzie44/BugStalker";
     deploy-rs.url = "github:serokell/deploy-rs";
-    colemna.url = "github:zhaofengli/colmena";
+    colmena.url = "github:zhaofengli/colmena";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
@@ -31,7 +31,7 @@
       imports = [
         # ./systems/default.nix
         # ./modules/deploy.nix
-        ./modules/colemna.nix
+        ./modules/colmena.nix
         ./shell
       ];
 

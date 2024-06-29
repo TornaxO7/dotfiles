@@ -43,7 +43,7 @@
         "type": "github"
       }
     },
-    "colemna": {
+    "colmena": {
       "inputs": {
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils_2",
@@ -809,7 +809,7 @@
       "inputs": {
         "agenix": "agenix",
         "bs": "bs",
-        "colemna": "colemna",
+        "colmena": "colmena",
         "deploy-rs": "deploy-rs",
         "flake-parts": "flake-parts_2",
         "gtt": "gtt",

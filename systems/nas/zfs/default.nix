@@ -5,8 +5,6 @@ let
   discord-notify = msg: ''${pkgs.curl}/bin/curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"'' + msg + ''\"}" $(${pkgs.coreutils}/bin/cat ${config.age.secrets.discord-webhook.path})'';
 in
 {
-  imports = [ ];
-
   config = {
     boot = {
       kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;

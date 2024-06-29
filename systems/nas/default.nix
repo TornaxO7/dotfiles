@@ -2,8 +2,8 @@
 {
   imports = [
     ./hardware-configuration.nix
+
     ./zfs
-    # ./traefik.nix
     # ports which are reserveed, starting from port 8000 (incremented by 10)
     # 8000
     ./services/dashy.nix
