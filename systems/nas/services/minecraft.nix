@@ -1,7 +1,7 @@
 { ... }:
 {
   config = {
-    virtualisation.oci-containers.minecraft = {
+    virtualisation.oci-containers.containers.minecraft = {
       image = "itzg/minecraft-server";
       ports = [ "8070:25565" ];
       environment = {

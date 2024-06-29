@@ -20,7 +20,7 @@
     # 8060
     ./services/photoprism.nix
     # 8070
-    ./services/minercaft.nix
+    ./services/minecraft.nix
 
     # background services
     ./services/glances.nix
