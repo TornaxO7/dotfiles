@@ -13,8 +13,6 @@
     ./services/atomic-server.nix
     # 8030
     ./services/metube.nix
-    # 8040
-    # ./services/appflowy
     # 8050
     ./services/jellyfin.nix
     # 8060
