@@ -14,9 +14,9 @@
         close_app = [ "q" ];
         continue = [ "i" "F9" ];
         run = [ "e" "F10" ];
-        step_over = [ "s" ];
+        step_over = [ "r" ];
         step_into = [ "n" ];
-        step_out = [ "r" ];
+        step_out = [ "s" ];
       };
       common = {
         up = [ "k" ];
