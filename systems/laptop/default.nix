@@ -8,6 +8,8 @@
     ../../modules/desktop/xorg/i3.nix
     ../../modules/yubikey/default.nix
     ../../modules/kdeconnect.nix
+
+    ./users
   ];
 
   config = {

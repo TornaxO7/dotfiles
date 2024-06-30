@@ -14,7 +14,6 @@ let
           useGlobalPkgs = true;
           useUserPackages = true;
           sharedModules = [
-            ../home/default
             self.homeManagerModules.gtt
             inputs.wired.homeManagerModules.default
             inputs.bs.homeManagerModules.bugstalker
@@ -31,7 +30,10 @@ let
         deployment.targetUser = username;
 
         home-manager.users.${username} = { ... }: {
-          imports = [ home-configuration ];
+          imports = [
+            home-configuration
+            ../home/default
+          ];
         };
       };
     };
