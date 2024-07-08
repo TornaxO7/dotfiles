@@ -21,6 +21,7 @@
           user = "tornax";
         };
       };
+      printing.enable = true;
     };
 
     boot.initrd.kernelModules = [ "amdgpu" ];
@@ -35,7 +36,5 @@
       networkmanager.enable = false;
       interfaces.enp6s0.wakeOnLan.enable = true;
     };
-
-    services.printing.enable = true;
   };
 }
