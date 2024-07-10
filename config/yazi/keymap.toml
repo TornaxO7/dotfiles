@@ -6,7 +6,7 @@
 keymap = [
   { on = [
     "S",
-  ], run = "shell \"$SHELL\" --block --confirm --interactive", desc = "Open shell here" },
+  ], run = "shell \"$SHELL\" --block --confirm", desc = "Open shell here" },
   { on = [
     "<Esc>",
   ], run = "escape", desc = "Exit visual mode, clear selected, or cancel search" },
@@ -150,7 +150,7 @@ keymap = [
   ], run = "shell --interactive", desc = "Run a shell command" },
   { on = [
     ":",
-  ], run = "shell --block", desc = "Run a shell command (block the UI until the command finishes)" },
+  ], run = "shell --block --interactive", desc = "Run a shell command (block the UI until the command finishes)" },
   { on = [
     ".",
   ], run = "hidden toggle", desc = "Toggle the visibility of hidden files" },
