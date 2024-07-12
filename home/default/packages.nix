@@ -49,7 +49,6 @@ let
     termusic
     tokei
     udisks
-    youtube-dl
   ];
 in
 {
