@@ -146,6 +146,12 @@
         color-modes = true;
         insert-final-newline = false;
         popup-border = "all";
+        end-of-line-diagnostics = "hint";
+
+        inline-diagnostics = {
+          cursor-line = "warning";
+          other-lines = "warning";
+        };
 
         statusline = {
           left = [ "mode" "file-name" "read-only-indicator" "file-modification-indicator" ];
