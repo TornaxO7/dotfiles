@@ -304,6 +304,9 @@ prepend_keymap = [
     "b",
     "D",
   ], run = "plugin bookmarks-persistence --args=delete_all", desc = "Delete all bookmarks" },
+  { on = [
+    "e",
+  ], run = "plugin jump-to-char", desc = "Jump to char" },
 ]
 
 [tasks]
