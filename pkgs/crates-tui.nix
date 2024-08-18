@@ -7,7 +7,7 @@
 }: rustPlatform.buildRustPackage rec
 {
   pname = "crates-tui";
-  version = "0.1.7";
+  version = "0.1.17";
 
   src = fetchFromGitHub {
     owner = "ratatui-org";
@@ -16,7 +16,7 @@
     hash = "sha256-h7LFmuWx7f7fdFK7RpGxTYOtZ+eLk+k9x/OwJLegxic=";
   };
 
-  cargoHash = "sha256-n6M9VJd/9Vi9YGPHnwv9hUN+hXtdJMxCwyKR+an0Uvg=";
+  cargoHash = "sha256-hgRFFt6Tu9r6ZgUPzqHe6pwSowGzZKGLhyz8zJt6rwg=";
 
   nativeBuildInputs = [
     pkg-config
