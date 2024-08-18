@@ -122,6 +122,9 @@
           auto-format = true;
           file-types = [ "markdown" ];
           language-servers = [ "markdown-oxide" ];
+          formatter = {
+            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+          };
         }
       ];
     };
