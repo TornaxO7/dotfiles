@@ -1,7 +1,7 @@
 { my_flake, pkgs, ... }:
 let
   custom-packages = with my_flake.packages.${pkgs.system}; [
-    crates-tui
+    # crates-tui
   ];
 
   nixpkgs-packages = with pkgs; [
