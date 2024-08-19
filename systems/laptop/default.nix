@@ -52,5 +52,10 @@
 
     programs.nm-applet.enable = true;
     services.printing.enable = true;
+
+    # to have audio
+    boot.extraModprobeConfig = ''
+      options snd-hda-intel dmic_detect=0
+    '';
   };
 }
