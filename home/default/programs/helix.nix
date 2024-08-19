@@ -120,10 +120,11 @@
         {
           name = "markdown";
           auto-format = true;
-          file-types = [ "markdown" ];
+          file-types = [ "markdown" "md" ];
           language-servers = [ "markdown-oxide" ];
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            args = [ "--stdin-filepath" "rofl.md" ];
           };
         }
       ];
