@@ -10,7 +10,6 @@
     # 8010
     ./services/paperless.nix
     # 8020
-    ./services/atomic-server.nix
     # 8030
     ./services/metube.nix
     # 8040
@@ -18,7 +17,7 @@
     # 8050
     ./services/jellyfin.nix
     # 8060
-
+    ./services/filebrowser.nix
     # 8070
     ./services/microbin.nix
     # 8080
