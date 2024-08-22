@@ -18,7 +18,7 @@
     # 8050
     ./services/jellyfin.nix
     # 8060
-    ./services/photoprism.nix
+
     # 8070
     ./services/microbin.nix
     # 8080
