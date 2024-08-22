@@ -16,7 +16,7 @@ in
     in
     {
       systemd.tmpfiles.settings = {
-        postgres.postgres-path.d = { };
+        postgres.${postgres-path}.d = { };
         paperless = {
           "${paperless-paths.data}".d.user = username;
           "${paperless-paths.media}".d.user = username;

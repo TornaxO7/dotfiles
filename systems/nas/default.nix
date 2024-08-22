@@ -21,6 +21,8 @@
     ./services/photoprism.nix
     # 8070
     ./services/microbin.nix
+    # 8080
+    ./services/immich.nix
 
     # background services
     ./services/glances.nix
