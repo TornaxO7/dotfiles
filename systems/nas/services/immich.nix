@@ -9,20 +9,22 @@ let
   immich-config = "${immich-root}/config";
   immich-photos = "${immich-root}/photos";
   immich-libraries = "${immich-root}/libraries";
-  postgres-data = "${immich-root}/postgres/data";
+  immich-postgres = "${immich-root}/postgres";
+  immich-postgres-data = "${immich-postgres}/data";
 
   directories = [
     immich-config
     immich-photos
     immich-libraries
 
-    postgres-data
+    immich-postgres
+    immich-postgres-data
   ];
 in
 {
   # inspiration taken from: https://github.com/notthebee/nix-config/blob/b95b1b004535d85fa45340e538a44847a039abef/containers/immich/default.nix
   config = {
-    systemd.tmpfiles.settings.immich = builtins.listToAttrs (map (dir: { name = dir; value = { d.user = username; }; }) directories);
+    systemd.tmpfiles.settings.immich = builtins.listToAttrs (map (dir: { name = "${dir}"; value = { d.user = username; }; }) directories);
     systemd.services = {
       podman-immich = {
         requires = [
@@ -89,7 +91,7 @@ in
         };
 
         volumes = [
-          "${immich-root}/postgres/data:/var/lib/postgresql/data"
+          "${immich-postgres-data}:/var/lib/postgresql/data"
         ];
       };
     };
