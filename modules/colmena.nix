@@ -71,6 +71,7 @@ in
         nix.registry = {
           my.flake = self;
           unstable.flake = inputs.unstable;
+          stable.flake = inputs.stable;
         };
 
         deployment.allowLocalDeployment = true;
