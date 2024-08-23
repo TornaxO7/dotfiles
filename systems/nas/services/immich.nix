@@ -1,9 +1,13 @@
-{ username, zpool-root, ip-addr, ... }:
+port: { username, zpool-root, ip-addr, ... }:
 let
   utils = import ../utils.nix;
+  portStr = toString port;
 
-  redis-port = "8081";
-  postgres-port = "8082";
+  redis-port = port + 1;
+  redis-port-str = toString redis-port;
+
+  postgres-port = redis-port + 1;
+  postgres-port-str = toString postgres-port;
 
   immich-root = "${zpool-root}/immich";
   immich-config = "${immich-root}/config";
@@ -47,7 +51,7 @@ in
       immich = {
         autoStart = true;
         image = "ghcr.io/imagegenius/immich:latest";
-        ports = [ "8080:8080" ];
+        ports = [ "${portStr}:8080" ];
         environment = {
           PUID = "1000";
           PGID = "1000";
@@ -56,10 +60,10 @@ in
           DB_USERNAME = "postgres";
           DB_PASSWORD = "postgres";
           DB_DATABASE_NAME = "immich";
-          DB_PORT = postgres-port;
+          DB_PORT = postgres-port-str;
 
           REDIS_HOSTNAME = ip-addr;
-          REDIS_PORT = redis-port;
+          REDIS_PORT = redis-port-str;
         };
 
         volumes = [
@@ -73,7 +77,7 @@ in
         autoStart = true;
         image = "redis";
         ports = [
-          "${redis-port}:6379"
+          "${redis-port-str}:6379"
         ];
       };
 
@@ -82,7 +86,7 @@ in
         autoStart = true;
         image = "tensorchord/pgvecto-rs:pg14-v0.2.0";
         ports = [
-          "${postgres-port}:5432"
+          "${postgres-port-str}:5432"
         ];
         environment = {
           POSTGRES_USER = "postgres";

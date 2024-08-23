@@ -6,7 +6,6 @@ let
     { configuration
     , home-configuration
     , extra-config ? { }
-    , specialArgs ? { }
     }: { name, config, ... }: {
       imports = [ configuration ];
 
@@ -19,13 +18,11 @@ let
             inputs.wired.homeManagerModules.default
             inputs.bs.homeManagerModules.bugstalker
           ];
-          extraSpecialArgs = lib.recursiveUpdate
-            {
-              inherit inputs;
-              age = config.age;
-              my_flake = self;
-            }
-            specialArgs;
+          extraSpecialArgs = {
+            inherit inputs;
+            age = config.age;
+            my_flake = self;
+          };
         };
 
         networking.hostName = name;
@@ -48,6 +45,15 @@ in
         inherit self inputs username;
         unstable = import inputs.unstable {
           system = "x86_64-linux";
+        };
+      };
+
+      nodeSpecialArgs = {
+        nas = rec {
+          zpool-name = "hdds";
+          zpool-root = "/${zpool-name}";
+
+          ip-addr = "100.88.51.57";
         };
       };
 
@@ -98,12 +104,6 @@ in
     nas = mkSystem {
       configuration = ../systems/nas;
       home-configuration = ../systems/nas/home;
-      specialArgs = rec {
-        zpool-name = "hdds";
-        zpool-root = "/${zpool-name}";
-
-        ip-addr = "100.88.51.57";
-      };
     };
   };
 }

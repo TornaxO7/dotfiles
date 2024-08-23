@@ -1,9 +1,12 @@
-{ ... }:
+port: { ... }:
+let
+  portStr = toString port;
+in
 {
   config = {
     virtualisation.oci-containers.containers.microbin = {
       image = "docker.io/danielszabo99/microbin";
-      ports = [ "8070:8080" ];
+      ports = [ "${portStr}:8080" ];
     };
   };
 }

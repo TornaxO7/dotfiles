@@ -1,30 +1,22 @@
 { pkgs, ... }:
+let
+  loadService = path: port: (import path) port;
+in
 {
   imports = [
     ./hardware-configuration.nix
 
     ./zfs
-    # ports which are reserveed, starting from port 8000 (incremented by 10)
-    # 8000
-    ./services/dashy.nix
-    # 8010
-    ./services/paperless.nix
-    # 8020
-    # 8030
-    ./services/metube.nix
-    # 8040
-    ./services/syncthing.nix
-    # 8050
-    ./services/jellyfin.nix
-    # 8060
-    ./services/filebrowser.nix
-    # 8070
-    ./services/microbin.nix
-    # 8080
-    ./services/immich.nix
 
-    # background services
-    ./services/glances.nix
+    # == services ==
+    # starting from 49200
+    (loadService ./services/dashy.nix 49200)
+    (loadService ./services/paperless.nix 49210)
+    (loadService ./services/syncthing.nix 49220)
+    (loadService ./services/jellyfin.nix 49230)
+    (loadService ./services/filebrowser.nix 49240)
+    (loadService ./services/microbin.nix 49250)
+    (loadService ./services/immich.nix 49260)
   ];
 
   config = {

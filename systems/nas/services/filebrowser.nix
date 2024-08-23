@@ -1,6 +1,7 @@
-{ username, zpool-root, ... }:
+port: { username, zpool-root, ... }:
 let
   utils = import ../utils.nix;
+  portStr = toString port;
 
   filebrowser-root = "${zpool-root}/filebrowser";
   database-path = "${filebrowser-root}/filebrowser.db";
@@ -11,7 +12,7 @@ in
 
     virtualisation.oci-containers.containers.filebrowser = {
       image = "filebrowser/filebrowser";
-      ports = [ "8060:80" ];
+      ports = [ "${portStr}:80" ];
       volumes = [
         "${zpool-root}/syncthing:/srv"
         "${database-path}:/database/filebrowser.db"

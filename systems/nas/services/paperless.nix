@@ -1,6 +1,14 @@
-{ username, pkgs, zpool-root, ... }:
+port: { username, pkgs, zpool-root, ip-addr, ... }:
 let
   utils = import ../utils.nix;
+
+  portStr = toString port;
+
+  postgresPort = port + 1;
+  postgresPortStr = toString postgresPort;
+
+  redisPort = postgresPort + 1;
+  redisPortStr = toString redisPort;
 
   paperless-dir = "${zpool-root}/paperless";
 
@@ -24,44 +32,41 @@ in
 
     virtualisation.oci-containers = {
       containers = {
-        postgres = {
-          image = "docker.io/library/postgres";
-          environment = {
-            "POSTGRES_DB" = "paperless";
-            "POSTGRES_USER" = "paperless";
-            "POSTGRES_PASSWORD" = "paperless";
-          };
-          ports = [ "5432:5432" ];
-          volumes = [
-            "${postgres-path}:/var/lib/postgresql/data"
-          ];
-        };
-
-        # use `docker exec` to get into the paperless container and do the stuff there
         paperless = {
           image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
-          labels = {
-            "traefik.http.routers.paperless.rule" = "Host(`paperless.docker`)";
-          };
           environment = {
-            "PAPERLESS_DBHOST" = "postgres";
-            "PAPERLESS_REDIS" = "redis://redis:6379";
+            PAPERLESS_DBHOST = "${ip-addr}";
+            PAPERLESS_DBPORT = postgresPortStr;
+            PAPERLESS_REDIS = "redis://${ip-addr}:${redisPortStr}";
           };
-          ports = [ "8010:8000" ];
+          ports = [ "${portStr}:8000" ];
           volumes = [
             "${paperless-paths.data}:/usr/src/paperless/data"
             "${paperless-paths.media}:/usr/src/paperless/media"
             "${paperless-paths.consume}:/usr/src/paperless/consume"
           ];
           dependsOn = [
-            "postgres"
-            "redis"
+            "paperless-postgres"
+            "paperless-redis"
           ];
         };
 
-        redis = {
+        paperless-redis = {
           image = "docker.io/library/redis";
-          ports = [ "6379:6379" ];
+          ports = [ "${redisPortStr}:6379" ];
+        };
+
+        paperless-postgres = {
+          image = "docker.io/library/postgres";
+          environment = {
+            "POSTGRES_DB" = "paperless";
+            "POSTGRES_USER" = "paperless";
+            "POSTGRES_PASSWORD" = "paperless";
+          };
+          ports = [ "${postgresPortStr}:5432" ];
+          volumes = [
+            "${postgres-path}:/var/lib/postgresql/data"
+          ];
         };
       };
     };

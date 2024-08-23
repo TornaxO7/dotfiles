@@ -1,6 +1,8 @@
-{ username, pkgs, zpool-name, ip-addr, ... }:
+port: { username, pkgs, zpool-name, ip-addr, ... }:
 let
   utils = import ../utils.nix;
+
+  portStr = toString port;
 in
 {
   config = {
@@ -17,7 +19,7 @@ in
       user = username;
       relay.enable = false;
       openDefaultPorts = true;
-      guiAddress = "${ip-addr}:8040";
+      guiAddress = "${ip-addr}:${portStr}";
     };
   };
 }
