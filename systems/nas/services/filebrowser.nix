@@ -1,12 +1,14 @@
 { username, ... }:
 let
+  utils = import ../utils.nix;
+
   filebrowser-root = "/hdds/filebrowser";
 
   database-path = "${filebrowser-root}/filebrowser.db";
 in
 {
   config = {
-    systemd.tmpfiles.settings.filebrowser.${database-path}.f.user = username;
+    systemd.tmpfiles.settings.filebrowser = utils.createDirs username [ database-path ];
 
     virtualisation.oci-containers.containers.filebrowser = {
       image = "filebrowser/filebrowser";

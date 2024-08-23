@@ -1,5 +1,7 @@
 { username, ... }:
 let
+  utils = import ../utils.nix;
+
   address = "100.88.51.57";
 
   redis-port = "8081";
@@ -24,7 +26,7 @@ in
 {
   # inspiration taken from: https://github.com/notthebee/nix-config/blob/b95b1b004535d85fa45340e538a44847a039abef/containers/immich/default.nix
   config = {
-    systemd.tmpfiles.settings.immich = builtins.listToAttrs (map (dir: { name = "${dir}"; value = { d.user = username; }; }) directories);
+    systemd.tmpfiles.settings.immich = utils.createDirs username directories;
     systemd.services = {
       podman-immich = {
         requires = [
