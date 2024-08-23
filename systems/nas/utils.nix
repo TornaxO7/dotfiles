@@ -2,16 +2,42 @@
   # Create directories with the paths provided in `dir-paths` with the user-owner `username`.
   createDirs = username: dir-paths: builtins.listToAttrs (map (dir: { name = "${dir}"; value = { d.user = username; }; }) dir-paths);
 
-  # Create a zfs snapshot with the given dataset-path
-  createSnapshotScript = pkgs: script-name: dataset-path: pkgs.writeScriptBin script-name ''
-    ${pkgs.zfs}/bin/zfs destroy ${dataset-path}@7daysago
-    ${pkgs.zfs}/bin/zfs rename ${dataset-path}@6daysago @7daysago
-    ${pkgs.zfs}/bin/zfs rename ${dataset-path}@5daysago @6daysago
-    ${pkgs.zfs}/bin/zfs rename ${dataset-path}@4daysago @5daysago
-    ${pkgs.zfs}/bin/zfs rename ${dataset-path}@3daysago @4daysago
-    ${pkgs.zfs}/bin/zfs rename ${dataset-path}@2daysago @3daysago
-    ${pkgs.zfs}/bin/zfs rename ${dataset-path}@yesterday @2daysago
-    ${pkgs.zfs}/bin/zfs rename ${dataset-path}@today @yesterday
-    ${pkgs.zfs}/bin/zfs snapshot ${dataset-path}@today
-  '';
+  # Create a systemd service and timer for the given service name which
+  # creates daily snapshots of the given dateset-path.
+  createSystemdZfsSnapshot = pkgs: service-name: dataset-path:
+    let
+      snapshot-service-name = "${service-name}-zfs-snapshot-creator";
+      snapshot-timer-name = "${service-name}-zfs-snapshot-timer";
+
+      snapshotScriptName = "${service-name}-snapshot-script";
+      snapshotScript = pkgs.writeScriptBin snapshotScriptName ''
+        ${pkgs.zfs}/bin/zfs destroy ${dataset-path}@7daysago
+        ${pkgs.zfs}/bin/zfs rename ${dataset-path}@6daysago @7daysago
+        ${pkgs.zfs}/bin/zfs rename ${dataset-path}@5daysago @6daysago
+        ${pkgs.zfs}/bin/zfs rename ${dataset-path}@4daysago @5daysago
+        ${pkgs.zfs}/bin/zfs rename ${dataset-path}@3daysago @4daysago
+        ${pkgs.zfs}/bin/zfs rename ${dataset-path}@2daysago @3daysago
+        ${pkgs.zfs}/bin/zfs rename ${dataset-path}@yesterday @2daysago
+        ${pkgs.zfs}/bin/zfs rename ${dataset-path}@today @yesterday
+        ${pkgs.zfs}/bin/zfs snapshot ${dataset-path}@today
+      '';
+    in
+    {
+      services."${snapshot-service-name}" = {
+        description = "ZFS snapshot creator service for ${dataset-path}";
+        serviceConfig = {
+          ExecStart = "${pkgs.bash}/bin/bash ${snapshotScript}/bin/${snapshotScriptName}";
+          Type = "oneshot";
+        };
+      };
+
+      timers."${snapshot-timer-name}" = {
+        description = "Timer for ${snapshot-service-name}.service";
+        wants = [ "${snapshot-service-name}.service" ];
+        timerConfig = {
+          OnCalendar = "daily";
+          Persistent = true;
+        };
+      };
+    };
 }

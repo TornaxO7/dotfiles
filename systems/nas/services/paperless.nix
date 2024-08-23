@@ -4,7 +4,6 @@ let
 
   zpool-name = "hdds";
   zpool-root = "/${zpool-name}";
-  paperless-dataset = "${zpool-name}/paperless";
   paperless-dir = "${zpool-root}/paperless";
 
   postgres-path = "/var/lib/postgresql/data";
@@ -13,36 +12,17 @@ let
     media = "${paperless-dir}/media";
     consume = "/var/lib/paperless/consume";
   };
-
-  snapshotScriptName = "paperless-snapshot-script";
-  createSnapshot = utils.createSnapshotScript pkgs snapshotScriptName paperless-dataset;
 in
 {
   config = {
-    systemd.tmpfiles.settings = {
-      postgres = utils.createDirs username [ postgres-path ];
-      paperless = utils.createDirs username (builtins.attrValues paperless-paths);
-    };
-
-    # snapshots
     systemd = {
-      services."paperless-zfs-snapshots" = {
-        description = "ZFS Snapshot cretor for paperless dataset";
-        serviceConfig = {
-          ExecStart = "${pkgs.bash}/bin/bash ${createSnapshot}/bin/${snapshotScriptName}";
-          Type = "oneshot";
-        };
+      tmpfiles.settings = {
+        postgres = utils.createDirs username [ postgres-path ];
+        paperless = utils.createDirs username (builtins.attrValues paperless-paths);
       };
-
-      timers."paperless-zfs-snapshots-timer" = {
-        description = "Create zfs snapshot for paperless";
-        wants = [ "paperless-zfs-snapshots.service" ];
-        timerConfig = {
-          OnCalendar = "daily";
-          Persistent = true;
-        };
-      };
-    };
+    }
+    //
+    (utils.createSystemdZfsSnapshot pkgs "paperless" "hdds/paperless");
 
     virtualisation.oci-containers = {
       containers = {
