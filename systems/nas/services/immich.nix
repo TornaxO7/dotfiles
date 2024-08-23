@@ -3,12 +3,6 @@ let
   utils = import ../utils.nix;
   portStr = toString port;
 
-  redis-port = port + 1;
-  redis-port-str = toString redis-port;
-
-  postgres-port = redis-port + 1;
-  postgres-port-str = toString postgres-port;
-
   immich-root = "${zpool-root}/immich";
   immich-config = "${immich-root}/config";
   immich-photos = "${immich-root}/photos";
@@ -24,27 +18,18 @@ let
     immich-postgres
     immich-postgres-data
   ];
+
+  immich-network-name = "immich-network";
 in
 {
   # inspiration taken from: https://github.com/notthebee/nix-config/blob/b95b1b004535d85fa45340e538a44847a039abef/containers/immich/default.nix
   config = {
     systemd = {
       tmpfiles.settings.immich = utils.createDirs username directories;
-      services = {
-        podman-immich = {
-          requires = [
-            "podman-immich-redis.service"
-            "podman-immich-postgres.service"
-          ];
-          after = [
-            "podman-immich-redis.service"
-            "podman-immich-postgres.service"
-          ];
-        };
-
-        podman-immich-postgres = {
-          requires = [ "podman-immich-redis.service" ];
-          after = [ "podman-immich-redis.service" ];
+      services.immich-network-creator = {
+        wantedBy = [ "podman-immich.service" "podman-immich-redis.service" "podman-immich-postgres.service" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.podman}/bin/podman network exists ${immich-network-name} || ${pkgs.podman}/bin/podman network create ${immich-network-name}";
         };
       };
     }
@@ -60,14 +45,12 @@ in
           PUID = "1000";
           PGID = "1000";
           TZ = "Etc/UTC";
-          DB_HOSTNAME = ip-addr;
+          DB_HOSTNAME = "immich-postgres";
           DB_USERNAME = "postgres";
           DB_PASSWORD = "postgres";
           DB_DATABASE_NAME = "immich";
-          DB_PORT = postgres-port-str;
 
-          REDIS_HOSTNAME = ip-addr;
-          REDIS_PORT = redis-port-str;
+          REDIS_HOSTNAME = "redis://immich-redis";
         };
 
         volumes = [
@@ -75,23 +58,21 @@ in
           "${immich-photos}:/photos"
           "${immich-libraries}:/libraries"
         ];
+
+        dependsOn = [ "immich-redis" "immich-postgres" ];
+        extraOptions = [ "--network=${immich-network-name}" ];
       };
 
       immich-redis = {
         autoStart = true;
         image = "redis";
-        ports = [
-          "${redis-port-str}:6379"
-        ];
+        extraOptions = [ "--network=${immich-network-name}" ];
       };
 
       # using postgres
       immich-postgres = {
         autoStart = true;
         image = "tensorchord/pgvecto-rs:pg14-v0.2.0";
-        ports = [
-          "${postgres-port-str}:5432"
-        ];
         environment = {
           POSTGRES_USER = "postgres";
           POSTGRES_PASSWORD = "postgres";
@@ -101,6 +82,9 @@ in
         volumes = [
           "${immich-postgres-data}:/var/lib/postgresql/data"
         ];
+
+        dependsOn = [ "immich-redis" ];
+        extraOptions = [ "--network=${immich-network-name}" ];
       };
     };
   };
