@@ -1,7 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, zpool-name, ... }:
 let
-  zpool-name = "hdds";
-
   zfsCheckScript = ''
     POOL_STATUS=$(${pkgs.zfs}/bin/zpool status -x ${zpool-name})
     DISCORD_HOOK=$(${pkgs.coreutils}/bin/cat ${config.age.secrets.discord-webhook.path})

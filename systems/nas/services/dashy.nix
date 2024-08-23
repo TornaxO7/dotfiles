@@ -1,8 +1,8 @@
-{ username, ... }:
+{ username, zpool-root, ... }:
 let
   utils = import ../utils.nix;
 
-  dashy-path = "/hdds/dashy";
+  dashy-path = "${zpool-root}/dashy";
 in
 {
   config = {

@@ -1,8 +1,8 @@
-{ username, ... }:
+{ username, zpool-root, ... }:
 let
   utils = import ../utils.nix;
 
-  host-path = "/hdds/music/songs";
+  host-path = "${zpool-root}/music/songs";
 in
 {
   config = {

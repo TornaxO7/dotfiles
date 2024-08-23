@@ -1,9 +1,7 @@
-{ username, pkgs, ... }:
+{ username, pkgs, zpool-root, ... }:
 let
   utils = import ../utils.nix;
 
-  zpool-name = "hdds";
-  zpool-root = "/${zpool-name}";
   paperless-dir = "${zpool-root}/paperless";
 
   postgres-path = "/var/lib/postgresql/data";

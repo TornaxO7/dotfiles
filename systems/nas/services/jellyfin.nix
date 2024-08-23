@@ -1,8 +1,8 @@
-{ username, ... }:
+{ username, zpool-root, ... }:
 let
   utils = import ../utils.nix;
 
-  jellyfin-dir = "/hdds/music/jellyfin";
+  jellyfin-dir = "${zpool-root}/music/jellyfin";
   config-dir = "${jellyfin-dir}/config";
   cache-dir = "${jellyfin-dir}/cache";
 in

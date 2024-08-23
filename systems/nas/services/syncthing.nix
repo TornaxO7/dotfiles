@@ -1,4 +1,4 @@
-{ username, pkgs, ... }:
+{ username, pkgs, zpool-name, ip-addr, ... }:
 let
   utils = import ../utils.nix;
 in
@@ -10,14 +10,14 @@ in
       };
     }
     //
-    (utils.createSystemdZfsSnapshot pkgs "syncthing" "hdds/syncthing");
+    (utils.createSystemdZfsSnapshot pkgs "syncthing" "${zpool-name}/syncthing");
 
     services.syncthing = {
       enable = true;
       user = username;
       relay.enable = false;
       openDefaultPorts = true;
-      guiAddress = "100.88.51.57:8040";
+      guiAddress = "${ip-addr}:8040";
     };
   };
 }

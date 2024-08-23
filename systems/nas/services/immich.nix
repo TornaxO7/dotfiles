@@ -1,13 +1,11 @@
-{ username, ... }:
+{ username, zpool-root, ip-addr, ... }:
 let
   utils = import ../utils.nix;
-
-  address = "100.88.51.57";
 
   redis-port = "8081";
   postgres-port = "8082";
 
-  immich-root = "/hdds/immich";
+  immich-root = "${zpool-root}/immich";
   immich-config = "${immich-root}/config";
   immich-photos = "${immich-root}/photos";
   immich-libraries = "${immich-root}/libraries";
@@ -54,13 +52,13 @@ in
           PUID = "1000";
           PGID = "1000";
           TZ = "Etc/UTC";
-          DB_HOSTNAME = address;
+          DB_HOSTNAME = ip-addr;
           DB_USERNAME = "postgres";
           DB_PASSWORD = "postgres";
           DB_DATABASE_NAME = "immich";
           DB_PORT = postgres-port;
 
-          REDIS_HOSTNAME = address;
+          REDIS_HOSTNAME = ip-addr;
           REDIS_PORT = redis-port;
         };
 

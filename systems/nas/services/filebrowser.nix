@@ -1,9 +1,8 @@
-{ username, ... }:
+{ username, zpool-root, ... }:
 let
   utils = import ../utils.nix;
 
-  filebrowser-root = "/hdds/filebrowser";
-
+  filebrowser-root = "${zpool-root}/filebrowser";
   database-path = "${filebrowser-root}/filebrowser.db";
 in
 {
@@ -14,7 +13,7 @@ in
       image = "filebrowser/filebrowser";
       ports = [ "8060:80" ];
       volumes = [
-        "/hdds/syncthing:/srv"
+        "${zpool-root}/syncthing:/srv"
         "${database-path}:/database/filebrowser.db"
       ];
     };
