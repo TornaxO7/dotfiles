@@ -1,4 +1,4 @@
-port: { username, zpool-name, pkgs, zpool-root, ip-addr, ... }:
+port: { lib, username, zpool-name, pkgs, zpool-root, ip-addr, ... }:
 let
   utils = import ../utils.nix;
   portStr = toString port;
@@ -24,17 +24,13 @@ in
 {
   # inspiration taken from: https://github.com/notthebee/nix-config/blob/b95b1b004535d85fa45340e538a44847a039abef/containers/immich/default.nix
   config = {
-    systemd = {
-      tmpfiles.settings.immich = utils.createDirs username directories;
-      services.immich-network-creator = {
-        wantedBy = [ "podman-immich.service" "podman-immich-redis.service" "podman-immich-postgres.service" ];
-        serviceConfig = {
-          ExecStart = "${pkgs.podman}/bin/podman network exists ${immich-network-name} || ${pkgs.podman}/bin/podman network create ${immich-network-name}";
-        };
-      };
-    }
-    //
-    (utils.createSystemdZfsSnapshot pkgs "immich" "${zpool-name}/immich");
+    systemd = lib.attrsets.recursiveUpdate
+      {
+        tmpfiles.settings.immich = utils.createDirs username directories;
+
+        services.immich-network-creator = utils.createPodmanNetworkService pkgs immich-network-name [ "immich-redis.service" ];
+      }
+      (utils.createSystemdZfsSnapshot pkgs "immich" "${zpool-name}/immich");
 
     virtualisation.oci-containers.containers = {
       immich = {
@@ -50,7 +46,7 @@ in
           DB_PASSWORD = "postgres";
           DB_DATABASE_NAME = "immich";
 
-          REDIS_HOSTNAME = "redis://immich-redis";
+          REDIS_HOSTNAME = "immich-redis";
         };
 
         volumes = [

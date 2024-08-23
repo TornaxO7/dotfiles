@@ -40,4 +40,23 @@
         };
       };
     };
+
+  createPodmanNetworkService = pkgs: network-name: wantedBy:
+    let
+      scriptName = "${network-name}-create-script";
+      scriptBin = pkgs.writeScriptBin scriptName ''
+        ${pkgs.podman}/bin/podman network exists ${network-name}
+
+        if [[ $? -ne 0 ]]; then
+          ${pkgs.podman}/bin/podman network create ${network-name}
+        fi
+      '';
+    in
+    {
+      inherit wantedBy;
+      serviceConfig = {
+        ExecStart = "${pkgs.bash}/bin/bash ${scriptBin}/bin/${scriptName}";
+        Type = "oneshot";
+      };
+    };
 }

@@ -1,4 +1,4 @@
-port: { username, pkgs, zpool-name, zpool-root, ip-addr, ... }:
+port: { lib, username, pkgs, zpool-name, zpool-root, ip-addr, ... }:
 let
   utils = import ../utils.nix;
 
@@ -17,21 +17,16 @@ let
 in
 {
   config = {
-    systemd = {
-      tmpfiles.settings = {
-        postgres = utils.createDirs username [ postgres-path ];
-        paperless = utils.createDirs username (builtins.attrValues paperless-paths);
-      };
-
-      services.create-paperless-network = {
-        wantedBy = [ "podman-paperless.service" "podman-paperless-redis.service" "podman-paperless-postgres.service" ];
-        serviceConfig = {
-          ExecStart = "${pkgs.podman}/bin/podman network exists ${paperless-network-name} || ${pkgs.podman}/bin/podman network create ${paperless-network-name}";
+    systemd = lib.attrsets.recursiveUpdate
+      {
+        tmpfiles.settings = {
+          postgres = utils.createDirs username [ postgres-path ];
+          paperless = utils.createDirs username (builtins.attrValues paperless-paths);
         };
-      };
-    }
-    //
-    (utils.createSystemdZfsSnapshot pkgs "paperless" "${zpool-name}/paperless");
+
+        services.create-paperless-network = utils.createPodmanNetworkService pkgs paperless-network-name [ "podman-paperless.service" "podman-paperless-redis.service" "podman-paperless-postgres.service" ];
+      }
+      (utils.createSystemdZfsSnapshot pkgs "paperless" "${zpool-name}/paperless");
 
     virtualisation.oci-containers = {
       containers = {
@@ -39,7 +34,7 @@ in
           image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
           environment = {
             PAPERLESS_DBHOST = "paperless-postgres";
-            PAPERLESS_REDIS = "redis://paperless-redis";
+            PAPERLESS_REDIS = "redis://paperless-redis:6379";
           };
           ports = [ "${portStr}:8000" ];
           volumes = [

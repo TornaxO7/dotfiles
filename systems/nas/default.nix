@@ -29,6 +29,9 @@ in
       hostId = "17b02087";
       networkmanager.enable = false;
       hostName = "nas";
+
+      # allow DNS resolver for the docker networks
+      firewall.interfaces.allowedUDPPorts = [ 53 ];
     };
 
     virtualisation = {
