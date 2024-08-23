@@ -1,4 +1,4 @@
-port: { username, zpool-root, ... }:
+port: { pkgs, username, zpool-name, zpool-root, ... }:
 let
   utils = import ../utils.nix;
   portStr = toString port;
@@ -13,7 +13,11 @@ let
 in
 {
   config = {
-    systemd.tmpfiles.settings.jellyfin = utils.createDirs username [ jellyfin-dir config-dir cache-dir songs-path ];
+    systemd = {
+      tmpfiles.settings.jellyfin = utils.createDirs username [ jellyfin-dir config-dir cache-dir songs-path ];
+    }
+    //
+    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${zpool-name}" /music);
 
     virtualisation.oci-containers.containers = {
       jellyfin = {

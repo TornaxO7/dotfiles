@@ -1,4 +1,4 @@
-port: { username, pkgs, zpool-root, ip-addr, ... }:
+port: { username, pkgs, zpool-name, zpool-root, ip-addr, ... }:
 let
   utils = import ../utils.nix;
 
@@ -28,7 +28,7 @@ in
       };
     }
     //
-    (utils.createSystemdZfsSnapshot pkgs "paperless" "hdds/paperless");
+    (utils.createSystemdZfsSnapshot pkgs "paperless" "${zpool-name}/paperless");
 
     virtualisation.oci-containers = {
       containers = {

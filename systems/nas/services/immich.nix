@@ -1,4 +1,4 @@
-port: { username, zpool-root, ip-addr, ... }:
+port: { username, zpool-name, pkgs, zpool-root, ip-addr, ... }:
 let
   utils = import ../utils.nix;
   portStr = toString port;
@@ -28,24 +28,28 @@ in
 {
   # inspiration taken from: https://github.com/notthebee/nix-config/blob/b95b1b004535d85fa45340e538a44847a039abef/containers/immich/default.nix
   config = {
-    systemd.tmpfiles.settings.immich = utils.createDirs username directories;
-    systemd.services = {
-      podman-immich = {
-        requires = [
-          "podman-immich-redis.service"
-          "podman-immich-postgres.service"
-        ];
-        after = [
-          "podman-immich-redis.service"
-          "podman-immich-postgres.service"
-        ];
-      };
+    systemd = {
+      tmpfiles.settings.immich = utils.createDirs username directories;
+      services = {
+        podman-immich = {
+          requires = [
+            "podman-immich-redis.service"
+            "podman-immich-postgres.service"
+          ];
+          after = [
+            "podman-immich-redis.service"
+            "podman-immich-postgres.service"
+          ];
+        };
 
-      podman-immich-postgres = {
-        requires = [ "podman-immich-redis.service" ];
-        after = [ "podman-immich-redis.service" ];
+        podman-immich-postgres = {
+          requires = [ "podman-immich-redis.service" ];
+          after = [ "podman-immich-redis.service" ];
+        };
       };
-    };
+    }
+    //
+    (utils.createSystemdZfsSnapshot pkgs "immich" "${zpool-name}/immich");
 
     virtualisation.oci-containers.containers = {
       immich = {
