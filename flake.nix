@@ -18,7 +18,6 @@
     gtt.url = "github:TornaxO7/gtt/add-flake";
     iamb.url = "github:ulyssa/iamb";
     bs.url = "github:godzie44/BugStalker";
-    deploy-rs.url = "github:serokell/deploy-rs";
     colmena.url = "github:zhaofengli/colmena";
 
     rust-overlay.url = "github:oxalica/rust-overlay";

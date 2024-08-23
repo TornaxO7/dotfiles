@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./i3.nix
@@ -12,8 +12,6 @@
       eww
       rpi-imager
       lact
-    ] ++ [
-      inputs.deploy-rs.packages.${pkgs.system}.default
     ];
 
     pointerCursor.size = 20;
@@ -33,13 +31,4 @@
       target = "eww";
     };
   };
-
-  # programs.fish.loginShellInit = ''
-  #   # Start X at login
-  #   if status is-login
-  #       if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-  #           exec startx -- -keeptty
-  #       end
-  #   end
-  # '';
 }
