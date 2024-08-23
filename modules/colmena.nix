@@ -65,11 +65,11 @@ in
         ];
 
         environment.systemPackages = [
-          inputs.colmena.packages.${ pkgs.system}.colmena
+          inputs.colmena.packages.${pkgs.system}.colmena
         ];
 
-        nix. registry = {
-          my. flake = self;
+        nix.registry = {
+          my.flake = self;
           unstable.flake = inputs.unstable;
         };
 
