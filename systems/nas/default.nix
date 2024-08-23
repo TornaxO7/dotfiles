@@ -31,7 +31,7 @@ in
       hostName = "nas";
 
       # allow DNS resolver for the docker networks
-      firewall.interfaces.allowedUDPPorts = [ 53 ];
+      firewall.allowedUDPPorts = [ 53 ];
     };
 
     virtualisation = {
