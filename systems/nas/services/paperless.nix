@@ -4,12 +4,6 @@ let
 
   portStr = toString port;
 
-  postgresPort = port + 1;
-  postgresPortStr = toString postgresPort;
-
-  redisPort = postgresPort + 1;
-  redisPortStr = toString redisPort;
-
   paperless-dir = "${zpool-root}/paperless";
 
   postgres-path = "/var/lib/postgresql/data";
@@ -18,6 +12,8 @@ let
     media = "${paperless-dir}/media";
     consume = "/var/lib/paperless/consume";
   };
+
+  paperless-network-name = "paperless-network";
 in
 {
   config = {
@@ -25,6 +21,13 @@ in
       tmpfiles.settings = {
         postgres = utils.createDirs username [ postgres-path ];
         paperless = utils.createDirs username (builtins.attrValues paperless-paths);
+      };
+
+      services.create-paperless-network = {
+        wantedBy = [ "podman-paperless.service" "podman-paperless-redis.service" "podman-paperless-postgres.service" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.podman}/bin/podman network exists ${paperless-network-name} || ${pkgs.podman}/bin/podman network create ${paperless-network-name}";
+        };
       };
     }
     //
@@ -35,9 +38,8 @@ in
         paperless = {
           image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
           environment = {
-            PAPERLESS_DBHOST = "${ip-addr}";
-            PAPERLESS_DBPORT = postgresPortStr;
-            PAPERLESS_REDIS = "redis://${ip-addr}:${redisPortStr}";
+            PAPERLESS_DBHOST = "paperless-postgres";
+            PAPERLESS_REDIS = "redis://paperless-redis";
           };
           ports = [ "${portStr}:8000" ];
           volumes = [
@@ -49,11 +51,12 @@ in
             "paperless-postgres"
             "paperless-redis"
           ];
+          extraOptions = [ "--network=${paperless-network-name}" ];
         };
 
         paperless-redis = {
           image = "docker.io/library/redis";
-          ports = [ "${redisPortStr}:6379" ];
+          extraOptions = [ "--network=${paperless-network-name}" ];
         };
 
         paperless-postgres = {
@@ -63,7 +66,7 @@ in
             "POSTGRES_USER" = "paperless";
             "POSTGRES_PASSWORD" = "paperless";
           };
-          ports = [ "${postgresPortStr}:5432" ];
+          extraOptions = [ "--network=${paperless-network-name}" ];
           volumes = [
             "${postgres-path}:/var/lib/postgresql/data"
           ];
@@ -72,3 +75,4 @@ in
     };
   };
 }
+

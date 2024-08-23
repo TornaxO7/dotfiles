@@ -17,7 +17,7 @@ in
       tmpfiles.settings.jellyfin = utils.createDirs username [ jellyfin-dir config-dir cache-dir songs-path ];
     }
     //
-    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${zpool-name}" /music);
+    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${zpool-name}/music");
 
     virtualisation.oci-containers.containers = {
       jellyfin = {
