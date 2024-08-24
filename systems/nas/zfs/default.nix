@@ -31,9 +31,9 @@ in
         };
       };
 
-      timers."zpool-check-timer" = {
+      timers."zpool-check" = {
         description = "Run ZFS status check daily";
-        wants = [ "zpool-check.service" ];
+        wantedBy = [ "multi-user.target" ];
         timerConfig = {
           OnCalendar = "daily";
           Persistent = true;
