@@ -8,7 +8,7 @@ let
 
   postgres-path = "/var/lib/postgresql/data";
   paperless-paths = {
-    data = "/var/lib/paperless/data";
+    data = "${paperless-dir}/data";
     media = "${paperless-dir}/media";
     consume = "/var/lib/paperless/consume";
   };
