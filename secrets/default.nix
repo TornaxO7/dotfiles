@@ -20,11 +20,6 @@ in
         inherit owner;
         file = ./deepl.age;
       };
-
-      discord-webhook = {
-        inherit owner;
-        file = ./discord-webhook.age;
-      };
     };
   };
 }

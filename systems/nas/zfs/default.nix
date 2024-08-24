@@ -1,13 +1,14 @@
-{ config, pkgs, zpool-name, ... }:
+{ config, pkgs, zpool-name, ip-addr, ... }:
 let
+  gotify-token = "AKORzZjVX9w9iZM";
+
   zfsCheckScript = ''
     POOL_STATUS=$(${pkgs.zfs}/bin/zpool status -x ${zpool-name})
-    DISCORD_HOOK=$(${pkgs.coreutils}/bin/cat ${config.age.secrets.discord-webhook.path})
 
     if [[ $POOL_STATUS == *"errors" ]]; then
-      ${pkgs.curl}/bin/curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"zpool contains errors\"}" $DISCORD_HOOK
+      ${pkgs.curl}/bin/curl "http://${ip-addr}:49270/message?token=${gotify-token}" -F "title=ZFS Status" -F "message=zpool contains errors!" -F "priority=5"
     else
-      ${pkgs.curl}/bin/curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"zpool is healthy\"}" $DISCORD_HOOK
+      ${pkgs.curl}/bin/curl "http://${ip-addr}:49270/message?token=${gotify-token}" -F "title=ZFS Status" -F "message=zpool is clean" -F "priority=5"
     fi
   '';
 

@@ -7,5 +7,4 @@ let
 in
 {
   "deepl.age".publicKeys = all;
-  "discord-webhook.age".publicKeys = all;
 }
