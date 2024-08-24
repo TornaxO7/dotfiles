@@ -16,9 +16,12 @@ let
   paperless-network-name = "paperless-network";
 
   # service names
+  postgres-container-name = "paperless-postgres";
+  redis-container-name = "paperless-redis";
+
   paperless-service = "podman-paperless.service";
-  postgres-service = "podman-paperless-postgres.service";
-  redis-service = "podman-paperless-redis.service";
+  postgres-service = "podman-${postgres-container-name}.service";
+  redis-service = "podman-${redis-container-name}.service";
 in
 {
   config = {
@@ -51,8 +54,8 @@ in
         paperless = {
           image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
           environment = {
-            PAPERLESS_DBHOST = "paperless-postgres";
-            PAPERLESS_REDIS = "redis://paperless-redis:6379";
+            PAPERLESS_DBHOST = "${postgres-container-name}";
+            PAPERLESS_REDIS = "redis://${redis-container-name}:6379";
           };
           ports = [ "${portStr}:8000" ];
           volumes = [
@@ -61,18 +64,18 @@ in
             "${paperless-paths.consume}:/usr/src/paperless/consume"
           ];
           dependsOn = [
-            "paperless-postgres"
-            "paperless-redis"
+            "${postgres-container-name}"
+            "${redis-container-name}"
           ];
           extraOptions = [ "--network=${paperless-network-name}" ];
         };
 
-        paperless-redis = {
+        "${redis-container-name}" = {
           image = "docker.io/library/redis";
           extraOptions = [ "--network=${paperless-network-name}" ];
         };
 
-        paperless-postgres = {
+        "${postgres-container-name}" = {
           image = "docker.io/library/postgres";
           environment = {
             "POSTGRES_DB" = "paperless";
