@@ -56,7 +56,10 @@ in
         ];
 
         dependsOn = [ "immich-redis" "immich-postgres" ];
-        extraOptions = [ "--network=${immich-network-name}" ];
+        extraOptions = [
+          "--network=${immich-network-name}"
+          "--device=/dev/dri:/dev/dri"
+        ];
       };
 
       immich-redis = {
