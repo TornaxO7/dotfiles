@@ -1,4 +1,4 @@
-port: { username, zpool-root, unstable, ... }:
+port: { config, username, zpool-root, unstable, ... }:
 let
   utils = import ../utils.nix;
   portStr = toString port;
@@ -30,7 +30,7 @@ in
         ExecStart = "${unstable.glances}/bin/glances -w --disable-webui -p ${glances-port-str}";
       };
       environment = {
-        TZ = "Europe/Berlin";
+        TZ = config.time.timeZone;
       };
     };
   };

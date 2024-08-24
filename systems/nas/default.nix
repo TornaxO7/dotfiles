@@ -17,6 +17,7 @@ in
     (loadService ./services/filebrowser.nix 49240)
     (loadService ./services/microbin.nix 49250)
     (loadService ./services/immich.nix 49260)
+    (loadService ./services/gotify.nix 49270)
   ];
 
   config = {
