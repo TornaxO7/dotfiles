@@ -18,6 +18,7 @@ in
     (loadService ./services/microbin.nix 49250)
     (loadService ./services/immich.nix 49260)
     (loadService ./services/gotify.nix 49270)
+    (loadService ./services/gitea.nix 49290)
   ];
 
   config = {
