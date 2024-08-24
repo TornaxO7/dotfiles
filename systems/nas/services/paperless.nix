@@ -14,6 +14,11 @@ let
   };
 
   paperless-network-name = "paperless-network";
+
+  # service names
+  paperless-service = "podman-paperless.service";
+  postgres-service = "podman-paperless-postgres.service";
+  redis-service = "podman-paperless-redis.service";
 in
 {
   config = {
@@ -24,9 +29,22 @@ in
           paperless = utils.createDirs username (builtins.attrValues paperless-paths);
         };
 
-        services.create-paperless-network = utils.createPodmanNetworkService pkgs paperless-network-name [ "podman-paperless.service" "podman-paperless-redis.service" "podman-paperless-postgres.service" ];
+        services = {
+          create-paperless-network = utils.createPodmanNetworkService pkgs paperless-network-name [ paperless-service postgres-service redis-service ];
+
+          # make sure that whenever a service gets restarted, everything gets correctly restarted
+          podman-paperless = {
+            requires = [ postgres-service redis-service ];
+            after = [ postgres-service redis-service ];
+          };
+          podman-postgres = {
+            requires = [ redis-service ];
+            after = [ redis-service ];
+          };
+        };
       }
       (utils.createSystemdZfsSnapshot pkgs "paperless" "${zpool-name}/paperless");
+
 
     virtualisation.oci-containers = {
       containers = {
