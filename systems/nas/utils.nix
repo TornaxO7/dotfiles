@@ -7,7 +7,6 @@
   createSystemdZfsSnapshot = pkgs: service-name: dataset-path:
     let
       snapshot-service-name = "${service-name}-zfs-snapshot-creator";
-      snapshot-timer-name = "${service-name}-zfs-snapshot-timer";
 
       snapshotScriptName = "${service-name}-snapshot-script";
       snapshotScript = pkgs.writeScriptBin snapshotScriptName ''
@@ -31,9 +30,9 @@
         };
       };
 
-      timers."${snapshot-timer-name}" = {
+      timers."${snapshot-service-name}" = {
         description = "Timer for ${snapshot-service-name}.service";
-        wants = [ "${snapshot-service-name}.service" ];
+        wantedBy = [ "multi-user.target" ];
         timerConfig = {
           OnCalendar = "daily";
           Persistent = true;
