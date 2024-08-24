@@ -41,6 +41,8 @@
       };
     };
 
+  # Create a podman network with the given network-name and the wanted-by list
+  # to ensure it's created before any of the services in `wantedBy` want to access it.
   createPodmanNetworkService = pkgs: network-name: wantedBy:
     let
       scriptName = "${network-name}-create-script";
