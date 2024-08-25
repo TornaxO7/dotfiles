@@ -20,6 +20,7 @@ in
     (loadService ./services/gotify.nix 49270)
     (loadService ./services/localai.nix 49280)
     (loadService ./services/gitea.nix 49290)
+    (loadService ./services/vikunja.nix 49300)
   ];
 
   config = {
