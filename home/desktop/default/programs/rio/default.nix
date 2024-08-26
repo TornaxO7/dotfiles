@@ -2,7 +2,7 @@
 {
   config = {
     programs.rio = {
-      enable = false;
+      enable = true;
       package = inputs.rio.packages.${pkgs.system}.default;
     };
 

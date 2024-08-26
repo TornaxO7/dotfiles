@@ -3,5 +3,8 @@ cursor = '▇'
 performance = "High"
 theme = "tokyonight-storm"
 
+[fonts]
+family = "FiraCode Nerd Font"
+
 [navigation]
 mode = "Plain"
