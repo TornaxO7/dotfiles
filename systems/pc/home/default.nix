@@ -12,6 +12,7 @@
       eww
       rpi-imager
       lact
+      steamcmd
     ];
 
     pointerCursor.size = 20;
