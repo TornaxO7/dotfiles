@@ -59,6 +59,7 @@ keymap = [
   { on = [
     "<A-j>",
   ], run = "seek 5", desc = "Seek down 5 units in the preview" },
+
   # Selection
   { on = [
     "<Space>",
@@ -76,20 +77,7 @@ keymap = [
     "<C-v>",
   ], run = "select_all --state=none", desc = "Inverse selection of all files" },
 
-  # Operation
-  # { on = [
-  #   "e",
-  # ], run = "open", desc = "Open the selected files" },
-  # { on = [
-  #   "E",
-  # ], run = "open --interactive", desc = "Open the selected files interactively" },
-  # { on = [
-  #   "<Enter>",
-  # ], run = "open", desc = "Open the selected files" },
-  # { on = [
-  #   "<C-Enter>",
-  # ], run = "open --interactive", desc = "Open the selected files interactively" },
-  # yank
+  # yank/delete
   { on = [
     "y",
     "y",
@@ -97,7 +85,6 @@ keymap = [
     "yank",
     "escape --visual --select",
   ], desc = "Copy the selected files" },
-
   { on = [
     "y",
     "f",
@@ -172,24 +159,6 @@ keymap = [
   { on = [
     "Z",
   ], run = "jump fzf", desc = "Jump to a directory, or reveal a file using fzf" },
-
-  # Linemode
-  { on = [
-    "m",
-    "s",
-  ], run = "linemode size", desc = "Set linemode to size" },
-  { on = [
-    "m",
-    "p",
-  ], run = "linemode permissions", desc = "Set linemode to permissions" },
-  { on = [
-    "m",
-    "m",
-  ], run = "linemode mtime", desc = "Set linemode to mtime" },
-  { on = [
-    "m",
-    "n",
-  ], run = "linemode none", desc = "Set linemode to none" },
 
   # Find
   { on = [
@@ -292,18 +261,18 @@ keymap = [
 prepend_keymap = [
   { on = [
     "m",
-  ], run = "plugin bookmarks-persistence --args=save", desc = "Save current position as a bookmark" },
+  ], run = "plugin bookmarks --args=save", desc = "Save current position as a bookmark" },
   { on = [
     "'",
-  ], run = "plugin bookmarks-persistence --args=jump", desc = "Jump to a bookmark" },
+  ], run = "plugin bookmarks --args=jump", desc = "Jump to a bookmark" },
   { on = [
     "b",
     "d",
-  ], run = "plugin bookmarks-persistence --args=delete", desc = "Delete a bookmark" },
+  ], run = "plugin bookmarks --args=delete", desc = "Delete a bookmark" },
   { on = [
     "b",
     "D",
-  ], run = "plugin bookmarks-persistence --args=delete_all", desc = "Delete all bookmarks" },
+  ], run = "plugin bookmarks --args=delete_all", desc = "Delete all bookmarks" },
   { on = [
     "e",
   ], run = "plugin jump-to-char", desc = "Jump to char" },
