@@ -16,7 +16,6 @@
     rio.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
     gtt.url = "github:TornaxO7/gtt/add-flake";
-    iamb.url = "github:ulyssa/iamb";
     bs.url = "github:godzie44/BugStalker";
     colmena.url = "github:zhaofengli/colmena";
 

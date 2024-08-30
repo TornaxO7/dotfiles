@@ -8,7 +8,6 @@
     ./nushell
     ./neovim
     ./zellij
-    # ./iamb
   ];
 
   config.programs = {
