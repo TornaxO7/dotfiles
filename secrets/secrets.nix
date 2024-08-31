@@ -7,4 +7,5 @@ let
 in
 {
   "deepl.age".publicKeys = all;
+  "atticd.age".publicKeys = all;
 }

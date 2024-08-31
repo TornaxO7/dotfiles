@@ -21,6 +21,7 @@ in
     (loadService ./services/localai.nix 49280)
     (loadService ./services/gitea.nix 49290)
     (loadService ./services/vikunja.nix 49300)
+    (loadService ./attic.nix 49400)
   ];
 
   config = {

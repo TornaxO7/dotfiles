@@ -20,6 +20,10 @@ in
         inherit owner;
         file = ./deepl.age;
       };
+      atticd = {
+        inherit owner;
+        file = ./atticd.age;
+      };
     };
   };
 }

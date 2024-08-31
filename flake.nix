@@ -11,6 +11,8 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "stable";
 
+    attic.url = "github:zhaofengli/attic";
+
     helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
     rio.url = "github:raphamorim/rio";
