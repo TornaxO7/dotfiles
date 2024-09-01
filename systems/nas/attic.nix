@@ -9,7 +9,7 @@ in
 
   config = {
     services.atticd = {
-      enable = true;
+      enable = false;
 
       credentialsFile = config.age.secrets.atticd.path;
 
