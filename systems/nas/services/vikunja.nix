@@ -1,4 +1,4 @@
-port: { pkgs, username, zpool-root, ... }:
+port: { lib, pkgs, username, zpool-root, ... }:
 let
   utils = import ../utils.nix;
   portStr = toString port;
@@ -16,13 +16,15 @@ let
   db-path = "${vikunja-root}/database";
 in
 {
-  systemd = {
-    tmpfiles.settings.vikunja = utils.createDirs username [ vikunja-data-path db-path ];
+  systemd = lib.attrsets.recursiveUpdate
+    {
+      tmpfiles.settings.vikunja = utils.createDirs username [ vikunja-data-path db-path ];
 
-    services = {
-      create-vikunja-network = utils.createPodmanNetworkService pkgs network-name [ vikunja-service-name db-service-name ];
-    };
-  };
+      services = {
+        create-vikunja-network = utils.createPodmanNetworkService pkgs network-name [ vikunja-service-name db-service-name ];
+      };
+    }
+    (utils.createSystemdZfsSnapshot pkgs "vikunja" vikunja-root);
 
   virtualisation.oci-containers.containers = {
     "${vikunja-container-name}" = {
@@ -46,7 +48,7 @@ in
 
     "${db-container-name}" = {
       image = "mariadb:latest";
-      cmd = [ "--character-set-server=utf8mb4" "--collation-server=utf8mb4_unicode_ci" ];
+      cmd = [ "--character-set-server=utf8mb4" "--collation-server=utf8mb4_unicode_ci" "--tc-heuristic-recover=rollback" ];
       environment = {
         MYSQL_ROOT_PASSWORD = "supersecret";
         MYSQL_USER = "vikunja";
