@@ -28,7 +28,14 @@ in
       {
         tmpfiles.settings.immich = utils.createDirs username directories;
 
-        services.immich-network-creator = utils.createPodmanNetworkService pkgs immich-network-name [ "immich-redis.service" ];
+        services = {
+          immich-network-creator = utils.createPodmanNetworkService pkgs immich-network-name [ "immich-redis.service" ];
+
+          podman-immich = {
+            requires = [ "podman-immich-postgres.service" ];
+            after = [ "podman-immich-postgres.service" ];
+          };
+        };
       }
       (utils.createSystemdZfsSnapshot pkgs "immich" "${zpool-name}/immich");
 
