@@ -48,7 +48,7 @@ in
 
     "${db-container-name}" = {
       image = "mariadb:latest";
-      cmd = [ "--character-set-server=utf8mb4" "--collation-server=utf8mb4_unicode_ci" "--tc-heuristic-recover=rollback" ];
+      cmd = [ "--character-set-server=utf8mb4" "--collation-server=utf8mb4_unicode_ci" ];
       environment = {
         MYSQL_ROOT_PASSWORD = "supersecret";
         MYSQL_USER = "vikunja";
