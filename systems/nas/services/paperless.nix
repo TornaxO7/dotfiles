@@ -56,6 +56,7 @@ in
           environment = {
             PAPERLESS_DBHOST = "${postgres-container-name}";
             PAPERLESS_REDIS = "redis://${redis-container-name}:6379";
+            PAPERLESS_OCR_USER_ARGS = "{\"continue_on_soft_render_error\": true}";
           };
           ports = [ "${portStr}:8000" ];
           volumes = [
