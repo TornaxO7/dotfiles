@@ -1,5 +1,4 @@
 # config: https://raphamorim.io/rio/docs/documentation/configuration-file
-cursor = '▇'
 performance = "High"
 theme = "tokyonight-storm"
 
