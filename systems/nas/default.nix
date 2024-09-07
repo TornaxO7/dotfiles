@@ -21,7 +21,8 @@ in
     (loadService ./services/localai.nix 49280)
     (loadService ./services/gitea.nix 49290)
     (loadService ./services/vikunja.nix 49300)
-    (loadService ./services/wger.nix 49400)
+    (loadService ./services/wger.nix 49310)
+    (loadService ./services/activity-watch.nix 49320)
     # (loadService ./attic.nix 49500)
   ];
 
