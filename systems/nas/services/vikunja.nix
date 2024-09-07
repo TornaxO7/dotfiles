@@ -1,4 +1,4 @@
-port: { lib, pkgs, username, zpool-root, ... }:
+port: { lib, pkgs, username, zpool-root, zpool-name, ... }:
 let
   utils = import ../utils.nix;
   portStr = toString port;
@@ -24,7 +24,7 @@ in
         create-vikunja-network = utils.createPodmanNetworkService pkgs network-name [ vikunja-service-name db-service-name ];
       };
     }
-    (utils.createSystemdZfsSnapshot pkgs "vikunja" vikunja-root);
+    (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
 
   virtualisation.oci-containers.containers = {
     "${vikunja-container-name}" = {
