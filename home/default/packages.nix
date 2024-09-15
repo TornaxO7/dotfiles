@@ -46,7 +46,6 @@ let
     sd
     speedtest-cli
     spotify-player
-    termusic
     tokei
     udisks
   ];
