@@ -22,6 +22,11 @@ in
 
       services = {
         create-vikunja-network = utils.createPodmanNetworkService pkgs network-name [ vikunja-service-name db-service-name ];
+
+        "${vikunja-container-name}" = {
+          requires = [ db-service-name ];
+          after = [ db-service-name ];
+        };
       };
     }
     (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
