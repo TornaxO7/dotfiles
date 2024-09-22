@@ -21,6 +21,9 @@
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
         trusted-users = [ config.users.users.tornax.name ];
+
+        substituters = [ "http://nas:49310" ];
+        trusted-public-keys = [ "cache.nas:nlGlXrh+kDHcfuzhyiSVkUVNKA6snAaCU77R7dXCXAY=" ];
       };
     };
 

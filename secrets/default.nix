@@ -20,9 +20,9 @@ in
         inherit owner;
         file = ./deepl.age;
       };
-      atticd = {
+      harmonia = {
         inherit owner;
-        file = ./atticd.age;
+        file = ./harmonia.age;
       };
     };
   };
