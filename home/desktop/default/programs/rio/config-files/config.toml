@@ -3,7 +3,6 @@ performance = "High"
 theme = "tokyonight-storm"
 
 [fonts]
-size = 19
 family = "FiraCode Nerd Font"
 
 [navigation]
