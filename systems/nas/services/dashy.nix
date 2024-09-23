@@ -16,7 +16,6 @@ in
       image = "docker.io/lissy93/dashy";
       ports = [ "${portStr}:8080" ];
       volumes = [
-        # CHECK: create the file!
         "${dashy-path}:/app/user-data"
       ];
     };

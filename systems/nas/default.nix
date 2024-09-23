@@ -1,20 +1,6 @@
 { pkgs, ... }:
 let
   loadService = path: port: (import path) port;
-
-  update-containers = pkgs.writeShellScriptBin "update-containers" ''
-    	SUDO=""
-    	if [[ $(id -u) -ne 0 ]]; then
-    		SUDO="sudo"
-    	fi
-
-        images=$($SUDO ${pkgs.podman}/bin/podman ps -a --format="{{.Image}}" | sort -u)
-
-        for image in $images
-        do
-          $SUDO ${pkgs.podman}/bin/podman pull $image
-        done
-  '';
 in
 {
   imports = [
@@ -23,6 +9,8 @@ in
     ./zfs
 
     # == services ==
+    ./services/image-updater.nix
+
     # starting from 49200
     (loadService ./services/dashy.nix 49200)
     (loadService ./services/paperless.nix 49210)
@@ -61,25 +49,6 @@ in
       };
 
       oci-containers.backend = "podman";
-    };
-
-    systemd = {
-      updatecontainers = {
-        timerConfig = {
-          Unit = "updatecontainers.service";
-          OnCalendar = "Mon 02:00";
-        };
-        wantedBy = [ "timers.target" ];
-      };
-
-      services = {
-        updatecontainers = {
-          serviceConfig = {
-            Type = "oneshot";
-            ExecStart = "${update-containers}";
-          };
-        };
-      };
     };
   };
 }
