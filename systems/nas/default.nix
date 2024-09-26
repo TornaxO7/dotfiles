@@ -24,6 +24,7 @@ in
     (loadService ./services/gitea.nix 49290)
     (loadService ./services/vikunja.nix 49300)
     (loadService ./services/harmonia.nix 49310) # don't forget to update the substituter
+    (loadService ./services/dns-server.nix 49320)
   ];
 
   config = {
