@@ -23,8 +23,8 @@ in
     ./services/syncthing.nix
     ./services/jellyfin.nix
     ./services/filebrowser.nix
+    ./services/microbin.nix
 
-    (oldLoadService ./services/microbin.nix 49250)
     (oldLoadService ./services/immich.nix 49260)
     (oldLoadService ./services/gotify.nix 49270)
     (oldLoadService ./services/localai.nix 49280)
