@@ -1,7 +1,6 @@
-port: { lib, username, zpool-name, pkgs, zpool-root, ip-addr, ... }:
+{ lib, username, zpool-name, pkgs, zpool-root, ... }:
 let
   utils = import ../utils.nix;
-  portStr = toString port;
 
   immich-root = "${zpool-root}/immich";
   immich-config = "${immich-root}/config";
@@ -43,7 +42,6 @@ in
       immich = {
         autoStart = true;
         image = "ghcr.io/imagegenius/immich:latest";
-        ports = [ "${portStr}:8080" ];
         environment = {
           PUID = "1000";
           PGID = "1000";
@@ -67,6 +65,13 @@ in
           "--network=${immich-network-name}"
           "--device=/dev/dri:/dev/dri"
         ];
+
+        labels = {
+          "traefik.enable" = "true";
+          "traefik.http.routers.immich.rule" = "Host(`immich.local`)";
+          "traefik.http.routers.immich.service" = "immich";
+          "traefik.http.services.immich.loadbalancer.server.port" = toString 8080;
+        };
       };
 
       immich-redis = {

@@ -24,8 +24,8 @@ in
     ./services/jellyfin.nix
     ./services/filebrowser.nix
     ./services/microbin.nix
+    ./services/immich.nix
 
-    (oldLoadService ./services/immich.nix 49260)
     (oldLoadService ./services/gotify.nix 49270)
     (oldLoadService ./services/localai.nix 49280)
     (oldLoadService ./services/gitea.nix 49290)
