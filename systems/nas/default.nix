@@ -1,6 +1,6 @@
 { pkgs, username, services-root, ... }:
 let
-  oldLoadService = path: port: (import path) port;
+  loadPortService = path: port: (import path) port;
   utils = import ./utils.nix;
 in
 {
@@ -28,8 +28,7 @@ in
     ./services/gotify.nix
     ./services/vikunja.nix
 
-    # (oldLoadService ./services/vikunja.nix 49300)
-    (oldLoadService ./services/harmonia.nix 49310) # don't forget to update the substituter
+    (loadPortService ./services/harmonia.nix 49310) # don't forget to update the substituter in modules/default.nix
   ];
 
   config = {
