@@ -1,4 +1,4 @@
-{ config, pkgs, zpool-name, ip-addr, ... }:
+{ config, pkgs, zpool-name, ... }:
 let
   gotify-token = "AKORzZjVX9w9iZM";
 
@@ -6,9 +6,9 @@ let
     POOL_STATUS=$(${pkgs.zfs}/bin/zpool status -x ${zpool-name})
 
     if [[ $POOL_STATUS == *"errors" ]]; then
-      ${pkgs.curl}/bin/curl "http://${ip-addr}:49270/message?token=${gotify-token}" -F "title=ZFS Status" -F "message=zpool contains errors!" -F "priority=5"
+      ${pkgs.curl}/bin/curl "http://gotify.local/message?token=${gotify-token}" -F "title=ZFS Status" -F "message=zpool contains errors!" -F "priority=5"
     else
-      ${pkgs.curl}/bin/curl "http://${ip-addr}:49270/message?token=${gotify-token}" -F "title=ZFS Status" -F "message=zpool is clean" -F "priority=5"
+      ${pkgs.curl}/bin/curl "http://gotify.local/message?token=${gotify-token}" -F "title=ZFS Status" -F "message=zpool is clean" -F "priority=5"
     fi
   '';
 
