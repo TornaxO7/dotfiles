@@ -26,10 +26,9 @@ in
     ./services/microbin.nix
     ./services/immich.nix
     ./services/gotify.nix
+    ./services/vikunja.nix
 
-    (oldLoadService ./services/localai.nix 49280)
-    (oldLoadService ./services/gitea.nix 49290)
-    (oldLoadService ./services/vikunja.nix 49300)
+    # (oldLoadService ./services/vikunja.nix 49300)
     (oldLoadService ./services/harmonia.nix 49310) # don't forget to update the substituter
   ];
 

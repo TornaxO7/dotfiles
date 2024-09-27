@@ -1,7 +1,6 @@
-port: { lib, pkgs, username, zpool-root, zpool-name, ... }:
+{ lib, pkgs, username, zpool-root, zpool-name, ... }:
 let
   utils = import ../utils.nix;
-  portStr = toString port;
 
   network-name = "vikunja-network";
 
@@ -35,7 +34,7 @@ in
     "${vikunja-container-name}" = {
       image = "vikunja/vikunja";
       environment = {
-        VIKUNJA_SERVICE_PUBLICURL = "http://nas:${portStr}";
+        VIKUNJA_SERVICE_PUBLICURL = "http://vikunja.local/";
         VIKUNJA_DATABASE_HOST = "${db-container-name}";
         VIKUNJA_DATABASE_PASSWORD = "password";
         VIKUNJA_DATABASE_TYPE = "mysql";
@@ -44,11 +43,17 @@ in
         VIKUNJA_SERVICE_JWTSECRET = "<a super secure random secret>";
       };
 
-      ports = [ "${portStr}:3456" ];
       dependsOn = [ "${db-container-name}" ];
       volumes = [ "${vikunja-data-path}:/app/vikunja/files" ];
 
       extraOptions = [ "--network=${network-name}" ];
+
+      labels = {
+        "traefik.enable" = "true";
+        "traefik.http.routers.vikunja.rule" = "Host(`vikunja.local`)";
+        "traefik.http.routers.vikunja.service" = "vikunja";
+        "traefik.http.services.vikunja.loadbalancer.server.port" = "3456";
+      };
     };
 
     "${db-container-name}" = {
