@@ -1,35 +1,42 @@
-port: { config, username, zpool-root, unstable, ... }:
+{ username, zpool-root, pkgs, ... }:
 let
   utils = import ../utils.nix;
-  portStr = toString port;
-
-  glances-port = port + 1;
-  glances-port-str = toString glances-port;
 
   dashy-path = "${zpool-root}/dashy";
+
+  network-name = "dashy-network";
+
+  dashy-service = "podman-dashy.service";
+  glances-service = "podman-glances.service";
 in
 {
   config = {
-    systemd.tmpfiles.settings.dashy = utils.createDirs username [ dashy-path ];
-
-    virtualisation.oci-containers.containers.dashy = {
-      image = "docker.io/lissy93/dashy";
-      ports = [ "${portStr}:8080" ];
-      volumes = [
-        "${dashy-path}:/app/user-data"
-      ];
+    systemd = {
+      tmpfiles.settings.dashy = utils.createDirs username [ dashy-path ];
+      services = {
+        create-dashy-network = utils.createPodmanNetworkService pkgs network-name [ dashy-service glances-service ];
+      };
     };
 
-    # glances
-    systemd.services."glances" = {
-      description = "Glances service https://github.com/nicolargo/glances";
-      wants = [ "podman.socket" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        ExecStart = "${unstable.glances}/bin/glances -w --disable-webui -p ${glances-port-str}";
+    virtualisation.oci-containers.containers = {
+      dashy = {
+        image = "docker.io/lissy93/dashy";
+        volumes = [
+          "${dashy-path}:/app/user-data"
+        ];
+        extraOptions = [ "--network=${network-name}" ];
       };
-      environment = {
-        TZ = config.time.timeZone;
+
+      glances = {
+        image = "nicolargo/glances:latest";
+        volumes = [
+          "/var/run/podman/podman.sock:/var/run/docker.sock"
+          "/etc/os-release:/etc/os-release:ro"
+        ];
+        environment = {
+          "GLANCES_OPT" = "-w --disable-webui";
+        };
+        extraOptions = [ "--network=${network-name}" ];
       };
     };
   };

@@ -53,6 +53,8 @@ in
           zpool-name = "hdds";
           zpool-root = "/${zpool-name}";
 
+          services-root = "/services";
+
           ip-addr = "100.88.51.57";
         };
       };

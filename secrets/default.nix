@@ -24,6 +24,10 @@ in
         inherit owner;
         file = ./harmonia.age;
       };
+      traefik-dynamicConfigFile = {
+        inherit owner;
+        file = ./traefik-dynamicConfigFile.age;
+      };
     };
   };
 }

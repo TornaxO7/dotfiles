@@ -1,8 +1,6 @@
-port: { lib, username, pkgs, zpool-name, zpool-root, ip-addr, ... }:
+{ lib, username, pkgs, zpool-name, zpool-root, ... }:
 let
   utils = import ../utils.nix;
-
-  portStr = toString port;
 
   paperless-dir = "${zpool-root}/paperless";
 
@@ -58,7 +56,6 @@ in
             PAPERLESS_REDIS = "redis://${redis-container-name}:6379";
             PAPERLESS_OCR_USER_ARGS = "{\"continue_on_soft_render_error\": true}";
           };
-          ports = [ "${portStr}:8000" ];
           volumes = [
             "${paperless-paths.data}:/usr/src/paperless/data"
             "${paperless-paths.media}:/usr/src/paperless/media"
@@ -69,6 +66,13 @@ in
             "${redis-container-name}"
           ];
           extraOptions = [ "--network=${paperless-network-name}" ];
+
+          labels = {
+            "traefik.enable" = "true";
+            "traefik.http.routers.paperelss.rule" = "Host(`paperless.local`)";
+            "traefik.http.routers.paperelss.service" = "paperelss";
+            "traefik.http.services.paperelss.loadbalancer.server.port" = toString 8000;
+          };
         };
 
         "${redis-container-name}" = {

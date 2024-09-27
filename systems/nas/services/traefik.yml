@@ -1,0 +1,6 @@
+http:
+  routers:
+    traefik-dashboard:
+      rule: Host(`traefik.local`)
+      service: api@internal
+

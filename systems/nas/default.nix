@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, username, services-root, ... }:
 let
-  loadService = path: port: (import path) port;
+  oldLoadService = path: port: (import path) port;
+  utils = import ./utils.nix;
 in
 {
   imports = [
@@ -9,22 +10,27 @@ in
     ./zfs
 
     # == services ==
+    ./services
     ./services/image-updater.nix
 
-    # starting from 49200
-    (loadService ./services/dashy.nix 49200)
-    (loadService ./services/paperless.nix 49210)
-    (loadService ./services/syncthing.nix 49220)
-    (loadService ./services/jellyfin.nix 49230)
-    (loadService ./services/filebrowser.nix 49240)
-    (loadService ./services/microbin.nix 49250)
-    (loadService ./services/immich.nix 49260)
-    (loadService ./services/gotify.nix 49270)
-    (loadService ./services/localai.nix 49280)
-    (loadService ./services/gitea.nix 49290)
-    (loadService ./services/vikunja.nix 49300)
-    (loadService ./services/harmonia.nix 49310) # don't forget to update the substituter
-    (loadService ./services/dns-server.nix 49320)
+    # docker services
+    ./services/traefik.nix
+
+    # each service here, can have a port, starting from 49200 (incrementing 10)
+    ./services/adguardhome.nix
+    ./services/homarr.nix
+    ./services/paperless.nix
+    ./services/syncthing.nix
+
+    (oldLoadService ./services/jellyfin.nix 49230)
+    (oldLoadService ./services/filebrowser.nix 49240)
+    (oldLoadService ./services/microbin.nix 49250)
+    (oldLoadService ./services/immich.nix 49260)
+    (oldLoadService ./services/gotify.nix 49270)
+    (oldLoadService ./services/localai.nix 49280)
+    (oldLoadService ./services/gitea.nix 49290)
+    (oldLoadService ./services/vikunja.nix 49300)
+    (oldLoadService ./services/harmonia.nix 49310) # don't forget to update the substituter
   ];
 
   config = {
@@ -32,6 +38,8 @@ in
       podman
       podman-compose
     ];
+
+    systemd.tmpfiles.settings.services-dir = utils.createDirs username [ services-root ];
 
     networking = {
       hostId = "17b02087";
