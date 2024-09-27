@@ -20,15 +20,16 @@ in
       "${conf-path}:/opt/adguardhome/conf"
     ];
 
-    extraOptions = [
-      "--network=host"
+    ports = [
+      "100.88.51.57:53:53"
+      "100.88.51.57:53:53/udp"
     ];
 
     labels = {
       "traefik.enable" = "true";
-      "traefik.http.routers.adguardhome.rule" = "Host(`dns.local`)";
+      "traefik.http.routers.adguardhome.rule" = "Host(`dns.local`) || Host(`nas`)";
       "traefik.http.routers.adguardhome.service" = "adguardhome";
-      "traefik.http.services.adguardhome.loadbalancer.server.port" = toString 49200;
+      "traefik.http.services.adguardhome.loadbalancer.server.port" = toString 3000;
     };
   };
 }
