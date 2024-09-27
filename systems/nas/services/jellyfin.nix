@@ -1,10 +1,6 @@
-port: { pkgs, username, zpool-name, zpool-root, ... }:
+{ pkgs, username, zpool-name, zpool-root, ... }:
 let
   utils = import ../utils.nix;
-  portStr = toString port;
-
-  metubePort = port + 1;
-  metubePortStr = toString metubePort;
 
   jellyfin-dir = "${zpool-root}/music/jellyfin";
   config-dir = "${jellyfin-dir}/config";
@@ -25,21 +21,30 @@ in
 
         login.username = username;
 
-        ports = [
-          "${portStr}:8096"
-        ];
-
         volumes = [
           "${config-dir}:/config:Z"
           "${cache-dir}:/cache:Z"
           "${songs-path}:/media:z"
         ];
+
+        labels = {
+          "traefik.enable" = "true";
+          "traefik.http.routers.jellyfin.rule" = "Host(`jellyfin.local`)";
+          "traefik.http.routers.jellyfin.service" = "jellyfin";
+          "traefik.http.services.jellyfin.loadbalancer.server.port" = toString 8096;
+        };
       };
 
       metube = {
         image = "ghcr.io/alexta69/metube";
-        ports = [ "${metubePortStr}:8081" ];
         volumes = [ "${songs-path}:/downloads" ];
+
+        labels = {
+          "traefik.enable" = "true";
+          "traefik.http.routers.metube.rule" = "Host(`metube.local`)";
+          "traefik.http.routers.metube.service" = "metube";
+          "traefik.http.services.metube.loadbalancer.server.port" = toString 8081;
+        };
       };
     };
   };

@@ -21,8 +21,8 @@ in
     ./services/homarr.nix
     ./services/paperless.nix
     ./services/syncthing.nix
+    ./services/jellyfin.nix
 
-    (oldLoadService ./services/jellyfin.nix 49230)
     (oldLoadService ./services/filebrowser.nix 49240)
     (oldLoadService ./services/microbin.nix 49250)
     (oldLoadService ./services/immich.nix 49260)
