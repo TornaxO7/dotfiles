@@ -25,8 +25,8 @@ in
     ./services/filebrowser.nix
     ./services/microbin.nix
     ./services/immich.nix
+    ./services/gotify.nix
 
-    (oldLoadService ./services/gotify.nix 49270)
     (oldLoadService ./services/localai.nix 49280)
     (oldLoadService ./services/gitea.nix 49290)
     (oldLoadService ./services/vikunja.nix 49300)
