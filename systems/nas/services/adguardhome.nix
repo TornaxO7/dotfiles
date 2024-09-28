@@ -8,8 +8,15 @@ let
   conf-path = "${adguard-root-path}/conf";
 in
 {
-  systemd.tmpfiles.settings = {
-    adguardhome = utils.createDirs username [ adguard-root-path work-path conf-path ];
+  systemd = {
+    tmpfiles.settings = {
+      adguardhome = utils.createDirs username [ adguard-root-path work-path conf-path ];
+    };
+
+    services.podman-adguardhome = rec {
+      requires = [ "tailscaled.service" ];
+      after = requires;
+    };
   };
 
   virtualisation.oci-containers.containers.adguardhome = {
