@@ -51,6 +51,9 @@
         tailscale
         cacert
       ];
+      shellAliases = {
+        "stui" = "${pkgs.systemctl-tui}/bin/systemctl-tui";
+      };
     };
 
     i18n = {
