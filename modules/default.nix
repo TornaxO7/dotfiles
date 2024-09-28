@@ -53,6 +53,7 @@
       ];
       shellAliases = {
         "stui" = "${pkgs.systemctl-tui}/bin/systemctl-tui";
+        "trs" = "${pkgs.trashy}/bin/trashy";
       };
     };
 
