@@ -26,7 +26,7 @@ in
     systemd = lib.attrsets.recursiveUpdate
       {
         tmpfiles.settings = {
-          postgres = utils.createDirs username [ postgres-path ];
+          "${postgres-container-name}" = utils.createDirs username [ postgres-path ];
           paperless = utils.createDirs username (builtins.attrValues paperless-paths);
         };
 
@@ -38,7 +38,7 @@ in
             requires = [ postgres-service redis-service ];
             after = [ postgres-service redis-service ];
           };
-          podman-postgres = {
+          "podman-${postgres-container-name}" = {
             requires = [ redis-service ];
             after = [ redis-service ];
           };
