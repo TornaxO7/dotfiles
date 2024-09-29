@@ -4,7 +4,7 @@
     anki-bin
     arandr
     appflowy
-    discord
+    vesktop
     evince
     flameshot
     inlyne
