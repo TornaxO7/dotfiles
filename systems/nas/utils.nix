@@ -41,8 +41,8 @@
     };
 
   # Create a podman network with the given network-name and the wanted-by list
-  # to ensure it's created before any of the services in `wantedBy` want to access it.
-  createPodmanNetworkService = pkgs: network-name: wantedBy:
+  # to ensure it's created before any of the services in `before` want to access it.
+  createPodmanNetworkService = pkgs: network-name: before:
     let
       scriptName = "${network-name}-create-script";
       scriptBin = pkgs.writeScriptBin scriptName ''
@@ -54,7 +54,7 @@
       '';
     in
     {
-      inherit wantedBy;
+      inherit before;
       serviceConfig = {
         ExecStart = "${pkgs.bash}/bin/bash ${scriptBin}/bin/${scriptName}";
         Type = "oneshot";
