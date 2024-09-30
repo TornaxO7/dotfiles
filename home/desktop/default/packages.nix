@@ -8,6 +8,7 @@
     evince
     flameshot
     inlyne
+    joplin-desktop
     newsflash
     pavucontrol
     playerctl
