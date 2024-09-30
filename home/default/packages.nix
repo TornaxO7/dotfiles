@@ -1,7 +1,11 @@
-{ my_flake, pkgs, ... }:
+{ my_flake, pkgs, unstable, ... }:
 let
   custom-packages = with my_flake.packages.${pkgs.system}; [
     # crates-tui
+  ];
+
+  unstable-packages = with unstable; [
+    compose2nix
   ];
 
   nixpkgs-packages = with pkgs; [
@@ -51,5 +55,5 @@ let
   ];
 in
 {
-  home.packages = custom-packages ++ nixpkgs-packages;
+  home.packages = custom-packages ++ nixpkgs-packages ++ unstable-packages;
 }

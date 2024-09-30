@@ -7,34 +7,15 @@ let
     , home-configuration
     , extra-config ? { }
     }: { name, config, ... }: {
-      imports = [ configuration ];
+      imports = [
+        configuration
+        ((import ./home-manager.nix) home-configuration)
+      ];
 
       config = lib.recursiveUpdate extra-config {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          sharedModules = [
-            self.homeManagerModules.gtt
-            inputs.wired.homeManagerModules.default
-            inputs.bs.homeManagerModules.bugstalker
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-            age = config.age;
-            my_flake = self;
-          };
-        };
-
         networking.hostName = name;
 
         deployment.targetUser = username;
-
-        home-manager.users.${username} = { ... }: {
-          imports = [
-            home-configuration
-            ../home/default
-          ];
-        };
       };
     };
 in
