@@ -60,4 +60,14 @@
         Type = "oneshot";
       };
     };
+
+  # Example:
+  # ```
+  # createContainerNames "pika" ["yes" "no"] = { yes = "pika-yes"; no = "pika-no"; }
+  # ```
+  createContainerNames = prefix: names:
+    let
+      values = map (name: { name = "${name}"; value = "${prefix}-${name}"; }) names;
+    in
+    builtins.listToAttrs values;
 }
