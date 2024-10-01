@@ -1,6 +1,10 @@
-{ pkgs, ... }:
-{
-  config.home.packages = with pkgs; [
+{ pkgs, unstable, ... }:
+let
+  unstable-pkgs = with unstable; [
+    joplin-desktop
+  ];
+
+  stable-pkgs = with pkgs; [
     anki-bin
     arandr
     appflowy
@@ -8,7 +12,6 @@
     evince
     flameshot
     inlyne
-    joplin-desktop
     newsflash
     pavucontrol
     playerctl
@@ -24,4 +27,7 @@
     xournalpp
     # yubikey-manager-qt
   ];
+in
+{
+  config.home.packages = stable-pkgs ++ unstable-pkgs;
 }
