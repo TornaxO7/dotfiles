@@ -4,11 +4,9 @@ let
 
   network-name = "vikunja-network";
 
-  vikunja-container-name = "vikunja";
-  db-container-name = "vikunja-db";
-
-  vikunja-service-name = "podman-${vikunja-container-name}.service";
-  db-service-name = "podman-${db-container-name}.service";
+  container-names = utils.createContainerNames "vikunja" [ "server" "db" ];
+  service-prefixes = builtins.mapAttrs (name: value: "podman-${value}") container-names;
+  service-full-names = builtins.mapAttrs (name: value: "${value}.service") service-prefixes;
 
   vikunja-root = "${zpool-root}/vikunja";
   vikunja-data-path = "${vikunja-root}/files";
@@ -20,22 +18,22 @@ in
       tmpfiles.settings.vikunja = utils.createDirs username [ vikunja-data-path db-path ];
 
       services = {
-        create-vikunja-network = utils.createPodmanNetworkService pkgs network-name [ vikunja-service-name db-service-name ];
+        create-vikunja-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues service-full-names);
 
-        "${vikunja-container-name}" = {
-          requires = [ db-service-name ];
-          after = [ db-service-name ];
+        "${container-names.server}" = rec {
+          requires = [ service-full-names.db ];
+          after = requires;
         };
       };
     }
     (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
 
   virtualisation.oci-containers.containers = {
-    "${vikunja-container-name}" = {
+    "${container-names.server}" = {
       image = "vikunja/vikunja";
       environment = {
         VIKUNJA_SERVICE_PUBLICURL = "http://vikunja.local/";
-        VIKUNJA_DATABASE_HOST = "${db-container-name}";
+        VIKUNJA_DATABASE_HOST = "${container-names.db}";
         VIKUNJA_DATABASE_PASSWORD = "password";
         VIKUNJA_DATABASE_TYPE = "mysql";
         VIKUNJA_DATABASE_USER = "vikunja";
@@ -43,7 +41,6 @@ in
         VIKUNJA_SERVICE_JWTSECRET = "<a super secure random secret>";
       };
 
-      dependsOn = [ "${db-container-name}" ];
       volumes = [ "${vikunja-data-path}:/app/vikunja/files" ];
 
       extraOptions = [ "--network=${network-name}" ];
@@ -51,12 +48,12 @@ in
       labels = {
         "traefik.enable" = "true";
         "traefik.http.routers.vikunja.rule" = "Host(`vikunja.local`)";
-        "traefik.http.routers.vikunja.service" = "vikunja";
+        "traefik.http.routers.vikunja.service" = container-names.server;
         "traefik.http.services.vikunja.loadbalancer.server.port" = "3456";
       };
     };
 
-    "${db-container-name}" = {
+    "${container-names.db}" = {
       image = "mariadb:latest";
       cmd = [ "--character-set-server=utf8mb4" "--collation-server=utf8mb4_unicode_ci" ];
       environment = {
