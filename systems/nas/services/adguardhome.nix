@@ -13,9 +13,9 @@ in
       adguardhome = utils.createDirs username [ adguard-root-path work-path conf-path ];
     };
 
-    services.podman-adguardhome = rec {
+    services.podman-adguardhome = {
       requires = [ "tailscaled.service" ];
-      after = requires;
+      after = [ "network-online.target" ];
     };
   };
 
