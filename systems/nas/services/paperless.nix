@@ -11,9 +11,7 @@ let
     consume = "/var/lib/paperless/consume";
   };
 
-  container-names = utils.createContainerNames "paperless" [ "server" "postgres" "redis" ];
-  service-prefixes = builtins.mapAttrs (name: value: "podman-${value}") container-names;
-  service-full-names = builtins.mapAttrs (name: value: "${value}.service") service-prefixes;
+  names = utils.createContainerNames "paperless" [ "server" "postgres" "redis" ];
 
   network-name = "paperless-network";
 in
@@ -22,16 +20,16 @@ in
     systemd = lib.attrsets.recursiveUpdate
       {
         tmpfiles.settings = {
-          "${container-names.postgres}" = utils.createDirs username [ postgres-path ];
-          "${container-names.server}" = utils.createDirs username (builtins.attrValues paperless-paths);
+          "${names.containers.postgres}" = utils.createDirs username [ postgres-path ];
+          "${names.containers.server}" = utils.createDirs username (builtins.attrValues paperless-paths);
         };
 
         services = {
-          create-paperless-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues service-full-names);
+          create-paperless-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
 
           # make sure that whenever a service gets restarted, everything gets correctly restarted
-          "${service-prefixes.server}".requires = with service-full-names; [ postgres redis ];
-          "${service-prefixes.postgres}".requires = with service-full-names; [ redis ];
+          "${names.service-prefixes.server}".requires = with names.service-full; [ postgres redis ];
+          "${names.service-prefixes.postgres}".requires = with names.service-full; [ redis ];
         };
       }
       (utils.createSystemdZfsSnapshot pkgs "paperless" "${zpool-name}/paperless");
@@ -39,11 +37,11 @@ in
 
     virtualisation.oci-containers = {
       containers = {
-        "${container-names.server}" = {
+        "${names.containers.server}" = {
           image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
           environment = {
-            PAPERLESS_DBHOST = "${container-names.postgres}";
-            PAPERLESS_REDIS = "redis://${container-names.redis}:6379";
+            PAPERLESS_DBHOST = "${names.containers.postgres}";
+            PAPERLESS_REDIS = "redis://${names.containers.redis}:6379";
             PAPERLESS_OCR_USER_ARGS = "{\"continue_on_soft_render_error\": true}";
           };
           volumes = [
@@ -61,12 +59,12 @@ in
           };
         };
 
-        "${container-names.redis}" = {
+        "${names.containers.redis}" = {
           image = "docker.io/library/redis:7";
           extraOptions = [ "--network=${network-name}" ];
         };
 
-        "${container-names.postgres}" = {
+        "${names.containers.postgres}" = {
           image = "docker.io/library/postgres:16";
           environment = {
             "POSTGRES_DB" = "paperless";

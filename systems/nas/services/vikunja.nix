@@ -4,9 +4,7 @@ let
 
   network-name = "vikunja-network";
 
-  container-names = utils.createContainerNames "vikunja" [ "server" "db" ];
-  service-prefixes = builtins.mapAttrs (name: value: "podman-${value}") container-names;
-  service-full-names = builtins.mapAttrs (name: value: "${value}.service") service-prefixes;
+  names = utils.createContainerNames "vikunja" [ "server" "db" ];
 
   vikunja-root = "${zpool-root}/vikunja";
   vikunja-data-path = "${vikunja-root}/files";
@@ -18,10 +16,10 @@ in
       tmpfiles.settings.vikunja = utils.createDirs username [ vikunja-data-path db-path ];
 
       services = {
-        create-vikunja-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues service-full-names);
+        create-vikunja-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
 
-        "${container-names.server}" = rec {
-          requires = [ service-full-names.db ];
+        "${names.containers.server}" = rec {
+          requires = [ names.service-full.db ];
           after = requires;
         };
       };
@@ -29,11 +27,11 @@ in
     (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
 
   virtualisation.oci-containers.containers = {
-    "${container-names.server}" = {
+    "${names.containers.server}" = {
       image = "vikunja/vikunja";
       environment = {
         VIKUNJA_SERVICE_PUBLICURL = "http://vikunja.local/";
-        VIKUNJA_DATABASE_HOST = "${container-names.db}";
+        VIKUNJA_DATABASE_HOST = "${names.containers.db}";
         VIKUNJA_DATABASE_PASSWORD = "password";
         VIKUNJA_DATABASE_TYPE = "mysql";
         VIKUNJA_DATABASE_USER = "vikunja";
@@ -48,12 +46,12 @@ in
       labels = {
         "traefik.enable" = "true";
         "traefik.http.routers.vikunja.rule" = "Host(`vikunja.local`)";
-        "traefik.http.routers.vikunja.service" = container-names.server;
+        "traefik.http.routers.vikunja.service" = "vikunja";
         "traefik.http.services.vikunja.loadbalancer.server.port" = "3456";
       };
     };
 
-    "${container-names.db}" = {
+    "${names.containers.db}" = {
       image = "mariadb:latest";
       cmd = [ "--character-set-server=utf8mb4" "--collation-server=utf8mb4_unicode_ci" ];
       environment = {

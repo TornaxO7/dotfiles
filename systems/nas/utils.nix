@@ -67,7 +67,11 @@
   # ```
   createContainerNames = prefix: names:
     let
-      values = map (name: { name = "${name}"; value = "${prefix}-${name}"; }) names;
+      container-names-attrset = map (name: { name = "${name}"; value = "${prefix}-${name}"; }) names;
     in
-    builtins.listToAttrs values;
+    rec {
+      containers = builtins.listToAttrs container-names-attrset;
+      service-prefixes = builtins.mapAttrs (name: value: "podman-${value}") containers;
+      service-full = builtins.mapAttrs (name: value: "${value}.service") service-prefixes;
+    };
 }

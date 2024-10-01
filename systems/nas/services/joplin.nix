@@ -3,9 +3,7 @@ let
   utils = import ../utils.nix;
   network-name = "joplin-network";
 
-  container-names = utils.createContainerNames "joplin" [ "postgres" "server" ];
-  service-prefixes = builtins.mapAttrs (name: value: "podman-${value}") container-names;
-  service-full-names = builtins.mapAttrs (name: value: "${value}.service") service-prefixes;
+  names = utils.createContainerNames "joplin" [ "postgres" "server" ];
 
   db-path = "${zpool-root}/joplin";
 in
@@ -13,19 +11,19 @@ in
   systemd = lib.attrsets.recursiveUpdate
     {
       tmpfiles.settings = {
-        "${container-names.postgres}" = utils.createDirs username [ db-path ];
+        "${names.containers.postgres}" = utils.createDirs username [ db-path ];
       };
 
       services = {
-        create-joplin-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues service-full-names);
+        create-joplin-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
 
-        "${service-prefixes.server}".requires = [ service-full-names.postgres ];
+        "${names.service-prefixes.server}".requires = [ names.service-full.postgres ];
       };
     }
     (utils.createSystemdZfsSnapshot pkgs "joplin" "${zpool-name}/joplin");
 
   virtualisation.oci-containers.containers = {
-    "${container-names.postgres}" = {
+    "${names.containers.postgres}" = {
       image = "postgres:16";
 
       environment = {
@@ -43,7 +41,7 @@ in
       ];
     };
 
-    "${container-names.server}" = {
+    "${names.containers.server}" = {
       image = "joplin/server:latest";
 
       environment = {
@@ -54,7 +52,7 @@ in
         "POSTGRES_DATABASE" = "joplin-db";
         "POSTGRES_USER" = "postgres";
         "POSTGRES_PORT" = "5432";
-        "POSTGRES_HOST" = "${container-names.postgres}";
+        "POSTGRES_HOST" = "${names.containers.postgres}";
       };
 
       extraOptions = [
@@ -63,9 +61,9 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.${container-names.server}.rule" = "Host(`joplin.local`)";
-        "traefik.http.routers.${container-names.server}.service" = container-names.server;
-        "traefik.http.services.${container-names.server}.loadbalancer.server.port" = "22300";
+        "traefik.http.routers.${names.containers.server}.rule" = "Host(`joplin.local`)";
+        "traefik.http.routers.${names.containers.server}.service" = names.containers.server;
+        "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "22300";
       };
     };
   };
