@@ -2,7 +2,8 @@
   description = "NixOS configuration";
 
   inputs = {
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.follows = "nixos-cosmic/nixpkgs";
     stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     agenix.url = "github:ryantm/agenix";
@@ -18,6 +19,7 @@
     gtt.url = "github:TornaxO7/gtt/add-flake";
     bs.url = "github:godzie44/BugStalker";
     colmena.url = "github:zhaofengli/colmena";
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 

@@ -5,6 +5,7 @@
 
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
+    ../../modules/desktop/wayland/cosmic.nix
     ../../modules/desktop/xorg/i3.nix
     ../../modules/game/steam.nix
     ../../modules/yubikey/default.nix
