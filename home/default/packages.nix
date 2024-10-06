@@ -50,6 +50,7 @@ let
     sd
     speedtest-cli
     spotify-player
+    trashy
     tokei
     udisks
   ];
