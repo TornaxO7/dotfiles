@@ -1,4 +1,7 @@
 { pkgs, inputs, lib, ... }:
+let
+  ra-multiplex-pkg = inputs.ra-multiplex.packages.${pkgs.system}.default;
+in
 {
   nix.settings = {
     extra-substituters = [ "https://helix.cachix.org" ];
@@ -12,13 +15,21 @@
       };
 
       Service = {
-        ExecStart = "${pkgs.ra-multiplex}/bin/ra-multiplex server";
+        ExecStart = "${ra-multiplex-pkg}/bin/ra-multiplex server";
       };
 
       Install = {
         WantedBy = [ "multi-user.target" ];
       };
     };
+  };
+
+  xdg.configFile.ra-multiplex = {
+    enable = true;
+    text = ''
+      pass_environment = ["PATH"]
+    '';
+    target = "ra-multiplex/config.toml";
   };
 
   programs.helix = {
@@ -28,9 +39,9 @@
 
     languages = {
       language-server = {
-
         ra-multiplex = {
-          command = "${pkgs.ra-multiplex}/bin/ra-multiplex";
+          command = "${ra-multiplex-pkg}/bin/ra-multiplex";
+          args = [ "client" ];
         };
 
         nil = {
