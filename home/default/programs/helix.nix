@@ -5,6 +5,22 @@
     extra-trusted-public-keys = [ "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs=" ];
   };
 
+  systemd.user.services = {
+    ra-multiplex = {
+      Unit = {
+        Description = "start ra-multiplex server";
+      };
+
+      Service = {
+        ExecStart = "${pkgs.ra-multiplex}/bin/ra-multiplex server";
+      };
+
+      Install = {
+        WantedBy = [ "multi-user.target" ];
+      };
+    };
+  };
+
   programs.helix = {
     enable = true;
     package = inputs.helix.packages.${pkgs.system}.default;
@@ -12,6 +28,11 @@
 
     languages = {
       language-server = {
+
+        ra-multiplex = {
+          command = "${pkgs.ra-multiplex}/bin/ra-multiplex";
+        };
+
         nil = {
           command = "${pkgs.nil}/bin/nil";
           args = [ ];
@@ -55,6 +76,12 @@
       };
 
       language = [
+        {
+          name = "rust";
+          auto-format = true;
+          file-types = [ "rust" "rs" ];
+          language-servers = [ "ra-multiplex" ];
+        }
         {
           name = "python";
           auto-format = true;
