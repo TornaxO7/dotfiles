@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    ../../modules/default_main.nix
     ./hardware-configuration.nix
 
     ./zfs

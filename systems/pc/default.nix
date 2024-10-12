@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
 
+    ../../modules/default_main.nix
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
     ../../modules/desktop/wayland/cosmic.nix
