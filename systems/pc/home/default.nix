@@ -13,6 +13,7 @@
       rpi-imager
       lact
       steamcmd
+      podman-compose
     ];
 
     pointerCursor.size = 20;
