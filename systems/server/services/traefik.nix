@@ -1,0 +1,30 @@
+{ username, ... }:
+{
+  virtualisation.oci-containers.containers.traefik = {
+    image = "traefik:v3.1";
+    cmd = [
+      "--api.dashboard=false"
+      "--providers.docker=true"
+      "--providers.docker.exposedbydefault=false"
+
+      "--entryPoints.http.address=:80"
+
+      "--entryPoints.https.address=:443"
+      "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
+      "--certificatesresolvers.main.acme.storage=acme.json"
+      "--certificatesresolvers.main.acme.httpchallenge.entrypoint=http"
+    ];
+
+    extraOptions = [
+      "--hostuser=${username}"
+    ];
+
+    ports = [
+      "80:80"
+    ];
+
+    volumes = [
+      "/var/run/podman/podman.sock:/var/run/docker.sock"
+    ];
+  };
+}

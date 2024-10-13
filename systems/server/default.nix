@@ -1,21 +1,27 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    podman
-    podman-compose
+  imports = [
+    ./services/traefik.nix
   ];
 
-  networking = {
-    networkmanager.enable = false;
-  };
+  config = {
+    environment.systemPackages = with pkgs; [
+      podman
+      podman-compose
+    ];
 
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
+    networking = {
+      networkmanager.enable = false;
     };
 
-    oci-containers.backend = "podman";
+    virtualisation = {
+      podman = {
+        enable = true;
+        dockerCompat = true;
+        defaultNetwork.settings.dns_enabled = true;
+      };
+
+      oci-containers.backend = "podman";
+    };
   };
 }
