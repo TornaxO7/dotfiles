@@ -18,7 +18,7 @@ let
     };
 in
 {
-  flake. colmena = {
+  flake.colmena = {
     meta = {
       specialArgs = {
         inherit self inputs username;
