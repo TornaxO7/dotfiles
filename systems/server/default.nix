@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./hardware-configuration.nix
     ./services/traefik.nix
   ];
 
