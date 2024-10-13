@@ -14,8 +14,6 @@ let
 
       config = lib.recursiveUpdate extra-config {
         networking.hostName = name;
-
-        deployment.targetUser = username;
       };
     };
 in
@@ -47,7 +45,6 @@ in
       {
         imports = [
           ./.
-          ../secrets
           inputs.home-manager.nixosModules.home-manager
           inputs.agenix.nixosModules.default
 
@@ -64,7 +61,10 @@ in
           stable.flake = inputs.stable;
         };
 
-        deployment.allowLocalDeployment = true;
+        deployment = {
+          allowLocalDeployment = true;
+          targetUser = username;
+        };
       };
 
     pc = mkSystem {
