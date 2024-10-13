@@ -45,7 +45,6 @@ in
     networking = {
       hostId = "17b02087";
       networkmanager.enable = false;
-      hostName = "nas";
 
       # allow DNS resolver for the docker networks
       firewall.allowedUDPPorts = [ 53 ];

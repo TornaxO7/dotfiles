@@ -18,7 +18,7 @@ let
     };
 in
 {
-  flake.colmena = {
+  flake. colmena = {
     meta = {
       specialArgs = {
         inherit self inputs username;
@@ -45,9 +45,8 @@ in
       {
         imports = [
           ./.
-          inputs.home-manager.nixosModules.home-manager
-          inputs.agenix.nixosModules.default
 
+          inputs.home-manager.nixosModules.home-manager
           self.nixosModules.bustd
         ];
 
@@ -85,6 +84,16 @@ in
     nas = mkSystem {
       configuration = ../systems/nas;
       home-configuration = ../systems/nas/home;
+    };
+
+    server = mkSystem {
+      configuartion = ../systems/server;
+      home-configuration = ../systems/server/home;
+      extra-config = {
+        deployment = {
+          targetHost = "tornaxo7.de";
+        };
+      };
     };
   };
 }
