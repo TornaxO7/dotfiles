@@ -1,9 +1,7 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../secrets
-
-    inputs.agenix.nixosModules.default
   ];
 
   config = {

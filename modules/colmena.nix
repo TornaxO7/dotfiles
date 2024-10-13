@@ -45,7 +45,9 @@ in
       {
         imports = [
           ./.
+          ../secrets
 
+          inputs.agenix.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           self.nixosModules.bustd
         ];
