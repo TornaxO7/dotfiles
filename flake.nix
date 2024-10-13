@@ -30,7 +30,6 @@
   outputs = inputs@{ self, flake-parts, stable, ... }:
     flake-parts.lib.mkFlake { inherit self inputs; } {
       imports = [
-        # ./modules/deploy.nix
         ./modules/colmena.nix
         ./shell
       ];
