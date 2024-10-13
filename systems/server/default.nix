@@ -11,6 +11,8 @@
       podman-compose
     ];
 
+    services.openssh.settings.PasswordAuthentication = false;
+
     networking = {
       networkmanager.enable = false;
     };
