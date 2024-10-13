@@ -87,7 +87,7 @@ in
     };
 
     server = mkSystem {
-      configuartion = ../systems/server;
+      configuration = ../systems/server;
       home-configuration = ../systems/server/home;
       extra-config = {
         deployment = {

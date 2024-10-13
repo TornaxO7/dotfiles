@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, modulesPath, ... }:
 {
   imports = [
     ./services/traefik.nix
+
+    (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
   ];
 
   config = {
