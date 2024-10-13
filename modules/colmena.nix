@@ -94,6 +94,7 @@ in
       extra-config = {
         deployment = {
           targetHost = "tornaxo7.de";
+          targetUser = "colmena";
         };
       };
     };

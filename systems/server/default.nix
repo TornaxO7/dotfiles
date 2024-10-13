@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -6,6 +6,23 @@
   ];
 
   config = {
+    security.sudo-rs.extraRules = [
+      {
+        users = [ "colmena" ];
+        commands = [ "ALL" ];
+        options = [ "NOPASSWD" ];
+      }
+    ];
+
+    users = {
+      groups.colmena = { };
+      users.colmena = {
+        password = null;
+        openssh.authorizedKeys.keys = config.users.users.tornax.openssh.authorizedKeys.keys;
+        isSystemUser = true;
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       podman
       podman-compose
