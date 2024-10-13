@@ -9,14 +9,14 @@
     security.sudo-rs.extraRules = [
       {
         users = [ "colmena" ];
-        commands = [ "ALL" ];
-        options = [ "NOPASSWD" ];
+        commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }];
       }
     ];
 
     users = {
       groups.colmena = { };
       users.colmena = {
+        group = "colmena";
         password = null;
         openssh.authorizedKeys.keys = config.users.users.tornax.openssh.authorizedKeys.keys;
         isSystemUser = true;

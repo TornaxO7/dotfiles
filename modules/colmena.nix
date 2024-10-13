@@ -6,6 +6,7 @@ let
     { configuration
     , home-configuration
     , extra-config ? { }
+    , targetUser ? username
     }: { name, config, ... }: {
       imports = [
         configuration
@@ -14,6 +15,7 @@ let
 
       config = lib.recursiveUpdate extra-config {
         networking.hostName = name;
+        deployment.targetUser = targetUser;
       };
     };
 in
@@ -64,7 +66,6 @@ in
 
         deployment = {
           allowLocalDeployment = true;
-          targetUser = username;
         };
       };
 
