@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -25,6 +25,11 @@
       };
 
       oci-containers.backend = "podman";
+    };
+
+    users.users.root = {
+      hashedPassword = "!";
+      openssh.authorizedKeys.keys = config.users.users.main.openssh.authorizedKeys.keys;
     };
   };
 }
