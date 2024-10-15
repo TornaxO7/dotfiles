@@ -1,4 +1,7 @@
-{ username, ... }:
+{ config, ... }:
+let
+  username = config.users.users.main.name;
+in
 {
   virtualisation.oci-containers.containers.traefik = {
     image = "traefik:v3.1";

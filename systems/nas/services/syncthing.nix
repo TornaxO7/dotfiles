@@ -1,9 +1,9 @@
-{ username, pkgs, zpool-name, zpool-root, ... }:
+{ config, pkgs, zpool-name, zpool-root, ... }:
 let
+  username = config.users.users.main.name;
   utils = import ../utils.nix;
 in
 {
-
   systemd = {
     tmpfiles.settings.syncthing = {
       "/var/lib/syncthing".d.user = username;

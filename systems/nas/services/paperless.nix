@@ -1,6 +1,7 @@
-{ lib, username, pkgs, zpool-name, zpool-root, ... }:
+{ config, lib, pkgs, zpool-name, zpool-root, ... }:
 let
   utils = import ../utils.nix;
+  username = config.users.users.main.name;
 
   paperless-dir = "${zpool-root}/paperless";
 

@@ -19,7 +19,6 @@
     yazi.url = "github:sxyazi/yazi";
     gtt.url = "github:TornaxO7/gtt/add-flake";
     bs.url = "github:godzie44/BugStalker";
-    colmena.url = "github:zhaofengli/colmena";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -30,7 +29,7 @@
   outputs = inputs@{ self, flake-parts, stable, ... }:
     flake-parts.lib.mkFlake { inherit self inputs; } {
       imports = [
-        ./modules/colmena.nix
+        ./systems
         ./shell
       ];
 
@@ -47,7 +46,6 @@
         packages = {
           bustd = pkgs.callPackage ./pkgs/bustd.nix { };
           crates-tui = pkgs.callPackage ./pkgs/crates-tui.nix { };
-          prometheus-alertmanager = pkgs.callPackage ./pkgs/prometheus-alertmanager.nix { };
         };
       };
 

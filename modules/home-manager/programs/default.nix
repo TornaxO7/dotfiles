@@ -1,12 +1,10 @@
-{ inputs, age, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./yazi
     ./helix.nix
     ./zathura.nix
     ./bugstalker.nix
-    ./nushell
-    ./neovim
     ./zellij
   ];
 
@@ -38,20 +36,6 @@
         "+i"
         "--bind=ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up"
       ];
-    };
-
-    gtt = {
-      enable = true;
-      package = inputs.gtt.packages.${pkgs.system}.default;
-      settings.api_key.DeepL.file = age.secrets.deepl.path;
-      keymap = {
-        clear = "C-l";
-
-        translate = "C-n";
-        copy_destination = "C-r";
-        exit = "C-s";
-        swap_language = "C-z";
-      };
     };
 
     home-manager.enable = true;

@@ -2,9 +2,13 @@
 let
   inherit (lib) makeBinPath;
 
-  owner = config.users.users.tornax.name;
+  owner = config.users.users.main.name;
 in
 {
+  imports = [
+    inputs.agenix.nixosModules.default
+  ];
+
   config = {
     environment.systemPackages = [ inputs.agenix.packages.${pkgs.system}.default ];
 
@@ -23,10 +27,6 @@ in
       harmonia = {
         inherit owner;
         file = ./harmonia.age;
-      };
-      traefik-dynamicConfigFile = {
-        inherit owner;
-        file = ./traefik-dynamicConfigFile.age;
       };
     };
   };

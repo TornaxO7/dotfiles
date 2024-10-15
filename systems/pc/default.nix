@@ -1,4 +1,4 @@
-{ ... }:
+username: { config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -9,7 +9,7 @@
     ../../modules/desktop/wayland/cosmic.nix
     ../../modules/desktop/xorg/i3.nix
     ../../modules/game/steam.nix
-    ../../modules/yubikey/default.nix
+    ../../modules/yubikey.nix
     ../../modules/udev_moonlander_rules.nix
     ../../modules/kdeconnect.nix
   ];
@@ -20,7 +20,7 @@
         defaultSession = "none+i3";
         autoLogin = {
           enable = true;
-          user = "tornax";
+          user = username;
         };
       };
       printing.enable = true;

@@ -1,6 +1,7 @@
-{ lib, pkgs, username, zpool-root, zpool-name, ... }:
+{ config, lib, pkgs, zpool-root, zpool-name, ... }:
 let
   utils = import ../utils.nix;
+  username = config.users.users.main.name;
 
   network-name = "vikunja-network";
 

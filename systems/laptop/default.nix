@@ -7,7 +7,7 @@
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
     ../../modules/desktop/xorg/i3.nix
-    ../../modules/yubikey/default.nix
+    ../../modules/yubikey.nix
     ../../modules/kdeconnect.nix
 
     ./users

@@ -1,6 +1,7 @@
-{ lib, username, zpool-name, pkgs, zpool-root, ... }:
+{ config, lib, zpool-name, pkgs, zpool-root, ... }:
 let
   utils = import ../utils.nix;
+  username = config.users.users.main.name;
 
   immich-root = "${zpool-root}/immich";
   immich-config = "${immich-root}/config";
