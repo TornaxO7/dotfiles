@@ -1,8 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, services-root, ... }:
+let
+  utils = import ./services/utils.nix;
+in
 {
   imports = [
     ./hardware-configuration.nix
+
     ./services/traefik.nix
+    ./services/ghost.nix
   ];
 
   config = {
@@ -10,6 +15,8 @@
       podman
       podman-compose
     ];
+
+    systemd.tmpfiles.settings.services-dir = utils.createDirs config [ services-root ];
 
     services.openssh.settings.PasswordAuthentication = false;
 

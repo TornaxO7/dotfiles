@@ -52,6 +52,9 @@ in
       configuration = ./server;
       home-configuration = ./server/home;
       hostname = "server";
+      specialArgs = {
+        services-root = "/services";
+      };
     };
   };
 }

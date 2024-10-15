@@ -11,7 +11,6 @@ in
       "--providers.docker.exposedbydefault=false"
 
       "--entryPoints.http.address=:80"
-
       "--entryPoints.https.address=:443"
       "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
       "--certificatesresolvers.main.acme.storage=acme.json"
@@ -24,6 +23,7 @@ in
 
     ports = [
       "80:80"
+      "443:443"
     ];
 
     volumes = [
