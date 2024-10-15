@@ -5,6 +5,7 @@ let
 
   hmModule = import ../modules/home-manager;
   sharedMainModule = import ../modules/default.nix;
+  systemManager = import ./system-manager.nix;
 
   mkSystem =
     { configuration
@@ -17,6 +18,7 @@ let
       };
       modules = [
         configuration
+        systemManager
         (hmModule username home-configuration)
         (sharedMainModule username hostname)
       ];
