@@ -67,6 +67,10 @@ in
         #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
         # };
 
+        css = {
+          command = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
+        };
+
         markdown-oxide = {
           command = "${lib.getExe pkgs.markdown-oxide}";
         };
@@ -87,6 +91,12 @@ in
       };
 
       language = [
+        {
+          name = "css";
+          auto-format = true;
+          file-types = [ "css" ];
+          language-servers = [ "css" ];
+        }
         {
           name = "rust";
           auto-format = true;
