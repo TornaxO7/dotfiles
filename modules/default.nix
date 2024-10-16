@@ -47,6 +47,7 @@ hostname:
       systemPackages = with pkgs; [
         cacert
         just
+        systemctl-tui
       ];
       shellAliases = {
         "stui" = "${pkgs.systemctl-tui}/bin/systemctl-tui";
