@@ -32,7 +32,7 @@ in
         "${paths.ghost-content}:/var/lib/ghost/content"
       ];
       environment = {
-        url = "https://ghost.tornaxo7.de";
+        url = "https://blog.tornaxo7.de";
 
         database__client = "mysql";
         database__connection__host = names.containers.db;
@@ -43,7 +43,7 @@ in
       extraOptions = [ "--network=${network-name}" ];
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.ghost.rule" = "Host(`ghost.tornaxo7.de`)";
+        "traefik.http.routers.ghost.rule" = "Host(`blog.tornaxo7.de`)";
         "traefik.http.routers.ghost.service" = names.containers.server;
         "traefik.http.routers.ghost.tls" = "true";
         "traefik.http.routers.ghost.tls.certresolver" = "main";
