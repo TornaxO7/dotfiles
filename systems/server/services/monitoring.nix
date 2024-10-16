@@ -33,11 +33,6 @@ in
 
       user = config.users.users.main.name;
 
-      environment = {
-        GF_FEATURE_TOGGLES_ENABLE = "externalServiceAccounts";
-        GF_INSTALL_PLUGINS = "grafana-oncall-app";
-      };
-
       labels = {
         "traefik.enable" = "true";
         "traefik.http.routers.grafana.rule" = "Host(`monitoring.tornaxo7.de`)";
