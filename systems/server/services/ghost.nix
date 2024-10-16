@@ -54,7 +54,9 @@ in
       volumes = [
         "${paths.ghost-db}:/var/lib/mysql"
       ];
-      environment = { };
+      environment = {
+        MYSQL_ROOT_PASSWORD = "very secret, I know";
+      };
       extraOptions = [ "--network=${network-name}" ];
     };
   };
