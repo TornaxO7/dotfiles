@@ -9,6 +9,7 @@ in
     ./services/traefik.nix
     ./services/ghost.nix
     ./services/monitoring.nix
+    ./services/filebrowser.nix
   ];
 
   config = {
