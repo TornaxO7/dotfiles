@@ -9,7 +9,7 @@ let
     ghost-db = "${root}/ghost-db";
   };
 
-  names = utils.createContainerNames "ghost" [ "ghost" "db" ];
+  names = utils.createContainerNames "ghost" [ "server" "db" ];
 in
 {
   systemd = {
@@ -21,12 +21,12 @@ in
     services = {
       create-ghost-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
 
-      "${names.service-prefixes.ghost}".requires = with names.service-full; [ db ];
+      "${names.service-prefixes.server}".requires = with names.service-full; [ db ];
     };
   };
 
   virtualisation.oci-containers.containers = {
-    "${names.containers.ghost}" = {
+    "${names.containers.server}" = {
       image = "ghost:5-alpine";
       volumes = [
         "${paths.ghost-content}:/var/lib/ghost/content"
@@ -35,7 +35,7 @@ in
         url = "https://ghost.tornaxo7.de";
 
         database__client = "mysql";
-        database__connection__host = "${names.containers.db}";
+        database__connection__host = names.containers.db;
         database__connection__user = "root";
         database__connection__password = "very secret, I know";
         database__connection__database = "ghost";
@@ -43,9 +43,11 @@ in
       extraOptions = [ "--network=${network-name}" ];
       labels = {
         "traefik.enable" = "true";
-        "traefik.https.routers.ghost.rule" = "Host(`ghost.tornaxo7.de`)";
-        "traefik.https.routers.ghost.service" = names.containers.db;
-        "traefik.https.services.ghost.loadbalancer.server.port" = "2368";
+        "traefik.http.routers.ghost.rule" = "Host(`ghost.tornaxo7.de`)";
+        "traefik.http.routers.ghost.service" = names.containers.server;
+        "traefik.http.routers.ghost.tls" = "true";
+        "traefik.http.routers.ghost.tls.certresolver" = "main";
+        "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "2368";
       };
     };
 

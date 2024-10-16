@@ -22,6 +22,9 @@ in
 
     networking = {
       networkmanager.enable = false;
+
+      # allow DNS resolver for the docker networks
+      firewall.allowedUDPPorts = [ 53 ];
     };
 
     virtualisation = {
