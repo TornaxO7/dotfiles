@@ -8,6 +8,7 @@ in
 
     ./services/traefik.nix
     ./services/ghost.nix
+    ./services/monitoring.nix
   ];
 
   config = {
