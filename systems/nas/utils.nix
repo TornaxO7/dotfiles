@@ -55,6 +55,8 @@
     in
     {
       inherit before;
+      # execute it after every bootup
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.bash}/bin/bash ${scriptBin}/bin/${scriptName}";
         Type = "oneshot";

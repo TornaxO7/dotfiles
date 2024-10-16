@@ -21,6 +21,8 @@
     in
     {
       inherit before;
+      # create network at bootup
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.bash}/bin/bash ${scriptBin}/bin/${scriptName}";
         Type = "oneshot";
