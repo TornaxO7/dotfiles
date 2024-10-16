@@ -1,5 +1,6 @@
-{ config, username, ... }:
+{ config, ... }:
 let
+  username = config.users.users.main.name;
   dynConfFilePath = "/dynamicConfigFile.yml";
   dynConfFilePath2 = "/dynamicConfigFile2.yml";
 in

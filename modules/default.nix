@@ -1,5 +1,11 @@
-{ self, config, pkgs, username, unstable, ... }:
+username:
+hostname:
+{ self, config, pkgs, unstable, inputs, ... }:
 {
+  imports = [
+    self.nixosModules.bustd
+  ];
+
   config = {
     boot = {
       tmp.cleanOnBoot = true;
@@ -19,32 +25,28 @@
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
-        trusted-users = [ config.users.users.tornax.name ];
+        trusted-users = [ config.users.users.main.name ];
+      };
+
+      registry = {
+        my.flake = self;
+        unstable.flake = inputs.unstable;
+        stable.flake = inputs.stable;
       };
     };
 
-    networking.hosts = {
-      # "127.0.0.1" = [ "www.youtube.com" ];
-    };
+    networking.hostName = hostname;
 
-    nixpkgs = {
-      config.allowUnfree = true;
-      config.packageOverrides = pkgs-arg: {
-        prometheus-alertmanager = self.packages.${pkgs.system}.prometheus-alertmanager;
-      };
-    };
+    nixpkgs.config.allowUnfree = true;
 
     fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
     ];
 
     environment = {
-      pathsToLink = if config.users.defaultUserShell == pkgs.zsh then [ "/share/zsh" ] else [ ];
-      sessionVariables = {
-        MOZ_USE_XINPUT2 = "1";
-      };
       systemPackages = with pkgs; [
         cacert
+        just
       ];
       shellAliases = {
         "stui" = "${pkgs.systemctl-tui}/bin/systemctl-tui";
@@ -83,7 +85,7 @@
       };
 
       users = {
-        tornax = {
+        main = {
           name = username;
           isNormalUser = true;
           description = username;

@@ -1,32 +1,22 @@
-{ config, pkgs, ... }:
+{ config, pkgs, services-root, ... }:
+let
+  utils = import ./services/utils.nix;
+in
 {
   imports = [
     ./hardware-configuration.nix
+
     ./services/traefik.nix
+    ./services/ghost.nix
   ];
 
   config = {
-    security.sudo-rs.extraRules = [
-      {
-        users = [ "colmena" ];
-        commands = [{ command = "ALL"; options = [ "NOPASSWD" ]; }];
-      }
-    ];
-
-    users = {
-      groups.colmena = { };
-      users.colmena = {
-        group = "colmena";
-        password = null;
-        openssh.authorizedKeys.keys = config.users.users.tornax.openssh.authorizedKeys.keys;
-        isSystemUser = true;
-      };
-    };
-
     environment.systemPackages = with pkgs; [
       podman
       podman-compose
     ];
+
+    systemd.tmpfiles.settings.services-dir = utils.createDirs config [ services-root ];
 
     services.openssh.settings.PasswordAuthentication = false;
 
@@ -42,6 +32,11 @@
       };
 
       oci-containers.backend = "podman";
+    };
+
+    users.users.root = {
+      hashedPassword = "!";
+      openssh.authorizedKeys.keys = config.users.users.main.openssh.authorizedKeys.keys;
     };
   };
 }

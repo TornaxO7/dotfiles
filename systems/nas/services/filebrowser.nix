@@ -1,5 +1,7 @@
-{ username, zpool-root, ... }:
+{ config, zpool-root, ... }:
 let
+  username = config.users.users.main.name;
+
   filebrowser-root = "${zpool-root}/filebrowser";
   database-path = "${filebrowser-root}/database.db";
 in

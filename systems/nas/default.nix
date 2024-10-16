@@ -1,5 +1,6 @@
-{ pkgs, username, services-root, ... }:
+{ config, pkgs, services-root, ... }:
 let
+  username = config.users.users.main.name;
   loadPortService = path: port: (import path) port;
   utils = import ./utils.nix;
 in

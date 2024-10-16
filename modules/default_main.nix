@@ -2,6 +2,7 @@
 {
   imports = [
     ../secrets
+    ../secrets/modules/gtt.nix
   ];
 
   config = {

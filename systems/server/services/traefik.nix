@@ -1,4 +1,7 @@
-{ username, ... }:
+{ config, ... }:
+let
+  username = config.users.users.main.name;
+in
 {
   virtualisation.oci-containers.containers.traefik = {
     image = "traefik:v3.1";
@@ -8,7 +11,6 @@
       "--providers.docker.exposedbydefault=false"
 
       "--entryPoints.http.address=:80"
-
       "--entryPoints.https.address=:443"
       "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
       "--certificatesresolvers.main.acme.storage=acme.json"
@@ -21,6 +23,7 @@
 
     ports = [
       "80:80"
+      "443:443"
     ];
 
     volumes = [

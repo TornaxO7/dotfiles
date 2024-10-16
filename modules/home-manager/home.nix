@@ -1,4 +1,4 @@
-{ ... }:
+username: { ... }:
 {
   imports = [
     ./packages.nix
@@ -10,8 +10,8 @@
 
   config = {
     home = {
-      username = "tornax";
-      homeDirectory = "/home/tornax";
+      inherit username;
+      homeDirectory = "/home/${username}";
 
       keyboard = {
         layout = "de";

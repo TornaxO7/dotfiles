@@ -1,6 +1,7 @@
-{ pkgs, username, zpool-name, zpool-root, ... }:
+{ config, pkgs, zpool-name, zpool-root, ... }:
 let
   utils = import ../utils.nix;
+  username = config.users.users.main.name;
 
   jellyfin-dir = "${zpool-root}/music/jellyfin";
   config-dir = "${jellyfin-dir}/config";

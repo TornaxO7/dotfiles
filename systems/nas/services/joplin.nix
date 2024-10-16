@@ -1,7 +1,8 @@
-{ username, zpool-name, zpool-root, pkgs, lib, ... }:
+{ config, zpool-name, zpool-root, pkgs, lib, ... }:
 let
   utils = import ../utils.nix;
   network-name = "joplin-network";
+  username = config.users.users.main.name;
 
   names = utils.createContainerNames "joplin" [ "postgres" "server" ];
 

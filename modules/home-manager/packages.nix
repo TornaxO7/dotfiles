@@ -1,6 +1,6 @@
-{ my_flake, pkgs, unstable, ... }:
+{ self, pkgs, unstable, ... }:
 let
-  custom-packages = with my_flake.packages.${pkgs.system}; [
+  custom-packages = with self.packages.${pkgs.system}; [
     # crates-tui
   ];
 

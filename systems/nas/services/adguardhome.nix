@@ -1,6 +1,7 @@
-{ username, services-root, ... }:
+{ config, services-root, ... }:
 let
   utils = import ../utils.nix;
+  username = config.users.users.main.name;
 
   adguard-root-path = "${services-root}/adguard-home";
 
