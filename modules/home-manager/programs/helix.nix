@@ -49,6 +49,10 @@ in
           args = [ ];
         };
 
+        html = {
+          command = "${pkgs.nodePackages_latest.vscode-html-languageserver-bin}/bin/html-languageserver";
+        };
+
         pylyzer = {
           command = "${pkgs.pylyzer}/bin/pylyzer";
           args = [ "--server" ];
@@ -96,6 +100,12 @@ in
           auto-format = true;
           file-types = [ "css" ];
           language-servers = [ "css" ];
+        }
+        {
+          name = "html";
+          auto-format = true;
+          file-types = [ "html" ];
+          language-servers = [ "html" ];
         }
         {
           name = "rust";
