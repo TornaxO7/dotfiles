@@ -29,12 +29,5 @@ in
     volumes = [
       "/var/run/podman/podman.sock:/var/run/docker.sock"
     ];
-
-    labels = {
-      "traefik.http.routers.main-domain.rule" = "Host(`tornaxo7.de`)";
-      "traefik.http.routers.main-domain.middlewares" = "main-domain@docker";
-      "traefik.http.middlewares.main-domain.redirectregex.regex" = "^https?://tornaxo7\.de(/(.*))?";
-      "traefik.http.middlewares.main-domain.redirectregex.replacement" = "https://blog.tornaxo7.de/$${1}";
-    };
   };
 }
