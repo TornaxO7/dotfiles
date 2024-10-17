@@ -1,9 +1,12 @@
-{ config, ... }:
+{ config, services-root, ... }:
 let
   username = config.users.users.main.name;
 in
 {
   virtualisation.oci-containers.containers.traefik = {
+
+    user = config.users.users.main.name;
+
     image = "traefik:v3.1";
     cmd = [
       "--api.dashboard=false"
@@ -28,6 +31,8 @@ in
 
     volumes = [
       "/var/run/podman/podman.sock:/var/run/docker.sock"
+      "${services-root}/acme.json:/acme.json"
+      "/etc/passwd:/etc/passwd:ro"
     ];
   };
 }
