@@ -1,7 +1,7 @@
 { config, services-root, ... }:
 let
   utils = import ./utils.nix;
-  domain = "dashboard.tornaxo7.de";
+  domain = "tornaxo7.de";
 
   paths = rec {
     root = "${services-root}/homarr";
