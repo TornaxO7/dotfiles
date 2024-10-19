@@ -12,6 +12,7 @@ in
     ./services/ghost.nix
     ./services/monitoring.nix
     ./services/filebrowser.nix
+    ./services/vikunja.nix
   ];
 
   config = {
