@@ -28,7 +28,6 @@ in
     ./services/immich.nix
     ./services/gotify.nix
     ./services/vikunja.nix
-    ./services/joplin.nix
 
     (loadPortService ./services/harmonia.nix 49310) # don't forget to update the substituter in modules/default.nix
   ];
