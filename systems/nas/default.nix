@@ -13,12 +13,12 @@ in
 
     # == services ==
     ./services
-    ./services/image-updater.nix
 
     # docker services
     ./services/traefik.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
+    ./services/watchtower.nix
     ./services/adguardhome.nix
     ./services/homarr.nix
     ./services/paperless.nix
