@@ -14,6 +14,7 @@
       lact
       steamcmd
       podman-compose
+      android-studio
     ];
 
     pointerCursor.size = 20;
