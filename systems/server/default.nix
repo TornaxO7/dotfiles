@@ -6,8 +6,6 @@ in
   imports = [
     ./hardware-configuration.nix
 
-    ./services/image-updater.nix
-
     ./services/traefik.nix
     ./services/ghost.nix
     ./services/monitoring.nix

@@ -2,9 +2,8 @@
 let
   utils = import ./utils.nix;
   domain = "gotify.tornaxo7.de";
-  paths = rec {
+  paths = {
     root = "${services-root}/gotify";
-    config = "${root}/config";
   };
 in
 {
@@ -16,10 +15,10 @@ in
       image = "ghcr.io/gotify/server";
       volumes = [
         "${paths.root}:/app/data"
-        "${paths.config}:/etc/gotify"
       ];
       environment = {
         TZ = config.time.timeZone;
+        GOTIFY_REGISTRATION = "false";
       };
 
       labels = {
