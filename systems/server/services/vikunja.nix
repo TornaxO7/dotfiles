@@ -38,6 +38,7 @@ in
         VIKUNJA_DATABASE_USER = "vikunja";
         VIKUNJA_DATABASE_DATABASE = "vikunja";
         VIKUNJA_SERVICE_JWTSECRET = "<a super secure random secret>";
+        VIKUNJA_SERVICE_ENABLEREGISTRATION = "false";
       };
 
       volumes = [ "${paths.data}:/app/vikunja/files" ];
