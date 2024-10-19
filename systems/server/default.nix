@@ -14,6 +14,7 @@ in
     ./services/homarr.nix
     ./services/gotify.nix
     ./services/watchtower.nix
+    ./services/joplin.nix
   ];
 
   config = {
