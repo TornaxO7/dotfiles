@@ -25,7 +25,6 @@ in
     ./services/syncthing.nix
     ./services/jellyfin.nix
     ./services/filebrowser.nix
-    ./services/microbin.nix
     ./services/immich.nix
     ./services/gotify.nix
     ./services/vikunja.nix
