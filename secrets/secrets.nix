@@ -9,4 +9,5 @@ in
   "deepl.age".publicKeys = all;
   "harmonia.age".publicKeys = all;
   "traefik-dynamicConfigFile.age".publicKeys = all;
+  "gotify-token.age".publicKeys = all;
 }

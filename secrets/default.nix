@@ -2,7 +2,10 @@
 let
   inherit (lib) makeBinPath;
 
-  owner = config.users.users.main.name;
+  add-secret = path: {
+    owner = config.users.users.main.name;
+    file = path;
+  };
 in
 {
   imports = [
@@ -20,14 +23,9 @@ in
     ];
 
     age.secrets = {
-      deepl = {
-        inherit owner;
-        file = ./deepl.age;
-      };
-      harmonia = {
-        inherit owner;
-        file = ./harmonia.age;
-      };
+      deepl = add-secret ./deepl.age;
+      harmonia = add-secret ./harmonia.age;
+      gotify-token = add-secret ./gotify-token.age;
     };
   };
 }
