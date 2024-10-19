@@ -13,6 +13,7 @@ in
     ./services/vikunja.nix
     ./services/homarr.nix
     ./services/gotify.nix
+    ./services/watchtower.nix
   ];
 
   config = {
