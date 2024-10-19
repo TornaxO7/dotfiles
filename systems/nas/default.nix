@@ -26,7 +26,6 @@ in
     ./services/jellyfin.nix
     ./services/filebrowser.nix
     ./services/immich.nix
-    ./services/vikunja.nix
 
     (loadPortService ./services/harmonia.nix 49310) # don't forget to update the substituter in modules/default.nix
   ];
