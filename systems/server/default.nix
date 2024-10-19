@@ -13,6 +13,8 @@ in
     ./services/monitoring.nix
     ./services/filebrowser.nix
     ./services/vikunja.nix
+    ./services/homarr.nix
+    ./services/gotify.nix
   ];
 
   config = {
