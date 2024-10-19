@@ -3,7 +3,8 @@
   config = {
     programs.rio = {
       enable = true;
-      package = inputs.rio.packages.${pkgs.system}.default;
+      # package = inputs.rio.packages.${pkgs.system}.default;
+      package = pkgs.rio;
     };
 
     xdg.configFile.rio = {
