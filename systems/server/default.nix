@@ -15,6 +15,7 @@ in
     ./services/gotify.nix
     ./services/watchtower.nix
     ./services/joplin.nix
+    # ./services/adguardhome.nix
   ];
 
   config = {

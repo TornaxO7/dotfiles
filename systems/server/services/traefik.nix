@@ -12,6 +12,8 @@ in
 
       "--entryPoints.http.address=:80"
       "--entryPoints.https.address=:443"
+      "--entryPoints.https.asDefault=true"
+
       "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
       "--certificatesresolvers.main.acme.storage=acme.json"
       "--certificatesresolvers.main.acme.httpchallenge.entrypoint=http"
