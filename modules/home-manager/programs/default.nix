@@ -55,11 +55,8 @@
           editor = "hx";
         };
 
-        merge.tool = "nvimdiff";
-
-        mergetool = {
-          vimdiff.layout = "(LOCAL,REMOTE)/MERGED";
-          keepBackup = false;
+        delta = {
+          side-by-side = true;
         };
 
         push.autoSetupRemote = true;
