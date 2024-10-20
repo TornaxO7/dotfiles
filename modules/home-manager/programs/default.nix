@@ -56,6 +56,7 @@
         };
 
         delta = {
+          hyperlinks = true;
           side-by-side = true;
         };
 
