@@ -45,9 +45,6 @@ in
       oci-containers.backend = "podman";
     };
 
-    users.users.root = {
-      hashedPassword = "!";
-      openssh.authorizedKeys.keys = config.users.users.main.openssh.authorizedKeys.keys;
-    };
+    users.users.root.hashedPassword = "!";
   };
 }
