@@ -1,10 +1,10 @@
-{ config, inputs, pkgs, ... }:
+{ config, unstable, ... }:
 {
   config = {
     programs.rio = {
       enable = true;
       # package = inputs.rio.packages.${pkgs.system}.default;
-      package = pkgs.rio;
+      package = unstable.rio;
     };
 
     xdg.configFile.rio = {
