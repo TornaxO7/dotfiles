@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -45,6 +45,9 @@
         };
       };
     };
+
+    virtualisation.virtualbox.host.enable = true;
+    users.extraGroups.vboxusers.members = [ config.users.users.main.name ];
 
     networking = {
       networkmanager.enable = true;

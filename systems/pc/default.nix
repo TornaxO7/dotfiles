@@ -26,6 +26,9 @@ username: { config, ... }:
       printing.enable = true;
     };
 
+    virtualisation.virtualbox.host.enable = true;
+    users.extraGroups.vboxusers.members = [ config.users.users.main.name ];
+
     boot.initrd.kernelModules = [ "amdgpu" ];
     services.xserver.videoDrivers = [ "amdgpu" ];
 
