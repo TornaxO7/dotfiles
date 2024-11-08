@@ -46,6 +46,7 @@ in
 
         matlab = {
           command = "${pkgs.matlab-language-server}/bin/matlab-language-server";
+          args = [ "--stdio" ];
         };
 
         nil = {
