@@ -44,6 +44,10 @@ in
           args = [ "client" ];
         };
 
+        matlab = {
+          command = "${pkgs.matlab-language-server}/bin/matlab-language-server";
+        };
+
         nil = {
           command = "${pkgs.nil}/bin/nil";
           args = [ ];
@@ -192,6 +196,12 @@ in
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
             args = [ "--stdin-filepath" "rofl.md" ];
           };
+        }
+        {
+          name = "matlab";
+          auto-format = true;
+          file-types = [ "matlab" ];
+          language-servers = [ "matlab" ];
         }
       ];
     };
