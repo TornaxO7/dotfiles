@@ -44,7 +44,7 @@ keymap = [
   ], desc = "Go back to the parent directory" },
   { on = [
     "l",
-  ], run = "plugin --sync smart-enter", desc = "Enter the child directory" },
+  ], run = "plugin smart-enter", desc = "Enter the child directory" },
 
   { on = [
     "<C-o>",
