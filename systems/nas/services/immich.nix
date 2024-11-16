@@ -96,7 +96,12 @@ in
         ];
 
         dependsOn = [ "immich-redis" ];
-        extraOptions = [ "--network=${immich-network-name}" ];
+        extraOptions = [
+          "--network=${immich-network-name}"
+
+          "--mount"
+          "type=tmpfs,destination=/var/lib/postgresql/data/pg_stat_tmp"
+        ];
       };
     };
   };
