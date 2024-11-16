@@ -34,6 +34,8 @@ in
 
       extraOptions = [
         "--network=${network-name}"
+        "--mount"
+        "type=tmpfs,destination=/var/lib/postgresql/data/pg_stat_tmp"
       ];
 
       volumes = [
