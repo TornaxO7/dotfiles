@@ -72,7 +72,11 @@ in
             "POSTGRES_USER" = "paperless";
             "POSTGRES_PASSWORD" = "paperless";
           };
-          extraOptions = [ "--network=${network-name}" ];
+          extraOptions = [
+            "--network=${network-name}"
+            "--mount"
+            "type=tmpfs,destination=/var/lib/postgresql/data/pg_stat_tmp"
+          ];
           volumes = [
             "${postgres-path}:/var/lib/postgresql/data"
           ];
