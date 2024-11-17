@@ -26,7 +26,10 @@ in
 
     systemd.tmpfiles.settings.services-dir = utils.createDirs config [ services-root ];
 
-    services.openssh.settings.PasswordAuthentication = false;
+    services = {
+      openssh.settings.PasswordAuthentication = false;
+      qemuGuest.enable = true;
+    };
 
     networking = {
       networkmanager.enable = false;
