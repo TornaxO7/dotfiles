@@ -53,7 +53,7 @@ in
         titlebar = false;
       };
       assigns = {
-        "4" = [{ class = "discord"; }];
+        "4" = [{ class = "vesktop"; }];
         "5" = [{ class = "spotify"; }];
       };
 
