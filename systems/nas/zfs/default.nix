@@ -5,9 +5,9 @@ let
     TOKEN=$(cat ${config.age.secrets.gotify-token.path})
 
     if [[ $POOL_STATUS == *"errors" ]]; then
-      ${pkgs.curl}/bin/curl "https://gotify.tornaxo7.de/message?token=$TOKEN" -F "title=ZFS Status" -F "message=zpool contains errors!" -F "priority=5"
+      ${pkgs.curl}/bin/curl "http://gotify.nas.local/message?token=$TOKEN" -F "title=ZFS Status" -F "message=zpool contains errors!" -F "priority=5"
     else
-      ${pkgs.curl}/bin/curl "https://gotify.tornaxo7.de/message?token=$TOKEN" -F "title=ZFS Status" -F "message=zpool is clean" -F "priority=5"
+      ${pkgs.curl}/bin/curl "http://gotify.nas.local/message?token=$TOKEN" -F "title=ZFS Status" -F "message=zpool is clean" -F "priority=5"
     fi
   '';
 
