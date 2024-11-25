@@ -7,6 +7,7 @@ let
   names = utils.createContainerNames "joplin" [ "postgres" "server" ];
 
   db-path = "${zpool-root}/joplin";
+  domain = "joplin.nas.local";
 in
 {
   systemd = lib.attrsets.recursiveUpdate
@@ -47,7 +48,7 @@ in
 
       environment = {
         "APP_PORT" = "22300";
-        "APP_BASE_URL" = "http://joplin.local";
+        "APP_BASE_URL" = "http://${domain}";
         "DB_CLIENT" = "pg";
         "POSTGRES_PASSWORD" = "very-secret-password-rofl";
         "POSTGRES_DATABASE" = "joplin-db";
@@ -62,7 +63,7 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.${names.containers.server}.rule" = "Host(`joplin.nas.local`)";
+        "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
         "traefik.http.routers.${names.containers.server}.service" = names.containers.server;
         "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "22300";
       };
