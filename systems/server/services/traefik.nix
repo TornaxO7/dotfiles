@@ -1,12 +1,24 @@
-{ config, services-root, ... }:
+{ config, services-root, domain-root, ... }:
 let
   username = config.users.users.main.name;
+
+  acme-path = "${services-root}/acme.json";
+
+  domain = "traefik.${domain-root}";
 in
 {
+  systemd = {
+    tmpfiles.settings.acme_file."${acme-path}".f = {
+      user = username;
+      mode = "0600";
+    };
+  };
+
   virtualisation.oci-containers.containers.traefik = {
-    image = "traefik:v3.1";
+    image = "traefik:latest";
     cmd = [
-      "--api.dashboard=false"
+      "--api=true"
+
       "--providers.docker=true"
       "--providers.docker.exposedbydefault=false"
 
@@ -30,8 +42,19 @@ in
 
     volumes = [
       "/var/run/podman/podman.sock:/var/run/docker.sock"
-      "${services-root}/acme:/etc/traefik/acme"
+      "${acme-path}:/acme.json"
       "/etc/passwd:/etc/passwd:ro"
     ];
+
+    labels = {
+      "traefik.enable" = "true";
+      "traefik.http.routers.dashboard.rule" = "Host(`${domain}`)";
+      "traefik.http.routers.dashboard.service" = "api@internal";
+      "traefik.http.routers.dashboard.tls" = "true";
+      "traefik.http.routers.dashboard.tls.certresolver" = "main";
+
+      "traefik.http.routers.dashboard.middlewares" = "auth";
+      "traefik.http.middlewares.auth.digestauth.users" = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
+    };
   };
 }

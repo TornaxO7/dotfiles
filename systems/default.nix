@@ -54,6 +54,7 @@ in
       hostname = "server";
       specialArgs = {
         services-root = "/services";
+        domain-root = "tornaxo7.de";
       };
     };
   };

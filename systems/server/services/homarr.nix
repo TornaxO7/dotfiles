@@ -1,6 +1,6 @@
-utils: { config, services-root, ... }:
+utils: { config, services-root, domain-root, ... }:
 let
-  domain = "tornaxo7.de";
+  domain = domain-root;
 
   paths = rec {
     root = "${services-root}/homarr";
