@@ -62,7 +62,7 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.${names.containers.server}.rule" = "Host(`joplin.local`)";
+        "traefik.http.routers.${names.containers.server}.rule" = "Host(`joplin.nas.local`)";
         "traefik.http.routers.${names.containers.server}.service" = names.containers.server;
         "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "22300";
       };
