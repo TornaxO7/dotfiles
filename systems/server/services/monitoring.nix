@@ -1,4 +1,4 @@
-utils: { config, pkgs, services-root, ... }:
+utils: { config, pkgs, services-root, domain-root, ... }:
 let
   network-name = "monitoring-network";
 
@@ -13,6 +13,8 @@ let
     "prometheus"
     "node-exporter"
   ];
+
+  domain = "monitoring.${domain-root}";
 in
 {
   systemd = {
@@ -34,7 +36,7 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.grafana.rule" = "Host(`monitoring.tornaxo7.de`)";
+        "traefik.http.routers.grafana.rule" = "Host(`${domain}`)";
         "traefik.http.routers.grafana.service" = names.containers.grafana;
         "traefik.http.services.${names.containers.grafana}.loadbalancer.server.port" = "3000";
         "traefik.http.routers.grafana.tls" = "true";

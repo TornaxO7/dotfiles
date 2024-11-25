@@ -1,4 +1,4 @@
-utils: { config, services-root, pkgs, ... }:
+utils: { config, services-root, pkgs, domain-root, ... }:
 let
   network-name = "headscale-network";
 
@@ -8,7 +8,7 @@ let
   };
 
   names = utils.createContainerNames "headscale" [ "server" ];
-  domain = "headscale.tornaxo7.de";
+  domain = "headscale.${domain-root}";
 in
 {
   systemd = {

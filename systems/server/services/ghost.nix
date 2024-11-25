@@ -1,4 +1,4 @@
-utils: { config, services-root, pkgs, ... }:
+utils: { config, services-root, pkgs, domain-root, ... }:
 let
   network-name = "ghost-network";
 
@@ -7,6 +7,8 @@ let
     ghost-content = "${root}/ghost-content";
     ghost-db = "${root}/ghost-db";
   };
+
+  domain = "blog.${domain-root}";
 
   names = utils.createContainerNames "ghost" [ "server" "db" ];
 in
@@ -31,7 +33,7 @@ in
         "${paths.ghost-content}:/var/lib/ghost/content"
       ];
       environment = {
-        url = "https://blog.tornaxo7.de";
+        url = "https://${domain}";
 
         database__client = "mysql";
         database__connection__host = names.containers.db;
@@ -42,7 +44,7 @@ in
       extraOptions = [ "--network=${network-name}" ];
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.ghost.rule" = "Host(`blog.tornaxo7.de`)";
+        "traefik.http.routers.ghost.rule" = "Host(`${domain}`)";
         "traefik.http.routers.ghost.service" = names.containers.server;
         "traefik.http.routers.ghost.tls" = "true";
         "traefik.http.routers.ghost.tls.certresolver" = "main";
