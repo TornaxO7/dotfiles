@@ -13,6 +13,7 @@ in
     (loadService ./services/filebrowser.nix)
     (loadService ./services/homarr.nix)
     (loadService ./services/watchtower.nix)
+    # (loadService ./services/whoogle.nix)
     # (loadService ./services/headscale.nix)
   ];
 
