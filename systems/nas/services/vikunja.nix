@@ -46,7 +46,7 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.vikunja.rule" = "Host(`vikunja.local`)";
+        "traefik.http.routers.vikunja.rule" = "Host(`vikunja.nas.local`)";
         "traefik.http.routers.vikunja.service" = "vikunja";
         "traefik.http.services.vikunja.loadbalancer.server.port" = "3456";
       };

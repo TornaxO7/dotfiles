@@ -54,7 +54,7 @@ in
 
           labels = {
             "traefik.enable" = "true";
-            "traefik.http.routers.paperelss.rule" = "Host(`paperless.local`)";
+            "traefik.http.routers.paperelss.rule" = "Host(`paperless.nas.local`)";
             "traefik.http.routers.paperelss.service" = "paperelss";
             "traefik.http.services.paperelss.loadbalancer.server.port" = toString 8000;
           };

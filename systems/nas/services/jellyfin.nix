@@ -30,7 +30,7 @@ in
 
         labels = {
           "traefik.enable" = "true";
-          "traefik.http.routers.jellyfin.rule" = "Host(`jellyfin.local`)";
+          "traefik.http.routers.jellyfin.rule" = "Host(`jellyfin.nas.local`)";
           "traefik.http.routers.jellyfin.service" = "jellyfin";
           "traefik.http.services.jellyfin.loadbalancer.server.port" = toString 8096;
         };
@@ -42,7 +42,7 @@ in
 
         labels = {
           "traefik.enable" = "true";
-          "traefik.http.routers.metube.rule" = "Host(`metube.local`)";
+          "traefik.http.routers.metube.rule" = "Host(`metube.nas.local`)";
           "traefik.http.routers.metube.service" = "metube";
           "traefik.http.services.metube.loadbalancer.server.port" = toString 8081;
         };

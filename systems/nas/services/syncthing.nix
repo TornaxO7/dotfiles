@@ -28,7 +28,7 @@ in
 
     labels = {
       "traefik.enable" = "true";
-      "traefik.http.routers.syncthing.rule" = "Host(`syncthing.local`)";
+      "traefik.http.routers.syncthing.rule" = "Host(`syncthing.nas.local`)";
       "traefik.http.routers.syncthing.service" = "syncthing";
       "traefik.http.services.syncthing.loadbalancer.server.port" = toString 8384;
     };

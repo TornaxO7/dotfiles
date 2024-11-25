@@ -69,7 +69,7 @@ in
 
         labels = {
           "traefik.enable" = "true";
-          "traefik.http.routers.immich.rule" = "Host(`immich.local`)";
+          "traefik.http.routers.immich.rule" = "Host(`immich.nas.local`)";
           "traefik.http.routers.immich.service" = "immich";
           "traefik.http.services.immich.loadbalancer.server.port" = toString 8080;
         };

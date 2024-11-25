@@ -35,7 +35,7 @@ in
 
     labels = {
       "traefik.enable" = "true";
-      "traefik.http.routers.adguardhome.rule" = "Host(`dns.local`) || Host(`nas`)";
+      "traefik.http.routers.adguardhome.rule" = "Host(`dns.nas.local`) || Host(`nas`)";
       "traefik.http.routers.adguardhome.service" = "adguardhome";
       "traefik.http.services.adguardhome.loadbalancer.server.port" = toString 3000;
     };
