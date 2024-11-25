@@ -13,7 +13,7 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.gotify.rule" = "Host(`gotify.local`)";
+        "traefik.http.routers.gotify.rule" = "Host(`gotify.nas.local`)";
         "traefik.http.routers.gotify.service" = "gotify";
         "traefik.http.services.gotify.loadbalancer.server.port" = toString 80;
       };
