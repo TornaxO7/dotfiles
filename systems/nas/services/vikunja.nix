@@ -19,10 +19,7 @@ in
       services = {
         create-vikunja-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
 
-        "${names.containers.server}" = rec {
-          requires = [ names.service-full.db ];
-          after = requires;
-        };
+        "${names.containers.server}".requires = with names.service-full; [ db ];
       };
     }
     (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
@@ -31,7 +28,7 @@ in
     "${names.containers.server}" = {
       image = "vikunja/vikunja";
       environment = {
-        VIKUNJA_SERVICE_PUBLICURL = "http://vikunja.local/";
+        VIKUNJA_SERVICE_PUBLICURL = "http://vikunja.nas.local/";
         VIKUNJA_DATABASE_HOST = "${names.containers.db}";
         VIKUNJA_DATABASE_PASSWORD = "password";
         VIKUNJA_DATABASE_TYPE = "mysql";
@@ -66,3 +63,4 @@ in
     };
   };
 }
+
