@@ -1,8 +1,5 @@
-{ config, lib, zpool-name, pkgs, zpool-root, ... }:
+utils: { config, lib, zpool-name, pkgs, zpool-root, ... }:
 let
-  utils = import ../utils.nix;
-  username = config.users.users.main.name;
-
   immich-root = "${zpool-root}/immich";
   immich-config = "${immich-root}/config";
   immich-photos = "${immich-root}/photos";
@@ -26,7 +23,7 @@ in
   config = {
     systemd = lib.attrsets.recursiveUpdate
       {
-        tmpfiles.settings.immich = utils.createDirs username directories;
+        tmpfiles.settings.immich = utils.createDirs config directories;
 
         services = {
           immich-network-creator = utils.createPodmanNetworkService pkgs immich-network-name [ "immich-redis.service" ];

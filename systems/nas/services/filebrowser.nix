@@ -1,4 +1,4 @@
-{ config, zpool-root, ... }:
+utils: { config, zpool-root, ... }:
 let
   username = config.users.users.main.name;
 

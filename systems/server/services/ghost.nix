@@ -1,6 +1,5 @@
-{ config, services-root, pkgs, ... }:
+utils: { config, services-root, pkgs, ... }:
 let
-  utils = import ./utils.nix;
   network-name = "ghost-network";
 
   paths = rec {

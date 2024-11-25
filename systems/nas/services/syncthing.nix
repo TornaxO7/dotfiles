@@ -1,7 +1,6 @@
-{ config, pkgs, zpool-name, zpool-root, ... }:
+utils: { config, pkgs, zpool-name, zpool-root, ... }:
 let
   username = config.users.users.main.name;
-  utils = import ../utils.nix;
 in
 {
   systemd = {

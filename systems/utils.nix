@@ -1,6 +1,10 @@
 {
   # Create directories with the paths provided in `dir-paths` with the user-owner `username`.
-  createDirs = username: dir-paths: builtins.listToAttrs (map (dir: { name = "${dir}"; value = { d.user = username; }; }) dir-paths);
+  createDirs = config: dir-paths:
+    let
+      username = config.users.users.main.name;
+    in
+    builtins.listToAttrs (map (dir: { name = "${dir}"; value = { d.user = username; }; }) dir-paths);
 
   # Create a systemd service and timer for the given service name which
   # creates daily snapshots of the given dateset-path.
@@ -39,7 +43,6 @@
         };
       };
     };
-
   # Create a podman network with the given network-name and the wanted-by list
   # to ensure it's created before any of the services in `before` want to access it.
   createPodmanNetworkService = pkgs: network-name: before:
@@ -55,7 +58,7 @@
     in
     {
       inherit before;
-      # execute it after every bootup
+      # create network at bootup
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.bash}/bin/bash ${scriptBin}/bin/${scriptName}";

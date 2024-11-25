@@ -1,4 +1,4 @@
-{ ... }:
+utils: { ... }:
 {
   virtualisation.oci-containers.containers.watchtower = {
     image = "containrrr/watchtower";

@@ -1,8 +1,9 @@
 { config, pkgs, services-root, ... }:
 let
-  username = config.users.users.main.name;
   loadPortService = path: port: (import path) port;
-  utils = import ./utils.nix;
+  utils = import ../utils.nix;
+
+  loadService = path: (import path) utils;
 in
 {
   imports = [
@@ -18,16 +19,16 @@ in
     ./services/traefik.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
-    ./services/watchtower.nix
-    ./services/adguardhome.nix
-    ./services/paperless.nix
-    ./services/syncthing.nix
-    ./services/jellyfin.nix
-    ./services/filebrowser.nix
-    ./services/immich.nix
-    ./services/vikunja.nix
-    ./services/gotify.nix
-    ./services/joplin.nix
+    (loadService ./services/watchtower.nix)
+    (loadService ./services/adguardhome.nix)
+    (loadService ./services/paperless.nix)
+    (loadService ./services/syncthing.nix)
+    (loadService ./services/jellyfin.nix)
+    (loadService ./services/filebrowser.nix)
+    (loadService ./services/immich.nix)
+    (loadService ./services/vikunja.nix)
+    (loadService ./services/gotify.nix)
+    (loadService ./services/joplin.nix)
 
     # (loadPortService ./services/harmonia.nix 49310) # don't forget to update the substituter in modules/default_main.nix
   ];
@@ -38,7 +39,7 @@ in
       podman-compose
     ];
 
-    systemd.tmpfiles.settings.services-dir = utils.createDirs username [ services-root ];
+    systemd.tmpfiles.settings.services-dir = utils.createDirs config [ services-root ];
 
     networking = {
       hostId = "17b02087";

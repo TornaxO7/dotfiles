@@ -1,6 +1,5 @@
-{ config, pkgs, services-root, ... }:
+utils: { config, pkgs, services-root, ... }:
 let
-  utils = import ./utils.nix;
   network-name = "monitoring-network";
 
   paths = rec {

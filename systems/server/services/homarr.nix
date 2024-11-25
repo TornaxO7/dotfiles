@@ -1,6 +1,5 @@
-{ config, services-root, ... }:
+utils: { config, services-root, ... }:
 let
-  utils = import ./utils.nix;
   domain = "tornaxo7.de";
 
   paths = rec {

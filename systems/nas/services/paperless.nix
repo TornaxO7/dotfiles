@@ -1,8 +1,5 @@
-{ config, lib, pkgs, zpool-name, zpool-root, ... }:
+utils: { config, lib, pkgs, zpool-name, zpool-root, ... }:
 let
-  utils = import ../utils.nix;
-  username = config.users.users.main.name;
-
   paperless-dir = "${zpool-root}/paperless";
 
   postgres-path = "/var/lib/postgresql/data";
@@ -21,8 +18,8 @@ in
     systemd = lib.attrsets.recursiveUpdate
       {
         tmpfiles.settings = {
-          "${names.containers.postgres}" = utils.createDirs username [ postgres-path ];
-          "${names.containers.server}" = utils.createDirs username (builtins.attrValues paperless-paths);
+          "${names.containers.postgres}" = utils.createDirs config [ postgres-path ];
+          "${names.containers.server}" = utils.createDirs config (builtins.attrValues paperless-paths);
         };
 
         services = {

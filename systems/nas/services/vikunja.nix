@@ -1,8 +1,5 @@
-{ config, lib, pkgs, zpool-root, zpool-name, ... }:
+utils: { config, lib, pkgs, zpool-root, zpool-name, ... }:
 let
-  utils = import ../utils.nix;
-  username = config.users.users.main.name;
-
   network-name = "vikunja-network";
 
   names = utils.createContainerNames "vikunja" [ "server" "db" ];
@@ -14,7 +11,7 @@ in
 {
   systemd = lib.attrsets.recursiveUpdate
     {
-      tmpfiles.settings.vikunja = utils.createDirs username [ vikunja-data-path db-path ];
+      tmpfiles.settings.vikunja = utils.createDirs config [ vikunja-data-path db-path ];
 
       services = {
         create-vikunja-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);

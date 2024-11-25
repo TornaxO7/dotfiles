@@ -1,6 +1,5 @@
-{ config, pkgs, zpool-name, zpool-root, ... }:
+utils: { config, pkgs, zpool-name, zpool-root, ... }:
 let
-  utils = import ../utils.nix;
   username = config.users.users.main.name;
 
   jellyfin-dir = "${zpool-root}/music/jellyfin";
@@ -11,7 +10,7 @@ in
 {
   config = {
     systemd = {
-      tmpfiles.settings.jellyfin = utils.createDirs username [ jellyfin-dir config-dir cache-dir songs-path ];
+      tmpfiles.settings.jellyfin = utils.createDirs config [ jellyfin-dir config-dir cache-dir songs-path ];
     }
     //
     (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${zpool-name}/music");

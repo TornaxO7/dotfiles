@@ -1,4 +1,4 @@
-{ config, zpool-root, ... }:
+utils: { config, zpool-root, ... }:
 let
   gotifyRoot = "${zpool-root}/gotify";
 in

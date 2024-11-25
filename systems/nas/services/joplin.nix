@@ -1,8 +1,6 @@
-{ config, zpool-name, zpool-root, pkgs, lib, ... }:
+utils: { config, zpool-name, zpool-root, pkgs, lib, ... }:
 let
-  utils = import ../utils.nix;
   network-name = "joplin-network";
-  username = config.users.users.main.name;
 
   names = utils.createContainerNames "joplin" [ "postgres" "server" ];
 
@@ -13,7 +11,7 @@ in
   systemd = lib.attrsets.recursiveUpdate
     {
       tmpfiles.settings = {
-        "${names.containers.postgres}" = utils.createDirs username [ db-path ];
+        "${names.containers.postgres}" = utils.createDirs config [ db-path ];
       };
 
       services = {

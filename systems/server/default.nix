@@ -1,17 +1,18 @@
 { config, pkgs, services-root, ... }:
 let
-  utils = import ./services/utils.nix;
+  utils = import ../utils.nix;
+  loadService = path: (import path) utils;
 in
 {
   imports = [
     ./hardware-configuration.nix
 
     ./services/traefik.nix
-    ./services/ghost.nix
-    ./services/monitoring.nix
-    ./services/filebrowser.nix
-    ./services/homarr.nix
-    ./services/watchtower.nix
+    (loadService ./services/ghost.nix)
+    (loadService ./services/monitoring.nix)
+    (loadService ./services/filebrowser.nix)
+    (loadService ./services/homarr.nix)
+    (loadService ./services/watchtower.nix)
   ];
 
   config = {

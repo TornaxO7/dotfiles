@@ -1,8 +1,5 @@
-{ config, services-root, ... }:
+utils: { config, services-root, ... }:
 let
-  utils = import ../utils.nix;
-  username = config.users.users.main.name;
-
   adguard-root-path = "${services-root}/adguard-home";
 
   work-path = "${adguard-root-path}/work";
@@ -11,7 +8,7 @@ in
 {
   systemd = {
     tmpfiles.settings = {
-      adguardhome = utils.createDirs username [ adguard-root-path work-path conf-path ];
+      adguardhome = utils.createDirs config [ adguard-root-path work-path conf-path ];
     };
 
     services.podman-adguardhome = {

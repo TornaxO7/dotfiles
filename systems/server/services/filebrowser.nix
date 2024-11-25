@@ -1,7 +1,5 @@
-{ config, services-root, ... }:
+utils: { config, services-root, ... }:
 let
-  utils = import ./utils.nix;
-
   paths = rec {
     root = "${services-root}/filebrowser";
     database = "${root}/database";
