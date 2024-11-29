@@ -4,16 +4,18 @@ let
 
   domain = domain-root;
 
-  public-root = "${services-root}/website";
+  paths = {
+    website = "${services-root}/website";
+  };
 in
 {
-  systemd.tmpfiles.settings.website-files = utils.createDirs config [ public-root ];
+  systemd.tmpfiles.settings.website-files = utils.createDirs config (builtins.attrValues paths);
 
   virtualisation.oci-containers.containers.website = {
     image = "joseluisq/static-web-server:latest";
 
     volumes = [
-      "${public-root}:/public"
+      "${paths.website}/public:/public"
     ];
 
     labels = {
