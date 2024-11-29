@@ -1,6 +1,6 @@
 utils: { config, services-root, domain-root, ... }:
 let
-  domain = domain-root;
+  domain = "dashboard.${domain-root}";
 
   paths = rec {
     root = "${services-root}/homarr";
