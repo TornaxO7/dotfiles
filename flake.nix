@@ -4,12 +4,12 @@
   inputs = {
     # unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.follows = "nixos-cosmic/nixpkgs";
-    stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "stable";
 
     helix.url = "github:helix-editor/helix/master";

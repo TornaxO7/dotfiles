@@ -55,7 +55,7 @@ in
         };
 
         html = {
-          command = "${pkgs.nodePackages_latest.vscode-html-languageserver-bin}/bin/html-languageserver";
+          command = "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server";
         };
 
         pylyzer = {
@@ -77,7 +77,11 @@ in
         # };
 
         css = {
-          command = "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server";
+          command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
+        };
+
+        scss = {
+          command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
         };
 
         markdown-oxide = {
@@ -85,7 +89,7 @@ in
         };
 
         json = {
-          command = "${pkgs.nodePackages_latest.vscode-json-languageserver}/bin/vscode-json-languageserver";
+          command = "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server";
           args = [ "--stdio" ];
         };
 
@@ -109,6 +113,12 @@ in
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
             args = [ "--stdin-filepath" "rofl.css" ];
           };
+        }
+        {
+          name = "scss";
+          auto-format = true;
+          file-types = [ "scss" ];
+          language-servers = [ "scss" ];
         }
         {
           name = "html";

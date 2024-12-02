@@ -16,7 +16,7 @@ in
 {
   config = {
     boot = {
-      kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+      kernelPackages = pkgs.linuxPackages_latest;
       supportedFilesystems = [ "zfs" ];
       zfs.extraPools = [ zpool-name ];
     };
