@@ -30,17 +30,17 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1732979601,
-        "narHash": "sha256-B+dvPINtT0txm0kUTyMpVC3a9b1TtC1Lmq8DlibgkiQ=",
-        "owner": "godzie44",
-        "repo": "BugStalker",
-        "rev": "79b8ed3e9f2d321131a893c5db8f2e475df4d400",
-        "type": "github"
+        "lastModified": 1733144584,
+        "narHash": "sha256-MxGtGuV8ZJ7VEZ1DltUlVjVrisZkPxBAgBhjbjIJYqE=",
+        "ref": "refs/heads/bump-flake",
+        "rev": "48e99906f4ed9b9337afecb8a284af56f94f1039",
+        "revCount": 397,
+        "type": "git",
+        "url": "file:///home/tornax/projects/BugStalker"
       },
       "original": {
-        "owner": "godzie44",
-        "repo": "BugStalker",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/tornax/projects/BugStalker"
       }
     },
     "crane": {

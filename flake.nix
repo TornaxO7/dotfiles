@@ -18,7 +18,8 @@
     rio.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
     gtt.url = "github:TornaxO7/gtt/add-flake";
-    bs.url = "github:godzie44/BugStalker";
+    # bs.url = "github:godzie44/BugStalker";
+    bs.url = "/home/tornax/projects/BugStalker";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
