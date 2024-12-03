@@ -2,7 +2,6 @@
   description = "NixOS configuration";
 
   inputs = {
-    # unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.follows = "nixos-cosmic/nixpkgs";
     stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
