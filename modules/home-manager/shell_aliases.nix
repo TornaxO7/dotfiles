@@ -3,6 +3,7 @@
 
   ze = "zellij";
 
+  en = "$EDITOR $(tv)";
   em = "$EDITOR /tmp/test.md";
   et = "$EDITOR /tmp/test.txt";
   ec = "$EDITOR /tmp/test.c";
