@@ -1,10 +1,7 @@
 {
   p = "python";
-  pac = "paru -Slq | fzf -m --preview \"paru -Si {1}\"| xargs -ro paru -S";
 
   ze = "zellij";
-
-  v = "vifm .";
 
   em = "$EDITOR /tmp/test.md";
   et = "$EDITOR /tmp/test.txt";
@@ -17,22 +14,12 @@
   ela = "$EDITOR /tmp/test.tex";
   eja = "$EDITOR /tmp/Test.java";
   ea = "$EDITOR /tmp/test.s";
-  en = "$EDITOR /tmp/test.norg";
 
   cc = "cargo check";
   ct = "cargo test";
   cr = "cargo run";
   cb = "cargo build";
-  ctt = "crates-tui";
 
-  rx = "redshift -orx";
-  r1 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1000";
-  r2 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:1500";
-  r3 = "redshift -or -b 0.8:0.6 -l 52.52:13.4 -l manual -t 5700:2000";
-
-  ew = "wiki-tui";
-
-  tm = "termusic";
   nd = "nix develop";
 
   # git
