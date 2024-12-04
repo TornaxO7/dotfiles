@@ -53,7 +53,10 @@
       networkmanager.enable = true;
     };
 
-    programs.nm-applet.enable = true;
+    programs = {
+      steam.enable = true;
+      nm-applet.enable = true;
+    };
     services.printing.enable = true;
 
     # to have audio
