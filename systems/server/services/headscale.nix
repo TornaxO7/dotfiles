@@ -4,13 +4,12 @@ let
 
   paths = rec {
     root = "${services-root}/headscale";
-    config = "${root}/headscale-config";
-    data = "${root}/headscale-data";
+    config = "${root}/config";
+    data = "${root}/data";
   };
 
   names = utils.createContainerNames "headscale" [ "server" "webui" ];
-  server-domain = "headscale.${domain-root}";
-  ui-domain = "ui.${server-domain}";
+  domain = "headscale.${domain-root}";
 in
 {
   systemd = {
@@ -27,39 +26,54 @@ in
 
   virtualisation.oci-containers.containers = {
     "${names.containers.server}" = {
-      image = "headscale/headscale:stable";
+      image = "headscale/headscale:latest";
       volumes = [
-        "${paths.config}:/etc/headscale"
         "${paths.data}:/var/lib/headscale"
+        "${paths.config}:/etc/headscale"
       ];
       labels = {
         "traefik.enable" = "true";
 
-        "traefik.http.routers.headscale-8080.rule" = "Host(`${server-domain}`)";
-        "traefik.http.routers.headscale-8080.service" = "headscale-8080";
-        "traefik.http.routers.headscale-8080.tls" = "true";
-        "traefik.http.routers.headscale-8080.tls.certresolver" = "main";
-        "traefik.http.services.headscale-8080.loadbalancer.server.port" = "8080";
-
-        "traefik.http.routers.headscale-9090.rule" = "Host(`${server-domain}`)";
-        "traefik.http.routers.headscale-9090.service" = "headscale-9090";
-        "traefik.http.routers.headscale-9090.tls" = "true";
-        "traefik.http.routers.headscale-9090.tls.certresolver" = "main";
-        "traefik.http.services.headscale-9090.loadbalancer.server.port" = "9090";
+        "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`) && PathPrefix(`/`)";
+        "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
+        "traefik.http.routers.${names.containers.server}.tls" = "true";
+        "traefik.http.routers.${names.containers.server}.tls.certresolver" = "main";
+        "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "8080";
       };
+      cmd = [ "serve" ];
+      extraOptions = [ "--network=${network-name}" ];
     };
 
     "${names.containers.webui}" = {
-      image = "ghcr.io/gurucomputing/headscale-ui:latest";
+      image = "ghcr.io/tale/headplane:latest";
+
+      volumes = [
+        "${paths.data}:/var/lib/headscale"
+        "${paths.config}:/etc/headscale"
+        "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
+      ];
+
+      environmentFiles = [
+        config.age.secrets.headplane-cookie.path
+      ];
+
+      environment = {
+        HEADSCALE_URL = "https://${domain}";
+        HEADSCALE_INTEGRATION = "docker";
+        HEADSCALE_CONTAINER = names.containers.server;
+        DISABLE_API_KEY_LOGIN = "true";
+      };
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.hoadscale-ui.rule" = "Host(`${ui-domain}`)";
-        "traefik.http.routers.hoadscale-ui.service" = names.containers.webui;
-        "traefik.http.routers.hoadscale-ui.tls" = "true";
-        "traefik.http.routers.hoadscale-ui.tls.certresolver" = "main";
-        "traefik.http.services.${names.containers.webui}.loadbalancer.server.port" = "8443";
+        "traefik.http.routers.${names.containers.webui}.rule" = "Host(`${domain}`) && PathPrefix(`/admin`)";
+        "traefik.http.routers.${names.containers.webui}.service" = names.containers.webui;
+        "traefik.http.routers.${names.containers.webui}.tls" = "true";
+        "traefik.http.routers.${names.containers.webui}.tls.certresolver" = "main";
+        "traefik.http.services.${names.containers.webui}.loadbalancer.server.port" = "3000";
       };
+
+      extraOptions = [ "--network=${network-name}" ];
     };
   };
 }

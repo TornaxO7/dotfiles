@@ -1,10 +1,11 @@
-{ config, pkgs, services-root, ... }:
+{ inputs, config, pkgs, services-root, ... }:
 let
   utils = import ../utils.nix;
   loadService = path: (import path) utils;
 in
 {
   imports = [
+    ./secrets.nix
     ./hardware-configuration.nix
 
     ./services/traefik.nix
@@ -14,6 +15,7 @@ in
     (loadService ./services/homarr.nix)
     (loadService ./services/watchtower.nix)
     (loadService ./services/website.nix)
+    (loadService ./services/headscale.nix)
   ];
 
   config = {
