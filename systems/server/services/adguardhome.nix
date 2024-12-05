@@ -9,7 +9,6 @@ let
   names = utils.createContainerNames "dns" [ "server" ];
 
   domain = "dns.${domain-root}";
-  ui-domain = "ui.${domain}";
 in
 {
   systemd = {
@@ -31,19 +30,11 @@ in
     labels = {
       "traefik.enable" = "true";
 
-      # general 
       "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
       "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
-      "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "443";
+      "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "3000";
       "traefik.http.routers.${names.containers.server}.tls" = "true";
       "traefik.http.routers.${names.containers.server}.tls.certresolver" = "main";
-
-      # ui
-      "traefik.http.routers.${names.containers.server}-ui.rule" = "Host(`${ui-domain}`)";
-      "traefik.http.routers.${names.containers.server}-ui.service" = "${names.containers.server}-ui";
-      "traefik.http.services.${names.containers.server}-ui.loadbalancer.server.port" = "3000";
-      "traefik.http.routers.${names.containers.server}-ui.tls" = "true";
-      "traefik.http.routers.${names.containers.server}-ui.tls.certresolver" = "main";
     };
   };
 }

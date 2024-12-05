@@ -45,6 +45,7 @@ in
         zpool-root = "/${zpool-name}";
 
         services-root = "/services";
+        domain-root = "nas.local";
       };
     };
 
