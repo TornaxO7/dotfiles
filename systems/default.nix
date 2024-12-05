@@ -46,6 +46,7 @@ in
 
         services-root = "/services";
         domain-root = "nas.local";
+        ip-addr = "100.88.51.57";
       };
     };
 

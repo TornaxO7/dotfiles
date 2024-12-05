@@ -1,4 +1,4 @@
-utils: { config, services-root, domain-root, ... }:
+utils: { config, services-root, ip-addr, domain-root, ... }:
 let
   adguard-root-path = "${services-root}/adguard-home";
 
@@ -28,18 +28,16 @@ in
       "${conf-path}:/opt/adguardhome/conf"
     ];
 
+    ports = [
+      "${ip-addr}:53:53"
+      "${ip-addr}:53:53/udp"
+    ];
+
     labels = {
       "traefik.enable" = "true";
-
-      # udp
-      "traefik.udp.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
-      "traefik.udp.routers.${names.containers.server}.service" = "${names.containers.server}";
-      "traefik.udp.services.${names.containers.server}.loadbalancer.server.port" = "3000";
-
-      # tcp
-      "traefik.tcp.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
-      "traefik.tcp.routers.${names.containers.server}.service" = "${names.containers.server}";
-      "traefik.tcp.services.${names.containers.server}.loadbalancer.server.port" = "3000";
+      "traefik.http.routers.${names.containers.server}.rule" = "Host(`dns.${domain}`) || Host(`nas`)";
+      "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
+      "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "3000";
     };
   };
 }

@@ -1,6 +1,5 @@
 { config, pkgs, services-root, ... }:
 let
-  loadPortService = path: port: (import path) port;
   utils = import ../utils.nix;
 
   loadService = path: (import path) utils;

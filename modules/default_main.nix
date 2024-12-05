@@ -20,6 +20,10 @@
       tailscale.enable = true;
     };
 
+    networking = {
+      nameservers = [ "100.88.51.57" ];
+    };
+
     security.sudo-rs.wheelNeedsPassword = false;
   };
 }
