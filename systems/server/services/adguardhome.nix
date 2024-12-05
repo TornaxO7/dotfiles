@@ -1,12 +1,15 @@
-{ config, services-root, ... }:
+utils: { config, services-root, domain-root, ... }:
 let
-  utils = import ./utils.nix;
-
   paths = rec {
     root = "${services-root}/adguardhome";
     work = "${root}/work";
     conf = "${root}/conf";
   };
+
+  names = utils.createContainerNames "dns" [ "server" ];
+
+  domain = "dns.${domain-root}";
+  ui-domain = "ui.${domain}";
 in
 {
   systemd = {
@@ -17,7 +20,7 @@ in
     };
   };
 
-  virtualisation.oci-containers.containers.adguardhome = {
+  virtualisation.oci-containers.containers.${names.containers.server} = {
     image = "adguard/adguardhome";
 
     volumes = [
@@ -25,18 +28,22 @@ in
       "${paths.conf}:/opt/adguardhome/conf"
     ];
 
-    labels =
-      let
-        dns = "adguardhome.tornaxo7.de";
-      in
-      {
-        "traefik.enable" = "true";
+    labels = {
+      "traefik.enable" = "true";
 
-        "traefik.http.routers.admin-ui.rule" = "Host(`${dns}`)";
-        "traefik.http.routers.admin-ui.service" = "admin-ui";
-        "traefik.http.services.admin-ui.loadbalancer.server.port" = toString 3000;
-        "traefik.http.routers.admin-ui.tls" = "true";
-        "traefik.http.routers.admin-ui.tls.certresolver" = "main";
-      };
+      # general 
+      "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
+      "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
+      "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "443";
+      "traefik.http.routers.${names.containers.server}.tls" = "true";
+      "traefik.http.routers.${names.containers.server}.tls.certresolver" = "main";
+
+      # ui
+      "traefik.http.routers.${names.containers.server}-ui.rule" = "Host(`${ui-domain}`)";
+      "traefik.http.routers.${names.containers.server}-ui.service" = "${names.containers.server}-ui";
+      "traefik.http.services.${names.containers.server}-ui.loadbalancer.server.port" = "3000";
+      "traefik.http.routers.${names.containers.server}-ui.tls" = "true";
+      "traefik.http.routers.${names.containers.server}-ui.tls.certresolver" = "main";
+    };
   };
 }

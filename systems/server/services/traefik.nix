@@ -26,10 +26,6 @@ in
       "--entryPoints.https.address=:443"
       "--entryPoints.https.asDefault=true"
 
-      # required for headscale
-      # "--entryPoints.headscale8080.address=:8080"
-      # "--entryPoints.headscale8080.address=:9090"
-
       "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
       "--certificatesresolvers.main.acme.storage=acme.json"
       "--certificatesresolvers.main.acme.httpchallenge.entrypoint=http"
