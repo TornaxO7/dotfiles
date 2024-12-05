@@ -2,10 +2,10 @@ utils: { config, lib, pkgs, zpool-name, zpool-root, ... }:
 let
   paperless-dir = "${zpool-root}/paperless";
 
-  postgres-path = "/var/lib/postgresql/data";
   paperless-paths = {
     data = "${paperless-dir}/data";
     media = "${paperless-dir}/media";
+    dbs = "/var/lib/paperless/data";
     consume = "/var/lib/paperless/consume";
   };
 
@@ -18,7 +18,6 @@ in
     systemd = lib.attrsets.recursiveUpdate
       {
         tmpfiles.settings = {
-          "${names.containers.postgres}" = utils.createDirs config [ postgres-path ];
           "${names.containers.server}" = utils.createDirs config (builtins.attrValues paperless-paths);
         };
 
@@ -75,7 +74,7 @@ in
             "type=tmpfs,destination=/var/lib/postgresql/data/pg_stat_tmp"
           ];
           volumes = [
-            "${postgres-path}:/var/lib/postgresql/data"
+            "${paperless-paths.dbs}:/var/lib/postgresql/data"
           ];
         };
       };

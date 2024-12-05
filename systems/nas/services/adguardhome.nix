@@ -35,7 +35,7 @@ in
 
     labels = {
       "traefik.enable" = "true";
-      "traefik.http.routers.${names.containers.server}.rule" = "Host(`dns.${domain}`) || Host(`nas`)";
+      "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`) || Host(`nas`)";
       "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
       "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "3000";
     };

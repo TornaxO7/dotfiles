@@ -4,14 +4,17 @@ let
 
   names = utils.createContainerNames "joplin" [ "postgres" "server" ];
 
-  db-path = "${zpool-root}/joplin";
+  paths = {
+    root = "${zpool-root}/joplin";
+  };
+
   domain = "joplin.nas.local";
 in
 {
   systemd = lib.attrsets.recursiveUpdate
     {
       tmpfiles.settings = {
-        "${names.containers.postgres}" = utils.createDirs config [ db-path ];
+        "${names.containers.postgres}" = utils.createDirs config (builtins.attrValues paths);
       };
 
       services = {
@@ -37,7 +40,7 @@ in
       ];
 
       volumes = [
-        "${db-path}:/var/lib/postgresql/data"
+        "${paths.root}:/var/lib/postgresql/data"
       ];
     };
 
