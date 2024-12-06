@@ -50,7 +50,8 @@ in
           description = "Create a backup of paperless";
           wantedBy = [ "multi-user.target" ];
           timerConfig = {
-            OnCalendar = "daily";
+            # every three hour
+            OnCalendar = "*-*-* 00,03,06,09,12,15,18,21:00:00";
             Persistent = true;
           };
         };

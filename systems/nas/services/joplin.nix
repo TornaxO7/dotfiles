@@ -4,8 +4,8 @@ let
 
   names = utils.createContainerNames "joplin" [ "postgres" "server" ];
 
-  paths = {
-    root = "${zpool-root}/joplin";
+  volumes = {
+    db = "database";
   };
 
   domain = "joplin.nas.local";
@@ -13,10 +13,6 @@ in
 {
   systemd = lib.attrsets.recursiveUpdate
     {
-      tmpfiles.settings = {
-        "${names.containers.postgres}" = utils.createDirs config (builtins.attrValues paths);
-      };
-
       services = {
         create-joplin-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
 
@@ -40,7 +36,7 @@ in
       ];
 
       volumes = [
-        "${paths.root}:/var/lib/postgresql/data"
+        "${volumes.db}:/var/lib/postgresql/data"
       ];
     };
 
