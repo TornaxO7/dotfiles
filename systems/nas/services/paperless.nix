@@ -4,7 +4,7 @@ let
   backup-root = "${zpool-root}/paperless";
 
   binds = rec {
-    backup = "${backup-root}/backup";
+    backup = backup-root;
 
     service-root = "${services-root}/paperless";
     consume = "${service-root}/consume";
