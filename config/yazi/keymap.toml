@@ -226,19 +226,6 @@ keymap = [
     "w",
   ], run = "tasks_show", desc = "Show the tasks manager" },
 
-  # Goto
-  { on = [
-    "g",
-    "h",
-  ], run = "cd ~", desc = "Go to the home directory" },
-  { on = [
-    "g",
-    "d",
-  ], run = "cd ~/dotfiles", desc = "Go to the dotfiles directory" },
-  { on = [
-    "g",
-    "t",
-  ], run = "cd /tmp", desc = "Go to the temporary directory" },
   { on = [
     "c",
     "d",
