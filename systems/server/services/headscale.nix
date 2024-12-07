@@ -2,7 +2,8 @@ utils: { config, services-root, pkgs, domain-root, ... }:
 let
   network-name = "headscale-network";
 
-  paths = rec {
+  binds = rec {
+
     root = "${services-root}/headscale";
     config = "${root}/config";
     data = "${root}/data";
@@ -13,23 +14,16 @@ let
 in
 {
   systemd = {
-    tmpfiles.settings = {
-      headscale-root = utils.createDirs config [ paths.root ];
-      headscale-config = utils.createDirs config [ paths.config ];
-      headscale-data = utils.createDirs config [ paths.data ];
-    };
-
-    services = {
-      create-headscale-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
-    };
+    tmpfiles.settings.headscale = utils.createDirs config (builtins.attrValues binds);
+    services.create-headscale-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
   };
 
   virtualisation.oci-containers.containers = {
     "${names.containers.server}" = {
       image = "headscale/headscale:latest";
       volumes = [
-        "${paths.data}:/var/lib/headscale"
-        "${paths.config}:/etc/headscale"
+        "${binds.data}:/var/lib/headscale"
+        "${binds.config}:/etc/headscale"
       ];
       labels = {
         "traefik.enable" = "true";
@@ -48,8 +42,8 @@ in
       image = "ghcr.io/tale/headplane:latest";
 
       volumes = [
-        "${paths.data}:/var/lib/headscale"
-        "${paths.config}:/etc/headscale"
+        "${binds.data}:/var/lib/headscale"
+        "${binds.config}:/etc/headscale"
         "/var/run/podman/podman.sock:/var/run/docker.sock:ro"
       ];
 
