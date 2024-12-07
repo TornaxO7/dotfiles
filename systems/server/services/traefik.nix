@@ -23,10 +23,15 @@ in
       "--providers.docker.exposedbydefault=false"
 
       "--entryPoints.http.address=:80"
-      "--entryPoints.DoT.address=:853"
-
       "--entryPoints.https.address=:443"
       "--entryPoints.https.asDefault=true"
+
+      # "--entryPoints.DoT.address=:853"
+
+      # mail
+      # "--entryPoints.smtp.address=:25"
+      # "--entryPoints.smtps.address=:465"
+      # "--entryPoints.imaps.address=:993"
 
       "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
       "--certificatesresolvers.main.acme.storage=acme.json"
@@ -40,7 +45,14 @@ in
     ports = [
       "80:80"
       "443:443"
-      "853:853/tcp"
+
+      # DoT
+      # "853:853/tcp"
+
+      # mail
+      # "25:25/tcp"
+      # "465:465/tcp"
+      # "993:993/tcp"
     ];
 
     volumes = [
