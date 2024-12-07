@@ -9,6 +9,7 @@ utils: { ... }:
 
     environment = {
       TZ = "DE";
+      WATCHTOWER_TIMEOUT = "30s";
     };
   };
 }
