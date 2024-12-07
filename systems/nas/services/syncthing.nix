@@ -1,6 +1,7 @@
-utils: { config, pkgs, zpool-name, zpool-root, ... }:
+utils: { config, pkgs, zpool-name, zpool-root, domain-root, ... }:
 let
   username = config.users.users.main.name;
+  domain = "syncthing.${domain-root}";
 in
 {
   systemd = {
@@ -27,9 +28,9 @@ in
 
     labels = {
       "traefik.enable" = "true";
-      "traefik.http.routers.syncthing.rule" = "Host(`syncthing.nas.local`)";
+      "traefik.http.routers.syncthing.rule" = "Host(`${domain}`)";
       "traefik.http.routers.syncthing.service" = "syncthing";
-      "traefik.http.services.syncthing.loadbalancer.server.port" = toString 8384;
+      "traefik.http.services.syncthing.loadbalancer.server.port" = "8384";
     };
 
     ports = [

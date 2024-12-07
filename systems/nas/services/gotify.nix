@@ -1,6 +1,7 @@
-utils: { config, zpool-root, ... }:
+utils: { config, zpool-root, domain-root, ... }:
 let
   gotifyRoot = "${zpool-root}/gotify";
+  domain = "gotify.${domain-root}";
 in
 {
   config = {
@@ -13,9 +14,9 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.gotify.rule" = "Host(`gotify.nas.local`)";
+        "traefik.http.routers.gotify.rule" = "Host(`${domain}`)";
         "traefik.http.routers.gotify.service" = "gotify";
-        "traefik.http.services.gotify.loadbalancer.server.port" = toString 80;
+        "traefik.http.services.gotify.loadbalancer.server.port" = "80";
       };
     };
   };

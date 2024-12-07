@@ -1,4 +1,4 @@
-utils: { config, lib, pkgs, zpool-root, zpool-name, ... }:
+utils: { config, lib, pkgs, zpool-root, zpool-name, domain-root, ... }:
 let
   network-name = "vikunja-network";
 
@@ -7,6 +7,7 @@ let
   vikunja-root = "${zpool-root}/vikunja";
   vikunja-data-path = "${vikunja-root}/files";
   db-path = "${vikunja-root}/database";
+  domain = "vikunja.${domain-root}";
 in
 {
   systemd = lib.attrsets.recursiveUpdate
@@ -15,8 +16,6 @@ in
 
       services = {
         create-vikunja-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
-
-        "${names.containers.server}".requires = with names.service-full; [ db ];
       };
     }
     (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
@@ -37,10 +36,11 @@ in
       volumes = [ "${vikunja-data-path}:/app/vikunja/files" ];
 
       extraOptions = [ "--network=${network-name}" ];
+      dependsOn = with names.containers; [ db ];
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.vikunja.rule" = "Host(`vikunja.nas.local`)";
+        "traefik.http.routers.vikunja.rule" = "Host(`${domain}`)";
         "traefik.http.routers.vikunja.service" = "vikunja";
         "traefik.http.services.vikunja.loadbalancer.server.port" = "3456";
       };

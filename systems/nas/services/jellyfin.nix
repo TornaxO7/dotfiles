@@ -1,4 +1,4 @@
-utils: { config, pkgs, zpool-name, zpool-root, ... }:
+utils: { config, pkgs, zpool-name, zpool-root, domain-root, ... }:
 let
   username = config.users.users.main.name;
 
@@ -6,6 +6,8 @@ let
   config-dir = "${jellyfin-dir}/config";
   cache-dir = "${jellyfin-dir}/cache";
   songs-path = "${zpool-root}/music/songs";
+
+  domain = "jellyfin.${domain-root}";
 in
 {
   config = {
@@ -29,7 +31,7 @@ in
 
         labels = {
           "traefik.enable" = "true";
-          "traefik.http.routers.jellyfin.rule" = "Host(`jellyfin.nas.local`)";
+          "traefik.http.routers.jellyfin.rule" = "Host(`${domain}`)";
           "traefik.http.routers.jellyfin.service" = "jellyfin";
           "traefik.http.services.jellyfin.loadbalancer.server.port" = toString 8096;
         };

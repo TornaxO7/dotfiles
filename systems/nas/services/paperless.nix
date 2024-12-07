@@ -34,9 +34,6 @@ in
         services = {
           create-paperless-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
 
-          ${names.service-prefixes.server}.requires = with names.service-full; [ postgres redis ];
-          ${names.service-prefixes.postgres}.requires = with names.service-full; [ redis ];
-
           ${backup-service-name} = {
             description = "Create backup of paperless";
             serviceConfig = {
@@ -81,6 +78,8 @@ in
           "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
           "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "8000";
         };
+
+        dependsOn = with names.containers; [ postgres redis ];
       };
 
       ${names.containers.redis} = {
@@ -98,6 +97,7 @@ in
         extraOptions = [
           "--network=${network-name}"
         ];
+        dependsOn = with names.containers; [ redis ];
         volumes = [
           "${volumes.db-data}:/var/lib/postgresql/data"
         ];

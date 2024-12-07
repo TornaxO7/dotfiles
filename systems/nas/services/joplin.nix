@@ -1,4 +1,4 @@
-utils: { config, zpool-name, zpool-root, pkgs, lib, ... }:
+utils: { config, zpool-name, zpool-root, pkgs, lib, domain-root, ... }:
 let
   network-name = "joplin-network";
 
@@ -8,7 +8,7 @@ let
     db = "database";
   };
 
-  domain = "joplin.nas.local";
+  domain = "joplin.${domain-root}";
 in
 {
   systemd = lib.attrsets.recursiveUpdate
