@@ -1,22 +1,19 @@
 utils: { config, lib, pkgs, zpool-root, zpool-name, domain-root, ... }:
 let
-  network-name = "vikunja-network";
+  names = utils.createContainerNames "vikunja" [ "server" ];
 
-  names = utils.createContainerNames "vikunja" [ "server" "db" ];
+  bind-root = "${zpool-root}/vikunja";
+  binds = {
+    files = "${bind-root}/files";
+    db = "${bind-root}/db";
+  };
 
-  vikunja-root = "${zpool-root}/vikunja";
-  vikunja-data-path = "${vikunja-root}/files";
-  db-path = "${vikunja-root}/database";
   domain = "vikunja.${domain-root}";
 in
 {
   systemd = lib.attrsets.recursiveUpdate
     {
-      tmpfiles.settings.vikunja = utils.createDirs config [ vikunja-data-path db-path ];
-
-      services = {
-        create-vikunja-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
-      };
+      tmpfiles.settings.vikunja = utils.createDirs config (builtins.attrValues binds);
     }
     (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
 
@@ -24,39 +21,22 @@ in
     "${names.containers.server}" = {
       image = "vikunja/vikunja";
       environment = {
-        VIKUNJA_SERVICE_PUBLICURL = "http://vikunja.nas.local/";
-        VIKUNJA_DATABASE_HOST = "${names.containers.db}";
-        VIKUNJA_DATABASE_PASSWORD = "password";
-        VIKUNJA_DATABASE_TYPE = "mysql";
-        VIKUNJA_DATABASE_USER = "vikunja";
-        VIKUNJA_DATABASE_DATABASE = "vikunja";
+        VIKUNJA_SERVICE_PUBLICURL = "http://${domain}/";
+        VIKUNJA_DATABASE_PATH = "/db/vikunja.db";
         VIKUNJA_SERVICE_JWTSECRET = "<a super secure random secret>";
       };
 
-      volumes = [ "${vikunja-data-path}:/app/vikunja/files" ];
-
-      extraOptions = [ "--network=${network-name}" ];
-      dependsOn = with names.containers; [ db ];
+      volumes = [
+        "${binds.files}:/app/vikunja/files"
+        "${binds.db}:/db"
+      ];
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.vikunja.rule" = "Host(`${domain}`)";
-        "traefik.http.routers.vikunja.service" = "vikunja";
-        "traefik.http.services.vikunja.loadbalancer.server.port" = "3456";
+        "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
+        "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
+        "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "3456";
       };
-    };
-
-    "${names.containers.db}" = {
-      image = "mariadb:latest";
-      cmd = [ "--character-set-server=utf8mb4" "--collation-server=utf8mb4_unicode_ci" ];
-      environment = {
-        MYSQL_ROOT_PASSWORD = "supersecret";
-        MYSQL_USER = "vikunja";
-        MYSQL_PASSWORD = "password";
-        MYSQL_DATABASE = "vikunja";
-      };
-      volumes = [ "${db-path}:/var/lib/mysql" ];
-      extraOptions = [ "--network=${network-name}" ];
     };
   };
 }
