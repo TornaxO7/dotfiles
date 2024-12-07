@@ -12,6 +12,7 @@ let
     "grafana"
     "prometheus"
     "node-exporter"
+    "watchtower"
   ];
 
   domain = "monitoring.${domain-root}";
@@ -68,6 +69,23 @@ in
       volumes = [
         "/:/host:ro,rslave"
       ];
+    };
+
+    ${names.containers.watchtower} = {
+      image = "containrrr/watchtower";
+
+      volumes = [
+        "/var/run/podman/podman.sock:/var/run/docker.sock"
+      ];
+
+      environment = {
+        TZ = "DE";
+        WATCHTOWER_TIMEOUT = "30s";
+        WATCHTOWER_HTTP_API_TOKEN = "hello there";
+        WATCHTOWER_HTTP_API_METRICS = "true";
+      };
+
+      extraOptions = [ "--network=${network-name}" ];
     };
   };
 }

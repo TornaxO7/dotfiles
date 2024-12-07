@@ -13,7 +13,6 @@ in
     (loadService ./services/monitoring.nix)
     (loadService ./services/filebrowser.nix)
     (loadService ./services/homarr.nix)
-    (loadService ./services/watchtower.nix)
     (loadService ./services/website.nix)
   ];
 
