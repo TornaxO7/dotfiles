@@ -23,6 +23,8 @@ in
       "--providers.docker.exposedbydefault=false"
 
       "--entryPoints.http.address=:80"
+      "--entryPoints.DoT.address=:853"
+
       "--entryPoints.https.address=:443"
       "--entryPoints.https.asDefault=true"
 
@@ -38,6 +40,7 @@ in
     ports = [
       "80:80"
       "443:443"
+      "853:853/tcp"
     ];
 
     volumes = [

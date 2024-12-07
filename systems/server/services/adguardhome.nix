@@ -19,6 +19,8 @@ in
     };
   };
 
+  networking.firewall.allowedTCPPorts = [ 853 ];
+
   virtualisation.oci-containers.containers.${names.containers.server} = {
     image = "adguard/adguardhome";
 
@@ -35,6 +37,13 @@ in
       "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "3000";
       "traefik.http.routers.${names.containers.server}.tls" = "true";
       "traefik.http.routers.${names.containers.server}.tls.certresolver" = "main";
+
+      "traefik.tcp.routers.${names.containers.server}.rule" = "HostSNI(`${domain}`)";
+      "traefik.tcp.routers.${names.containers.server}.entrypoints" = "DoT";
+      "traefik.tcp.routers.${names.containers.server}.service" = "${names.containers.server}";
+      "traefik.tcp.services.${names.containers.server}.loadbalancer.server.port" = "53";
+      "traefik.tcp.routers.${names.containers.server}.tls" = "true";
+      "traefik.tcp.routers.${names.containers.server}.tls.certresolver" = "main";
     };
   };
 }
