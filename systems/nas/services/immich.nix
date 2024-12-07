@@ -1,105 +1,101 @@
-utils: { config, lib, zpool-name, pkgs, zpool-root, ... }:
+utils: { config, pkgs, lib, zpool-root, domain-root, services-root, ... }:
 let
-  immich-root = "${zpool-root}/immich";
-  immich-config = "${immich-root}/config";
-  immich-photos = "${immich-root}/photos";
-  immich-libraries = "${immich-root}/libraries";
-  immich-postgres = "${immich-root}/postgres";
-  immich-postgres-data = "${immich-postgres}/data";
+  # ZFS
+  bind-root = "${zpool-root}/immich";
 
-  directories = [
-    immich-config
-    immich-photos
-    immich-libraries
+  binds = {
+    images = bind-root;
+  };
 
-    immich-postgres
-    immich-postgres-data
-  ];
+  volumes = {
+    ml-cache = "immich-model-cache";
+    db = "immich-db";
+  };
 
-  immich-network-name = "immich-network";
+  names = utils.createContainerNames "immich" [ "server" "ml" "redis" "db" ];
+
+  domain = "immich.${domain-root}";
+  network-name = "immich-network";
+
+  env = {
+    UPLOAD_LOCATION = binds.images;
+    TZ = "Europe/Berlin";
+    IMMICH_VERSION = "release";
+    DB_PASSWORD = "a very good one";
+    DB_USERNAME = "immich";
+    DB_DATABASE_NAME = "immich";
+  };
 in
 {
-  # inspiration taken from: https://github.com/notthebee/nix-config/blob/b95b1b004535d85fa45340e538a44847a039abef/containers/immich/default.nix
-  config = {
-    systemd = lib.attrsets.recursiveUpdate
-      {
-        tmpfiles.settings.immich = utils.createDirs config directories;
+  systemd.services = {
+    create-immich-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
+  };
 
-        services = {
-          immich-network-creator = utils.createPodmanNetworkService pkgs immich-network-name [ "immich-redis.service" ];
+  virtualisation.oci-containers.containers = {
+    ${names.containers.server} = {
+      image = "ghcr.io/immich-app/immich-server:release";
+      user = config.users.users.main.name;
+      volumes = [
+        "${binds.images}:/usr/src/app/upload"
+        "/etc/localtime:/etc/localtime:ro"
+        "/etc/passwd:/etc/passwd:ro"
+      ];
 
-          podman-immich = {
-            requires = [ "podman-immich-postgres.service" ];
-            after = [ "podman-immich-postgres.service" ];
-          };
-        };
-      }
-      (utils.createSystemdZfsSnapshot pkgs "immich" "${zpool-name}/immich");
-
-    virtualisation.oci-containers.containers = {
-      immich = {
-        autoStart = true;
-        image = "ghcr.io/imagegenius/immich:latest";
-        environment = {
-          PUID = "1000";
-          PGID = "1000";
-          TZ = "Etc/UTC";
-          DB_HOSTNAME = "immich-postgres";
-          DB_USERNAME = "postgres";
-          DB_PASSWORD = "postgres";
-          DB_DATABASE_NAME = "immich";
-
-          REDIS_HOSTNAME = "immich-redis";
-        };
-
-        volumes = [
-          "${immich-config}:/config"
-          "${immich-photos}:/photos"
-          "${immich-libraries}:/libraries"
-        ];
-
-        dependsOn = [ "immich-redis" "immich-postgres" ];
-        extraOptions = [
-          "--network=${immich-network-name}"
-          "--device=/dev/dri:/dev/dri"
-        ];
-
-        labels = {
-          "traefik.enable" = "true";
-          "traefik.http.routers.immich.rule" = "Host(`immich.nas.local`)";
-          "traefik.http.routers.immich.service" = "immich";
-          "traefik.http.services.immich.loadbalancer.server.port" = toString 8080;
-        };
+      environment = env // {
+        DB_HOSTNAME = names.containers.db;
+        REDIS_HOSTNAME = names.containers.redis;
       };
 
-      immich-redis = {
-        autoStart = true;
-        image = "redis";
-        extraOptions = [ "--network=${immich-network-name}" ];
+      dependsOn = with names.containers; [ redis db ];
+
+      labels = {
+        "traefik.enable" = "true";
+        "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
+        "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
+        "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "2283";
       };
 
-      # using postgres
-      immich-postgres = {
-        autoStart = true;
-        image = "tensorchord/pgvecto-rs:pg14-v0.2.0";
-        environment = {
-          POSTGRES_USER = "postgres";
-          POSTGRES_PASSWORD = "postgres";
-          POSTGRES_DB = "immich";
-        };
+      extraOptions = [ "--network=${network-name}" ];
+    };
 
-        volumes = [
-          "${immich-postgres-data}:/var/lib/postgresql/data"
-        ];
+    ${names.containers.ml} = {
+      image = "ghcr.io/immich-app/immich-machine-learning:release";
+      volumes = [
+        "${volumes.ml-cache}:/cache"
+      ];
+      environment = env;
+      extraOptions = [ "--network=${network-name}" ];
+    };
 
-        dependsOn = [ "immich-redis" ];
-        extraOptions = [
-          "--network=${immich-network-name}"
+    ${names.containers.redis} = {
+      image = "docker.io/redis:6.2-alpine@sha256:eaba718fecd1196d88533de7ba49bf903ad33664a92debb24660a922ecd9cac8";
+      extraOptions = [ "--network=${network-name}" ];
+    };
 
-          "--mount"
-          "type=tmpfs,destination=/var/lib/postgresql/data/pg_stat_tmp"
-        ];
+    ${names.containers.db} = {
+      image = "docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0";
+
+      environment = env // {
+        POSTGRES_PASSWORD = env.DB_PASSWORD;
+        POSTGRES_USER = env.DB_USERNAME;
+        POSTGRES_DB = env.DB_DATABASE_NAME;
+        POSTGRES_INITDB_ARGS = "--data-checksums";
       };
+
+      volumes = [
+        "${volumes.db}:/var/lib/postgresql/data"
+      ];
+      extraOptions = [ "--network=${network-name}" ];
+
+      cmd = [
+        "postgres"
+        "-cshared_preload_libraries=vectors.so"
+        "-csearch_path='\"$$user\", public, vectors'"
+        "-clogging_collector=on"
+        "-cmax_wal_size=2GB"
+        "-cshared_buffers=512MB"
+        "-cwal_compression=on"
+      ];
     };
   };
 }
