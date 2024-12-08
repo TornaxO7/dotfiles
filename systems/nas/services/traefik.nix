@@ -1,19 +1,18 @@
-{ config, ... }:
+{ config, domain-root, ... }:
 let
   username = config.users.users.main.name;
-  dynConfFilePath = "/dynamicConfigFile.yml";
-  dynConfFilePath2 = "/dynamicConfigFile2.yml";
+  domain = "traefik.${domain-root}";
 in
 {
   virtualisation.oci-containers.containers.traefik = {
     image = "traefik:v3.1";
     cmd = [
-      "--api.dashboard=true"
+      "--api=true"
+
       "--providers.docker=true"
       "--providers.docker.exposedbydefault=false"
+
       "--entryPoints.http.address=:80"
-      # "--providers.file.filename=${dynConfFilePath}"
-      "--providers.file.filename=${dynConfFilePath2}"
     ];
 
     extraOptions = [
@@ -26,8 +25,12 @@ in
 
     volumes = [
       "/var/run/podman/podman.sock:/var/run/docker.sock"
-      # "${config.age.secrets.traefik-dynamicConfigFile.path}:${dynConfFilePath}"
-      "${./traefik.yml}:${dynConfFilePath2}"
     ];
+
+    labels = {
+      "traefik.enable" = "true";
+      "traefik.http.routers.dashboard.rule" = "Host(`${domain}`)";
+      "traefik.http.routers.dashboard.service" = "api@internal";
+    };
   };
 }
