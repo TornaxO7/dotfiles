@@ -80,7 +80,7 @@ in
 
       environment = {
         TZ = "DE";
-        WATCHTOWER_TIMEOUT = "30s";
+        WATCHTOWER_TIMEOUT = "1m";
         WATCHTOWER_HTTP_API_TOKEN = "hello there";
         WATCHTOWER_HTTP_API_METRICS = "true";
       };
