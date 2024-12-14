@@ -6,6 +6,7 @@ let
 
   unstable-packages = with unstable; [
     compose2nix
+    mergiraf
   ];
 
   nixpkgs-packages = with pkgs; [

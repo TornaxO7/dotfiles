@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, unstable, ... }:
 {
   imports = [
     ./yazi
@@ -50,6 +50,29 @@
       };
       userEmail = "tornax@proton.me";
       userName = "TornaxO7";
+
+      attributes = [
+        "*.java merge=mergiraf"
+        "*.rs merge=mergiraf"
+        "*.go merge=mergiraf"
+        "*.js merge=mergiraf"
+        "*.jsx merge=mergiraf"
+        "*.json merge=mergiraf"
+        "*.yml merge=mergiraf"
+        "*.yaml merge=mergiraf"
+        "*.html merge=mergiraf"
+        "*.htm merge=mergiraf"
+        "*.xhtml merge=mergiraf"
+        "*.xml merge=mergiraf"
+        "*.c merge=mergiraf"
+        "*.h merge=mergiraf"
+        "*.cc merge=mergiraf"
+        "*.cpp merge=mergiraf"
+        "*.hpp merge=mergiraf"
+        "*.cs merge=mergiraf"
+        "*.dart merge=mergiraf"
+      ];
+
       extraConfig = {
         core = {
           editor = "hx";
@@ -58,6 +81,11 @@
         delta = {
           hyperlinks = true;
           side-by-side = true;
+        };
+
+        "merge \"mergiraf\"" = {
+          name = "mergiraf";
+          driver = "${unstable.mergiraf}/bin/mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";
         };
 
         push.autoSetupRemote = true;
