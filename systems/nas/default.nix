@@ -9,6 +9,8 @@ in
     ../../modules/default_main.nix
     ./hardware-configuration.nix
 
+    ../../modules/wg-client.nix
+
     ./zfs
 
     # == services ==
