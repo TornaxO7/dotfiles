@@ -7,10 +7,10 @@ let
   sharedMainModule = import ../modules/default.nix;
 
   ips = {
-    pc = "10.0.0.1";
-    nas = "10.0.0.2";
-    laptop = "10.0.0.3";
-    mobile = "10.0.0.4";
+    pc = "100.64.0.1";
+    nas = "100.64.0.2";
+    laptop = "100.64.0.3";
+    mobile = "100.64.0.4";
     server = null;
   };
 
