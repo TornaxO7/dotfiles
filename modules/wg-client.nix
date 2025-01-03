@@ -13,6 +13,7 @@
 
           peers = [
             {
+              name = "server";
               publicKey = "Sp+GoX7YlHcdxXFX40GvWKWA/Hm6FFfmzI5CgNvsxBk=";
               allowedIPs = [ "10.0.0.0/24" ];
               endpoint = "2.56.97.207:51820";
