@@ -50,11 +50,11 @@ in
               publicKey = "Y4HjCltHlLlAzmHUubwkZiurZLxPEEiZKPkPcWOj3n8=";
               allowedIPs = [ "${wireguard.nas}/32" ];
             }
-            {
-              name = "mobile";
-              publicKey = "";
-              allowedIPs = [ "${wireguard.mobile}/32" ];
-            }
+            # {
+            #   name = "mobile";
+            #   publicKey = "";
+            #   allowedIPs = [ "${wireguard.mobile}/32" ];
+            # }
           ];
         };
       };
