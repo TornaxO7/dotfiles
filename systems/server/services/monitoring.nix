@@ -2,67 +2,76 @@ utils: { config, pkgs, services-root, domain-root, ... }:
 let
   network-name = "monitoring-network";
 
-  paths = rec {
+  grafana-paths = rec {
     root = "${services-root}/monitoring";
     prometheus = "${root}/prometheus";
     grafana = "${root}/grafana";
   };
 
-  names = utils.createContainerNames "monitor" [
+  headscale-paths = rec{
+    root = "${services-root}/headscale";
+    config = "${root}/config";
+    lib = "${root}/lib";
+  };
+
+  headscale-names = utils.createContainerNames "headscale" [ "server" ];
+
+  grafana-names = utils.createContainerNames "monitor" [
     "grafana"
     "prometheus"
     "node-exporter"
     "watchtower"
   ];
 
-  domain = "monitoring.${domain-root}";
+  grafana-domain = "monitoring.${domain-root}";
+  headscale-domain = "headscale.${domain-root}";
 in
 {
   systemd = {
     tmpfiles.settings = {
-      monitoring-root = utils.createDirs config [ paths.root ];
-      monitoring-dirs = utils.createDirs config (with paths; [ prometheus grafana ]);
+      monitoring-dirs = utils.createDirs config (builtins.attrValues grafana-paths);
+      headscale-dirs = utils.createDirs config (builtins.attrValues headscale-paths);
     };
 
     services = {
-      create-monitoring-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
+      create-monitoring-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues grafana-names.service-full);
     };
   };
 
   virtualisation.oci-containers.containers = {
-    "${names.containers.grafana}" = {
+    "${grafana-names.containers.grafana}" = {
       image = "grafana/grafana-enterprise";
 
       user = config.users.users.main.name;
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.grafana.rule" = "Host(`${domain}`)";
-        "traefik.http.routers.grafana.service" = names.containers.grafana;
-        "traefik.http.services.${names.containers.grafana}.loadbalancer.server.port" = "3000";
+        "traefik.http.routers.grafana.rule" = "Host(`${grafana-domain}`)";
+        "traefik.http.routers.grafana.service" = grafana-names.containers.grafana;
+        "traefik.http.services.${grafana-names.containers.grafana}.loadbalancer.server.port" = "3000";
         "traefik.http.routers.grafana.tls" = "true";
         "traefik.http.routers.grafana.tls.certresolver" = "main";
       };
 
       volumes = [
-        "${paths.grafana}:/var/lib/grafana"
+        "${grafana-paths.grafana}:/var/lib/grafana"
         "/etc/passwd:/etc/passwd:ro"
       ];
 
       extraOptions = [ "--network=${network-name}" ];
     };
 
-    "${names.containers.prometheus}" = {
+    "${grafana-names.containers.prometheus}" = {
       image = "prom/prometheus";
 
       volumes = [
-        "${paths.prometheus}:/etc/prometheus"
+        "${grafana-paths.prometheus}:/etc/prometheus"
       ];
 
       extraOptions = [ "--network=${network-name}" ];
     };
 
-    "${names.containers.node-exporter}" = {
+    "${grafana-names.containers.node-exporter}" = {
       image = "quay.io/prometheus/node-exporter:latest";
       cmd = [ "--path.rootfs=/host" ];
       extraOptions = [ "--network=${network-name}" ];
@@ -71,7 +80,7 @@ in
       ];
     };
 
-    ${names.containers.watchtower} = {
+    ${grafana-names.containers.watchtower} = {
       image = "containrrr/watchtower";
 
       volumes = [
@@ -84,6 +93,30 @@ in
         WATCHTOWER_HTTP_API_TOKEN = "hello there";
         WATCHTOWER_HTTP_API_METRICS = "true";
       };
+
+      extraOptions = [ "--network=${network-name}" ];
+    };
+
+    # headscale stuff
+    ${headscale-names.containers.server} = {
+
+      image = "headscale/headscale:latest";
+
+      volumes = [
+        "${headscale-paths.config}:/etc/headscale"
+        "${headscale-paths.lib}:/var/lib/headscale"
+      ];
+
+      labels = {
+        "traefik.enable" = "true";
+        "traefik.http.routers.${headscale-names.containers.server}.rule" = "Host(`${headscale-domain}`)";
+        "traefik.http.routers.${headscale-names.containers.server}.service" = "${headscale-names.containers.server}";
+        "traefik.http.services.${headscale-names.containers.server}.loadbalancer.server.port" = "8080";
+        "traefik.http.routers.${headscale-names.containers.server}.tls" = "true";
+        "traefik.http.routers.${headscale-names.containers.server}.tls.certresolver" = "main";
+      };
+
+      cmd = [ "serve" ];
 
       extraOptions = [ "--network=${network-name}" ];
     };

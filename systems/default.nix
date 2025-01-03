@@ -6,13 +6,12 @@ let
   hmModule = import ../modules/home-manager;
   sharedMainModule = import ../modules/default.nix;
 
-  wireguard = {
-    server = "10.0.0.1";
-    pc = "10.0.0.2";
+  ips = {
+    pc = "10.0.0.1";
+    nas = "10.0.0.2";
     laptop = "10.0.0.3";
-    # nas = "10.0.0.4";
-    nas = "100.88.51.57";
-    mobile = "10.0.0.5";
+    mobile = "10.0.0.4";
+    server = null;
   };
 
   mkSystem =
@@ -38,21 +37,21 @@ in
       configuration = (import ./pc) username;
       home-configuration = ./pc/home;
       hostname = "pc";
-      ip-addr = wireguard.pc;
+      ip-addr = ips.pc;
     };
 
     laptop = mkSystem {
       configuration = ./laptop;
       home-configuration = ./laptop/home;
       hostname = "laptop";
-      ip-addr = wireguard.laptop;
+      ip-addr = ips.laptop;
     };
 
     nas = mkSystem {
       configuration = ./nas;
       home-configuration = ./nas/home;
       hostname = "nas";
-      ip-addr = wireguard.nas;
+      ip-addr = ips.nas;
       specialArgs = rec {
         zpool-name = "hdds";
         zpool-root = "/${zpool-name}";
@@ -66,10 +65,8 @@ in
       configuration = ./server;
       home-configuration = ./server/home;
       hostname = "server";
-      ip-addr = wireguard.server;
+      ip-addr = ips.server;
       specialArgs = {
-        inherit wireguard;
-
         services-root = "/services";
         domain-root = "tornaxo7.de";
       };

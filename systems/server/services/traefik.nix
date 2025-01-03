@@ -26,7 +26,7 @@ in
       "--entryPoints.https.address=:443"
       "--entryPoints.https.asDefault=true"
 
-      "--entryPoints.DoT.address=:853"
+      # "--entryPoints.DoT.address=:853"
 
       # mail
       # "--entryPoints.smtp.address=:25"
@@ -47,7 +47,7 @@ in
       "443:443"
 
       # DoT
-      "853:853/tcp"
+      # "853:853/tcp"
 
       # mail
       # "25:25/tcp"
