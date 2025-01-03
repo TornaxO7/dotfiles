@@ -7,7 +7,7 @@ in
   imports = [
     ./secrets.nix
     ./hardware-configuration.nix
-    ./wg-server.nix
+    # ./wg-server.nix
 
     ./services/traefik.nix
     (loadService ./services/monitoring.nix)
