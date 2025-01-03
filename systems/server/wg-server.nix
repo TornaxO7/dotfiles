@@ -42,7 +42,7 @@ in
             }
             {
               name = "laptop";
-              publicKey = "";
+              publicKey = "QmRFcsCWjjxyb93D5iA79XPhmfOh/p2xR2at+yb9/FE=";
               allowedIPs = [ "${wireguard.laptop}/32" ];
             }
             {

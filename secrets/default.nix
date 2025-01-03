@@ -24,7 +24,6 @@ in
 
     age.secrets = {
       deepl = add-secret ./deepl.age;
-      harmonia = add-secret ./harmonia.age;
       gotify-token = add-secret ./gotify-token.age;
     };
   };

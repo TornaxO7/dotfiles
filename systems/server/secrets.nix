@@ -15,9 +15,7 @@ in
       identityPaths = [
         "/etc/ssh/server"
       ];
-      secrets = {
-        headplane-cookie = add-secret ../../secrets/headplane-cookie.age;
-      };
+      secrets = { };
     };
   };
 }
