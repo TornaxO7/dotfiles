@@ -37,7 +37,7 @@ in
           peers = [
             {
               name = "pc";
-              publicKey = "";
+              publicKey = "vnFCOf/HL53cL5Yfih/IjV/ZxjWhE0ENZwtoMkasnVA=";
               allowedIPs = [ "${wireguard.pc}/32" ];
             }
             {
@@ -47,7 +47,7 @@ in
             }
             {
               name = "nas";
-              publicKey = "";
+              publicKey = "Y4HjCltHlLlAzmHUubwkZiurZLxPEEiZKPkPcWOj3n8=";
               allowedIPs = [ "${wireguard.nas}/32" ];
             }
             {
