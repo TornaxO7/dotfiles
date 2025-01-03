@@ -22,7 +22,7 @@ let
     , specialArgs ? { }
     }: inputs.stable.lib.nixosSystem {
       specialArgs = lib.attrsets.recursiveUpdate specialArgs {
-        inherit self inputs unstable;
+        inherit self inputs unstable ip-addr;
       };
       modules = [
         configuration
