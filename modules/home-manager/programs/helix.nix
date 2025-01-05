@@ -1,6 +1,7 @@
 { pkgs, inputs, lib, ... }:
 let
   ra-multiplex-pkg = inputs.ra-multiplex.packages.${pkgs.system}.default;
+  wgsl-pkg = inputs.wgsl-analyzer.packages.${pkgs.system}.default;
 in
 {
   nix.settings = {
@@ -75,6 +76,10 @@ in
         # typst-lsp = {
         #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
         # };
+
+        wgsl = {
+          command = "${wgsl-pkg}/bin/wgsl_analyzer";
+        };
 
         css = {
           command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
@@ -192,6 +197,11 @@ in
           formatter = {
             command = "${pkgs.jaq}/bin/jaq";
           };
+        }
+        {
+          name = "wgsl";
+          file-types = [ "wgsl" ];
+          language-servers = [ "wgsl" ];
         }
         {
           name = "java";

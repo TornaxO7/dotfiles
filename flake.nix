@@ -19,6 +19,7 @@
     gtt.url = "github:TornaxO7/gtt/add-flake";
     bs.url = "github:godzie44/BugStalker";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
