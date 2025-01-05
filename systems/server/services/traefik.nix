@@ -38,11 +38,11 @@ in
 
         # == mail
         # smtp
-        # "--entryPoints.smtp.address=:25"
+        "--entryPoints.smtp.address=:25"
         # smtps
-        # "--entryPoints.smtps.address=:465"
+        "--entryPoints.smtps.address=:465"
         # imaps
-        # "--entryPoints.imaps.address=:993"
+        "--entryPoints.imaps.address=:993"
 
         "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
         "--certificatesresolvers.main.acme.storage=acme.json"
@@ -61,9 +61,9 @@ in
         # "853:853/tcp"
 
         # mail
-        # "25:25/tcp"
-        # "465:465/tcp"
-        # "993:993/tcp"
+        "25:25/tcp"
+        "465:465/tcp"
+        "993:993/tcp"
       ];
 
       volumes = [
@@ -84,14 +84,14 @@ in
       };
     };
 
-    # traefik-certs-dumper = {
-    #   image = "ghcr.io/kereis/traefik-certs-dumper:latest";
-    #   dependsOn = [ "traefik" ];
-    #   volumes = [
-    #     "/etc/localtime:/etc/localtime:ro"
-    #     "${acme-path}:/traefik/acme.json:ro"
-    #     "${certs-path}:/output:rw"
-    #   ];
-    # };
+    traefik-certs-dumper = {
+      image = "ghcr.io/kereis/traefik-certs-dumper:latest";
+      dependsOn = [ "traefik" ];
+      volumes = [
+        "/etc/localtime:/etc/localtime:ro"
+        "${acme-path}:/traefik/acme.json:ro"
+        "${certs-path}:/output:rw"
+      ];
+    };
   };
 }

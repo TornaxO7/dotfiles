@@ -22,7 +22,7 @@ in
       image = "stalwartlabs/mail-server:latest";
       volumes = [
         "${bind-root}:/opt/stalwart-mail"
-        "/services/certs:/data/certs:ro"
+        # "/services/certs:/data/certs:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
 
@@ -60,12 +60,13 @@ in
         "traefik.tcp.services.${services.jmaps}.loadbalancer.proxyProtocol.version" = "2";
         "traefik.tcp.routers.${services.jmaps}.tls.passthrough" = "true";
 
-
         # https
         "traefik.http.routers.${services.https}.rule" = "Host(`${domain}`) || Host(`autodiscover.${domain-root}`) || Host(`autoconfig.${domain-root}`) || Host(`mta-sts.${domain-root}`)";
         "traefik.http.routers.${services.https}.entrypoints" = "https";
         "traefik.http.routers.${services.https}.service" = "${services.https}";
         "traefik.http.services.${services.https}.loadbalancer.server.port" = "8080";
+        "traefik.http.routers.${services.https}.tls" = "true";
+        "traefik.http.routers.${services.https}.tls.certresolver" = "main";
       };
     };
   };
