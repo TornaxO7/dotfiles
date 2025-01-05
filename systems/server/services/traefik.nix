@@ -1,4 +1,4 @@
-{ config, services-root, domain-root, ... }:
+utils: { config, services-root, domain-root, ... }:
 let
   username = config.users.users.main.name;
 
@@ -61,9 +61,9 @@ in
         # "853:853/tcp"
 
         # mail
-        "25:25/tcp"
-        "465:465/tcp"
-        "993:993/tcp"
+        # "25:25/tcp"
+        # "465:465/tcp"
+        # "993:993/tcp"
       ];
 
       volumes = [

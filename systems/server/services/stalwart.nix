@@ -37,7 +37,7 @@ in
         "traefik.tcp.services.${services.smtp}.loadbalancer.proxyProtocol.version" = "2";
 
         # smtps
-        "traefik.tcp.routers.${services.smtps}.rule" = "HostSNI(`${domain}`)";
+        "traefik.tcp.routers.${services.smtps}.rule" = "HostSNI(`*`)";
         "traefik.tcp.routers.${services.smtps}.entrypoints" = "smtps";
         "traefik.tcp.routers.${services.smtps}.service" = "${services.smtps}";
         "traefik.tcp.services.${services.smtps}.loadbalancer.server.port" = "465";
@@ -45,7 +45,7 @@ in
         "traefik.tcp.routers.${services.smtps}.tls.passthrough" = "true";
 
         # imaps
-        "traefik.tcp.routers.${services.imaps}.rule" = "HostSNI(`${domain}`)";
+        "traefik.tcp.routers.${services.imaps}.rule" = "HostSNI(`*`)";
         "traefik.tcp.routers.${services.imaps}.entrypoints" = "imaps";
         "traefik.tcp.routers.${services.imaps}.service" = "${services.imaps}";
         "traefik.tcp.services.${services.imaps}.loadbalancer.server.port" = "993";
@@ -53,7 +53,7 @@ in
         "traefik.tcp.routers.${services.imaps}.tls.passthrough" = "true";
 
         # jmap
-        "traefik.tcp.routers.${services.jmaps}.rule" = "HostSNI(`${domain}`)";
+        "traefik.tcp.routers.${services.jmaps}.rule" = "HostSNI(`*`)";
         "traefik.tcp.routers.${services.jmaps}.entrypoints" = "https";
         "traefik.tcp.routers.${services.jmaps}.service" = "${services.jmaps}";
         "traefik.tcp.services.${services.jmaps}.loadbalancer.server.port" = "443";
@@ -63,6 +63,7 @@ in
 
         # https
         "traefik.http.routers.${services.https}.rule" = "Host(`${domain}`) || Host(`autodiscover.${domain-root}`) || Host(`autoconfig.${domain-root}`) || Host(`mta-sts.${domain-root}`)";
+        "traefik.http.routers.${services.https}.entrypoints" = "https";
         "traefik.http.routers.${services.https}.service" = "${services.https}";
         "traefik.http.services.${services.https}.loadbalancer.server.port" = "8080";
       };

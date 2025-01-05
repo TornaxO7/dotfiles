@@ -8,7 +8,7 @@ in
     ./secrets.nix
     ./hardware-configuration.nix
 
-    ./services/traefik.nix
+    (loadService ./services/traefik.nix)
     (loadService ./services/monitoring.nix)
     (loadService ./services/filebrowser.nix)
     (loadService ./services/homarr.nix)
