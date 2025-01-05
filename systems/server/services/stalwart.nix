@@ -22,7 +22,7 @@ in
       image = "stalwartlabs/mail-server:latest";
       volumes = [
         "${bind-root}:/opt/stalwart-mail"
-        # "/services/certs:/data/certs:ro"
+        "/services/certs:/data/certs:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
 

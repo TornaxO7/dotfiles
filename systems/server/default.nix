@@ -13,7 +13,7 @@ in
     (loadService ./services/filebrowser.nix)
     (loadService ./services/homarr.nix)
     (loadService ./services/website.nix)
-    (loadService ./services/stalwart.nix)
+    # (loadService ./services/stalwart.nix)
   ];
 
   config = {
