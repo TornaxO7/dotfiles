@@ -2,19 +2,19 @@ utils: { config, services-root, domain-root, ... }:
 let
   username = config.users.users.main.name;
 
-  acme-path = "${services-root}/acme.json";
-  certs-path = "${services-root}/certs";
+  paths = rec {
+    root = "${services-root}/traefik";
+    acme = "${root}/acme.json";
+    certs-dir = "${root}/certs";
+  };
 
   domain = "traefik.${domain-root}";
 in
 {
   systemd = {
     tmpfiles.settings = {
-      acme_file."${acme-path}".f = {
-        user = username;
-        mode = "0600";
-      };
-      certs-path."${certs-path}".d = {
+      traefik-dirs = utils.createDirs config (with paths; [ root certs-dir ]);
+      traefik-acme."${paths.acme}".f = {
         user = username;
         mode = "0600";
       };
@@ -68,7 +68,7 @@ in
 
       volumes = [
         "/var/run/podman/podman.sock:/var/run/docker.sock"
-        "${acme-path}:/acme.json"
+        "${paths.acme}:/acme.json"
         "/etc/passwd:/etc/passwd:ro"
       ];
 
@@ -84,14 +84,14 @@ in
       };
     };
 
-    # traefik-certs-dumper = {
-    #   image = "ghcr.io/kereis/traefik-certs-dumper:latest";
-    #   dependsOn = [ "traefik" ];
-    #   volumes = [
-    #     "/etc/localtime:/etc/localtime:ro"
-    #     "${acme-path}:/traefik/acme.json:ro"
-    #     "${certs-path}:/output:rw"
-    #   ];
-    # };
+    traefik-certs-dumper = {
+      image = "ghcr.io/kereis/traefik-certs-dumper:latest";
+      dependsOn = [ "traefik" ];
+      volumes = [
+        "/etc/localtime:/etc/localtime:ro"
+        "${paths.acme}:/traefik/acme.json:ro"
+        "${paths.certs-dir}:/output:rw"
+      ];
+    };
   };
 }
