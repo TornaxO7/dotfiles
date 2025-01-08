@@ -52,6 +52,26 @@
       flake = {
         nixosModules.bustd = import ./nixosModules/bustd.nix self;
 
+        homeConfigurations."tornax" =
+          let
+            system = "x86_64-linux";
+            stable = import inputs.stable {
+              inherit system;
+            };
+
+            unstable = import inputs.unstable {
+              inherit system;
+            };
+          in
+          inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = stable;
+
+            modules = [ (import ./modules/home-manager/home.nix "tornax") ];
+            extraSpecialArgs = {
+              inherit unstable;
+            };
+          };
+
         homeManagerModules = {
           gtt = import ./homeManagerModules/gtt.nix;
         };
