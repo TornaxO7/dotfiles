@@ -2,8 +2,10 @@
   description = "NixOS configuration";
 
   inputs = {
+    # unstable.follows = "nixos-cosmic/nixpkgs";
+    # stable.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.follows = "nixos-cosmic/nixpkgs";
-    stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    stable.follows = "nixos-cosmic/nixpkgs-stable";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "unstable";
