@@ -1,11 +1,11 @@
-utils: { config, services-root, domain-root, ip-addr, ips, ... }:
+utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
 {
   services.adguardhome = {
     enable = true;
-    host = ip-addr;
+    host = ts-ip;
     settings = {
       http = {
-        address = ip-addr;
+        address = ts-ip;
         pprof.enabled = false;
       };
 
@@ -37,12 +37,12 @@ utils: { config, services-root, domain-root, ip-addr, ips, ... }:
       filtering.rewrites = [
         {
           domain = "*.nas.local";
-          answer = ips.nas;
+          answer = ts-ips.nas;
         }
       ];
 
       dns = {
-        bind_hosts = [ ip-addr ];
+        bind_hosts = [ ts-ip ];
         port = 53;
         anonymize_client_ip = false;
         upstream_dns = [

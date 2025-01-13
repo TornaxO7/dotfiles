@@ -6,7 +6,7 @@ let
   hmModule = import ../modules/home-manager;
   sharedMainModule = import ../modules/default.nix;
 
-  ips = {
+  ts-ips = {
     pc = "100.64.0.1";
     nas = "100.64.0.2";
     laptop = "100.64.0.3";
@@ -18,11 +18,11 @@ let
     { configuration
     , home-configuration
     , hostname
-    , ip-addr
+    , ts-ip
     , specialArgs ? { }
     }: inputs.stable.lib.nixosSystem {
       specialArgs = lib.attrsets.recursiveUpdate specialArgs {
-        inherit self inputs unstable ip-addr ips;
+        inherit self inputs unstable ts-ip ts-ips;
       };
       modules = [
         configuration
@@ -37,21 +37,21 @@ in
       configuration = (import ./pc) username;
       home-configuration = ./pc/home;
       hostname = "pc";
-      ip-addr = ips.pc;
+      ts-ip = ts-ips.pc;
     };
 
     laptop = mkSystem {
       configuration = ./laptop;
       home-configuration = ./laptop/home;
       hostname = "laptop";
-      ip-addr = ips.laptop;
+      ts-ip = ts-ips.laptop;
     };
 
     nas = mkSystem {
       configuration = ./nas;
       home-configuration = ./nas/home;
       hostname = "nas";
-      ip-addr = ips.nas;
+      ts-ip = ts-ips.nas;
       specialArgs = rec {
         zpool-name = "hdds";
         zpool-root = "/${zpool-name}";
@@ -65,7 +65,7 @@ in
       configuration = ./server;
       home-configuration = ./server/home;
       hostname = "server";
-      ip-addr = ips.server;
+      ts-ip = ts-ips.server;
       specialArgs = {
         services-root = "/services";
         domain-root = "tornaxo7.de";
