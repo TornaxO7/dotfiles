@@ -84,14 +84,14 @@ in
       };
     };
 
-    traefik-certs-dumper = {
-      image = "ghcr.io/kereis/traefik-certs-dumper:latest";
-      dependsOn = [ "traefik" ];
-      volumes = [
-        "/etc/localtime:/etc/localtime:ro"
-        "${paths.acme}:/traefik/acme.json:ro"
-        "${paths.certs-dir}:/output:rw"
-      ];
-    };
+    # traefik-certs-dumper = {
+    #   image = "ghcr.io/kereis/traefik-certs-dumper:latest";
+    #   dependsOn = [ "traefik" ];
+    #   volumes = [
+    #     "/etc/localtime:/etc/localtime:ro"
+    #     "${paths.acme}:/traefik/acme.json:ro"
+    #     "${paths.certs-dir}:/output:rw"
+    #   ];
+    # };
   };
 }
