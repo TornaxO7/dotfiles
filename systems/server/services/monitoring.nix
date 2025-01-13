@@ -99,7 +99,6 @@ in
 
     # headscale stuff
     ${headscale-names.containers.server} = {
-
       image = "headscale/headscale:latest";
 
       volumes = [

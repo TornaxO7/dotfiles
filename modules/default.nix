@@ -48,6 +48,7 @@ hostname:
         cacert
         just
         systemctl-tui
+        tailscale
       ];
       shellAliases = {
         "stui" = "${pkgs.systemctl-tui}/bin/systemctl-tui";
@@ -120,6 +121,7 @@ hostname:
     services = {
       openssh.enable = true;
       bustd.enable = true;
+      tailscale.enable = true;
     };
 
     systemd.services.NetworkManager-wait-online.enable = false;

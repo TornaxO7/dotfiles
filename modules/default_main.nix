@@ -12,14 +12,6 @@
     #   connect-timeout = 3;
     # };
 
-    environment.systemPackages = with pkgs; [
-      tailscale
-    ];
-
-    services = {
-      tailscale.enable = true;
-    };
-
     security.sudo-rs.wheelNeedsPassword = false;
   };
 }
