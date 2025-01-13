@@ -13,6 +13,8 @@ in
     (loadService ./services/filebrowser.nix)
     (loadService ./services/homarr.nix)
     (loadService ./services/website.nix)
+    (loadService ./services/headscale.nix)
+    (loadService ./services/adguardhome.nix)
     # (loadService ./services/stalwart.nix)
   ];
 

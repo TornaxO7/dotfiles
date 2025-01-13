@@ -1,49 +1,82 @@
-utils: { config, services-root, domain-root, ... }:
-let
-  paths = rec {
-    root = "${services-root}/adguardhome";
-    work = "${root}/work";
-    conf = "${root}/conf";
-  };
-
-  names = utils.createContainerNames "dns" [ "server" ];
-
-  domain = "dns.${domain-root}";
-in
+utils: { config, services-root, domain-root, ip-addr, ips, ... }:
 {
-  systemd = {
-    tmpfiles.settings.adguardhome = utils.createDirs config (builtins.attrValues paths);
+  services.adguardhome = {
+    enable = true;
+    host = ip-addr;
+    settings = {
+      http = {
+        address = ip-addr;
+        pprof.enabled = false;
+      };
 
-    services.podman-adguardhome = {
-      after = [ "network-online.target" ];
-    };
-  };
+      filters = [
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt";
+          name = "AdGuard DNS filter";
+          id = 1;
+        }
+        {
+          enabled = true;
+          url = "https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt";
+          name = "AdAway Default Blocklist";
+          id = 2;
+        }
+      ];
 
-  networking.firewall.allowedTCPPorts = [ 853 ];
+      filtering.rewrites = [
+        {
+          domain = "*.nas.local";
+          answer = ips.nas;
+        }
+      ];
 
-  virtualisation.oci-containers.containers.${names.containers.server} = {
-    image = "adguard/adguardhome";
+      dns = {
+        bind_hosts = [ ip-addr ];
+        port = 53;
+        anonymize_client_ip = false;
+        upstream_dns = [
+          # adguard
+          "tls://dns.adguard-dns.com"
+          "https://dns.adguard-dns.com/dns-query"
+          # cloudflare
+          "https://security.cloudflare-dns.com/dns-query"
+          "tls://security.cloudflare-dns.com"
+          # mullvad
+          "tls://extended.dns.mullvad.net"
+          "https://extended.dns.mullvad.net/dns-query"
+          # openbld.net
+          "https://ada.openbld.net/dns-query"
+          "tls://ada.openbld.net"
+          # rabbit DNS
+          "https://security.rabbitdns.org/dns-query"
+        ];
 
-    volumes = [
-      "${paths.work}:/opt/adguardhome/work"
-      "${paths.conf}:/opt/adguardhome/conf"
-    ];
+        bootstrap_dns = [
+          "tls://1.1.1.1"
+          "tls://1.0.0.1"
+          "8.8.8.8"
+          "8.8.4.4"
+          "2001:4860:4860::8888"
+          "9.9.9.10"
+          "149.112.112.10"
+          "2620:fe::10"
+          "2620:fe::fe:10"
+        ];
 
-    labels = {
-      "traefik.enable" = "true";
+        fallback_dns = [
+          "1.1.1.1"
+          # adguard
+          "94.140.14.14"
+          "94.140.15.15"
+        ];
 
-      "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
-      "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
-      "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "3000";
-      "traefik.http.routers.${names.containers.server}.tls" = "true";
-      "traefik.http.routers.${names.containers.server}.tls.certresolver" = "main";
+        upstream_mode = "fastest_addr";
+      };
 
-      "traefik.tcp.routers.${names.containers.server}.rule" = "HostSNI(`${domain}`)";
-      "traefik.tcp.routers.${names.containers.server}.entrypoints" = "DoT";
-      "traefik.tcp.routers.${names.containers.server}.service" = "${names.containers.server}";
-      "traefik.tcp.services.${names.containers.server}.loadbalancer.server.port" = "53";
-      "traefik.tcp.routers.${names.containers.server}.tls" = "true";
-      "traefik.tcp.routers.${names.containers.server}.tls.certresolver" = "main";
+      dhcpcd.enabled = false;
+      statistics.enabled = true;
+      tls.enabled = false;
     };
   };
 }

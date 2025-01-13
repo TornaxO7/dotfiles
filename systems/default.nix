@@ -11,7 +11,7 @@ let
     nas = "100.64.0.2";
     laptop = "100.64.0.3";
     mobile = "100.64.0.4";
-    server = null;
+    server = "100.64.0.5";
   };
 
   mkSystem =
@@ -22,7 +22,7 @@ let
     , specialArgs ? { }
     }: inputs.stable.lib.nixosSystem {
       specialArgs = lib.attrsets.recursiveUpdate specialArgs {
-        inherit self inputs unstable ip-addr;
+        inherit self inputs unstable ip-addr ips;
       };
       modules = [
         configuration
