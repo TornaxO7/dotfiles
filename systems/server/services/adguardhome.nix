@@ -9,6 +9,16 @@ utils: { config, services-root, domain-root, ip-addr, ips, ... }:
         pprof.enabled = false;
       };
 
+      theme = "dark";
+      language = "en";
+
+      users = [
+        {
+          name = config.users.users.main.name;
+          password = "$2y$10$y.8mAdOmnDQiFK7OfBYHjeOS9/9ib6pNMNmCqQnE7rMyQUa5bzlw6";
+        }
+      ];
+
       filters = [
         {
           enabled = true;
