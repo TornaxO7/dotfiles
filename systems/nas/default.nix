@@ -20,7 +20,6 @@ in
     # each service here, can have a port, starting from 49200 (incrementing 10)
     (loadService ./services/watchtower.nix)
     (loadService ./services/immich.nix)
-    (loadService ./services/adguardhome.nix)
     (loadService ./services/paperless.nix)
     (loadService ./services/syncthing.nix)
     (loadService ./services/jellyfin.nix)
