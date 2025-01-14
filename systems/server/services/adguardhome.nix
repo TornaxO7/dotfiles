@@ -58,8 +58,14 @@ utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
           # openbld.net
           "https://ada.openbld.net/dns-query"
           "tls://ada.openbld.net"
+          # quad9 dns
+          "https://dns.quad9.net/dns-query"
+          "tls://dns.quad9.net"
           # rabbit DNS
           "https://security.rabbitdns.org/dns-query"
+          # digitale gesellschaft
+          "https://dns.digitale-gesellschaft.ch/dns-query"
+          "tls://dns.digitale-gesellschaft.ch"
         ];
 
         bootstrap_dns = [
