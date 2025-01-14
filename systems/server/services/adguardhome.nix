@@ -87,7 +87,8 @@ utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
           "94.140.15.15"
         ];
 
-        upstream_mode = "fastest_addr";
+        # upstream_mode = "fastest_addr";
+        upstream_mode = "parallel";
       };
 
       dhcpcd.enabled = false;
