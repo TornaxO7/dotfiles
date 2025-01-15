@@ -10,6 +10,7 @@ utils: { ... }:
     environment = {
       TZ = "DE";
       WATCHTOWER_TIMEOUT = "30s";
+      WATCHTOWER_NOTIFICATION_URL = "gotify://gotify.nas.local/A2PzIba.UUR1RzM/?title=Server+Watchtower&priority=1";
     };
   };
 }
