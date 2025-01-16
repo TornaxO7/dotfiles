@@ -9,7 +9,7 @@ in
     ./hardware-configuration.nix
 
     (loadService ./services/traefik.nix)
-    (loadService ./services/monitoring.nix)
+    # (loadService ./services/monitoring.nix)
     (loadService ./services/filebrowser.nix)
     (loadService ./services/homarr.nix)
     (loadService ./services/website.nix)
