@@ -33,7 +33,10 @@ hostname:
       };
     };
 
-    networking.hostName = hostname;
+    networking = {
+      hostName = hostname;
+      nftables.enable = true;
+    };
 
     nixpkgs.config.allowUnfree = true;
 

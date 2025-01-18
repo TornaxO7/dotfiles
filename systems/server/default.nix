@@ -54,16 +54,17 @@ in
       oci-containers.backend = "podman";
     };
 
-    users.users = {
+    users = {
       mutableUsers = false;
+      users = {
+        main = {
+          name = "main";
+          isNormalUser = true;
+          description = "General user for the server";
+        };
 
-      main = {
-        name = "main";
-        isNormalUser = true;
-        description = "General user for the server";
+        root.hashedPassword = "!";
       };
-
-      root.hashedPassword = "!";
     };
   };
 }
