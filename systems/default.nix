@@ -21,9 +21,9 @@ let
   ];
 
   mkSystem =
-    { configuration
+    { config-modules
     , hostname
-    , ts-ip
+    , ts-ip ? null
     , home-configuration ? null
     , specialArgs ? { }
     }:
@@ -38,51 +38,70 @@ let
         inherit self inputs unstable ts-ip ts-ips ssh-keys;
       };
       modules = [
-        configuration
         hm-module
         (sharedMainModule hostname)
-      ];
+      ] ++ config-modules;
     };
 in
 {
-  flake.nixosConfigurations = {
-    pc = mkSystem {
-      configuration = (import ./pc) username;
-      home-configuration = ./pc/home;
-      hostname = "pc";
-      ts-ip = ts-ips.pc;
-    };
+  flake = {
+    nixosConfigurations = {
+      pc = mkSystem {
+        config-modules = [ ((import ./pc) username) ];
+        home-configuration = ./pc/home;
+        hostname = "pc";
+        ts-ip = ts-ips.pc;
+      };
 
-    laptop = mkSystem {
-      configuration = (import ./laptop) username;
-      home-configuration = ./laptop/home;
-      hostname = "laptop";
-      ts-ip = ts-ips.laptop;
-    };
+      laptop = mkSystem {
+        config-modules = [ ((import ./laptop) username) ];
+        home-configuration = ./laptop/home;
+        hostname = "laptop";
+        ts-ip = ts-ips.laptop;
+      };
 
-    nas = mkSystem {
-      configuration = (import ./nas) username;
-      home-configuration = ./nas/home;
-      hostname = "nas";
-      ts-ip = ts-ips.nas;
-      specialArgs = rec {
-        zpool-name = "hdds";
-        zpool-root = "/${zpool-name}";
+      nas = mkSystem {
+        config-modules = [ ((import ./nas) username) ];
+        home-configuration = ./nas/home;
+        hostname = "nas";
+        ts-ip = ts-ips.nas;
+        specialArgs = rec {
+          zpool-name = "hdds";
+          zpool-root = "/${zpool-name}";
 
-        services-root = "/services";
-        domain-root = "nas.local";
+          services-root = "/services";
+          domain-root = "nas.local";
+        };
+      };
+
+      server = mkSystem {
+        config-modules = [ ./server ];
+        hostname = "server";
+        ts-ip = ts-ips.server;
+        specialArgs = {
+          services-root = "/services";
+          domain-root = "tornaxo7.de";
+          ip4 = "2.56.97.207";
+        };
+      };
+
+      iso = mkSystem {
+        hostname = "iso";
+        config-modules = [
+          ({ modulesPath, ... }: {
+            imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
+            config = {
+              nixpkgs.hostPlatform = "x86_64-linux";
+              isoImage.squashfsCompression = "lz4";
+              security.sudo-rs.enable = true;
+
+              users.users.nixos.initialPassword = "nixos";
+            };
+          })
+        ];
       };
     };
 
-    server = mkSystem {
-      configuration = ./server;
-      hostname = "server";
-      ts-ip = ts-ips.server;
-      specialArgs = {
-        services-root = "/services";
-        domain-root = "tornaxo7.de";
-        ip4 = "2.56.97.207";
-      };
-    };
+    packages.x86_64-linux.iso = self.nixosConfigurations.iso.config.system.build.isoImage;
   };
 }

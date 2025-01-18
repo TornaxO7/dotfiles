@@ -25,14 +25,8 @@ in
           asDefault = true;
           http = {
             tls.certResolver = "main";
-            # middlewares = "my-fail2ban";
           };
         };
-
-        # ts-https = {
-        #   address = "${ts-ip}:${toString ports.https}";
-        #   http.tls.certResolver = "main";
-        # };
       };
 
       api = {
@@ -50,13 +44,6 @@ in
         storage = "${config.services.traefik.dataDir}/acme.json";
         tlsChallenge = { };
       };
-
-      # experimental.plugins = {
-      #   fail2ban = {
-      #     moduleName = "github.com/tomMoulard/fail2ban";
-      #     version = "v0.8.3";
-      #   };
-      # };
     };
 
     dynamicConfigOptions =
@@ -73,14 +60,6 @@ in
 
           middlewares = {
             ${dashboard-middleware}.digestauth.users = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
-
-            # my-fail2ban.plugin.fail2ban.rules = {
-            #   bantime = "6h";
-            #   enabled = true;
-            #   findtime = "10m";
-            #   maxretry = "5";
-            #   statuscode = "400,401,403-499";
-            # };
           };
         };
       };

@@ -13,7 +13,7 @@ in
     # (loadService ./services/filebrowser.nix)
     # (loadService ./services/homarr.nix)
     (loadService ./services/website.nix)
-    (loadService ./services/headscale.nix)
+    # (loadService ./services/headscale.nix)
     # (loadService ./services/adguardhome.nix)
     # (loadService ./services/stalwart.nix)
   ];
@@ -37,7 +37,7 @@ in
       qemuGuest.enable = true;
       fail2ban = {
         enable = true;
-        maxretry = 3;
+        maxretry = 30;
         bantime = "24h";
       };
     };
@@ -55,6 +55,8 @@ in
     };
 
     users.users = {
+      mutableUsers = false;
+
       main = {
         name = "main";
         isNormalUser = true;
