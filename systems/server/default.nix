@@ -37,7 +37,7 @@ in
       qemuGuest.enable = true;
       fail2ban = {
         enable = true;
-        maxretry = 5;
+        maxretry = 3;
         bantime = "24h";
       };
     };
