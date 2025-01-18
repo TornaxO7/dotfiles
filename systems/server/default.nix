@@ -24,12 +24,22 @@ in
       podman-compose
     ];
 
-    systemd.tmpfiles.settings.services-dir = utils.createDirsWith "root" [ services-root ];
+    systemd.tmpfiles.settings.services-dir = {
+      "${services-root}".d = {
+        user = "root";
+        group = "podman";
+        mode = "0750";
+      };
+    };
 
     services = {
       openssh.settings.PasswordAuthentication = false;
       qemuGuest.enable = true;
-      fail2ban.enable = true;
+      fail2ban = {
+        enable = true;
+        maxretry = 5;
+        bantime = "24h";
+      };
     };
 
     networking.networkmanager.enable = false;

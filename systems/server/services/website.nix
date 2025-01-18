@@ -15,7 +15,7 @@ in
     image = "joseluisq/static-web-server:latest";
 
     volumes = [
-      "${paths.root}/public:/public"
+      "${paths.root}/public:/public:ro"
     ];
 
     labels = {
