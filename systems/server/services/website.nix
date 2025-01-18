@@ -18,6 +18,10 @@ in
       "${paths.root}/public:/public:ro"
     ];
 
+    environment = {
+      "TZ" = "Europe/Berlin";
+    };
+
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";

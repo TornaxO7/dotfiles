@@ -16,7 +16,7 @@ in
     # (loadService ./services/headscale.nix)
     # (loadService ./services/adguardhome.nix)
     # (loadService ./services/stalwart.nix)
-    (loadService ./services/crowdsec.nix)
+    (loadService ./services/crowdsec)
   ];
 
   config = {
