@@ -29,6 +29,8 @@ in
         };
       };
 
+      log.filepath = "${root-path}/traefik.log";
+
       api = {
         dashboard = true;
         insecure = false;
