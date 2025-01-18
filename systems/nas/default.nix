@@ -1,3 +1,4 @@
+username:
 { config, pkgs, services-root, ... }:
 let
   utils = import ../utils.nix;
@@ -6,7 +7,7 @@ let
 in
 {
   imports = [
-    ../../modules/default_main.nix
+    ((import ../../modules/default_main.nix) username)
     ./hardware-configuration.nix
 
     ./zfs

@@ -14,7 +14,7 @@ utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
 
       users = [
         {
-          name = config.users.users.main.name;
+          name = "main";
           password = "$2y$10$y.8mAdOmnDQiFK7OfBYHjeOS9/9ib6pNMNmCqQnE7rMyQUa5bzlw6";
         }
       ];

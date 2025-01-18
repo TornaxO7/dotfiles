@@ -1,9 +1,10 @@
+username:
 { config, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/default_main.nix
+    ((import ../../modules/default_main.nix) username)
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
     ../../modules/desktop/xorg/i3.nix

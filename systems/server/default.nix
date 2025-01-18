@@ -1,4 +1,4 @@
-{ config, pkgs, services-root, ... }:
+{ pkgs, services-root, ... }:
 let
   utils = import ../utils.nix;
   loadService = path: (import path) utils;
@@ -10,11 +10,11 @@ in
 
     (loadService ./services/traefik.nix)
     # (loadService ./services/monitoring.nix)
-    (loadService ./services/filebrowser.nix)
-    (loadService ./services/homarr.nix)
+    # (loadService ./services/filebrowser.nix)
+    # (loadService ./services/homarr.nix)
     (loadService ./services/website.nix)
     (loadService ./services/headscale.nix)
-    (loadService ./services/adguardhome.nix)
+    # (loadService ./services/adguardhome.nix)
     # (loadService ./services/stalwart.nix)
   ];
 
@@ -24,19 +24,15 @@ in
       podman-compose
     ];
 
-    systemd.tmpfiles.settings.services-dir = utils.createDirs config [ services-root ];
+    systemd.tmpfiles.settings.services-dir = utils.createDirsWith "root" [ services-root ];
 
     services = {
       openssh.settings.PasswordAuthentication = false;
       qemuGuest.enable = true;
+      fail2ban.enable = true;
     };
 
-    networking = {
-      networkmanager.enable = false;
-
-      # allow DNS resolver for the docker networks
-      firewall.allowedUDPPorts = [ 53 ];
-    };
+    networking.networkmanager.enable = false;
 
     virtualisation = {
       podman = {
@@ -48,6 +44,14 @@ in
       oci-containers.backend = "podman";
     };
 
-    users.users.root.hashedPassword = "!";
+    users.users = {
+      main = {
+        name = "main";
+        isNormalUser = true;
+        description = "General user for the server";
+      };
+
+      root.hashedPassword = "!";
+    };
   };
 }

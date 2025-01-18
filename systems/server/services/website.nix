@@ -5,7 +5,7 @@ let
   domain = domain-root;
 
   paths = {
-    website = "${services-root}/website";
+    root = "${services-root}/website";
   };
 in
 {
@@ -15,15 +15,13 @@ in
     image = "joseluisq/static-web-server:latest";
 
     volumes = [
-      "${paths.website}/public:/public"
+      "${paths.root}/public:/public"
     ];
 
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
       "traefik.http.routers.${names.containers.server}.service" = names.containers.server;
-      "traefik.http.routers.${names.containers.server}.tls" = "true";
-      "traefik.http.routers.${names.containers.server}.tls.certresolver" = "main";
       "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "80";
     };
   };

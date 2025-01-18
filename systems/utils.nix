@@ -1,10 +1,18 @@
-{
+rec {
   # Create directories with the paths provided in `dir-paths` with the user-owner `username`.
   createDirs = config: dir-paths:
     let
       username = config.users.users.main.name;
     in
-    builtins.listToAttrs (map (dir: { name = "${dir}"; value = { d.user = username; }; }) dir-paths);
+    createDirsWith username dir-paths;
+
+  createDirsWith = username: dir-paths:
+    builtins.listToAttrs (map
+      (dir: {
+        name = "${dir}";
+        value = { d.user = username; };
+      })
+      dir-paths);
 
   # Create a systemd service and timer for the given service name which
   # creates daily snapshots of the given dateset-path.

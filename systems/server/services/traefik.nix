@@ -1,92 +1,68 @@
-utils: { config, services-root, domain-root, ts-ip, ... }:
+utils: { config, services-root, domain-root, ts-ip, ip4, ... }:
 let
-  username = config.users.users.main.name;
-
-  paths = rec {
-    root = "${services-root}/traefik";
-    acme = "${root}/acme.json";
-    certs-dir = "${root}/certs";
-  };
-
   domain = "traefik.${domain-root}";
+
+  root-path = "${services-root}/traefik";
+
+  ports = {
+    https = 443;
+  };
 in
 {
-  systemd = {
-    tmpfiles.settings = {
-      traefik-dirs = utils.createDirs config (with paths; [ root certs-dir ]);
-      traefik-acme."${paths.acme}".f = {
-        user = username;
-        mode = "0600";
-      };
-    };
+  networking.firewall = {
+    allowedTCPPorts = builtins.attrValues ports;
   };
 
-  virtualisation.oci-containers.containers = {
-    traefik = {
-      image = "traefik:latest";
-      cmd = [
-        "--api=true"
+  services.traefik = {
+    enable = true;
+    dataDir = root-path;
+    group = "podman";
 
-        "--providers.docker=true"
-        "--providers.docker.exposedbydefault=false"
+    staticConfigOptions = {
+      entryPoints = {
+        https = {
+          address = "${ip4}:${toString ports.https}";
+          asDefault = true;
+          http.tls.certResolver = "main";
+        };
 
-        "--entryPoints.http.address=:80"
-        "--entryPoints.https.address=:443"
-        "--entryPoints.https.asDefault=true"
+        # ts-https = {
+        #   address = "${ts-ip}:${toString ports.https}";
+        #   http.tls.certResolver = "main";
+        # };
+      };
 
-        # == mail
-        # smtp
-        # "--entryPoints.smtp.address=:25"
-        # smtps
-        # "--entryPoints.smtps.address=:465"
-        # imaps
-        # "--entryPoints.imaps.address=:993"
+      api = {
+        dashboard = true;
+        insecure = false;
+      };
 
-        "--certificatesresolvers.main.acme.email=tornax@tornaxo7.de"
-        "--certificatesresolvers.main.acme.storage=acme.json"
-        "--certificatesresolvers.main.acme.httpchallenge.entrypoint=http"
-      ];
+      providers.docker = {
+        endpoint = "unix:///var/run/podman/podman.sock";
+        exposedByDefault = false;
+      };
 
-      extraOptions = [
-        "--hostuser=${username}"
-      ];
-
-      ports = [
-        "80:80"
-        "443:443"
-
-        # mail
-        # "25:25/tcp"
-        # "465:465/tcp"
-        # "993:993/tcp"
-      ];
-
-      volumes = [
-        "/var/run/podman/podman.sock:/var/run/docker.sock"
-        "${paths.acme}:/acme.json"
-        "/etc/passwd:/etc/passwd:ro"
-      ];
-
-      labels = {
-        "traefik.enable" = "true";
-        "traefik.http.routers.dashboard.rule" = "Host(`${domain}`)";
-        "traefik.http.routers.dashboard.service" = "api@internal";
-        "traefik.http.routers.dashboard.tls" = "true";
-        "traefik.http.routers.dashboard.tls.certresolver" = "main";
-
-        "traefik.http.routers.dashboard.middlewares" = "auth";
-        "traefik.http.middlewares.auth.digestauth.users" = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
+      certificatesResolvers.main.acme = {
+        email = "postmaster@tornaxo7.de";
+        storage = "${config.services.traefik.dataDir}/acme.json";
+        tlsChallenge = { };
       };
     };
 
-    # traefik-certs-dumper = {
-    #   image = "ghcr.io/kereis/traefik-certs-dumper:latest";
-    #   dependsOn = [ "traefik" ];
-    #   volumes = [
-    #     "/etc/localtime:/etc/localtime:ro"
-    #     "${paths.acme}:/traefik/acme.json:ro"
-    #     "${paths.certs-dir}:/output:rw"
-    #   ];
-    # };
+    dynamicConfigOptions =
+      let
+        middleware = "dashboard-auth";
+      in
+      {
+        http = {
+          routers.dashboard = {
+            rule = "Host(`${domain}`)";
+            service = "api@internal";
+            middlewares = middleware;
+          };
+
+          middlewares.${middleware}.digestauth.users = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
+        };
+      };
   };
 }
