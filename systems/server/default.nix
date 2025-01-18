@@ -22,6 +22,7 @@ in
     environment.systemPackages = with pkgs; [
       podman
       podman-compose
+      helix
     ];
 
     systemd.tmpfiles.settings.services-dir = {
