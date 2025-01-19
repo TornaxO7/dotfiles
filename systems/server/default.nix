@@ -16,13 +16,13 @@ in
     # (loadService ./services/headscale.nix)
     # (loadService ./services/adguardhome.nix)
     # (loadService ./services/stalwart.nix)
-    (loadService ./services/crowdsec.nix)
   ];
 
   config = {
     environment.systemPackages = with pkgs; [
       podman
       podman-compose
+      helix
     ];
 
     systemd.tmpfiles.settings.services-dir = {
