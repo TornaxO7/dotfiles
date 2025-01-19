@@ -12,13 +12,15 @@ utils:
     age.secrets.crowdsec = {
       owner = "crowdsec";
       group = "crowdsec";
-      file = ../../../../secrets/crowdsec.age;
+      file = ../../../secrets/crowdsec.age;
     };
 
     services = {
       crowdsec-firewall-bouncer = {
         enable = true;
         settings = {
+          # Create a new one
+          api_key = "u/lKC7qTli3mLOykasPTZB+lUDUOdwoOMMsX2pCbxZE";
           api_url = "http://127.0.0.1:8080";
         };
       };
