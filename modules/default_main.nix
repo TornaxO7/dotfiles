@@ -14,7 +14,7 @@ username:
     # };
 
     security.sudo-rs = {
-      enable = false;
+      enable = true;
       wheelNeedsPassword = false;
     };
 
