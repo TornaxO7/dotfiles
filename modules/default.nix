@@ -44,6 +44,9 @@ hostname:
       (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
     ];
 
+    # disable due to fish: https://discourse.nixos.org/t/slow-build-at-building-man-cache/52365/2?u=tornaxo7
+    documentation.man.generateCaches = false;
+
     environment = {
       systemPackages = with pkgs; [
         cacert
