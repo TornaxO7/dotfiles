@@ -1,4 +1,4 @@
-utils: { config, services-root, domain-root, ts-ip, ip4, ... }:
+utils: { config, services-root, unstable, domain-root, ts-ip, ip4, ... }:
 let
   domain = "traefik.${domain-root}";
 
@@ -15,6 +15,7 @@ in
 
   services.traefik = {
     enable = true;
+    package = unstable.traefik;
     dataDir = root-path;
     group = "podman";
 
