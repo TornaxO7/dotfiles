@@ -16,7 +16,7 @@ in
     # (loadService ./services/headscale.nix)
     # (loadService ./services/adguardhome.nix)
     # (loadService ./services/stalwart.nix)
-    (loadService ./services/crowdsec)
+    (loadService ./services/crowdsec.nix)
   ];
 
   config = {
@@ -54,6 +54,8 @@ in
 
       oci-containers.backend = "podman";
     };
+
+    security.sudo-rs.enable = true;
 
     users = {
       mutableUsers = false;

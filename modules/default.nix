@@ -91,8 +91,6 @@ hostname:
       tailscale.enable = true;
     };
 
-    security.sudo.enable = false;
-
     systemd.services.NetworkManager-wait-online.enable = false;
 
     virtualisation.podman = {

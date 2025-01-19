@@ -13,12 +13,15 @@ username:
     #   connect-timeout = 3;
     # };
 
-    security.sudo-rs = {
-      enable = false;
-      wheelNeedsPassword = false;
-    };
-
     nix.settings.trusted-users = [ username ];
+
+    security = {
+      sudo.enable = false;
+      sudo-rs = {
+        enable = true;
+        wheelNeedsPassword = false;
+      };
+    };
 
     users = {
       groups = {

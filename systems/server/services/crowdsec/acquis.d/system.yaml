@@ -1,4 +1,0 @@
-filenames:
-  - "/run/log/journal/f9f3b607a52943eaa84719a6d6cd4d05/*.journal"
-labels:
-  type: "syslog"

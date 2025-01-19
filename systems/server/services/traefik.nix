@@ -29,7 +29,10 @@ in
         };
       };
 
-      log.filepath = "${root-path}/traefik.log";
+      log = {
+        filepath = "${root-path}/traefik.log";
+        level = "WARN";
+      };
 
       api = {
         dashboard = true;

@@ -2,6 +2,7 @@
 let
   add-secret = path: {
     owner = "root";
+    group = "crowdsec";
     file = path;
   };
 in
@@ -15,10 +16,6 @@ in
       identityPaths = [
         "/etc/ssh/server"
       ];
-
-      secrets = {
-        crowdsec.file = ../../secrets/crowdsec.age;
-      };
     };
   };
 }
