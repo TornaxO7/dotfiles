@@ -10,5 +10,6 @@ in
 {
   "deepl.age".publicKeys = main;
   "gotify-token.age".publicKeys = main;
+
   "crowdsec.age".publicKeys = all;
 }

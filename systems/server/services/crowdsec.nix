@@ -1,5 +1,10 @@
 utils:
 { inputs, config, pkgs, ... }:
+let
+  crowdsec = "crowdsec";
+
+  bouncer-api-key = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
+in
 {
   imports = [
     inputs.crowdsec.nixosModules.crowdsec
@@ -9,18 +14,24 @@ utils:
   config = {
     nixpkgs.overlays = [ inputs.crowdsec.overlays.default ];
 
-    age.secrets.crowdsec = {
-      owner = "crowdsec";
-      group = "crowdsec";
-      file = ../../../secrets/crowdsec.age;
-    };
+    age.secrets =
+      let
+        add-secret = file: {
+          inherit file;
+          owner = crowdsec;
+          group = crowdsec;
+        };
+      in
+      {
+        crowdsec = add-secret ../../../secrets/crowdsec.age;
+      };
 
     services = {
       crowdsec-firewall-bouncer = {
         enable = true;
         settings = {
-          # Create a new one
-          api_key = "u/lKC7qTli3mLOykasPTZB+lUDUOdwoOMMsX2pCbxZE";
+          # no other choice at the moment
+          api_key = bouncer-api-key;
           api_url = "http://127.0.0.1:8080";
         };
       };
@@ -58,20 +69,24 @@ utils:
         let
           script-name = "register-crowdsec-stuff";
 
-          adder = category: owner: pkg-name: ''
-            if ! cscli ${category} list | grep -q "${pkg-name}"; then
-              cscli ${category} install ${owner}/${pkg-name}
+          addBouncers = bouncer-name: api-key: ''
+            if ! cscli bouncers list | grep -q "${bouncer-name}"; then
+              cscli bouncers add ${bouncer-name} --key "${api-key}"
             fi
           '';
-
-          addBouncers = owner: pkg-name: adder "bouncers" owner pkg-name;
-          addCollection = owner: pkg-name: adder "collections" owner pkg-name;
+          addCollection = owner: pkg-name: ''
+            if ! cscli collections list | grep -q "${pkg-name}"; then
+              cscli collections install ${owner}/${pkg-name}
+            fi
+          '';
 
           # == actual script ==
           script = pkgs.writeScriptBin script-name ''
             #!${pkgs.runtimeShell}
             set -eu
             set -o pipefail
+
+            ${addBouncers "nftables-firewall" bouncer-api-key}
 
             ${addCollection "crowdsecurity" "linux"}
             ${addCollection "crowdsecurity" "sshd"}
