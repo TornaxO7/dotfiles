@@ -11,7 +11,7 @@ in
     (loadService ./services/traefik.nix)
     (loadService ./services/whoami.nix)
     # (loadService ./services/monitoring.nix)
-    # (loadService ./services/filebrowser.nix)
+    (loadService ./services/filebrowser.nix)
     (loadService ./services/website.nix)
     (loadService ./services/headscale)
     (loadService ./services/adguardhome.nix)

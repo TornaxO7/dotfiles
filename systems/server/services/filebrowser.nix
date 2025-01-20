@@ -8,17 +8,17 @@ in
     image = "filebrowser/filebrowser";
     volumes = [
       "${prefix}-data:/srv"
-      "${prefix}-database:/database.db"
-      "${prefix}-settings:/config/settings.json"
+      "${prefix}-settings:/config"
+      "${prefix}-database:/database"
     ];
+
+    cmd = [ "--database=/database/database.db" ];
 
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.filebrowser.rule" = "Host(`${domain}`)";
       "traefik.http.routers.filebrowser.service" = "filebrowser";
       "traefik.http.services.filebrowser.loadbalancer.server.port" = "80";
-      "traefik.http.routers.filebrowser.tls" = "true";
-      "traefik.http.routers.filebrowser.tls.certresolver" = "main";
     };
   };
 }
