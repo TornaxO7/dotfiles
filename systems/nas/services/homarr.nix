@@ -1,4 +1,19 @@
-{ zpool-root, ... }:
+{ lib, domain-root, ... }:
+let
+  prefix = "homarr";
+
+  domain = "${prefix}.${domain-root}";
+
+  volumes =
+    let
+      converter = (name: value: "${prefix}-value");
+    in
+    lib.attrsets.mapAttrs converter {
+      config = "config";
+      icons = "icons";
+      data = "data";
+    };
+in
 {
   virtualisation.oci-containers.containers = {
     homarr = {
@@ -7,14 +22,14 @@
       volumes = [
         "/var/run/podman/podman.sock:/var/run/docker.sock"
 
-        "${zpool-root}/homarr/configs:/app/data/configs"
-        "${zpool-root}/homarr/icons:/app/public/icons"
-        "${zpool-root}/homarr/data:/data"
+        "${volumes.config}:/app/data/configs"
+        "${volumes.icons}:/app/public/icons"
+        "${volumes.data}:/data"
       ];
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.homarr.rule" = "Host(`dashboard.local`) || Host(`main.local`)";
+        "traefik.http.routers.homarr.rule" = "Host(`${domain}`)";
         "traefik.http.routers.homarr.service" = "homarr";
         "traefik.http.services.homarr.loadbalancer.server.port" = toString 7575;
       };
@@ -31,7 +46,7 @@
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.dash.rule" = "Host(`dash.homarr.local`)";
+        "traefik.http.routers.dash.rule" = "Host(`dash.${domain}`)";
         "traefik.http.routers.dash.service" = "dash";
         "traefik.http.services.dash.loadbalancer.server.port" = toString 3001;
       };

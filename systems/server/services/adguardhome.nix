@@ -1,11 +1,19 @@
-utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
+utils: { config, lib, services-root, domain-root, ts-ip, ts-ips, ... }:
+let
+  ip-addr = ts-ip;
+in
 {
+  networking.firewall = {
+    allowedTCPPorts = [ 3000 ];
+    allowedUDPPorts = [ 53 ];
+  };
+
   services.adguardhome = {
     enable = true;
-    host = ts-ip;
+    host = ip-addr;
     settings = {
       http = {
-        address = ts-ip;
+        address = ip-addr;
         pprof.enabled = false;
       };
 
@@ -15,7 +23,7 @@ utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
       users = [
         {
           name = "main";
-          password = "$2y$10$y.8mAdOmnDQiFK7OfBYHjeOS9/9ib6pNMNmCqQnE7rMyQUa5bzlw6";
+          password = "$2y$10$XKlxY4De85EPwIMBaNWHJu2c0d.mjcwMTXA2ehen2HFv/DTQx7WUq";
         }
       ];
 
@@ -42,7 +50,7 @@ utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
       ];
 
       dns = {
-        bind_hosts = [ ts-ip ];
+        bind_hosts = [ ip-addr ];
         port = 53;
         anonymize_client_ip = false;
         upstream_dns = [
@@ -90,6 +98,16 @@ utils: { config, services-root, domain-root, ts-ip, ts-ips, ... }:
         # upstream_mode = "fastest_addr";
         upstream_mode = "parallel";
       };
+
+      clients.persistent =
+        let
+          converter = hostname: ts-ip-addr: {
+            name = hostname;
+            ids = [ ts-ip-addr ];
+            use_global_settings = true;
+          };
+        in
+        lib.attrsets.mapAttrsToList converter ts-ips;
 
       dhcpcd.enabled = false;
       statistics.enabled = true;

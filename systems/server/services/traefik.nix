@@ -32,14 +32,6 @@ in
             middlewares = [ "crowdsec@file" ];
           };
         };
-
-        ts-https = {
-          address = "${ts-ip}:${toString ports.https}";
-          http = {
-            tls.certResolver = "main";
-            middlewares = [ "crowdsec@file" ];
-          };
-        };
       };
 
       log = {

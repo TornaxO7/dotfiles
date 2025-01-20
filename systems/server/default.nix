@@ -12,10 +12,9 @@ in
     (loadService ./services/whoami.nix)
     # (loadService ./services/monitoring.nix)
     # (loadService ./services/filebrowser.nix)
-    # (loadService ./services/homarr.nix)
     (loadService ./services/website.nix)
     (loadService ./services/headscale)
-    # (loadService ./services/adguardhome.nix)
+    (loadService ./services/adguardhome.nix)
     # (loadService ./services/stalwart.nix)
     (loadService ./services/crowdsec.nix)
   ];
