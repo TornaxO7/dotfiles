@@ -37,11 +37,6 @@ in
     services = {
       openssh.settings.PasswordAuthentication = false;
       qemuGuest.enable = true;
-      fail2ban = {
-        enable = true;
-        maxretry = 30;
-        bantime = "24h";
-      };
     };
 
     networking.networkmanager.enable = false;
