@@ -5,6 +5,7 @@ let
   root-path = "${services-root}/traefik";
 
   ports = {
+    http = 80;
     https = 443;
   };
 in
@@ -31,6 +32,10 @@ in
             tls.certResolver = "main";
             middlewares = [ "crowdsec@file" ];
           };
+        };
+
+        ts-http = {
+          address = "${ts-ip}:${toString ports.http}";
         };
       };
 

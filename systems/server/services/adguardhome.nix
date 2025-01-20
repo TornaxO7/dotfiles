@@ -47,6 +47,10 @@ in
           domain = "*.nas.local";
           answer = ts-ips.nas;
         }
+        {
+          domain = "*.server.local";
+          answer = ts-ips.server;
+        }
       ];
 
       dns = {

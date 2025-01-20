@@ -81,6 +81,7 @@ in
         specialArgs = {
           services-root = "/services";
           domain-root = "tornaxo7.de";
+          ts-domain-root = "server.local";
           ip4 = "2.56.97.207";
         };
       };

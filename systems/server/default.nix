@@ -15,6 +15,7 @@ in
     (loadService ./services/website.nix)
     (loadService ./services/headscale)
     (loadService ./services/adguardhome.nix)
+    (loadService ./services/homarr.nix)
     # (loadService ./services/stalwart.nix)
     (loadService ./services/crowdsec.nix)
   ];
