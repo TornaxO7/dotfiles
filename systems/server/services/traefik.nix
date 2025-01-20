@@ -13,9 +13,12 @@ in
     allowedTCPPorts = builtins.attrValues ports;
   };
 
+  systemd.services.traefik.serviceConfig = {
+    WorkingDirectory = root-path;
+  };
+
   services.traefik = {
     enable = true;
-    package = unstable.traefik;
     dataDir = root-path;
     group = "podman";
 
@@ -26,12 +29,13 @@ in
           asDefault = true;
           http = {
             tls.certResolver = "main";
+            middlewares = [ "crowdsec@file" ];
           };
         };
       };
 
       log = {
-        filepath = "${root-path}/traefik.log";
+        # filepath = "${root-path}/traefik.log";
         level = "WARN";
       };
 
@@ -50,6 +54,11 @@ in
         storage = "${config.services.traefik.dataDir}/acme.json";
         tlsChallenge = { };
       };
+
+      experimental.plugins.crowdsec-bouncer-traefik-plugin = {
+        moduleName = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin";
+        version = "v1.3.5";
+      };
     };
 
     dynamicConfigOptions =
@@ -66,6 +75,20 @@ in
 
           middlewares = {
             ${dashboard-middleware}.digestauth.users = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
+            crowdsec.plugin.crowdsec-bouncer-traefik-plugin = {
+              CrowdsecMode = "stream";
+              CrowdsecLapiScheme = "http";
+              CrowdsecLapiHost = "127.0.0.1:8080";
+              CrowdsecLapiKey = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
+              ClientTrustedIPs = [
+                "100.64.0.1"
+                "100.64.0.2"
+                "100.64.0.3"
+                "100.64.0.4"
+                "100.64.0.5"
+              ];
+              Enabled = true;
+            };
           };
         };
       };
