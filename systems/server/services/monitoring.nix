@@ -1,12 +1,18 @@
-utils: { config, pkgs, services-root, domain-root, ... }:
+utils:
+{ config, lib, pkgs, services-root, domain-root, ... }:
 let
   network-name = "monitoring-network";
 
-  paths = rec {
-    root = "${services-root}/monitoring";
-    prometheus = "${root}/prometheus";
-    grafana = "${root}/grafana";
-  };
+  prefix = "monitoring";
+
+  volumes =
+    let
+      converter = name: value: "${prefix}-${value}";
+    in
+    lib.attrsets.mapAttrs converter {
+      grafana = "grafana";
+      prometheus = "prometheus";
+    };
 
   names = utils.createContainerNames "monitor" [
     "grafana"
@@ -19,56 +25,52 @@ let
 in
 {
   systemd = {
-    tmpfiles.settings = {
-      monitoring-dirs = utils.createDirs config (builtins.attrValues paths);
-    };
-
     services = {
       create-monitoring-network = utils.createPodmanNetworkService pkgs network-name (builtins.attrValues names.service-full);
     };
   };
 
   virtualisation.oci-containers.containers = {
-    "${names.containers.grafana}" = {
-      image = "grafana/grafana-enterprise";
+    # "${names.containers.grafana}" = {
+    #   image = "grafana/grafana-enterprise";
 
-      user = config.users.users.main.name;
+    #   user = config.users.users.main.name;
 
-      labels = {
-        "traefik.enable" = "true";
-        "traefik.http.routers.grafana.rule" = "Host(`${domain}`)";
-        "traefik.http.routers.grafana.service" = names.containers.grafana;
-        "traefik.http.services.${names.containers.grafana}.loadbalancer.server.port" = "3000";
-        "traefik.http.routers.grafana.tls" = "true";
-        "traefik.http.routers.grafana.tls.certresolver" = "main";
-      };
+    #   labels = {
+    #     "traefik.enable" = "true";
+    #     "traefik.http.routers.grafana.rule" = "Host(`${domain}`)";
+    #     "traefik.http.routers.grafana.service" = names.containers.grafana;
+    #     "traefik.http.services.${names.containers.grafana}.loadbalancer.server.port" = "3000";
+    #     "traefik.http.routers.grafana.tls" = "true";
+    #     "traefik.http.routers.grafana.tls.certresolver" = "main";
+    #   };
 
-      volumes = [
-        "${paths.grafana}:/var/lib/grafana"
-        "/etc/passwd:/etc/passwd:ro"
-      ];
+    #   volumes = [
+    #     "${volumes.grafana}:/var/lib/grafana"
+    #     "/etc/passwd:/etc/passwd:ro"
+    #   ];
 
-      extraOptions = [ "--network=${network-name}" ];
-    };
+    #   extraOptions = [ "--network=${network-name}" ];
+    # };
 
-    "${names.containers.prometheus}" = {
-      image = "prom/prometheus";
+    # "${names.containers.prometheus}" = {
+    #   image = "prom/prometheus";
 
-      volumes = [
-        "${paths.prometheus}:/etc/prometheus"
-      ];
+    #   volumes = [
+    #     "${volumes.prometheus}:/etc/prometheus"
+    #   ];
 
-      extraOptions = [ "--network=${network-name}" ];
-    };
+    #   extraOptions = [ "--network=${network-name}" ];
+    # };
 
-    "${names.containers.node-exporter}" = {
-      image = "quay.io/prometheus/node-exporter:latest";
-      cmd = [ "--path.rootfs=/host" ];
-      extraOptions = [ "--network=${network-name}" ];
-      volumes = [
-        "/:/host:ro,rslave"
-      ];
-    };
+    # "${names.containers.node-exporter}" = {
+    #   image = "quay.io/prometheus/node-exporter:latest";
+    #   cmd = [ "--path.rootfs=/host" ];
+    #   extraOptions = [ "--network=${network-name}" ];
+    #   volumes = [
+    #     "/:/host:ro,rslave"
+    #   ];
+    # };
 
     ${names.containers.watchtower} = {
       image = "containrrr/watchtower";
@@ -86,6 +88,5 @@ in
 
       extraOptions = [ "--network=${network-name}" ];
     };
-
   };
 }
