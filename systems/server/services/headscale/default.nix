@@ -12,13 +12,19 @@ let
   names = utils.createContainerNames "headscale" [ "server" "metrics" ];
 in
 {
-  systemd.tmpfiles.settings.headscale-dirs = utils.createDirsWith "root" (builtins.attrValues paths);
+  systemd.tmpfiles.rules = [
+    "L+ ${paths.config}/config.yaml - - - - ${./config.yaml}"
+    "L+ ${paths.config}/acl.json - - - - ${./acl.json}"
+  ];
 
   virtualisation.oci-containers.containers = {
     ${names.containers.server} = {
       image = "headscale/headscale:latest";
 
       volumes = [
+        "${./config.yaml}:${./config.yaml}:ro"
+        "${./acl.json}:${./acl.json}:ro"
+
         "${paths.config}:/etc/headscale"
         "${vol-prefix}-lib:/var/lib/headscale"
       ];

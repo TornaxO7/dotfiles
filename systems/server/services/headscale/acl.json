@@ -1,0 +1,20 @@
+{
+  "groups": {
+    "group:main": ["tornax"]
+  },
+  "acls": [
+    {
+      "action": "accept",
+      "src": ["group:main"],
+      "dst": ["*:*"]
+    }
+  ],
+  "ssh": [
+    {
+      "action": "accept",
+      "src": ["group:main"],
+      "dst": ["*"],
+      "users": ["*"]
+    }
+  ]
+}
