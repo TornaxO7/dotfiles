@@ -10,14 +10,14 @@ in
 
     (loadService ./services/traefik.nix)
     (loadService ./services/whoami.nix)
-    # (loadService ./services/monitoring.nix)
     (loadService ./services/filebrowser.nix)
     (loadService ./services/website.nix)
     (loadService ./services/headscale)
     (loadService ./services/adguardhome.nix)
     (loadService ./services/homarr.nix)
-    # (loadService ./services/stalwart.nix)
     (loadService ./services/crowdsec.nix)
+
+    # (loadService ./services/stalwart.nix)
   ];
 
   config = {
