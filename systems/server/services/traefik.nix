@@ -32,6 +32,14 @@ in
             middlewares = [ "crowdsec@file" ];
           };
         };
+
+        ts-https = {
+          address = "${ts-ip}:${toString ports.https}";
+          http = {
+            tls.certResolver = "main";
+            middlewares = [ "crowdsec@file" ];
+          };
+        };
       };
 
       log = {
@@ -81,11 +89,8 @@ in
               CrowdsecLapiHost = "127.0.0.1:8080";
               CrowdsecLapiKey = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
               ClientTrustedIPs = [
-                "100.64.0.1"
-                "100.64.0.2"
-                "100.64.0.3"
-                "100.64.0.4"
-                "100.64.0.5"
+                "100.64.0.0/10"
+                "fd7a:115c:a1e0::/48"
               ];
               Enabled = true;
             };
