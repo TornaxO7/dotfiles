@@ -53,6 +53,7 @@ let
     spotify-player
     television
     trashy
+    trippy
     tokei
     udisks
   ];
