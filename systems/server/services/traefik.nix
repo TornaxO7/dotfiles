@@ -25,6 +25,14 @@ in
 
     staticConfigOptions = {
       entryPoints = {
+        http = {
+          address = "${ip4}:${toString ports.http}";
+          http.redirections.entryPoint = {
+            to = "https";
+            scheme = "https";
+          };
+        };
+
         https = {
           address = "${ip4}:${toString ports.https}";
           asDefault = true;
