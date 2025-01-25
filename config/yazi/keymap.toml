@@ -93,13 +93,14 @@ keymap = [
   { on = [
     "_",
   ], run = "link --relative", desc = "Symlink the relative path of files" },
-  { on = [
-    "d",
-    "d",
-  ], run = [
-    "remove",
-    "escape --visual --select",
-  ], desc = "Move the files to the trash" },
+  # trashy is too old (and not maintained anymore?) :(
+  # { on = [
+  #   "d",
+  #   "d",
+  # ], run = [
+  #   "remove",
+  #   "escape --visual --select",
+  # ], desc = "Move the files to the trash" },
   { on = [
     "d",
     "D",

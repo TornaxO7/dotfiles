@@ -24,8 +24,10 @@ ueberzug_offset = [0, 0, 0, 0]
 [opener]
 evince = [{ run = 'evince "$@"', block = false, orphan = true }]
 helix = [{ run = '$EDITOR "$@"', block = true }]
-xdg-open = [{ run = 'xdg-open "$@"', desc = "xdg-open" }]
+xdg-open = [{ run = 'xdg-open "$@"' }]
 ouch = [{ run = 'ouch d "$1"', desc = "Extract with ouch" }]
+# for debugging purposes
+# test = [{ run = 'notify-send "hello"' }]
 vimiv = [{ run = 'vimiv "$@"', block = false, orphan = true }]
 xournalpp = [{ run = 'xournalpp "$@"', block = false, orphan = true }]
 ffplay = [{ run = 'ffplay "$@"', block = false, orphan = true }]
@@ -33,51 +35,21 @@ ffplay = [{ run = 'ffplay "$@"', block = false, orphan = true }]
 # mime types: https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types
 [open]
 rules = [
-	{ mime = "text/*", use = [
-		"helix",
-	] },
-	{ mime = "image/*", use = [
-		"vimiv",
-	] },
-	{ mime = "video/*", use = [
-		"ffplay",
-	] },
-	{ mime = "audio/*", use = [
-		"ffplay",
-	] },
+	{ mime = "text/*", use = ["helix"] },
+	{ mime = "image/*", use = ["vimiv"] },
+	{ mime = "video/*", use = ["ffplay"] },
+	{ mime = "audio/*", use = ["ffplay"] },
 
-	{ name = "*.xopp", use = [
-		"xournalpp",
-	] },
+	{ name = "*.xopp", use = ["xournalpp"] },
 
-	{ mime = "application/zip", use = [
-		"ouch",
-	] },
-	{ mime = "application/gzip", use = [
-		"ouch",
-	] },
-	{ mime = "application/x-tar", use = [
-		"ouch",
-	] },
-	{ mime = "application/x-bzip", use = [
-		"ouch",
-	] },
-	{ mime = "application/x-bzip2", use = [
-		"ouch",
-	] },
-	{ mime = "application/x-7z-compressed", use = [
-		"ouch",
-	] },
-	{ mime = "application/x-rar", use = [
-		"ouch",
-	] },
-	{ mime = "application/xz", use = [
-		"ouch",
-	] },
+	# workarounds since mime types don't work here :(
+	{ name = "*.zip", use = ["ouch"] },
+	{ name = "*.gz", use = ["ouch"] },
+	{ name = "*.tar", use = ["ouch"] },
+	{ name = "*.bz", use = ["ouch"] },
+	{ name = "*.bz2", use = ["ouch"] },
 
-	{ mime = "application/pdf", use = [
-		"evince",
-	] },
+	{ mime = "application/pdf", use = ["evince"] },
 ]
 
 [tasks]
