@@ -11,6 +11,7 @@ sort_dir_first = true
 linemode = "size"
 show_hidden = false
 show_symlink = true
+scrolloff = 7
 
 [preview]
 tab_size = 2
@@ -21,51 +22,28 @@ ueberzug_scale = 1
 ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
-pdf = [{ run = 'evince "$1"', block = false, orphan = true }]
-edit = [{ run = '$EDITOR "$@"', block = true, for = "unix" }]
-open = [{ run = 'xdg-open "$@"', desc = "Open", for = "linux" }]
-extract = [{ run = 'ouch d "$1"', desc = "Extract here", for = "unix" }]
-open-image = [
-	{ run = 'vimiv "$@"', block = false, orphan = true, for = "unix" },
-]
+evince = [{ run = 'evince "$@"', block = false, orphan = true }]
+helix = [{ run = '$EDITOR "$@"', block = true }]
+xdg-open = [{ run = 'xdg-open "$@"', desc = "xdg-open" }]
+ouch = [{ run = 'ouch d "$1"', desc = "Extract with ouch" }]
+vimiv = [{ run = 'vimiv "$@"', block = false, orphan = true }]
 xournalpp = [{ run = 'xournalpp "$@"', block = false, orphan = true }]
+ffplay = [{ run = 'ffplay "$@"', block = false, orphan = true }]
 
+# mime types: https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types
 [open]
 rules = [
-	{ name = "*/", use = [
-		"edit",
-		"open",
-		"reveal",
-	] },
-
 	{ mime = "text/*", use = [
-		"edit",
-		"reveal",
+		"helix",
 	] },
 	{ mime = "image/*", use = [
-		"open-image",
-		"reveal",
+		"vimiv",
 	] },
 	{ mime = "video/*", use = [
-		"play",
-		"reveal",
+		"ffplay",
 	] },
 	{ mime = "audio/*", use = [
-		"play",
-		"reveal",
-	] },
-	{ mime = "inode/x-empty", use = [
-		"edit",
-		"reveal",
-	] },
-
-	{ mime = "application/json", use = [
-		"edit",
-		"reveal",
-	] },
-	{ mime = "*/javascript", use = [
-		"edit",
-		"reveal",
+		"ffplay",
 	] },
 
 	{ name = "*.xopp", use = [
@@ -73,45 +51,32 @@ rules = [
 	] },
 
 	{ mime = "application/zip", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 	{ mime = "application/gzip", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 	{ mime = "application/x-tar", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 	{ mime = "application/x-bzip", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 	{ mime = "application/x-bzip2", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 	{ mime = "application/x-7z-compressed", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 	{ mime = "application/x-rar", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 	{ mime = "application/xz", use = [
-		"extract",
-		"reveal",
+		"ouch",
 	] },
 
 	{ mime = "application/pdf", use = [
-		"pdf",
-	] },
-
-	{ mime = "*", use = [
-		"open",
-		"reveal",
+		"evince",
 	] },
 ]
 
@@ -125,7 +90,6 @@ suppress_preload = false
 
 [plugin]
 preloaders = [
-	# { name = "*", cond = "!mime", run = "mime", multi = true, prio = "high" },
 	# Image
 	{ mime = "image/vnd.djvu", run = "noop" },
 	{ mime = "image/*", run = "image" },
@@ -217,12 +181,3 @@ overwrite_origin = "center"
 quit_title = "{n} task{s} running, sure to quit? (y/N)"
 quit_origin = "center"
 # quit_offset = [0, 2, 50, 3]
-
-[select]
-open_title = "Open with:"
-open_origin = "hovered"
-rename_title = "Rename:"
-open_offset = [0, 1, 50, 7]
-
-[log]
-enabled = false
