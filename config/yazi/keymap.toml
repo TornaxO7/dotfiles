@@ -430,7 +430,7 @@ keymap = [
   ], run = "close --submit", desc = "Submit the completion" },
 
   { on = [
-    "<S-Tab>",
+    "<Backtab>",
   ], run = "arrow -1", desc = "Move cursor up" },
   { on = [
     "<Tab>",
