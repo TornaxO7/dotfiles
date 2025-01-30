@@ -60,24 +60,8 @@ in
         upstream_dns = [
           # adguard
           "tls://dns.adguard-dns.com"
-          "https://dns.adguard-dns.com/dns-query"
           # cloudflare
-          "https://security.cloudflare-dns.com/dns-query"
           "tls://security.cloudflare-dns.com"
-          # mullvad
-          "tls://extended.dns.mullvad.net"
-          "https://extended.dns.mullvad.net/dns-query"
-          # openbld.net
-          "https://ada.openbld.net/dns-query"
-          "tls://ada.openbld.net"
-          # quad9 dns
-          "https://dns.quad9.net/dns-query"
-          "tls://dns.quad9.net"
-          # rabbit DNS
-          "https://security.rabbitdns.org/dns-query"
-          # digitale gesellschaft
-          "https://dns.digitale-gesellschaft.ch/dns-query"
-          "tls://dns.digitale-gesellschaft.ch"
         ];
 
         bootstrap_dns = [
@@ -99,8 +83,7 @@ in
           "94.140.15.15"
         ];
 
-        # upstream_mode = "fastest_addr";
-        upstream_mode = "parallel";
+        upstream_mode = "fastest_addr";
       };
 
       clients.persistent =
