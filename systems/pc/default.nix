@@ -26,6 +26,11 @@ username: { config, ... }:
       printing.enable = true;
     };
 
+    programs.ausweisapp = {
+      enable = true;
+      openFirewall = true;
+    };
+
     virtualisation.virtualbox.host.enable = true;
     users.extraGroups.vboxusers.members = [ config.users.users.main.name ];
 

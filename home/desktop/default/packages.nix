@@ -21,7 +21,6 @@ let
     signal-desktop
     simplescreenrecorder
     spotify
-    thunderbird
     vimiv-qt
     xclip
     xournalpp
