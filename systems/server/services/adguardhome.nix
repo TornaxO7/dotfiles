@@ -59,21 +59,23 @@ in
         anonymize_client_ip = false;
         upstream_dns = [
           # adguard
-          "tls://dns.adguard-dns.com"
+          # "tls://dns.adguard-dns.com"
           # cloudflare
-          "tls://security.cloudflare-dns.com"
+          # "tls://security.cloudflare-dns.com"
+          "tls://1.1.1.1"
+          "tls://1.0.0.1"
         ];
 
         bootstrap_dns = [
           "tls://1.1.1.1"
-          "tls://1.0.0.1"
-          "8.8.8.8"
-          "8.8.4.4"
-          "2001:4860:4860::8888"
-          "9.9.9.10"
-          "149.112.112.10"
-          "2620:fe::10"
-          "2620:fe::fe:10"
+          # "tls://1.0.0.1"
+          # "8.8.8.8"
+          # "8.8.4.4"
+          # "2001:4860:4860::8888"
+          # "9.9.9.10"
+          # "149.112.112.10"
+          # "2620:fe::10"
+          # "2620:fe::fe:10"
         ];
 
         fallback_dns = [
