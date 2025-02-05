@@ -41,10 +41,6 @@ in
             middlewares = [ "crowdsec@file" ];
           };
         };
-
-        ts-http = {
-          address = "${ts-ip}:${toString ports.http}";
-        };
       };
 
       log = {
