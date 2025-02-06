@@ -215,11 +215,11 @@ keymap = [
   { on = [
     "g",
     "g",
-  ], run = "arrow -99999999", desc = "Move cursor to the top" },
+  ], run = "arrow top", desc = "Move cursor to the top" },
   { on = [
     "g",
     "e",
-  ], run = "arrow 99999999", desc = "Move cursor to the bottom" },
+  ], run = "arrow bot", desc = "Move cursor to the bottom" },
 
   # Help
   { on = [
