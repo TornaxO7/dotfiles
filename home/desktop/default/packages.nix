@@ -7,17 +7,13 @@ let
   stable-pkgs = with pkgs; [
     anki-bin
     arandr
-    appflowy
     vesktop
     evince
     flameshot
     inlyne
-    newsflash
     pavucontrol
     playerctl
     pulseaudio
-    redshift
-    slack
     signal-desktop
     simplescreenrecorder
     spotify

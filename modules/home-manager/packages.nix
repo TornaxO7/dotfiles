@@ -1,7 +1,6 @@
-{ self, pkgs, unstable, ... }:
+{ my_flake, pkgs, unstable, ... }:
 let
-  custom-packages = with self.packages.${pkgs.system}; [
-    # crates-tui
+  custom-packages = with my_flake.packages.${pkgs.system}; [
   ];
 
   unstable-packages = with unstable; [
@@ -10,8 +9,6 @@ let
   ];
 
   nixpkgs-packages = with pkgs; [
-    act
-    ast-grep
     bandwhich
     choose
     difftastic
@@ -24,10 +21,9 @@ let
     file
     fira-code
     fira-code-symbols
-    gcc13
+    libgcc
     gpg-tui
     gptfdisk
-    highlight
     hyperfine
     imagemagick
     jless
@@ -40,7 +36,6 @@ let
     openvpn
     ouch
     pastel
-    pferd
     pkg-config
     powertop
     python312
@@ -52,7 +47,6 @@ let
     speedtest-cli
     spotify-player
     television
-    trashy
     trippy
     tokei
     udisks
