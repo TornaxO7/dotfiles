@@ -2,20 +2,29 @@ utils: { config, pkgs, zpool-name, zpool-root, domain-root, ... }:
 let
   username = config.users.users.main.name;
 
-  jellyfin-dir = "${zpool-root}/music/jellyfin";
-  config-dir = "${jellyfin-dir}/config";
-  cache-dir = "${jellyfin-dir}/cache";
-  songs-path = "${zpool-root}/music/songs";
+  prefix = "jellyfin";
+
+  volumes = {
+    cache = "${prefix}-cache";
+    config = "${prefix}-config";
+  };
+
+  binds = rec {
+    root = "${zpool-root}/jellyfin";
+    music = "${root}/music";
+  };
 
   domain = "jellyfin.${domain-root}";
 in
 {
   config = {
     systemd = {
-      tmpfiles.settings.jellyfin = utils.createDirs config [ jellyfin-dir config-dir cache-dir songs-path ];
+      tmpfiles.rules = [
+        "d ${binds.music} - ${username} ${username} -"
+      ];
     }
     //
-    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${zpool-name}/music");
+    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${binds.root}");
 
     virtualisation.oci-containers.containers = {
       jellyfin = {
@@ -24,28 +33,29 @@ in
         login.username = username;
 
         volumes = [
-          "${config-dir}:/config:Z"
-          "${cache-dir}:/cache:Z"
-          "${songs-path}:/media:z"
+          "${volumes.cache}:/cache"
+          "${volumes.config}:/config:Z"
+
+          "${binds.music}:/media:z"
         ];
 
         labels = {
           "traefik.enable" = "true";
           "traefik.http.routers.jellyfin.rule" = "Host(`${domain}`)";
           "traefik.http.routers.jellyfin.service" = "jellyfin";
-          "traefik.http.services.jellyfin.loadbalancer.server.port" = toString 8096;
+          "traefik.http.services.jellyfin.loadbalancer.server.port" = "8096";
         };
       };
 
       metube = {
         image = "ghcr.io/alexta69/metube";
-        volumes = [ "${songs-path}:/downloads" ];
+        volumes = [ "${binds.music}:/downloads" ];
 
         labels = {
           "traefik.enable" = "true";
           "traefik.http.routers.metube.rule" = "Host(`metube.nas.local`)";
           "traefik.http.routers.metube.service" = "metube";
-          "traefik.http.services.metube.loadbalancer.server.port" = toString 8081;
+          "traefik.http.services.metube.loadbalancer.server.port" = "8081";
         };
       };
     };
