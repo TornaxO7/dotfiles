@@ -66,7 +66,7 @@ in
 
       experimental.plugins.crowdsec-bouncer-traefik-plugin = {
         moduleName = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin";
-        version = "v1.4.0";
+        version = "v1.4.1";
       };
     };
 
