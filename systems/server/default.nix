@@ -26,6 +26,7 @@ in
       podman
       podman-compose
       helix
+      bottom
     ];
 
     systemd.tmpfiles.settings.services-dir = {
