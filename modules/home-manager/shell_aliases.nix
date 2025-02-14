@@ -18,6 +18,7 @@
 
   cc = "cargo check";
   ct = "cargo test";
+  ctt = "crates-tui";
   cr = "cargo run";
   cb = "cargo build";
 

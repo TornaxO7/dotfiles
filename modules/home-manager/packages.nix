@@ -7,6 +7,7 @@ let
     compose2nix
     mergiraf
     nps
+    crates-tui
   ];
 
   nixpkgs-packages = with pkgs; [
