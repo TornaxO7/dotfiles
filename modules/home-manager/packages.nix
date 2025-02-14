@@ -6,6 +6,7 @@ let
   unstable-packages = with unstable; [
     compose2nix
     mergiraf
+    nps
   ];
 
   nixpkgs-packages = with pkgs; [
@@ -30,7 +31,6 @@ let
     liberation_ttf
     magic-wormhole-rs
     mdcat
-    nix-index
     nodejs_20
     onefetch
     openvpn
