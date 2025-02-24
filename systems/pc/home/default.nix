@@ -15,6 +15,7 @@
       steamcmd
       podman-compose
       android-studio
+      obs-studio
     ];
 
     pointerCursor.size = 20;
