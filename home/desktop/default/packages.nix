@@ -7,7 +7,7 @@ let
   stable-pkgs = with pkgs; [
     anki-bin
     arandr
-    vesktop
+    discord
     evince
     flameshot
     inlyne
