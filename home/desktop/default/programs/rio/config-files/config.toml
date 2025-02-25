@@ -2,6 +2,9 @@
 performance = "High"
 theme = "tokyonight-storm"
 
+[window]
+opacity = 0.75
+
 [fonts]
 # family = "FiraCode Nerd Font"
 
