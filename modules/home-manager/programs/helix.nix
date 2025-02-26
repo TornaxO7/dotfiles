@@ -28,7 +28,7 @@ in
   xdg.configFile.ra-multiplex = {
     enable = true;
     text = ''
-      pass_environment = ["PATH"]
+      pass_environment = ["PATH", "LD_LIBRARY_PATH", "PKG_CONFIG_PATH"]
     '';
     target = "ra-multiplex/config.toml";
   };
