@@ -5,9 +5,19 @@ let
 
   unstable-packages = with unstable; [
     compose2nix
+    crates-tui
+    du-dust
+    fd
+    jless
     mergiraf
     nps
-    crates-tui
+    ouch
+    ripgrep
+    ripgrep-all
+    sd
+    spotify-player
+    television
+    tokei
   ];
 
   nixpkgs-packages = with pkgs; [
@@ -15,9 +25,7 @@ let
     choose
     difftastic
     distrobox
-    du-dust
     evcxr
-    fd
     fend
     ffmpeg_6-full
     file
@@ -28,28 +36,20 @@ let
     gptfdisk
     hyperfine
     imagemagick
-    jless
     liberation_ttf
     magic-wormhole-rs
     mdcat
     nodejs_20
     onefetch
     openvpn
-    ouch
     pastel
     pkg-config
     powertop
     python312
-    ripgrep
-    ripgrep-all
     rsync
     rustic-rs
-    sd
     speedtest-cli
-    spotify-player
-    television
     trippy
-    tokei
     udisks
   ];
 in
