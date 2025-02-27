@@ -1,7 +1,10 @@
 { self, inputs, lib, ... }:
 let
   username = "tornax";
-  unstable = import inputs.unstable { system = "x86_64-linux"; };
+  unstable = import inputs.unstable {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
 
   hmModule = import ../modules/home-manager;
   sharedMainModule = import ../modules/default.nix;
