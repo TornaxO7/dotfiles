@@ -13,7 +13,7 @@ in
       useUserPackages = true;
       sharedModules = [
         inputs.wired.homeManagerModules.default
-        inputs.bs.homeManagerModules.bugstalker
+        # inputs.bs.homeManagerModules.bugstalker
       ];
       extraSpecialArgs = {
         inherit inputs unstable;

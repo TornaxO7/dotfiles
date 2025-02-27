@@ -4,7 +4,7 @@
     ./yazi
     ./helix.nix
     ./zathura.nix
-    ./bugstalker.nix
+    # ./bugstalker.nix
     ./zellij
   ];
 
