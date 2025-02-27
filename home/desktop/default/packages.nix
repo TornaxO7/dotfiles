@@ -2,12 +2,12 @@
 let
   unstable-pkgs = with unstable; [
     joplin-desktop
+    discord
   ];
 
   stable-pkgs = with pkgs; [
     anki-bin
     arandr
-    discord
     evince
     flameshot
     inlyne
