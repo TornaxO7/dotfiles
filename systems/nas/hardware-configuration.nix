@@ -22,7 +22,7 @@
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/00b14ae0-d3f8-456a-8591-03c0f62be334";
+      device = "/dev/disk/by-uuid/73B5-CCDB";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
