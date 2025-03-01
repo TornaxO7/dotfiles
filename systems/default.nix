@@ -89,6 +89,7 @@ in
         };
       };
 
+      # nix build .#nixosConfigurations.iso.config.system.build.isoImage
       iso = mkSystem {
         hostname = "iso";
         config-modules = [
@@ -97,7 +98,11 @@ in
             config = {
               nixpkgs.hostPlatform = "x86_64-linux";
               isoImage.squashfsCompression = "lz4";
-              security.sudo-rs.enable = true;
+
+              security = {
+                sudo.enable = false;
+                sudo-rs.enable = true;
+              };
 
               users.users.nixos.initialPassword = "nixos";
             };
