@@ -241,10 +241,10 @@ keymap = [
 prepend_keymap = [
   { on = [
     "m",
-  ], run = "plugin bookmarks --args=save", desc = "Save current position as a bookmark" },
+  ], run = "plugin bookmarks save", desc = "Save current position as a bookmark" },
   { on = [
     "'",
-  ], run = "plugin bookmarks --args=jump", desc = "Jump to a bookmark" },
+  ], run = "plugin bookmarks jump", desc = "Jump to a bookmark" },
   { on = [
     "f",
   ], run = "plugin jump-to-char", desc = "Jump to char" },
