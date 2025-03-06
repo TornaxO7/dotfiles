@@ -4,3 +4,6 @@
 [submodule "config/yazi/plugins/bookmarks.yazi"]
 	path = config/yazi/plugins/bookmarks.yazi
 	url = git@github.com:dedukun/bookmarks.yazi.git
+[submodule "config/yazi/plugins/smart-enter.yazi"]
+	path = config/yazi/plugins/smart-enter.yazi
+	url = git@github.com:Ape/smart-enter.yazi.git
