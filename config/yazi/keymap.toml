@@ -420,7 +420,7 @@ keymap = [
   ], run = "help", desc = "Open help" },
 ]
 
-[completion]
+[cmp]
 keymap = [
   { on = [
     "<C-q>",
