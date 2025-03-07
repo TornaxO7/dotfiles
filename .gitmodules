@@ -1,9 +1,9 @@
 [submodule "config/nushell/scripts/nu_scripts"]
 	path = config/nushell/scripts/nu_scripts
-	url = git@github.com:nushell/nu_scripts.git
+	url = https://github.com/nushell/nu_scripts.git
 [submodule "config/yazi/plugins/bookmarks.yazi"]
 	path = config/yazi/plugins/bookmarks.yazi
-	url = git@github.com:dedukun/bookmarks.yazi.git
+	url = https://github.com/dedukun/bookmarks.yazi.git
 [submodule "config/yazi/plugins/smart-enter.yazi"]
 	path = config/yazi/plugins/smart-enter.yazi
-	url = git@github.com:Ape/smart-enter.yazi.git
+	url = https://github.com/Ape/smart-enter.yazi.git
