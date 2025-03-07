@@ -14,7 +14,7 @@ let
     ouch
     ripgrep
     ripgrep-all
-    rustic-rs
+    rustic
     sd
     spotify-player
     television
