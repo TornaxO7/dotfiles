@@ -1,13 +1,22 @@
-utils: { config, zpool-root, domain-root, ... }:
+utils: { config, domain-root, services-root, ... }:
 let
-  gotifyRoot = "${zpool-root}/gotify";
-  domain = "gotify.${domain-root}";
+  prefix = "gotify";
+
+  domain = "${prefix}.${domain-root}";
+
+  paths = {
+    root = "${services-root}/${prefix}";
+  };
 in
 {
   config = {
+    systemd.tmpfiles.rules = [
+      "d ${paths.root} 0744 tornax - - -"
+    ];
+
     virtualisation.oci-containers.containers.gotify = {
       image = "ghcr.io/gotify/server";
-      volumes = [ "${gotifyRoot}:/app/data" ];
+      volumes = [ "${paths.root}:/app/data" ];
       environment = {
         TZ = config.time.timeZone;
       };
