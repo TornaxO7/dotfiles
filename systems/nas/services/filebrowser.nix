@@ -1,21 +1,28 @@
-utils: { config, zpool-root, domain-root, ... }:
+utils: { config, zpool-root, domain-root, services-root, ... }:
 let
-  username = config.users.users.main.name;
+  prefix = "filebrowser";
 
-  filebrowser-root = "${zpool-root}/filebrowser";
-  database-path = "${filebrowser-root}/database.db";
+  paths = rec {
+    root = "${services-root}/${prefix}";
+    db = "${root}/database.db";
+  };
 
-  domain = "filebrowser.${domain-root}";
+  domain = "${prefix}.${domain-root}";
 in
 {
   config = {
-    systemd.tmpfiles.settings.filebrowser.${database-path}.f.user = username;
+    systemd.tmpfiles = {
+      rules = [
+        "d ${paths.root} 0744 - - - -"
+        "f+ ${paths.db} 0644 tornax - - -"
+      ];
+    };
 
     virtualisation.oci-containers.containers.filebrowser = {
       image = "filebrowser/filebrowser";
       volumes = [
         "${zpool-root}/syncthing:/srv"
-        "${database-path}:/database.db"
+        "${paths.db}:/database.db"
       ];
 
       labels = {
