@@ -14,6 +14,7 @@ let
     ouch
     ripgrep
     ripgrep-all
+    rustic-rs
     sd
     spotify-player
     television
@@ -47,7 +48,6 @@ let
     powertop
     python312
     rsync
-    rustic-rs
     speedtest-cli
     trippy
     udisks
