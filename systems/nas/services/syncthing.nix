@@ -2,6 +2,11 @@ utils: { config, pkgs, zpool-name, zpool-root, domain-root, ... }:
 let
   username = config.users.users.main.name;
   domain = "syncthing.${domain-root}";
+
+  binds = {
+    main = "${zpool-root}/syncthing";
+    my-wiki = "${zpool-root}/my-wiki";
+  };
 in
 {
   systemd = {
@@ -23,7 +28,8 @@ in
 
     volumes = [
       "/var/lib/syncthing:/var/syncthing"
-      "${zpool-root}/syncthing:/sync-dir"
+      "${binds.main}:/sync-dir"
+      "${binds.my-wiki}:/my-wiki"
     ];
 
     labels = {
