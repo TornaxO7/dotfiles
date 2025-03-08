@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, ... }:
+{ pkgs, inputs, lib, unstable, ... }:
 let
   ra-multiplex-pkg = inputs.ra-multiplex.packages.${pkgs.system}.default;
   # wgsl-pkg = inputs.wgsl-analyzer.packages.${pkgs.system}.default;
@@ -48,6 +48,11 @@ in
         matlab = {
           command = "${pkgs.matlab-language-server}/bin/matlab-language-server";
           args = [ "--stdio" ];
+        };
+
+        marksman = {
+          command = "${unstable.marksman}/bin/marksman";
+          args = [ ];
         };
 
         nil = {
@@ -212,7 +217,7 @@ in
           name = "markdown";
           auto-format = true;
           file-types = [ "markdown" "md" ];
-          language-servers = [ "markdown-oxide" ];
+          language-servers = [ "markdown-oxide" "marksman" ];
           formatter = {
             command = "${pkgs.nodePackages.prettier}/bin/prettier";
             args = [ "--stdin-filepath" "rofl.md" ];
