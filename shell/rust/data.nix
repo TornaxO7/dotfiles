@@ -6,6 +6,30 @@ rec {
 
   buildInputs = with pkgs; [
     rustup
+    dbus
+    pango
+
+    cargo-nextest
+    cargo-cross
+
+    shaderc
+    directx-shader-compiler
+    vulkan-tools
+    # vulkan-tools-lunarg
+
+    pcsctools
+    pcsclite
+
+    cmake
+    fontconfig
+
+    wayland
+
+    vulkan-validation-layers
+    vulkan-headers
+    vulkan-loader
+
+    libGL
 
     xorg.libX11
     xorg.libXcursor
@@ -16,29 +40,10 @@ rec {
     xorg.xkbevd
     xorg.libXScrnSaver
     libxkbcommon
+  ];
 
-    dbus
-    pango
-
+  nativeBuildInputs = with pkgs; [
     pkg-config
-
-    cargo-nextest
-    cargo-cross
-
-    shaderc
-    directx-shader-compiler
-    libGL
-    vulkan-headers
-    vulkan-loader
-    vulkan-tools
-    # vulkan-tools-lunarg
-    # vulkan-validation-layers
-
-    pcsctools
-    pcsclite
-
-    cmake
-    fontconfig
   ];
 
   shellHook = import ../shared_hook.nix;
