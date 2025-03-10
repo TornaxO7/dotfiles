@@ -14,8 +14,12 @@ in
     allowedTCPPorts = builtins.attrValues ports;
   };
 
-  systemd.services.traefik.serviceConfig = {
-    WorkingDirectory = root-path;
+  systemd.services.traefik = {
+    requires = [ "crowdsec.service" ];
+    serviceConfig = {
+      WorkingDirectory = root-path;
+      ExecStartPre = "/run/current-system/sw/bin/sleep 5s";
+    };
   };
 
   services.traefik = {
