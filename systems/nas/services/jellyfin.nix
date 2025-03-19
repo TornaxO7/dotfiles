@@ -24,7 +24,7 @@ in
       ];
     }
     //
-    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${binds.root}");
+    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${zpool-name}/jellyfin");
 
     virtualisation.oci-containers.containers = {
       jellyfin = {
