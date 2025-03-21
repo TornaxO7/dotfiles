@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, unstable, ... }:
 {
   config = {
     nix.settings = {
@@ -18,7 +18,7 @@
 
       yazi = {
         enable = true;
-        package = inputs.yazi.packages.${pkgs.system}.default;
+        package = unstable.yazi;
       };
     };
 
