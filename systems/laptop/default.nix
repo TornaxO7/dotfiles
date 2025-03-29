@@ -58,7 +58,10 @@ username:
       steam.enable = true;
       nm-applet.enable = true;
     };
-    services.printing.enable = true;
+    services = {
+      printing.enable = true;
+      flatpak.enable = true;
+    };
 
     # to have audio
     boot.extraModprobeConfig = ''
