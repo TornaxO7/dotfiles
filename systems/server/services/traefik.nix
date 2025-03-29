@@ -18,7 +18,7 @@ in
     requires = [ "crowdsec.service" ];
     serviceConfig = {
       WorkingDirectory = root-path;
-      ExecStartPre = "/run/current-system/sw/bin/sleep 5s";
+      ExecStartPre = "/run/current-system/sw/bin/sleep 10s";
     };
   };
 

@@ -2,6 +2,7 @@ utils:
 { inputs, config, pkgs, ... }:
 let
   crowdsec = "crowdsec";
+  system = pkgs.system;
 
   bouncer-api-key = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
 in
@@ -29,6 +30,7 @@ in
     services = {
       crowdsec-firewall-bouncer = {
         enable = true;
+        package = inputs.crowdsec.packages.${system}.crowdsec-firewall-bouncer;
         settings = {
           # no other choice at the moment
           api_key = bouncer-api-key;
@@ -38,6 +40,7 @@ in
 
       crowdsec = {
         enable = true;
+        package = inputs.crowdsec.packages.${system}.crowdsec;
         allowLocalJournalAccess = true;
         enrollKeyFile = config.age.secrets.crowdsec.path;
         acquisitions = [

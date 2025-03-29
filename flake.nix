@@ -25,7 +25,7 @@
 
     crowdsec = {
       url = "git+https://codeberg.org/kampka/nix-flake-crowdsec.git";
-      inputs.nixpkgs.follows = "stable";
+      # inputs.nixpkgs.follows = "stable";
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
