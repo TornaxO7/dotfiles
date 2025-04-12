@@ -16,6 +16,7 @@
       podman-compose
       android-studio
       obs-studio
+      xsane
     ];
 
     pointerCursor.size = 20;

@@ -14,7 +14,7 @@
     hash = "sha256-STyPsfJTpJqucOvoUmBYz38sZmlJCLMt81/8/8akzgQ=";
   };
 
-  cargoHash = "sha256-Gb6DXww/9mapmLAQBe7zgjkeluxszPLfuE7/enAtA7U=";
+  cargoHash = "sha256-2HhgYkbn3hUlmwYXBOjNAs4w7e4a5UwKOHP5gRCArm8=";
 
   meta = {
     description = "Process killer daemon for out-of-memory scenarios";
