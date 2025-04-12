@@ -9,13 +9,14 @@
 
   home = {
     packages = with pkgs; [
-      eww
-      rpi-imager
-      lact
-      steamcmd
-      podman-compose
       android-studio
+      eww
+      lact
       obs-studio
+      podman-compose
+      poppler_utils
+      rpi-imager
+      steamcmd
       xsane
     ];
 
