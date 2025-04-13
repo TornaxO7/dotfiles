@@ -9,7 +9,7 @@
     };
 
     users.users.main.packages = with pkgs; [
-      wl-clipboard-rs
+      wl-clipboard
     ];
 
     services = {
