@@ -56,6 +56,7 @@ in
       dns = {
         bind_hosts = [ ip-addr ];
         port = 53;
+        ratelimit = 0;
         anonymize_client_ip = false;
         upstream_dns = [
           # adguard
