@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ./i3.nix
     ./minecraft.nix
 
     ../../../home/client.nix

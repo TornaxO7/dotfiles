@@ -7,7 +7,6 @@ username: { config, ... }:
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
     ../../modules/desktop/wayland/cosmic.nix
-    ../../modules/desktop/xorg/i3.nix
     ../../modules/game/steam.nix
     ../../modules/yubikey.nix
     ../../modules/udev_moonlander_rules.nix
@@ -17,13 +16,12 @@ username: { config, ... }:
   config = {
     services = {
       displayManager = {
-        defaultSession = "none+i3";
+        defaultSession = "cosmic";
         autoLogin = {
           enable = true;
           user = username;
         };
       };
-      printing.enable = true;
     };
 
     programs.ausweisapp = {
