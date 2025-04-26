@@ -11,6 +11,7 @@
       android-studio
       eww
       lact
+      nvtopPackages.amd
       obs-studio
       podman-compose
       poppler_utils
