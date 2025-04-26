@@ -1,7 +1,6 @@
 { pkgs, unstable, ... }:
 let
   unstable-pkgs = with unstable; [
-    joplin-desktop
     discord
   ];
 
