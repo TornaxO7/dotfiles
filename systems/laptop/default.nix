@@ -32,7 +32,7 @@ username:
         defaultSession = "cosmic";
         autoLogin = {
           enable = true;
-          user = "tornax";
+          user = username;
         };
       };
 
