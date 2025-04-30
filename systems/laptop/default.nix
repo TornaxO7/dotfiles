@@ -8,6 +8,7 @@ username:
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
     ../../modules/desktop/xorg/i3.nix
+    ../../modules/desktop/wayland/cosmic.nix
     ../../modules/yubikey.nix
     ../../modules/kdeconnect.nix
 
@@ -28,7 +29,7 @@ username:
     services = {
       blueman.enable = true;
       displayManager = {
-        defaultSession = "none+i3";
+        defaultSession = "cosmic";
         autoLogin = {
           enable = true;
           user = "tornax";
@@ -39,10 +40,7 @@ username:
         dpi = 210;
 
         windowManager.i3 = {
-          enable = true;
-          extraPackages = with pkgs; [
-            xwallpaper
-          ];
+          enable = config.services.xserver.enable;
         };
       };
     };
