@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    ./yetam.nix
+    # ./yetam.nix
   ];
 }
