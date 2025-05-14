@@ -12,6 +12,7 @@ let
   binds = rec {
     root = "${zpool-root}/jellyfin";
     music = "${root}/music";
+    cartoons = "${root}/cartoons";
   };
 
   domain = "jellyfin.${domain-root}";
@@ -37,6 +38,7 @@ in
           "${volumes.config}:/config:Z"
 
           "${binds.music}:/media:z"
+          "${binds.cartoons}:/media2:z"
         ];
 
         labels = {
