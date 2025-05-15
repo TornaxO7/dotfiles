@@ -1,6 +1,6 @@
 {
   "groups": {
-    "group:main": ["tornax"]
+    "group:main": ["tornax@"]
   },
   "acls": [
     {
