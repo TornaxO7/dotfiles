@@ -2,15 +2,13 @@
   description = "NixOS configuration";
 
   inputs = {
-    # unstable.follows = "nixos-cosmic/nixpkgs";
-    # stable.url = "github:nixos/nixpkgs/nixos-24.11";
-    unstable.follows = "nixos-cosmic/nixpkgs";
-    stable.follows = "nixos-cosmic/nixpkgs-stable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "stable";
 
     helix.url = "github:helix-editor/helix/master";
@@ -20,7 +18,6 @@
     yazi.url = "github:sxyazi/yazi";
     gtt.url = "github:TornaxO7/gtt/add-flake";
     bs.url = "github:godzie44/BugStalker";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 
     crowdsec = {

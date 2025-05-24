@@ -10,7 +10,6 @@
   environment.pathsToLink = [ "/libexec" ];
 
   security.rtkit.enable = true;
-  hardware.pulseaudio.enable = false;
 
   services = {
     pipewire = {
@@ -18,12 +17,13 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      wireplumber.enable = true;
     };
 
     printing.enable = true;
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-    };
+    # avahi = {
+    #   enable = true;
+    #   nssmdns4 = true;
+    # };
   };
 }

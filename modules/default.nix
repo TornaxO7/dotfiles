@@ -40,8 +40,9 @@ hostname:
 
     nixpkgs.config.allowUnfree = true;
 
-    fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
+    fonts.packages = with pkgs.nerd-fonts; [
+      fira-code
+      hack
     ];
 
     # disable due to fish: https://discourse.nixos.org/t/slow-build-at-building-man-cache/52365/2?u=tornaxo7
