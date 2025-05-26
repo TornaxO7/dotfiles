@@ -174,8 +174,6 @@
       enable = true;
       shellAliases = import ../shell_aliases.nix;
       interactiveShellInit = ''
-        bind -k nul accept-autosuggestion
-
         # TokyoNight Color Palette
         set -l foreground c0caf5
         set -l selection 2e3c64
