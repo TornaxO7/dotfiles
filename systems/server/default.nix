@@ -9,7 +9,6 @@ in
     ./hardware-configuration.nix
 
     (loadService ./services/traefik.nix)
-    (loadService ./services/whoami.nix)
     (loadService ./services/filebrowser.nix)
     (loadService ./services/website.nix)
     (loadService ./services/headscale)
