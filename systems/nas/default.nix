@@ -27,6 +27,7 @@ in
     (loadService ./services/filebrowser.nix)
     (loadService ./services/vikunja.nix)
     (loadService ./services/gotify.nix)
+    (loadService ./services/vaultwarden.nix)
 
     # (loadPortService ./services/harmonia.nix 49310) # don't forget to update the substituter in modules/default_main.nix
   ];
