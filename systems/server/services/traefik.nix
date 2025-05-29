@@ -1,4 +1,4 @@
-utils: { config, services-root, unstable, domain-root, ts-ip, ip4, ... }:
+_utils: { config, services-root, unstable, domain-root, ts-ip, ip4, pkgs, ... }:
 let
   domain = "traefik.${domain-root}";
 
@@ -18,13 +18,14 @@ in
     requires = [ "crowdsec.service" ];
     serviceConfig = {
       WorkingDirectory = root-path;
-      ExecStartPre = "/run/current-system/sw/bin/sleep 10s";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10s";
     };
   };
 
   services.traefik = {
     enable = true;
     dataDir = root-path;
+    # need to be able to access the podman socket
     group = "podman";
 
     staticConfigOptions = {
