@@ -1,4 +1,4 @@
-{ pkgs, services-root, ... }:
+{ config, pkgs, services-root, ... }:
 let
   utils = import ../utils.nix;
   loadService = path: (import path) utils;
@@ -29,7 +29,7 @@ in
     ];
 
     systemd.tmpfiles.rules = [
-      "d ${services-root} 0750 root podman -"
+      "d ${services-root} 0770 root ${config.users.groups.services.name} -"
     ];
 
     services = {
@@ -61,6 +61,11 @@ in
         };
 
         root.hashedPassword = "!";
+      };
+
+      groups = {
+        # To access `services-root`
+        services = { };
       };
     };
   };
