@@ -9,7 +9,6 @@
   home = {
     packages = with pkgs; [
       android-studio
-      eww
       lact
       nvtopPackages.amd
       obs-studio
@@ -24,14 +23,14 @@
   };
 
   services.picom = {
-    enable = true;
+    enable = false;
     backend = "glx";
     vSync = true;
   };
 
   xdg.configFile = {
     eww = {
-      enable = true;
+      enable = false;
       recursive = true;
       source = ../config/eww;
       target = "eww";
