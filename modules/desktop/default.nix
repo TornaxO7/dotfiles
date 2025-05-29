@@ -11,6 +11,8 @@
 
   security.rtkit.enable = true;
 
+  networking.dhcpcd.wait = "background";
+
   services = {
     pipewire = {
       enable = true;
