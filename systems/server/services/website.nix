@@ -9,7 +9,9 @@ let
   };
 in
 {
-  systemd.tmpfiles.settings.website-files = utils.createDirs config (builtins.attrValues paths);
+  systemd.tmpfiles.rules = [
+    "d ${paths.root} 755 ${config.users.users.main.name} root -"
+  ];
 
   virtualisation.oci-containers.containers.website = {
     image = "joseluisq/static-web-server:latest";

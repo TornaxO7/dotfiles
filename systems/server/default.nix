@@ -28,13 +28,9 @@ in
       bottom
     ];
 
-    systemd.tmpfiles.settings.services-dir = {
-      "${services-root}".d = {
-        user = "root";
-        group = "podman";
-        mode = "0750";
-      };
-    };
+    systemd.tmpfiles.rules = [
+      "d ${services-root} 0750 root podman -"
+    ];
 
     services = {
       openssh.settings.PasswordAuthentication = false;
