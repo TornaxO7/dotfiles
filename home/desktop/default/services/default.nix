@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./wired
   ];
 
   config.services = {
