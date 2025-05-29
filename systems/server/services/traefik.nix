@@ -1,4 +1,4 @@
-utils: { config, services-root, unstable, domain-root, ts-ip, ip4, ... }:
+_utils: { config, services-root, unstable, domain-root, ts-ip, ip4, pkgs, ... }:
 let
   domain = "traefik.${domain-root}";
 
@@ -18,19 +18,24 @@ in
     requires = [ "crowdsec.service" ];
     serviceConfig = {
       WorkingDirectory = root-path;
-      ExecStartPre = "/run/current-system/sw/bin/sleep 10s";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10s";
     };
   };
 
   services.traefik = {
     enable = true;
     dataDir = root-path;
+    # need to be able to access the podman socket
     group = "podman";
 
     staticConfigOptions = {
       entryPoints = {
         http = {
           address = "${ip4}:${toString ports.http}";
+
+          forwardedHeaders.insecure = false;
+          proxyProtocol.insecure = false;
+
           http.redirections.entryPoint = {
             to = "https";
             scheme = "https";
@@ -40,6 +45,10 @@ in
         https = {
           address = "${ip4}:${toString ports.https}";
           asDefault = true;
+
+          forwardedHeaders.insecure = false;
+          proxyProtocol.insecure = false;
+
           http = {
             tls.certResolver = "main";
             middlewares = [ "crowdsec@file" ];
@@ -63,14 +72,14 @@ in
       };
 
       certificatesResolvers.main.acme = {
-        email = "postmaster@tornaxo7.de";
+        email = "postmaster@${domain-root}";
         storage = "${config.services.traefik.dataDir}/acme.json";
         tlsChallenge = { };
       };
 
       experimental.plugins.crowdsec-bouncer-traefik-plugin = {
         moduleName = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin";
-        version = "v1.4.1";
+        version = "v1.4.2";
       };
     };
 
@@ -83,11 +92,15 @@ in
           routers.dashboard = {
             rule = "Host(`${domain}`)";
             service = "api@internal";
-            middlewares = dashboard-middleware;
+            middlewares = [
+              "authelia"
+              dashboard-middleware
+            ];
           };
 
           middlewares = {
             ${dashboard-middleware}.digestauth.users = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
+
             crowdsec.plugin.crowdsec-bouncer-traefik-plugin = {
               CrowdsecMode = "stream";
               CrowdsecLapiScheme = "http";

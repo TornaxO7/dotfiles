@@ -29,7 +29,7 @@ in
     ];
 
     systemd.tmpfiles.rules = [
-      "d ${services-root} 0770 root ${config.users.groups.services.name} -"
+      "d ${services-root} 0751 root ${config.users.groups.services.name} -"
     ];
 
     services = {

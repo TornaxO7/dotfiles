@@ -4,13 +4,13 @@ let
 
 
   paths = rec {
-    root = "${services-root}/authelia";
+    root = "/var/lib/authelia-main";
     user_db = "${root}/user_database.yml";
     storage_db = "${root}/db.sqlite3";
     notifications = "${root}/notifications.txt";
   };
 
-  port = 49162;
+  port = "49162";
 
   # helper function to add secrets
   add-secret = path: {
@@ -25,10 +25,7 @@ in
       group = config.services.authelia.instances."main".group;
     in
     [
-      "d ${paths.root} 0760 ${user} ${group} -"
-      "f ${paths.user_db} 0760 ${user} ${group} -"
-      "f ${paths.storage_db} 0760 ${user} ${group} -"
-      "f ${paths.notifications} 0760 ${user} ${group} -"
+      "d ${paths.root} 0750 ${user} ${group} -"
     ];
 
   age.secrets = {
@@ -39,13 +36,21 @@ in
 
   services.authelia.instances."main" = {
     enable = true;
-    group = "services";
     settings = {
       theme = "dark";
       log.format = "text";
 
       server = {
-        address = "tcp://127.0.0.1:${toString port}";
+        address = "tcp://127.0.0.1:${port}";
+
+        endpoints = {
+          authz = {
+            forward-auth = {
+              implementation = "ForwardAuth";
+              authn_strategies = [ ];
+            };
+          };
+        };
       };
 
       authentication_backend.file = {
@@ -58,7 +63,7 @@ in
         {
           name = "main";
           domain = domain-root;
-          authelia_url = "https://${domain}";
+          authelia_url = "https://auth.${domain}";
         }
       ];
 
@@ -83,9 +88,13 @@ in
   };
 
   # == traefik stuff ==
-  services.traefik.dynamicConfigOptions.http.routers.authelia = {
-    rule = "Host(`${domain}`)";
-    service = "authelia";
+  services.traefik.dynamicConfigOptions.http = {
+    middlewares.authelia.forwardAuth = {
+      address = "http://127.0.0.1:${port}/api/authz/forward-auth";
+      trustForwardHeader = true;
+      authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Email" "Remote-Name" ];
+    };
+
+    routers.authelia.rule = "Host(`${domain}`)";
   };
-  services.traefik.dynamicConfigOptions.http.routers.authelia.loadBalancer.server.url = "http://127.0.0.1:${toString port}";
 }
