@@ -16,7 +16,7 @@ in
     (loadService ./services/homarr.nix)
     (loadService ./services/crowdsec.nix)
     (loadService ./services/monitoring.nix)
-
+    (loadService ./services/authelia.nix)
     # (loadService ./services/stalwart.nix)
   ];
 

@@ -12,4 +12,7 @@ in
   "gotify-token.age".publicKeys = main;
 
   "crowdsec.age".publicKeys = all;
+  "authelia-jwt.age".publicKeys = all;
+  "authelia-session.age".publicKeys = all;
+  "authelia-storage.age".publicKeys = all;
 }

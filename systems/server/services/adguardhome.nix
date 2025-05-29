@@ -3,8 +3,10 @@ let
   ip-addr = ts-ip;
 in
 {
-  networking.firewall = {
+  networking.firewall.interfaces."tailscale0" = {
+    # for ui
     allowedTCPPorts = [ 3000 ];
+    # for dns requests
     allowedUDPPorts = [ 53 ];
   };
 
