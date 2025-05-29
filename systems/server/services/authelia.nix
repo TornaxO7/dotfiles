@@ -2,8 +2,12 @@ utils: { config, services-root, domain-root, ... }:
 let
   domain = "auth.${domain-root}";
 
-  dir = {
+
+  paths = rec {
     root = "${services-root}/authelia";
+    user_db = "${root}/user_database.yml";
+    storage_db = "${root}/db.sqlite3";
+    notifications = "${root}/notifications.txt";
   };
 
   port = 49162;
@@ -15,9 +19,17 @@ let
   };
 in
 {
-  systemd.tmpfiles.rules = [
-    "d ${dir.root} 0777 ${config.services.authelia.instances."main".user} ${config.services.authelia.instances."main".group} -"
-  ];
+  systemd.tmpfiles.rules =
+    let
+      user = config.services.authelia.instances."main".user;
+      group = config.services.authelia.instances."main".group;
+    in
+    [
+      "d ${paths.root} 0760 ${user} ${group} -"
+      "f ${paths.user_db} 0760 ${user} ${group} -"
+      "f ${paths.storage_db} 0760 ${user} ${group} -"
+      "f ${paths.notifications} 0760 ${user} ${group} -"
+    ];
 
   age.secrets = {
     authelia-jwt = add-secret ../../../secrets/authelia-jwt.age;
@@ -27,7 +39,7 @@ in
 
   services.authelia.instances."main" = {
     enable = true;
-    group = "podman";
+    group = "services";
     settings = {
       theme = "dark";
       log.format = "text";
@@ -37,20 +49,20 @@ in
       };
 
       authentication_backend.file = {
-        path = "/tmp/user_database.yml";
+        path = paths.user_db;
       };
 
-      storage.local.path = "/tmp/db.sqlite3";
+      storage.local.path = paths.storage_db;
 
       session.cookies = [
         {
           name = "main";
-          domain = "tornaxo7.de";
+          domain = domain-root;
           authelia_url = "https://${domain}";
         }
       ];
 
-      notifier.filesystem.filename = "${dir.root}/notifications.txt";
+      notifier.filesystem.filename = paths.notifications;
 
       access_control = {
         default_policy = "deny";
