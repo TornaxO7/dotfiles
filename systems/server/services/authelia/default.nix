@@ -9,18 +9,17 @@ let
     notifications = "${root}/notifications.txt";
   };
 
+  user = config.services.authelia.instances."main".user;
+  group = config.services.authelia.instances."main".group;
+
   # helper function to add secrets
   add-secret = path: {
-    owner = config.services.authelia.instances."main".user;
+    owner = user;
     file = path;
   };
 in
 {
   systemd.tmpfiles.rules =
-    let
-      user = config.services.authelia.instances."main".user;
-      group = config.services.authelia.instances."main".group;
-    in
     [
       "d ${paths.root} 0750 ${user} ${group} -"
       "L+ ${paths.user_db} 0600 ${user} ${group} - ${./user_database.yml}"
