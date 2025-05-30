@@ -34,7 +34,6 @@ in
           address = "${ip4}:${toString ports.http}";
 
           forwardedHeaders.insecure = false;
-          proxyProtocol.insecure = false;
 
           http.redirections.entryPoint = {
             to = "https";
@@ -47,7 +46,6 @@ in
           asDefault = true;
 
           forwardedHeaders.insecure = false;
-          proxyProtocol.insecure = false;
 
           http = {
             tls.certResolver = "main";
@@ -93,7 +91,6 @@ in
             rule = "Host(`${domain}`)";
             service = "api@internal";
             middlewares = [
-              "authelia"
               dashboard-middleware
             ];
           };

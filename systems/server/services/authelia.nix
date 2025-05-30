@@ -63,7 +63,7 @@ in
         {
           name = "main";
           domain = domain-root;
-          authelia_url = "https://auth.${domain}";
+          authelia_url = "https://${domain}";
         }
       ];
 
@@ -90,11 +90,20 @@ in
   # == traefik stuff ==
   services.traefik.dynamicConfigOptions.http = {
     middlewares.authelia.forwardAuth = {
-      address = "http://127.0.0.1:${port}/api/authz/forward-auth";
+      address = "https://${domain}";
       trustForwardHeader = true;
       authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Email" "Remote-Name" ];
     };
 
-    routers.authelia.rule = "Host(`${domain}`)";
+    routers.authelia = {
+      rule = "Host(`${domain}`)";
+      service = "authelia";
+    };
+
+    services.authelia.loadbalancer.servers = [
+      {
+        url = "http://127.0.0.1:${port}";
+      }
+    ];
   };
 }

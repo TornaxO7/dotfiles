@@ -18,6 +18,7 @@ in
       "traefik.enable" = "true";
       "traefik.http.routers.filebrowser.rule" = "Host(`${domain}`)";
       "traefik.http.routers.filebrowser.service" = "filebrowser";
+      "traefik.http.routers.filebrowser.middlewares" = "authelia@file";
       "traefik.http.services.filebrowser.loadbalancer.server.port" = "80";
     };
   };
