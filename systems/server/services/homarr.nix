@@ -29,6 +29,7 @@ in
         "traefik.enable" = "true";
         "traefik.http.routers.${prefix}.rule" = "Host(`${domain}`)";
         "traefik.http.routers.${prefix}.service" = "${prefix}";
+        "traefik.http.routers.${prefix}.middlewares" = "authelia@file";
         "traefik.http.services.${prefix}.loadbalancer.server.port" = "7575";
       };
     };

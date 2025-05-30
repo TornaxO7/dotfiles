@@ -2,6 +2,7 @@
 let
   utils = import ../utils.nix;
   loadService = path: (import path) utils;
+  loadPortService = path: port: (import path) port;
 in
 {
   imports = [
@@ -16,7 +17,8 @@ in
     (loadService ./services/homarr.nix)
     (loadService ./services/crowdsec.nix)
     (loadService ./services/monitoring.nix)
-    (loadService ./services/authelia.nix)
+
+    (loadPortService ./services/authelia "49162")
     # (loadService ./services/stalwart.nix)
   ];
 

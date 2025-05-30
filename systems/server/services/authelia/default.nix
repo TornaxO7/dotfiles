@@ -1,7 +1,6 @@
-utils: { config, services-root, domain-root, ... }:
+port: { config, services-root, domain-root, ... }:
 let
   domain = "auth.${domain-root}";
-
 
   paths = rec {
     root = "/var/lib/authelia-main";
@@ -9,8 +8,6 @@ let
     storage_db = "${root}/db.sqlite3";
     notifications = "${root}/notifications.txt";
   };
-
-  port = "49162";
 
   # helper function to add secrets
   add-secret = path: {
@@ -26,12 +23,13 @@ in
     in
     [
       "d ${paths.root} 0750 ${user} ${group} -"
+      "L+ ${paths.user_db} 0600 ${user} ${group} - ${./user_database.yml}"
     ];
 
   age.secrets = {
-    authelia-jwt = add-secret ../../../secrets/authelia-jwt.age;
-    authelia-session = add-secret ../../../secrets/authelia-session.age;
-    authelia-storage = add-secret ../../../secrets/authelia-storage.age;
+    authelia-jwt = add-secret ../../../../secrets/authelia-jwt.age;
+    authelia-session = add-secret ../../../../secrets/authelia-session.age;
+    authelia-storage = add-secret ../../../../secrets/authelia-storage.age;
   };
 
   services.authelia.instances."main" = {
@@ -53,7 +51,10 @@ in
         };
       };
 
-      authentication_backend.file.path = paths.user_db;
+      authentication_backend = {
+        file.path = paths.user_db;
+      };
+
       storage.local.path = paths.storage_db;
 
       session.cookies = [
@@ -71,10 +72,39 @@ in
         default_policy = "deny";
         rules = [
           {
+            domain = "filebrowser.${domain-root}";
+            policy = "bypass";
+            resources = [
+              "^/api/public/dl/*" # download stuff
+              "^/api/public/share/*" # general access shared stuff
+              "^/share/*" # shared assets
+            ];
+          }
+          {
             domain = "*.${domain-root}";
-            policy = "one_factor";
+            policy = "two_factor";
           }
         ];
+      };
+
+      totp = {
+        issuer = domain;
+        algorithm = "sha512";
+        digits = 6;
+        period = 30;
+        skew = 1;
+        secret_size = 32;
+        allowed_algorithms = [ "SHA512" ];
+        allowed_digits = [ 6 ];
+        allowed_periods = [ 30 ];
+        disable_reuse_security_policy = false;
+      };
+
+      regulation = {
+        modes = [ "ip" ];
+        max_retries = 3;
+        find_time = "2m";
+        ban_time = "1d";
       };
     };
 

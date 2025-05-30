@@ -79,36 +79,32 @@ in
       };
     };
 
-    dynamicConfigOptions =
-      let
-        dashboard-middleware = "dashboard-auth";
-      in
-      {
-        http = {
-          routers.dashboard = {
-            rule = "Host(`${domain}`)";
-            service = "api@internal";
-            middlewares = [
-              dashboard-middleware
+    dynamicConfigOptions = {
+      http = {
+        routers.dashboard = {
+          rule = "Host(`${domain}`)";
+          service = "api@internal";
+          middlewares = [
+            "authelia"
+          ];
+        };
+
+        middlewares = {
+          # ${dashboard-middleware}.digestauth.users = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
+
+          crowdsec.plugin.crowdsec-bouncer-traefik-plugin = {
+            CrowdsecMode = "stream";
+            CrowdsecLapiScheme = "http";
+            CrowdsecLapiHost = "127.0.0.1:8080";
+            CrowdsecLapiKey = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
+            ClientTrustedIPs = [
+              "100.64.0.0/10"
+              "fd7a:115c:a1e0::/48"
             ];
-          };
-
-          middlewares = {
-            ${dashboard-middleware}.digestauth.users = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
-
-            crowdsec.plugin.crowdsec-bouncer-traefik-plugin = {
-              CrowdsecMode = "stream";
-              CrowdsecLapiScheme = "http";
-              CrowdsecLapiHost = "127.0.0.1:8080";
-              CrowdsecLapiKey = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
-              ClientTrustedIPs = [
-                "100.64.0.0/10"
-                "fd7a:115c:a1e0::/48"
-              ];
-              Enabled = true;
-            };
+            Enabled = true;
           };
         };
       };
+    };
   };
 }

@@ -1,0 +1,7 @@
+users:
+  tornax:
+    disabled: false
+    displayname: "TornaxO7"
+    password: "$argon2id$v=19$m=1024,t=16,p=2$UG5uUGMmenU1VGtWJW1QOTh4ZyVDUHRwdkF5bnA4ckdaaWJybkhOQDlneV44cU05VEJnYXRKVEpeWXFmZFZ5cio4dSZhM14kXjhjIW92ZjN0TUo1OUtaTVBWQDduVUBoYVZBJVhoJSN4aE14UXk3OThLJHJzV2tqN1F4eUgjb1o$slP362w3BzUUJ3ST/AQV7vMMIR+Bpz7SCRhgJHcsjDw"
+    email: tornax@pm.me
+    groups: []
