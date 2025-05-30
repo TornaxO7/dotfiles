@@ -18,7 +18,7 @@ in
     requires = [ "crowdsec.service" ];
     serviceConfig = {
       WorkingDirectory = root-path;
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5s";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 3s";
     };
   };
 
