@@ -18,7 +18,7 @@ in
     requires = [ "crowdsec.service" ];
     serviceConfig = {
       WorkingDirectory = root-path;
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10s";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5s";
     };
   };
 
@@ -32,9 +32,6 @@ in
       entryPoints = {
         http = {
           address = "${ip4}:${toString ports.http}";
-
-          forwardedHeaders.insecure = false;
-
           http.redirections.entryPoint = {
             to = "https";
             scheme = "https";
@@ -44,9 +41,6 @@ in
         https = {
           address = "${ip4}:${toString ports.https}";
           asDefault = true;
-
-          forwardedHeaders.insecure = false;
-
           http = {
             tls.certResolver = "main";
             middlewares = [ "crowdsec@file" ];

@@ -64,6 +64,7 @@ in
           name = "main";
           domain = domain-root;
           authelia_url = "https://${domain}";
+          default_redirection_url = "https://${domain-root}";
         }
       ];
 
@@ -90,8 +91,9 @@ in
   # == traefik stuff ==
   services.traefik.dynamicConfigOptions.http = {
     middlewares.authelia.forwardAuth = {
-      address = "https://${domain}";
+      address = "https://${domain}/api/authz/forward-auth";
       trustForwardHeader = true;
+      authRequestHeaders = [ "X-Forwarded-Method" "X-Forwarded-Proto" "X-Forwarded-Host" "X-Forwarded-Uri" "X-Forwarded-For" ];
       authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Email" "Remote-Name" ];
     };
 
