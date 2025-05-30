@@ -53,10 +53,7 @@ in
         };
       };
 
-      authentication_backend.file = {
-        path = paths.user_db;
-      };
-
+      authentication_backend.file.path = paths.user_db;
       storage.local.path = paths.storage_db;
 
       session.cookies = [
@@ -91,9 +88,8 @@ in
   # == traefik stuff ==
   services.traefik.dynamicConfigOptions.http = {
     middlewares.authelia.forwardAuth = {
-      address = "https://${domain}/api/authz/forward-auth";
+      address = "http://127.0.0.1:${port}/api/authz/forward-auth";
       trustForwardHeader = true;
-      authRequestHeaders = [ "X-Forwarded-Method" "X-Forwarded-Proto" "X-Forwarded-Host" "X-Forwarded-Uri" "X-Forwarded-For" ];
       authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Email" "Remote-Name" ];
     };
 

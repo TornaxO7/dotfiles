@@ -41,6 +41,10 @@ in
         https = {
           address = "${ip4}:${toString ports.https}";
           asDefault = true;
+          forwardedHeaders = {
+            # trustedIPs = [ ip4 ];
+            insecure = false;
+          };
           http = {
             tls.certResolver = "main";
             middlewares = [ "crowdsec@file" ];
