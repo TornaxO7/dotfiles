@@ -1,0 +1,5 @@
+source: journalctl
+journalctl_filter:
+  - "_SYSTEMD_UNIT=grafana.service"
+labels:
+  type: grafana

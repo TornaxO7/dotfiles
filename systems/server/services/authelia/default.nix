@@ -37,7 +37,6 @@ in
     enable = true;
     settings = {
       theme = "dark";
-      log.format = "text";
 
       server = {
         address = "tcp://127.0.0.1:${toString port}";
@@ -106,6 +105,12 @@ in
         max_retries = 3;
         find_time = "2m";
         ban_time = "1d";
+      };
+
+      log = {
+        level = "info";
+        format = "json";
+
       };
     };
 

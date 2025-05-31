@@ -21,8 +21,9 @@
     # ports: [49170 - 49180)
     ./services/prometheus.nix
     # ports: [49180 - 49190)
-    # ./services/crowdsec-docker.nix
-    ./services/fail2ban.nix
+    # soon: Switch to crowdsec (in a good way)
+    ./services/crowdsec-docker
+    # ./services/fail2ban.nix
 
     # (loadService ./services/stalwart.nix)
   ];
