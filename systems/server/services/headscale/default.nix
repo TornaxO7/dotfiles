@@ -1,5 +1,6 @@
-utils: { config, domain-root, services-root, ip4, ... }:
+{ domain-root, services-root, ... }:
 let
+  utils = import ../../../utils.nix;
   domain = "headscale.${domain-root}";
 
   paths = rec{

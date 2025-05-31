@@ -1,4 +1,3 @@
-utils:
 { inputs, config, pkgs, ... }:
 let
   crowdsec = "crowdsec";

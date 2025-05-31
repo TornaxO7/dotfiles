@@ -1,4 +1,4 @@
-utils: { ... }:
+{ ... }:
 {
   virtualisation.oci-containers.containers.watchtower = {
     image = "containrrr/watchtower";
@@ -9,8 +9,9 @@ utils: { ... }:
 
     environment = {
       TZ = "DE";
-      WATCHTOWER_TIMEOUT = "30s";
-      WATCHTOWER_NOTIFICATION_URL = "gotify://gotify.nas.local/A2PzIba.UUR1RzM/?title=Server+Watchtower&priority=1";
+      WATCHTOWER_TIMEOUT = "1m";
+      WATCHTOWER_HTTP_API_TOKEN = "hello there";
+      WATCHTOWER_HTTP_API_METRICS = "true";
     };
   };
 }

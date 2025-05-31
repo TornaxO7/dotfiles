@@ -38,7 +38,7 @@ in
       log.format = "text";
 
       server = {
-        address = "tcp://127.0.0.1:${port}";
+        address = "tcp://127.0.0.1:${toString port}";
 
         endpoints = {
           authz = {
@@ -117,7 +117,7 @@ in
   # == traefik stuff ==
   services.traefik.dynamicConfigOptions.http = {
     middlewares.authelia.forwardAuth = {
-      address = "http://127.0.0.1:${port}/api/authz/forward-auth";
+      address = "http://127.0.0.1:${toString port}/api/authz/forward-auth";
       trustForwardHeader = true;
       authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Email" "Remote-Name" ];
     };
@@ -129,7 +129,7 @@ in
 
     services.authelia.loadbalancer.servers = [
       {
-        url = "http://127.0.0.1:${port}";
+        url = "http://127.0.0.1:${toString port}";
       }
     ];
   };

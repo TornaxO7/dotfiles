@@ -11,7 +11,9 @@ in
   "deepl.age".publicKeys = main;
   "gotify-token.age".publicKeys = main;
 
+  "grafana.age".publicKeys = all;
   "crowdsec.age".publicKeys = all;
+
   "authelia-jwt.age".publicKeys = all;
   "authelia-session.age".publicKeys = all;
   "authelia-storage.age".publicKeys = all;

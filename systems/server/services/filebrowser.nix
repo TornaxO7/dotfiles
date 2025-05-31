@@ -1,4 +1,4 @@
-utils: { config, services-root, domain-root, ... }:
+{ domain-root, ... }:
 let
   prefix = "filebrowser";
   domain = "${prefix}.${domain-root}";

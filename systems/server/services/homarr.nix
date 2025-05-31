@@ -1,4 +1,4 @@
-utils: { lib, domain-root, ... }:
+{ lib, domain-root, ... }:
 let
   prefix = "homarr";
 

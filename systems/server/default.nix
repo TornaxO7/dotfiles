@@ -1,7 +1,5 @@
 { config, pkgs, services-root, ... }:
 let
-  utils = import ../utils.nix;
-  loadService = path: (import path) utils;
   loadPortService = path: port: (import path) port;
 in
 {
@@ -9,16 +7,19 @@ in
     ./secrets.nix
     ./hardware-configuration.nix
 
-    (loadService ./services/traefik.nix)
-    (loadService ./services/filebrowser.nix)
-    (loadService ./services/website.nix)
-    (loadService ./services/headscale)
-    (loadService ./services/adguardhome.nix)
-    (loadService ./services/homarr.nix)
-    (loadService ./services/crowdsec.nix)
-    (loadService ./services/monitoring.nix)
+    ./services/traefik.nix
+    ./services/filebrowser.nix
+    ./services/website.nix
+    ./services/headscale
+    ./services/adguardhome.nix
+    ./services/homarr.nix
+    ./services/crowdsec.nix
+    ./services/watchtower.nix
 
-    (loadPortService ./services/authelia "49162")
+    (loadPortService ./services/authelia 49162)
+    (loadPortService ./services/grafana.nix 49163)
+    # ports: `[49170 - 49180)`
+    ./services/prometheus.nix
     # (loadService ./services/stalwart.nix)
   ];
 

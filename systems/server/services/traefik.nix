@@ -1,4 +1,4 @@
-_utils: { config, services-root, unstable, domain-root, ts-ip, ip4, pkgs, ... }:
+{ config, services-root, domain-root, ip4, pkgs, ... }:
 let
   domain = "traefik.${domain-root}";
 

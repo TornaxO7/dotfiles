@@ -1,4 +1,4 @@
-utils: { config, lib, services-root, domain-root, ts-ip, ts-ips, ... }:
+{ lib, ts-ip, ts-ips, ... }:
 let
   ip-addr = ts-ip;
 in

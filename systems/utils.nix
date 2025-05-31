@@ -87,11 +87,4 @@ rec {
       service-prefixes = builtins.mapAttrs (name: value: "podman-${value}") containers;
       service-full = builtins.mapAttrs (name: value: "${value}.service") service-prefixes;
     };
-
-  # Example:
-  # ```
-  # createVolumes "lmao" ["yes" "no"] = { yes = "lmao-yes"; no = "lmao-no"; }
-  # ```
-  createVolumes = prefix: names:
-    builtins.listToAttrs (map (name: { name = name; value = "${prefix}-${name}"; }) names);
 }
