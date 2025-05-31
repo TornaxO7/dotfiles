@@ -1,8 +1,8 @@
-{ config, services-root, domain-root, ip4, pkgs, ... }:
+{ config, domain-root, ip4, ... }:
 let
   domain = "traefik.${domain-root}";
 
-  root-path = "${services-root}/traefik";
+  root-path = "/var/lib/traefik";
 
   ports = {
     http = 80;
@@ -10,17 +10,14 @@ let
   };
 in
 {
-  networking.firewall = {
-    allowedTCPPorts = builtins.attrValues ports;
-  };
+  networking.firewall.allowedTCPPorts = builtins.attrValues ports;
 
-  systemd.services.traefik = {
-    requires = [ "crowdsec.service" ];
-    serviceConfig = {
-      WorkingDirectory = root-path;
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 3s";
-    };
-  };
+  systemd.tmpfiles.rules = [
+    "d ${root-path} 0750 traefik traefik -"
+  ];
+
+  # so that plugins can be stored
+  systemd.services.traefik.serviceConfig.WorkingDirectory = config.services.traefik.dataDir;
 
   services.traefik = {
     enable = true;
@@ -47,7 +44,6 @@ in
           };
           http = {
             tls.certResolver = "main";
-            middlewares = [ "crowdsec@file" ];
           };
         };
       };
@@ -87,22 +83,6 @@ in
           middlewares = [
             "authelia"
           ];
-        };
-
-        middlewares = {
-          # ${dashboard-middleware}.digestauth.users = "tornax:traefik:6080745fca78301e72297e62cf416a3b";
-
-          crowdsec.plugin.crowdsec-bouncer-traefik-plugin = {
-            CrowdsecMode = "stream";
-            CrowdsecLapiScheme = "http";
-            CrowdsecLapiHost = "127.0.0.1:8080";
-            CrowdsecLapiKey = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
-            ClientTrustedIPs = [
-              "100.64.0.0/10"
-              "fd7a:115c:a1e0::/48"
-            ];
-            Enabled = true;
-          };
         };
       };
     };

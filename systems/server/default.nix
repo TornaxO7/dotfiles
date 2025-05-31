@@ -1,25 +1,29 @@
 { config, pkgs, services-root, ... }:
-let
-  loadPortService = path: port: (import path) port;
-in
 {
   imports = [
     ./secrets.nix
     ./hardware-configuration.nix
 
+    # ports: 80, 443
     ./services/traefik.nix
     ./services/filebrowser.nix
     ./services/website.nix
     ./services/headscale
+    # ports: 53, 3000
     ./services/adguardhome.nix
     ./services/homarr.nix
-    ./services/crowdsec.nix
     ./services/watchtower.nix
 
-    (loadPortService ./services/authelia 49162)
-    (loadPortService ./services/grafana.nix 49163)
-    # ports: `[49170 - 49180)`
+    # port: 49162
+    ./services/authelia
+    # port: 49163
+    ./services/grafana.nix
+    # ports: [49170 - 49180)
     ./services/prometheus.nix
+    # ports: [49180 - 49190)
+    # ./services/crowdsec-docker.nix
+    ./services/fail2ban.nix
+
     # (loadService ./services/stalwart.nix)
   ];
 

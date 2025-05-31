@@ -1,6 +1,8 @@
-port: { config, services-root, domain-root, ... }:
+{ config, domain-root, ... }:
 let
   domain = "auth.${domain-root}";
+
+  port = 49162;
 
   paths = rec {
     root = "/var/lib/authelia-main";

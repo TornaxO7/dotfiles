@@ -1,7 +1,13 @@
+# Bouncers = Action handlers on given events
 { inputs, config, pkgs, ... }:
 let
   crowdsec = "crowdsec";
   system = pkgs.system;
+
+  ports = {
+    firewall-bouncer = 49180;
+    metrics = 49181;
+  };
 
   bouncer-api-key = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
 in
@@ -26,14 +32,24 @@ in
         crowdsec = add-secret ../../../secrets/crowdsec.age;
       };
 
+    systemd.services.traefik = {
+      requires = [ "crowdsec.service" ];
+      serviceConfig = {
+        ExecStartPre = "${pkgs.coreutils}/bin/sleep 3s";
+      };
+    };
+
     services = {
       crowdsec-firewall-bouncer = {
         enable = true;
         package = inputs.crowdsec.packages.${system}.crowdsec-firewall-bouncer;
         settings = {
-          # no other choice at the moment
+          # API key to communicate with the local api of crowdsec
           api_key = bouncer-api-key;
-          api_url = "http://127.0.0.1:8080";
+          api_url = "http://127.0.0.1:${toString ports.firewall-bouncer}";
+          scenarios_containing = [ "ssh" "http" ];
+
+          nftables.set-only = false;
         };
       };
 
@@ -56,11 +72,36 @@ in
         ];
         settings = {
           cscli = {
+            output = "human";
             hub_branch = "master";
-            prometheus_uri = "127.0.0.1:6060";
+            prometheus_uri = "127.0.0.1:${toString ports.metrics}";
           };
           api.server = {
-            listen_uri = "127.0.0.1:8080";
+            listen_uri = "127.0.0.1:${toString ports.firewall-bouncer}";
+          };
+        };
+      };
+
+      traefik = {
+        staticConfigOptions = {
+          experimental.plugins.crowdsec-bouncer-traefik-plugin = {
+            moduleName = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin";
+            version = "v1.4.2";
+          };
+
+          entryPoints.https.http.middlewares = [ "crowdsec@file" ];
+        };
+        dynamicConfigOptions.http.middlewares = {
+          crowdsec.plugin.crowdsec-bouncer-traefik-plugin = {
+            CrowdsecMode = "stream";
+            CrowdsecLapiScheme = "http";
+            CrowdsecLapiHost = "127.0.0.1:${toString ports.firewall-bouncer}";
+            CrowdsecLapiKey = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
+            ClientTrustedIPs = [
+              "100.64.0.0/10"
+              "fd7a:115c:a1e0::/48"
+            ];
+            Enabled = true;
           };
         };
       };
