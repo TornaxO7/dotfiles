@@ -50,7 +50,7 @@ in
 
       log = {
         # filepath = "${root-path}/traefik.log";
-        level = "WARN";
+        level = "INFO";
       };
 
       api = {
