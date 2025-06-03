@@ -36,11 +36,13 @@ in
       ];
 
       environment = {
-        COLLECTIONS = "crowdsecurity/linux\
-          crowdsecurity/traefik\
-          LePresidente/grafana\
-          LePresidente/authelia
-        ";
+        COLLECTIONS = "\
+            crowdsecurity/linux\
+            crowdsecurity/iptables\
+            crowdsecurity/traefik\
+            LePresidente/grafana\
+            LePresidente/authelia\
+          ";
       };
 
       ports = [

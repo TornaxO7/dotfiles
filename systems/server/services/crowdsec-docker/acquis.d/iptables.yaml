@@ -1,0 +1,5 @@
+source: journalctl
+journalctl_filter:
+ - "-k"
+labels:
+  type: syslog
