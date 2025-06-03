@@ -12,7 +12,11 @@ let
 
   ports = {
     server = 49180;
+    metrics = 49181;
   };
+
+  # Things to consider:
+  # 1. Set the capacity in `/etc/crowdsec/scenarios`
 in
 {
   systemd = {
@@ -22,10 +26,12 @@ in
     ];
   };
 
-  systemd.services.traefik = {
-    requires = [ names.service-full.server ];
-    serviceConfig = {
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 3s";
+  systemd.services = {
+    traefik = {
+      requires = [ names.service-full.server ];
+      serviceConfig = {
+        ExecStartPre = "${pkgs.coreutils}/bin/sleep 3s";
+      };
     };
   };
 
@@ -53,6 +59,17 @@ in
         };
       };
     };
+
+    prometheus.scrapeConfigs = [
+      {
+        job_name = "crowdsec";
+        static_configs = [
+          {
+            targets = [ "127.0.0.1:${toString ports.metrics}" ];
+          }
+        ];
+      }
+    ];
   };
 
   virtualisation.oci-containers.containers = {
@@ -70,19 +87,19 @@ in
 
       environment = {
         COLLECTIONS = "\
-            crowdsecurity/linux\
-            crowdsecurity/iptables\
-            crowdsecurity/traefik\
-            crowdsecurity/http-dos\
-            crowdsecurity/http-cve\
-
-            LePresidente/grafana\
-            LePresidente/authelia\
+          crowdsecurity/linux\
+          crowdsecurity/iptables\
+          crowdsecurity/traefik\
+          crowdsecurity/http-dos\
+          crowdsecurity/http-cve\
+          LePresidente/grafana\
+          LePresidente/authelia\
           ";
       };
 
       ports = [
         "127.0.0.1:${toString ports.server}:8080"
+        "127.0.0.1:${toString ports.metrics}:6060"
       ];
     };
 
@@ -106,3 +123,4 @@ in
     };
   };
 }
+

@@ -68,11 +68,6 @@ in
         storage = "${config.services.traefik.dataDir}/acme.json";
         tlsChallenge = { };
       };
-
-      experimental.plugins.crowdsec-bouncer-traefik-plugin = {
-        moduleName = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin";
-        version = "v1.4.2";
-      };
     };
 
     dynamicConfigOptions = {
