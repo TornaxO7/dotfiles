@@ -1,0 +1,5 @@
+source: journalctl
+journalctl_filter:
+  - "_SYSTEMD_UNIT=traefik.service"
+labels:
+  type: traefik
