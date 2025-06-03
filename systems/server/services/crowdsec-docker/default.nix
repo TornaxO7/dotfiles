@@ -19,7 +19,6 @@ in
     tmpfiles.rules = [
       "d ${binds.data} 0750 - - -"
       "d ${binds.conf} 0750 - - -"
-      "L+ ${binds.acquis} - - - - ${./acquis.d}"
     ];
   };
 
@@ -28,18 +27,19 @@ in
       image = "crowdsecurity/crowdsec:latest-debian";
 
       volumes = [
-        "${binds.acquis}:/etc/crowdsec/acquis.d"
+        "${./acquis.d}:/etc/crowdsec/acquis.d"
         "${binds.data}:/var/lib/crowdsec/data/"
         "${binds.conf}:/etc/crowdsec"
 
         # required for journalctl
-        "/var/log/journal:/run/log/journal"
+        "/var/log/journal:/run/log/journal:ro"
       ];
 
       environment = {
         COLLECTIONS = "crowdsecurity/linux\
           crowdsecurity/traefik\
-          LePresidente/grafana
+          LePresidente/grafana\
+          LePresidente/authelia
         ";
       };
 
@@ -48,18 +48,23 @@ in
       ];
     };
 
-    # "${names.containers.firewall-bouncer}" = {
-    #   image = "ghcr.io/shgew/cs-firewall-bouncer-docker:latest";
-    #   extraOptions = [ "--network=host" ];
-    #   capabilities = {
-    #     NET_ADMIN = true;
-    #     NET_RAW = true;
-    #   };
+    "${names.containers.firewall-bouncer}" = {
+      image = "ghcr.io/shgew/cs-firewall-bouncer-docker:latest";
+      extraOptions = [ "--network=host" ];
+      capabilities = {
+        NET_ADMIN = true;
+        NET_RAW = true;
+      };
 
-    #   volumes = [
-    #     "${./crowdsec-firewall-bouncer.yaml}:/config/crowdsec-firewall-bouncer.yaml:ro"
-    #     "/etc/localtime:/etc/localtime:ro"
-    #   ];
-    # };
+      environment = {
+        API_URL = "http://127.0.0.1:${toString ports.server}";
+        API_KEY = "o5Nk+Zoq0RacZraYClZdaEJlItKrBbXhyOl/yygavl4";
+      };
+
+      volumes = [
+        "${./crowdsec-firewall-bouncer.yaml}:/config/crowdsec-firewall-bouncer.yaml:ro"
+        "/etc/localtime:/etc/localtime:ro"
+      ];
+    };
   };
 }

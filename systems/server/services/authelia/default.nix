@@ -109,8 +109,7 @@ in
 
       log = {
         level = "info";
-        format = "json";
-
+        format = "text";
       };
     };
 

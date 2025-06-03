@@ -6,7 +6,7 @@ log_compression: false
 log_max_size: 100
 log_max_backups: 3
 log_max_age: 30
-api_url: http://crowdsec-server:8080/
+api_url: ${API_URL}
 api_key: ${API_KEY}
 ## TLS Authentication
 # cert_path: /etc/crowdsec/tls/cert.pem
