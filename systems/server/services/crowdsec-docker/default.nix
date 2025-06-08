@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 let
   utils = import ../../../utils.nix;
 
@@ -26,40 +26,7 @@ in
     ];
   };
 
-  systemd.services = {
-    traefik = {
-      requires = [ names.service-full.server ];
-      serviceConfig = {
-        ExecStartPre = "${pkgs.coreutils}/bin/sleep 3s";
-      };
-    };
-  };
-
   services = {
-    traefik = {
-      staticConfigOptions = {
-        experimental.plugins.crowdsec-bouncer-traefik-plugin = {
-          moduleName = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin";
-          version = "v1.4.2";
-        };
-
-        entryPoints.https.http.middlewares = [ "crowdsec@file" ];
-      };
-      dynamicConfigOptions.http.middlewares = {
-        crowdsec.plugin.crowdsec-bouncer-traefik-plugin = {
-          CrowdsecMode = "stream";
-          CrowdsecLapiScheme = "http";
-          CrowdsecLapiHost = "127.0.0.1:${toString ports.server}";
-          CrowdsecLapiKey = "h5naEQ8J73qF52uuzqdfAf9fhWfT53tJktpYqczkNYDJvnkxnMpEKx9EdVrcx7SL";
-          ClientTrustedIPs = [
-            "100.64.0.0/10"
-            "fd7a:115c:a1e0::/48"
-          ];
-          Enabled = true;
-        };
-      };
-    };
-
     prometheus.scrapeConfigs = [
       {
         job_name = "crowdsec";
