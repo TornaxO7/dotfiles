@@ -68,6 +68,10 @@ in
         "127.0.0.1:${toString ports.server}:8080"
         "127.0.0.1:${toString ports.metrics}:6060"
       ];
+
+      extraOptions = [
+        "--add-host=host.containers.internal:host-gateway"
+      ];
     };
 
     "${names.containers.firewall-bouncer}" = {
