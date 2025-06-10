@@ -1,4 +1,4 @@
-{ config, pkgs, services-root, ... }:
+{ config, pkgs, services-root, ip6, ... }:
 {
   imports = [
     ./secrets.nix
@@ -46,7 +46,15 @@
       qemuGuest.enable = true;
     };
 
-    networking.networkmanager.enable = false;
+    networking = {
+      networkmanager.enable = false;
+      interfaces.ens3.ipv6.addresses = [
+        {
+          address = ip6;
+          prefixLength = 64;
+        }
+      ];
+    };
 
     virtualisation = {
       podman = {

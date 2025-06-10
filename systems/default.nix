@@ -86,6 +86,7 @@ in
           domain-root = "tornaxo7.de";
           ts-domain-root = "server.local";
           ip4 = "2.56.97.207";
+          ip6 = "2a03:4000:3e:26f::";
         };
       };
 
