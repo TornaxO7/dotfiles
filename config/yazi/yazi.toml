@@ -31,6 +31,7 @@ ouch = [{ run = 'ouch d "$1"', desc = "Extract with ouch" }]
 vimiv = [{ run = 'vimiv "$@"', block = false, orphan = true }]
 xournalpp = [{ run = 'xournalpp "$@"', block = false, orphan = true }]
 ffplay = [{ run = 'ffplay "$@"', block = false, orphan = true }]
+rnote = [{ run = 'rnote "$@"', block = false, orphan = true }]
 
 # mime types: https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types
 [open]
@@ -49,6 +50,7 @@ rules = [
 	{ name = "*.bz", use = ["ouch"] },
 	{ name = "*.bz2", use = ["ouch"] },
 
+	{ name = "*.rnote", use = ["rnote"] },
 	{ mime = "application/pdf", use = ["evince"] },
 ]
 
