@@ -58,5 +58,5 @@ pf:
 
 prometheus:
   enabled: false
-  listen_addr: 127.0.0.1
+  listen_addr: crowdsec-server
   listen_port: 60601

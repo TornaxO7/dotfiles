@@ -20,7 +20,7 @@
     ./services/grafana.nix
     # ports: [49170 - 49180)
     # ./services/prometheus.nix
-    ./services/victoria-metrics.nix
+    ./services/victoria-metrics
     # ports: [49180 - 49190)
     # soon: Switch to crowdsec (in a good way)
     ./services/crowdsec-docker

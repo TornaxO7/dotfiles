@@ -26,19 +26,6 @@ in
     ];
   };
 
-  services = {
-    prometheus.scrapeConfigs = [
-      {
-        job_name = "crowdsec";
-        static_configs = [
-          {
-            targets = [ "127.0.0.1:${toString ports.metrics}" ];
-          }
-        ];
-      }
-    ];
-  };
-
   virtualisation.oci-containers.containers = {
     "${names.containers.server}" = {
       image = "crowdsecurity/crowdsec:latest-debian";
@@ -50,6 +37,8 @@ in
 
         # required for journalctl
         "/var/log/journal:/run/log/journal:ro"
+
+        "/etc/localtime:/etc/localtime:ro"
       ];
 
       environment = {
@@ -66,11 +55,6 @@ in
 
       ports = [
         "127.0.0.1:${toString ports.server}:8080"
-        "127.0.0.1:${toString ports.metrics}:6060"
-      ];
-
-      extraOptions = [
-        # "--add-host=host.containers.internal:host-gateway"
       ];
     };
 
