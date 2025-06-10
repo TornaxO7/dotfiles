@@ -1,4 +1,4 @@
-{ config, domain-root, ip4, ... }:
+{ config, domain-root, ... }:
 let
   domain = "traefik.${domain-root}";
 
@@ -28,7 +28,7 @@ in
     staticConfigOptions = {
       entryPoints = {
         http = {
-          address = "${ip4}:${toString ports.http}";
+          address = ":${toString ports.http}";
           http.redirections.entryPoint = {
             to = "https";
             scheme = "https";
@@ -36,10 +36,8 @@ in
         };
 
         https = {
-          address = "${ip4}:${toString ports.https}";
-          asDefault = true;
+          address = ":${toString ports.https}";
           forwardedHeaders = {
-            # trustedIPs = [ ip4 ];
             insecure = false;
           };
           http = {
