@@ -24,13 +24,13 @@ in
         "--promscrape.config=/etc/prometheus/prometheus.yml"
       ];
 
-      labels = {
-        "traefik.enable" = "true";
-        "traefik.http.routers.victoria.rule" = "Host(`victoria.tornaxo7.de`)";
-        "traefik.http.routers.victoria.service" = "victoria";
-        "traefik.http.routers.victoria.middlewares" = "authelia@file";
-        "traefik.http.services.victoria.loadbalancer.server.port" = "8428";
-      };
+      # labels = {
+      #   "traefik.enable" = "true";
+      #   "traefik.http.routers.victoria.rule" = "Host(`victoria.tornaxo7.de`)";
+      #   "traefik.http.routers.victoria.service" = "victoria";
+      #   "traefik.http.routers.victoria.middlewares" = "authelia@file";
+      #   "traefik.http.services.victoria.loadbalancer.server.port" = "8428";
+      # };
     };
 
     node-exporter = {
