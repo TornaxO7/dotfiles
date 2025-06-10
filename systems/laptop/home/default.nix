@@ -13,6 +13,7 @@
       cacert
       font-awesome
       xournalpp
+      rnote
     ];
   };
 }
