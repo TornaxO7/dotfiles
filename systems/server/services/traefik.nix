@@ -51,6 +51,8 @@ in
         level = "INFO";
       };
 
+      accessLog = { };
+
       api = {
         dashboard = true;
         insecure = false;
