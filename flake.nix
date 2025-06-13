@@ -20,6 +20,8 @@
     bs.url = "github:godzie44/BugStalker";
     wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 
+    github-nix-ci.url = "github:juspay/github-nix-ci";
+
     crowdsec = {
       url = "git+https://codeberg.org/kampka/nix-flake-crowdsec.git";
       # inputs.nixpkgs.follows = "stable";

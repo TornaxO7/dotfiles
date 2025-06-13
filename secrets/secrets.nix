@@ -17,4 +17,7 @@ in
   "authelia-jwt.age".publicKeys = all;
   "authelia-session.age".publicKeys = all;
   "authelia-storage.age".publicKeys = all;
+
+
+  "github-nix-ci/TornaxO7.token.age".publicKeys = all;
 }

@@ -9,6 +9,8 @@
     ./services/filebrowser.nix
     ./services/website.nix
     ./services/headscale
+    ./services/github-nix-ci
+
     # ports: 53, 3000
     ./services/adguardhome.nix
     ./services/homarr.nix
