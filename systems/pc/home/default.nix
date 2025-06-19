@@ -17,6 +17,7 @@
       rpi-imager
       steamcmd
       xsane
+      ryujinx
     ];
 
     pointerCursor.size = 20;
