@@ -9,7 +9,8 @@
     ./services/filebrowser.nix
     ./services/website.nix
     ./services/headscale
-    ./services/github-nix-ci
+
+    ./services/github-runner/vibe-ci.nix
 
     # ports: 53, 3000
     ./services/adguardhome.nix
