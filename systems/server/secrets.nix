@@ -1,11 +1,4 @@
 { inputs, ... }:
-let
-  add-secret = path: {
-    owner = "root";
-    group = "crowdsec";
-    file = path;
-  };
-in
 {
   imports = [
     inputs.agenix.nixosModules.default
@@ -16,7 +9,6 @@ in
       identityPaths = [
         "/etc/ssh/server"
       ];
-
     };
   };
 }
