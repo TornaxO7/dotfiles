@@ -6,7 +6,7 @@
 
     # ports: 80, 443
     ./services/traefik.nix
-    ./services/filebrowser.nix
+    # ./services/filebrowser.nix
     ./services/website.nix
     ./services/headscale
 
