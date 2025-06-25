@@ -26,7 +26,6 @@
         ];
 
         config = rec {
-
           systemd.tmpfiles.rules = [
             "d ${workDir} 0755 ${users.users.main.name} ${users.users.main.group} -"
           ];
