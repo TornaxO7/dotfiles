@@ -66,6 +66,8 @@ in
         NET_RAW = true;
       };
 
+      dependsOn = [ names.containers.server ];
+
       environment = {
         API_URL = "http://127.0.0.1:${toString ports.server}";
         API_KEY = "o5Nk+Zoq0RacZraYClZdaEJlItKrBbXhyOl/yygavl4";
