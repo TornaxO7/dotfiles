@@ -16,13 +16,15 @@ let
   };
 
   # Things to consider:
-  # 1. Set the capacity in `/etc/crowdsec/scenarios`
+  # 1. Edit the volume to journals of server
+  # 2. Set the capacity in `/etc/crowdsec/scenarios`
 in
 {
   systemd = {
     tmpfiles.rules = [
       "d ${binds.data} 0750 - - -"
       "d ${binds.conf} 0750 - - -"
+      "C+ ${binds.conf} - - - - ${./acquis.d}"
     ];
   };
 
@@ -31,12 +33,12 @@ in
       image = "crowdsecurity/crowdsec:latest-debian";
 
       volumes = [
-        "${./acquis.d}:/etc/crowdsec/acquis.d"
         "${binds.data}:/var/lib/crowdsec/data/"
         "${binds.conf}:/etc/crowdsec"
 
         # required for journalctl
-        "/var/log/journal:/run/log/journal:ro"
+        "/var/log/journal/f9f3b607a52943eaa84719a6d6cd4d05:/run/log/journal:ro"
+        # "/var/log/journal:/run/log/journal:ro"
 
         "/etc/localtime:/etc/localtime:ro"
       ];
@@ -65,8 +67,6 @@ in
         NET_ADMIN = true;
         NET_RAW = true;
       };
-
-      dependsOn = [ names.containers.server ];
 
       environment = {
         API_URL = "http://127.0.0.1:${toString ports.server}";
