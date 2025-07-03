@@ -1,3 +1,6 @@
+[general]
+live_config_reload = false
+
 [colors.primary]
 background = '#24283b'
 foreground = '#a9b1d6'
@@ -27,3 +30,6 @@ normal = { family = "FiraCode Nerd Font", style = "Regular" }
 
 [keyboard]
 bindings = [{ key = "=", mods = "Control", action = "ResetFontSize" }]
+
+[window]
+opacity = 0.9
