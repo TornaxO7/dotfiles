@@ -253,6 +253,7 @@ in
         insert-final-newline = false;
         popup-border = "all";
         end-of-line-diagnostics = "hint";
+        rainbow-brackets = true;
 
         inline-diagnostics = {
           cursor-line = "warning";
