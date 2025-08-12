@@ -10,7 +10,7 @@ let
 
   vol-prefix = "headscale";
 
-  names = utils.createContainerNames "headscale" [ "server" "metrics" ];
+  names = utils.createContainerNames "headscale" [ "server" ];
 in
 {
   systemd.tmpfiles.rules = [
