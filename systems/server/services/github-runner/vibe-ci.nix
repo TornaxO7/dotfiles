@@ -51,13 +51,19 @@
             };
           };
 
-          services.github-runners.vibe = {
-            enable = true;
-            url = "https://github.com/TornaxO7/vibe";
-            user = users.users.main.name;
-            tokenFile = config.containers.vibe-ci.bindMounts.token.mountPoint;
-            workDir = workDir;
+          services = {
+            resolved.enable = true;
+
+            github-runners.vibe = {
+              enable = true;
+              url = "https://github.com/TornaxO7/vibe";
+              user = users.users.main.name;
+              tokenFile = config.containers.vibe-ci.bindMounts.token.mountPoint;
+              workDir = workDir;
+            };
           };
+
+          networking.useHostResolvConf = false;
 
           hardware.graphics.enable = true;
 
