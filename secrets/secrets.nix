@@ -18,6 +18,7 @@ in
   "authelia-session.age".publicKeys = all;
   "authelia-storage.age".publicKeys = all;
 
+  "homarr.age".publicKeys = all;
 
   "github-runner/TornaxO7.token.age".publicKeys = all;
 }

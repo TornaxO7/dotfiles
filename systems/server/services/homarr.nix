@@ -1,28 +1,24 @@
-{ lib, domain-root, ... }:
+{ config, domain-root, ... }:
 let
   prefix = "homarr";
 
   domain = "${prefix}.${domain-root}";
 
-  volumes =
-    let
-      converter = name: value: "${prefix}-${value}";
-    in
-    lib.attrsets.mapAttrs converter {
-      config = "config";
-      icons = "icons";
-      data = "data";
-    };
+  volume-name = "homarr";
 in
 {
+  age.secrets.homarr.file = ../../../secrets/homarr.age;
+
   virtualisation.oci-containers.containers = {
     homarr = {
-      image = "ghcr.io/ajnart/homarr:latest";
+      image = "ghcr.io/homarr-labs/homarr:latest";
 
       volumes = [
-        "${volumes.config}:/app/data/configs"
-        "${volumes.icons}:/app/public/icons"
-        "${volumes.data}:/data"
+        "${volume-name}:/appdata"
+      ];
+
+      environmentFiles = [
+        config.age.secrets.homarr.path
       ];
 
       labels = {
