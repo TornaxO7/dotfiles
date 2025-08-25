@@ -1,6 +1,6 @@
 { pkgs, inputs, lib, unstable, ... }:
 let
-  ra-multiplex-pkg = inputs.ra-multiplex.packages.${pkgs.system}.default;
+  ra-multiplex-pkg = unstable.ra-multiplex;
   # wgsl-pkg = inputs.wgsl-analyzer.packages.${pkgs.system}.default;
 in
 {
