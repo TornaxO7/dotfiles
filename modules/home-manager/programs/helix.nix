@@ -232,8 +232,15 @@ in
       ];
     };
 
+    themes = {
+      tokyonight_storm_transparent = {
+        "inherits" = "tokyonight_storm";
+        "ui.background" = "none";
+      };
+    };
+
     settings = {
-      theme = "tokyonight_storm";
+      theme = "tokyonight_storm_transparent";
 
       keys = {
         insert = {

@@ -10,7 +10,7 @@ let
     evince
     flameshot
     inlyne
-    pwvucontrol
+    pavucontrol
     playerctl
     pulseaudio
     # signal-desktop
