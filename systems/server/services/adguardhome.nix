@@ -61,28 +61,31 @@ in
         ratelimit = 0;
         anonymize_client_ip = false;
         upstream_dns = [
-          # adguard
-          # "tls://dns.adguard-dns.com"
-          # cloudflare
-          # "tls://security.cloudflare-dns.com"
+          # -- adguard
+          "tls://94.140.14.14"
+          "tls://94.140.15.15"
+
+          # -- cloudflare
           "tls://1.1.1.1"
           "tls://1.0.0.1"
+
+          # -- mullvad
+          "tls://base.dns.mullvad.net"
+          "https://base.dns.mullvad.net/dns-query"
         ];
 
         bootstrap_dns = [
+          # -- adguard
+          "tls://94.140.14.14"
+          "tls://94.140.15.15"
+
+          # -- cloudflare
           "tls://1.1.1.1"
-          # "tls://1.0.0.1"
-          # "8.8.8.8"
-          # "8.8.4.4"
-          # "2001:4860:4860::8888"
-          # "9.9.9.10"
-          # "149.112.112.10"
-          # "2620:fe::10"
-          # "2620:fe::fe:10"
         ];
 
         fallback_dns = [
           "1.1.1.1"
+
           # adguard
           "94.140.14.14"
           "94.140.15.15"
