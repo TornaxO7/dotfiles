@@ -48,7 +48,7 @@ in
           wantedBy = [ "multi-user.target" ];
           timerConfig = {
             # every three hour
-            OnCalendar = "*-*-* 00,03,06,09,12,15,18,21:00:00";
+            OnCalendar = "hourly";
             Persistent = true;
           };
         };
