@@ -16,7 +16,7 @@ let
     db-data = "paperless-db-data";
   };
 
-  names = utils.createContainerNames "paperless" [ "server" "postgres" "redis" ];
+  names = utils.createContainerNames "paperless" [ "server" "redis" ];
 
   network-name = "paperless-network";
   domain = "paperless.${domain-root}";
@@ -60,7 +60,6 @@ in
       ${names.containers.server} = {
         image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
         environment = {
-          PAPERLESS_DBHOST = "${names.containers.postgres}";
           PAPERLESS_REDIS = "redis://${names.containers.redis}:6379";
           PAPERLESS_OCR_USER_ARGS = "{\"continue_on_soft_render_error\": true}";
         };
@@ -79,28 +78,12 @@ in
           "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "8000";
         };
 
-        dependsOn = with names.containers; [ postgres redis ];
+        dependsOn = with names.containers; [ redis ];
       };
 
       ${names.containers.redis} = {
         image = "docker.io/library/redis:7";
         extraOptions = [ "--network=${network-name}" ];
-      };
-
-      ${names.containers.postgres} = {
-        image = "docker.io/library/postgres:16";
-        environment = {
-          "POSTGRES_DB" = "paperless";
-          "POSTGRES_USER" = "paperless";
-          "POSTGRES_PASSWORD" = "paperless";
-        };
-        extraOptions = [
-          "--network=${network-name}"
-        ];
-        dependsOn = with names.containers; [ redis ];
-        volumes = [
-          "${volumes.db-data}:/var/lib/postgresql/data"
-        ];
       };
     };
   };

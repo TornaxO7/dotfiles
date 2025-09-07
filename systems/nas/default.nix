@@ -27,7 +27,7 @@ in
     (loadService ./services/paperless.nix)
     (loadService ./services/syncthing.nix)
     (loadService ./services/jellyfin.nix)
-    (loadService ./services/filebrowser.nix)
+    # (loadService ./services/filebrowser.nix)
     (loadService ./services/vikunja.nix)
     (loadService ./services/gotify.nix)
 
