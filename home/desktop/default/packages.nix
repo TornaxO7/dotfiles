@@ -13,7 +13,7 @@ let
     pavucontrol
     playerctl
     pulseaudio
-    # signal-desktop
+    signal-desktop
     simplescreenrecorder
     spotify
     vimiv-qt
