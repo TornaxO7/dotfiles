@@ -124,7 +124,6 @@ in
   services.traefik.dynamicConfigOptions.http = {
     middlewares.authelia.forwardAuth = {
       address = "http://127.0.0.1:${toString port}/api/authz/forward-auth";
-      trustForwardHeader = true;
       authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Email" "Remote-Name" ];
     };
 
