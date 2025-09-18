@@ -9,6 +9,7 @@
   home = {
     packages = with pkgs; [
       android-studio
+      easyeffects
       lact
       nvtopPackages.amd
       obs-studio
