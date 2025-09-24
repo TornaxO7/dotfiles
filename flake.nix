@@ -19,11 +19,6 @@
     bs.url = "github:godzie44/BugStalker";
     wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 
-    crowdsec = {
-      url = "git+https://codeberg.org/kampka/nix-flake-crowdsec.git";
-      # inputs.nixpkgs.follows = "stable";
-    };
-
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
