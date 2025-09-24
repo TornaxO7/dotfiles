@@ -10,6 +10,7 @@
     environment = {
       TZ = "DE";
       WATCHTOWER_TIMEOUT = "1m";
+      WATCHTOWER_INCLUDE_RESTARTING = "true";
     };
   };
 }
