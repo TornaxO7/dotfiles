@@ -12,14 +12,16 @@ in
       "${prefix}-database:/database"
     ];
 
-    cmd = [ "--database=/database/database.db" ];
-
     labels = {
       "traefik.enable" = "true";
       "traefik.http.routers.filebrowser.rule" = "Host(`${domain}`)";
       "traefik.http.routers.filebrowser.service" = "filebrowser";
       "traefik.http.routers.filebrowser.middlewares" = "authelia@file";
-      "traefik.http.services.filebrowser.loadbalancer.server.port" = "80";
+      "traefik.http.services.filebrowser.loadbalancer.server.port" = "8080";
+    };
+
+    environment = {
+      FB_PORT = "8080";
     };
   };
 }
