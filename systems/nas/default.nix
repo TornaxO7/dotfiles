@@ -10,9 +10,6 @@ in
     ((import ../../modules/default_main.nix) username)
     ./hardware-configuration.nix
 
-    ../../modules/desktop/default.nix
-    ../../modules/desktop/wayland/cosmic.nix
-
     ./zfs
 
     # == services ==
