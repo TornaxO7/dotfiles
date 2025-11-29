@@ -6,7 +6,7 @@ let
   unstable-packages = with unstable; [
     compose2nix
     crates-tui
-    du-dust
+    dust
     fd
     jless
     mergiraf

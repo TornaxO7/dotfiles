@@ -15,7 +15,7 @@
       obs-studio
       podman-compose
       poppler_utils
-      rpi-imager
+      # rpi-imager
       steamcmd
       xsane
       ryujinx
