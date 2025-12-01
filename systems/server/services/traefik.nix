@@ -1,6 +1,6 @@
-{ config, domain-root, ... }:
+{ config, root-domain, ... }:
 let
-  domain = "traefik.${domain-root}";
+  domain = "traefik.${root-domain}";
 
   root-path = "/var/lib/traefik";
 
@@ -64,7 +64,7 @@ in
       };
 
       certificatesResolvers.main.acme = {
-        email = "postmaster@${domain-root}";
+        email = "postmaster@${root-domain}";
         storage = "${config.services.traefik.dataDir}/acme.json";
         tlsChallenge = { };
       };

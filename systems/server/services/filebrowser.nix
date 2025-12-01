@@ -1,7 +1,7 @@
-{ domain-root, ... }:
+{ root-domain, ... }:
 let
   prefix = "filebrowser";
-  domain = "${prefix}.${domain-root}";
+  domain = "${prefix}.${root-domain}";
 in
 {
   virtualisation.oci-containers.containers.filebrowser = {

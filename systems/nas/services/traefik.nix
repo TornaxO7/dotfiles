@@ -1,7 +1,7 @@
-{ config, domain-root, ... }:
+{ config, root-domain, ... }:
 let
   username = config.users.users.main.name;
-  domain = "traefik.${domain-root}";
+  domain = "traefik.${root-domain}";
 in
 {
   virtualisation.oci-containers.containers.traefik = {

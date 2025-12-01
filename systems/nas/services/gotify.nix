@@ -1,8 +1,8 @@
-utils: { config, domain-root, services-root, ... }:
+utils: { config, root-domain, services-root, ... }:
 let
   prefix = "gotify";
 
-  domain = "${prefix}.${domain-root}";
+  domain = "${prefix}.${root-domain}";
 
   paths = {
     root = "${services-root}/${prefix}";

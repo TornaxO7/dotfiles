@@ -1,8 +1,8 @@
-utils: { config, zpool-root, domain-root, ... }:
+utils: { config, zpool-root, root-domain, ... }:
 let
   prefix = "filebrowser";
 
-  domain = "${prefix}.${domain-root}";
+  domain = "${prefix}.${root-domain}";
 in
 {
   config = {

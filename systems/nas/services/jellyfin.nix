@@ -1,4 +1,4 @@
-utils: { config, pkgs, zpool-name, zpool-root, domain-root, ... }:
+utils: { config, pkgs, zpool-name, zpool-root, root-domain, ... }:
 let
   username = config.users.users.main.name;
 
@@ -15,7 +15,7 @@ let
     cartoons = "${root}/cartoons";
   };
 
-  domain = "jellyfin.${domain-root}";
+  domain = "jellyfin.${root-domain}";
 in
 {
   config = {

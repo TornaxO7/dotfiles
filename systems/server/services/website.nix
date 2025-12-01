@@ -1,9 +1,9 @@
-{ config, services-root, domain-root, ... }:
+{ config, services-root, root-domain, ... }:
 let
   utils = import ../../utils.nix;
   names = utils.createContainerNames "website" [ "server" ];
 
-  domain = domain-root;
+  domain = root-domain;
 
   paths = {
     root = "${services-root}/website";

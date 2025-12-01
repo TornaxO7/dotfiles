@@ -1,8 +1,8 @@
-{ config, domain-root, ... }:
+{ config, root-domain, ... }:
 let
   prefix = "homarr";
 
-  domain = "${prefix}.${domain-root}";
+  domain = "${prefix}.${root-domain}";
 
   volume-name = "homarr";
 in

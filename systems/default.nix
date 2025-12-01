@@ -11,7 +11,7 @@ let
 
   ts-ips = {
     pc = "100.64.0.1";
-    nas = "100.64.0.6";
+    nas = "100.64.0.7";
     laptop = "100.64.0.3";
     mobile = "100.64.0.4";
     server = "100.64.0.5";
@@ -73,7 +73,7 @@ in
           zpool-root = "/${zpool-name}";
 
           services-root = "/services";
-          domain-root = "nas.local";
+          root-domain = "nas.internal";
         };
       };
 
@@ -83,8 +83,8 @@ in
         ts-ip = ts-ips.server;
         specialArgs = {
           services-root = "/services";
-          domain-root = "tornaxo7.de";
-          ts-domain-root = "server.local";
+          root-domain = "tornaxo7.de";
+          ts-root-domain = "server.internal";
           ip4 = "2.56.97.207";
           ip6 = "2a03:4000:3e:26f::";
         };

@@ -46,11 +46,12 @@ in
 
       filtering.rewrites = [
         {
-          domain = "*.nas.local";
+          domain = "*.nas.internal";
           answer = ts-ips.nas;
+          enabled = true;
         }
         {
-          domain = "*.server.local";
+          domain = "*.server.internal";
           answer = ts-ips.server;
         }
       ];

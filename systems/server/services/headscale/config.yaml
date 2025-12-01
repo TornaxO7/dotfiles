@@ -97,8 +97,7 @@ dns:
     global:
       - 100.64.0.5
 
-    split:
-      {}
+    split: {}
 
   search_domains: []
   extra_records: []

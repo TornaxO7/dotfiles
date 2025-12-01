@@ -1,6 +1,6 @@
-{ config, domain-root, ... }:
+{ config, root-domain, ... }:
 let
-  domain = "auth.${domain-root}";
+  domain = "auth.${root-domain}";
 
   port = 49162;
 
@@ -60,9 +60,9 @@ in
       session.cookies = [
         {
           name = "main";
-          domain = domain-root;
+          domain = root-domain;
           authelia_url = "https://${domain}";
-          default_redirection_url = "https://${domain-root}";
+          default_redirection_url = "https://${root-domain}";
         }
       ];
 
@@ -72,7 +72,7 @@ in
         default_policy = "deny";
         rules = [
           {
-            domain = "filebrowser.${domain-root}";
+            domain = "filebrowser.${root-domain}";
             policy = "bypass";
             resources = [
               "^/api/public/dl/*" # download stuff
@@ -81,7 +81,7 @@ in
             ];
           }
           {
-            domain = "*.${domain-root}";
+            domain = "*.${root-domain}";
             policy = "two_factor";
           }
         ];

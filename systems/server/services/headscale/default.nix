@@ -1,7 +1,7 @@
-{ domain-root, services-root, ... }:
+{ root-domain, services-root, ... }:
 let
   utils = import ../../../utils.nix;
-  domain = "headscale.${domain-root}";
+  domain = "headscale.${root-domain}";
 
   paths = rec{
     root = "${services-root}/headscale";

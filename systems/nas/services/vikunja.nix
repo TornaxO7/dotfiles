@@ -1,4 +1,4 @@
-utils: { config, lib, pkgs, zpool-root, zpool-name, domain-root, ... }:
+utils: { config, lib, pkgs, zpool-root, zpool-name, root-domain, ... }:
 let
   names = utils.createContainerNames "vikunja" [ "server" ];
 
@@ -8,7 +8,7 @@ let
     db = "${bind-root}/db";
   };
 
-  domain = "vikunja.${domain-root}";
+  domain = "vikunja.${root-domain}";
 in
 {
   systemd = lib.attrsets.recursiveUpdate

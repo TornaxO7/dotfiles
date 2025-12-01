@@ -1,7 +1,7 @@
-utils: { config, pkgs, zpool-name, zpool-root, domain-root, ... }:
+utils: { config, pkgs, zpool-name, zpool-root, root-domain, ... }:
 let
   username = config.users.users.main.name;
-  domain = "syncthing.${domain-root}";
+  domain = "syncthing.${root-domain}";
 
   binds = {
     main = "${zpool-root}/syncthing";

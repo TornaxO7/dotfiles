@@ -1,4 +1,4 @@
-utils: { config, pkgs, lib, zpool-root, domain-root, services-root, ... }:
+utils: { config, pkgs, lib, zpool-root, root-domain, services-root, ... }:
 let
   # ZFS
   bind-root = "${zpool-root}/immich";
@@ -14,7 +14,7 @@ let
 
   names = utils.createContainerNames "immich" [ "server" "ml" "redis" "db" ];
 
-  domain = "immich.${domain-root}";
+  domain = "immich.${root-domain}";
   network-name = "immich-network";
 
   env = {

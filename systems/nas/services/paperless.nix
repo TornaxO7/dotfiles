@@ -1,4 +1,4 @@
-utils: { config, lib, pkgs, zpool-name, zpool-root, domain-root, services-root, ... }:
+utils: { config, lib, pkgs, zpool-name, zpool-root, root-domain, services-root, ... }:
 let
   # ZFS dataset
   backup-root = "${zpool-root}/paperless";
@@ -19,7 +19,7 @@ let
   names = utils.createContainerNames "paperless" [ "server" "redis" ];
 
   network-name = "paperless-network";
-  domain = "paperless.${domain-root}";
+  domain = "paperless.${root-domain}";
 
   backup-service-name = "paperless-backup";
 in
