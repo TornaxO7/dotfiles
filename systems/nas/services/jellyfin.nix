@@ -16,6 +16,7 @@ let
   };
 
   domain = "jellyfin.${root-domain}";
+  metube-domain = "metube.${root-domain}";
 in
 {
   config = {
@@ -55,7 +56,7 @@ in
 
         labels = {
           "traefik.enable" = "true";
-          "traefik.http.routers.metube.rule" = "Host(`metube.nas.local`)";
+          "traefik.http.routers.metube.rule" = "Host(`${metube-domain}`)";
           "traefik.http.routers.metube.service" = "metube";
           "traefik.http.services.metube.loadbalancer.server.port" = "8081";
         };
