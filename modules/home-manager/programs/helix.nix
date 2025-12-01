@@ -1,6 +1,6 @@
 { pkgs, inputs, lib, unstable, ... }:
 let
-  ra-multiplex-pkg = unstable.ra-multiplex;
+  lspmux-pkg = unstable.lspmux;
   # wgsl-pkg = inputs.wgsl-analyzer.packages.${pkgs.system}.default;
 in
 {
@@ -10,13 +10,13 @@ in
   };
 
   systemd.user.services = {
-    ra-multiplex = {
+    lspmux = {
       Unit = {
-        Description = "start ra-multiplex server";
+        Description = "start lspmux server";
       };
 
       Service = {
-        ExecStart = "${ra-multiplex-pkg}/bin/ra-multiplex server";
+        ExecStart = "${lspmux-pkg}/bin/lspmux server";
       };
 
       Install = {
@@ -25,12 +25,12 @@ in
     };
   };
 
-  xdg.configFile.ra-multiplex = {
+  xdg.configFile.lspmux = {
     enable = true;
     text = ''
       pass_environment = ["PATH", "LD_LIBRARY_PATH", "PKG_CONFIG_PATH"]
     '';
-    target = "ra-multiplex/config.toml";
+    target = "lspmux/config.toml";
   };
 
   programs.helix = {
@@ -40,8 +40,8 @@ in
 
     languages = {
       language-server = {
-        ra-multiplex = {
-          command = "${ra-multiplex-pkg}/bin/ra-multiplex";
+        lspmux = {
+          command = "${lspmux-pkg}/bin/lspmux";
           args = [ "client" ];
         };
 
@@ -144,7 +144,7 @@ in
           name = "rust";
           auto-format = true;
           file-types = [ "rust" "rs" ];
-          language-servers = [ "ra-multiplex" ];
+          language-servers = [ "lspmux" ];
         }
         {
           name = "python";
@@ -181,7 +181,7 @@ in
           auto-format = true;
           file-types = [ "typst" ];
           formatter = {
-            command = "${pkgs.typst-fmt}/bin/typst-fmt";
+            command = "${pkgs.typstyle}/bin/typstyle";
           };
           # language-servers = [ "typst-lsp" ];
         }

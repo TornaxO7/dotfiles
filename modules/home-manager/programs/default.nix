@@ -40,16 +40,50 @@
 
     home-manager.enable = true;
 
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        hyperlinks = true;
+        side-by-side = true;
+
+        # minus-style = "syntax \"#3f2d3d\"";
+        # minus-non-emph-style = "syntax \"#3f2d3d\"";
+        # minus-emph-style = "syntax \"#763842\"";
+        # minus-empty-line-marker-style = "syntax \"#3f2d3d\"";
+        # line-numbers-minus-style = "#914c54";
+        # plus-style = "syntax \"#283b4d\"";
+        # plus-non-emph-style = "syntax \"#283b4d\"";
+        # plus-emph-style = "syntax \"#316172\"";
+        # plus-empty-line-marker-style = "syntax \"#283b4d\"";
+        # line-numbers-plus-style = "#449dab";
+        # line-numbers-zero-style = "#3b4261";
+      };
+    };
+
     git = {
       enable = true;
       package = unstable.gitoxide;
-      delta.enable = true;
       signing = {
         key = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194";
         signByDefault = true;
       };
-      userEmail = "tornax@proton.me";
-      userName = "TornaxO7";
+      settings.user = {
+        email = "tornax@proton.me";
+        name = "TornaxO7";
+
+        core = {
+          editor = "hx";
+        };
+
+        "merge \"mergiraf\"" = {
+          name = "mergiraf";
+          driver = "${unstable.mergiraf}/bin/mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";
+        };
+
+        push.autoSetupRemote = true;
+        pull.rebase = false;
+      };
 
       attributes = [
         "*.java merge=mergiraf"
@@ -72,37 +106,6 @@
         "*.cs merge=mergiraf"
         "*.dart merge=mergiraf"
       ];
-
-      extraConfig = {
-        core = {
-          editor = "hx";
-        };
-
-        delta = {
-          hyperlinks = true;
-          side-by-side = true;
-
-          minus-style = "syntax \"#3f2d3d\"";
-          minus-non-emph-style = "syntax \"#3f2d3d\"";
-          minus-emph-style = "syntax \"#763842\"";
-          minus-empty-line-marker-style = "syntax \"#3f2d3d\"";
-          line-numbers-minus-style = "#914c54";
-          plus-style = "syntax \"#283b4d\"";
-          plus-non-emph-style = "syntax \"#283b4d\"";
-          plus-emph-style = "syntax \"#316172\"";
-          plus-empty-line-marker-style = "syntax \"#283b4d\"";
-          line-numbers-plus-style = "#449dab";
-          line-numbers-zero-style = "#3b4261";
-        };
-
-        "merge \"mergiraf\"" = {
-          name = "mergiraf";
-          driver = "${unstable.mergiraf}/bin/mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P";
-        };
-
-        push.autoSetupRemote = true;
-        pull.rebase = false;
-      };
     };
 
     gpg = {
@@ -127,7 +130,7 @@
 
     ssh = {
       enable = true;
-      forwardAgent = true;
+      matchBlocks."*".forwardAgent = true;
     };
 
     starship = {

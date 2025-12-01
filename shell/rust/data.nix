@@ -17,7 +17,7 @@ rec {
     vulkan-tools
     # vulkan-tools-lunarg
 
-    pcsctools
+    pcsc-tools
     pcsclite
 
     cmake

@@ -91,6 +91,8 @@ in
       };
 
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage
+      #
+      # Just enter root automatically...
       iso = mkSystem {
         hostname = "iso";
         config-modules = [
@@ -104,8 +106,6 @@ in
                 sudo.enable = false;
                 sudo-rs.enable = true;
               };
-
-              users.users.nixos.initialPassword = "nixos";
             };
           })
         ];

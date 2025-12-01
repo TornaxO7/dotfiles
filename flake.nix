@@ -3,13 +3,15 @@
 
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    stable.url = "github:nixos/nixpkgs/nixos-25.11";
+
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.inputs.nixpkgs.follows = "stable";
+
+    nix-colors.url = "github:misterio77/nix-colors";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "unstable";
-
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "stable";
 
     helix.url = "github:helix-editor/helix/master";
     wired.url = "github:Toqozz/wired-notify";
@@ -18,6 +20,7 @@
     gtt.url = "github:TornaxO7/gtt/add-flake";
     bs.url = "github:godzie44/BugStalker";
     wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
+
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 

@@ -8,20 +8,18 @@
 
   home = {
     packages = with pkgs; [
-      android-studio
       easyeffects
       lact
       nvtopPackages.amd
       obs-studio
       podman-compose
-      poppler_utils
-      # rpi-imager
+      poppler-utils
+      rpi-imager
       steamcmd
       xsane
-      ryujinx
     ];
 
-    pointerCursor.size = 20;
+    # pointerCursor.size = 20;
   };
 
   services.picom = {
