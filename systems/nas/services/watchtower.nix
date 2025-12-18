@@ -1,7 +1,7 @@
 utils: { config, ... }:
 {
   virtualisation.oci-containers.containers.watchtower = {
-    image = "containrrr/watchtower";
+    image = "nickfedor/watchtower";
 
     volumes = [
       "/var/run/podman/podman.sock:/var/run/docker.sock"
