@@ -14,7 +14,10 @@
       "action": "accept",
       "src": ["group:main"],
       "dst": ["*"],
-      "users": ["*"]
+      "users": [
+        "autogroup:nonroot",
+        "root"
+       ]
     }
   ]
 }
