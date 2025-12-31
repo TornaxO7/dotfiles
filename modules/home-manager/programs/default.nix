@@ -68,12 +68,19 @@
         key = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194";
         signByDefault = true;
       };
-      settings.user = {
-        email = "tornax@proton.me";
-        name = "TornaxO7";
+      settings = {
+        branch = {
+          autoSetupMerge = "always";
+          autoSetupRebase = "always";
+        };
 
         core = {
           editor = "hx";
+        };
+
+        diff = {
+          srcPrefix = "src/";
+          dstPrefix = "dst/";
         };
 
         "merge \"mergiraf\"" = {
@@ -83,6 +90,11 @@
 
         push.autoSetupRemote = true;
         pull.rebase = false;
+
+        user = {
+          email = "tornax@proton.me";
+          name = "TornaxO7";
+        };
       };
 
       attributes = [
