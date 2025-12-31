@@ -128,3 +128,4 @@ plugins {
 theme "tokyo-night-storm"
 copy_command "xclip -selection clipboard"
 scrollback_editor "hx"
+show_startup_tips false
