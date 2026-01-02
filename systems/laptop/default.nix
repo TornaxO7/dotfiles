@@ -36,6 +36,8 @@ username:
         };
       };
 
+      desktopManager.plasma6.enable = true;
+
       xserver = {
         dpi = 210;
 
