@@ -1,5 +1,5 @@
 hostname:
-{ self, config, pkgs, unstable, inputs, ssh-keys, ... }:
+{ self, config, pkgs, unstable, inputs, ssh-keys, wg, ... }:
 {
   imports = [
     self.nixosModules.bustd
@@ -36,6 +36,12 @@ hostname:
     networking = {
       hostName = hostname;
       nftables.enable = true;
+
+      wg-quick.interfaces.wg0 = {
+        generatePrivateKeyFile = true;
+        privateKeyFile = "/etc/wireguard/private.key";
+        dns = [ wg.server.addr ];
+      };
     };
 
     nixpkgs.config.allowUnfree = true;
@@ -53,7 +59,6 @@ hostname:
         cacert
         just
         systemctl-tui
-        tailscale
       ];
       shellAliases = {
         "stui" = "${pkgs.systemctl-tui}/bin/systemctl-tui";
@@ -91,7 +96,6 @@ hostname:
     services = {
       openssh.enable = true;
       bustd.enable = true;
-      tailscale.enable = true;
     };
 
     systemd.services.NetworkManager-wait-online.enable = false;

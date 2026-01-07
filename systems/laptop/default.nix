@@ -3,6 +3,7 @@ username:
 {
   imports = [
     ./hardware-configuration.nix
+    ./wireguard.nix
 
     ((import ../../modules/default_main.nix) username)
     ../../modules/desktop/default.nix

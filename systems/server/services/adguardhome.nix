@@ -1,9 +1,6 @@
-{ lib, ts-ip, ts-ips, ... }:
-let
-  ip-addr = ts-ip;
-in
+{ lib, wg, root-domain, ... }:
 {
-  networking.firewall.interfaces."tailscale0" = {
+  networking.firewall.interfaces."wg0" = {
     # for ui
     allowedTCPPorts = [ 3000 ];
     # for dns requests
@@ -12,10 +9,10 @@ in
 
   services.adguardhome = {
     enable = true;
-    host = ip-addr;
+    host = wg.server.addr;
     settings = {
       http = {
-        address = ip-addr;
+        address = wg.server.addr;
         pprof.enabled = false;
       };
 
@@ -46,18 +43,14 @@ in
 
       filtering.rewrites = [
         {
-          domain = "*.nas.internal";
-          answer = ts-ips.nas;
+          domain = "*.nas.vpn.${root-domain}";
+          answer = wg.nas.addr;
           enabled = true;
-        }
-        {
-          domain = "*.server.internal";
-          answer = ts-ips.server;
         }
       ];
 
       dns = rec {
-        bind_hosts = [ ip-addr ];
+        bind_hosts = [ wg.server.addr ];
         port = 53;
         ratelimit = 0;
         anonymize_client_ip = false;
@@ -115,15 +108,28 @@ in
         upstream_mode = "parallel";
       };
 
-      clients.persistent =
-        let
-          converter = hostname: ts-ip-addr: {
-            name = hostname;
-            ids = [ ts-ip-addr ];
-            use_global_settings = true;
-          };
-        in
-        lib.attrsets.mapAttrsToList converter ts-ips;
+      clients.persistent = map (lib.mergeAttrs { use_global_settings = true; }) [
+        {
+          name = "server";
+          ids = [ wg.server.addr ];
+        }
+        {
+          name = "pc";
+          ids = [ wg.pc.addr ];
+        }
+        {
+          name = "nas";
+          ids = [ wg.nas.addr ];
+        }
+        {
+          name = "laptop";
+          ids = [ wg.laptop.addr ];
+        }
+        {
+          name = "mobile";
+          ids = [ wg.mobile.addr ];
+        }
+      ];
 
       dhcpcd.enabled = false;
       statistics.enabled = true;

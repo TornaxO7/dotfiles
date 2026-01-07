@@ -9,11 +9,11 @@ in
   imports = [
     ((import ../../modules/default_main.nix) username)
     ./hardware-configuration.nix
+    ./wireguard.nix
 
     ./zfs
 
     # == services ==
-    ./services
 
     # docker services
     ./services/traefik.nix
@@ -41,7 +41,6 @@ in
 
     networking = {
       hostId = "17b02087";
-      networkmanager.enable = false;
 
       # allow DNS resolver for the docker networks
       firewall.allowedUDPPorts = [ 53 ];

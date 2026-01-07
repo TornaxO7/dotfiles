@@ -6,9 +6,9 @@
 
     # ports: 80, 443
     ./services/traefik.nix
+    ./services/wireguard.nix
     ./services/filebrowser.nix
     ./services/website.nix
-    ./services/headscale
 
     ./services/github-runner/vibe-ci.nix
 
@@ -48,7 +48,6 @@
     };
 
     networking = {
-      networkmanager.enable = false;
       interfaces.ens3.ipv6.addresses = [
         {
           address = ip6;
