@@ -71,7 +71,6 @@
       settings = {
         branch = {
           autoSetupMerge = "always";
-          autoSetupRebase = "always";
         };
 
         core = {
