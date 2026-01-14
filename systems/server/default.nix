@@ -6,7 +6,6 @@
 
     # ports: 80, 443
     ./services/traefik.nix
-    ./services/wireguard.nix
     ./services/filebrowser.nix
     ./services/website.nix
 
@@ -26,6 +25,11 @@
     # ports: [49180 - 49190)
     # soon: Switch to crowdsec (in a good way)
     ./services/crowdsec-docker
+
+    # port: 49190
+    ./services/wireguard.nix
+    # port: 49191
+    ./services/anubis.nix
 
     # (loadService ./services/stalwart.nix)
   ];
