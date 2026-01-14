@@ -17,6 +17,8 @@
       rpi-imager
       steamcmd
       xsane
+
+      github-copilot-cli
     ];
 
     # pointerCursor.size = 20;
