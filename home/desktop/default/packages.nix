@@ -1,7 +1,6 @@
 { pkgs, unstable, ... }:
 let
   unstable-pkgs = with unstable; [
-    discord
   ];
 
   stable-pkgs = with pkgs; [
