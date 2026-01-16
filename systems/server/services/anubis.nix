@@ -98,7 +98,7 @@ in
           enable = true;
           settings = {
             TARGET = " ";
-            REDIRECT_DOMAINS = root-domain;
+            REDIRECT_DOMAINS = "*.${root-domain}";
             PUBLIC_URL = "https://${domain}";
             COOKIE_DOMAIN = root-domain;
 
