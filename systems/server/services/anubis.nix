@@ -14,12 +14,6 @@ in
         botPolicy = {
           bots = [
             { import = "(data)/meta/default-config.yaml"; }
-            {
-              name = "low-load-average";
-              action = "WEIGH";
-              expression = "load_15m <= 4.0";
-              weight.adjust = -10;
-            }
           ];
 
           dnsbl = false;
@@ -51,19 +45,13 @@ in
 
           thresholds = [
             {
-              name = "minimal-suspicion";
-              expression = "weight <= 0";
-              action = "ALLOW";
-            }
-            {
               name = "mild-suspicion";
               expression.all = [
-                "weight > 0"
                 "weight < 10"
               ];
               action = "CHALLENGE";
               challenge = {
-                algorithm = "metarefresh";
+                algorithm = "fast";
                 difficulty = 1;
               };
             }
