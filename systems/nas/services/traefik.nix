@@ -1,36 +1,33 @@
-{ config, root-domain, ... }:
+{ root-domain, ... }:
 let
-  username = config.users.users.main.name;
   domain = "traefik.${root-domain}";
 in
 {
-  virtualisation.oci-containers.containers.traefik = {
-    image = "traefik:v3.1";
-    cmd = [
-      "--api=true"
+  networking.firewall.allowedTCPPorts = [ 80 ];
 
-      "--providers.docker=true"
-      "--providers.docker.exposedbydefault=false"
+  services.traefik = {
+    enable = true;
 
-      "--entryPoints.http.address=:80"
-    ];
+    # need to be able to access the podman socket
+    group = "podman";
 
-    extraOptions = [
-      "--hostuser=${username}"
-    ];
+    staticConfigOptions = {
+      entryPoints.http.address = ":80";
 
-    ports = [
-      "80:80"
-    ];
+      api = {
+        dashboard = true;
+        insecure = true;
+      };
 
-    volumes = [
-      "/var/run/podman/podman.sock:/var/run/docker.sock"
-    ];
+      providers.docker = {
+        endpoint = "unix:///var/run/podman/podman.sock";
+        exposedByDefault = false;
+      };
+    };
 
-    labels = {
-      "traefik.enable" = "true";
-      "traefik.http.routers.dashboard.rule" = "Host(`${domain}`)";
-      "traefik.http.routers.dashboard.service" = "api@internal";
+    dynamicConfigOptions.http.routers.dashboard = {
+      rule = "Host(`${domain}`)";
+      service = "api@internal";
     };
   };
 }
