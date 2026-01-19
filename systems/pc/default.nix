@@ -1,8 +1,11 @@
-username: { config, ... }:
+username: { config, pkgs, ... }:
 {
+  # disabledModules = [ "services/security/crowdsec.nix" ];
+
   imports = [
     ./hardware-configuration.nix
     ./wireguard.nix
+    # ./crowdsec.nix
 
     ((import ../../modules/default_main.nix) username)
     ../../modules/desktop/default.nix
@@ -23,6 +26,11 @@ username: { config, ... }:
           user = username;
         };
       };
+
+      # crowdsec = {
+      #   enable = true;
+      #   package = pkgs.callPackage (import ./crowdsec-package.nix) { };
+      # };
     };
 
     programs.ausweisapp = {

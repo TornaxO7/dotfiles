@@ -9,6 +9,7 @@ in
       defaultOptions = {
         settings = {
           WEBMASTER_EMAIL = "tornax@pm.me";
+          DIFFICULTY = 6;
         };
 
         botPolicy = {
@@ -44,9 +45,17 @@ in
           store.backend = "memory";
 
           thresholds = [
+
+            {
+              name = "no-suspicion";
+              expression = "weight <= 0";
+              action = "ALLOW";
+            }
+
             {
               name = "mild-suspicion";
               expression.all = [
+                # "weight >= 0"
                 "weight < 10"
               ];
               action = "CHALLENGE";
@@ -124,6 +133,7 @@ in
           routers.anubis = {
             rule = "Host(`${domain}`)";
             service = "anubis";
+            middlewares = "";
           };
 
           services.anubis.loadbalancer.servers =

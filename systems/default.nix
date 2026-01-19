@@ -22,7 +22,7 @@ let
     };
     pc = {
       addr = "10.0.0.2";
-      publicKey = "h5ZTeGzZOJ2lWd6IwReNy4poNBHlG6ioaESjw0GaORc=";
+      publicKey = "9ZdXIaUIlq6RZJiJvDGgOGzKjtz09VGRUgnmxsjUa1U=";
     };
     nas = {
       addr = "10.0.0.3";
