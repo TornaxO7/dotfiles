@@ -10,6 +10,7 @@ in
 {
   "deepl.age".publicKeys = main;
   "gotify-token.age".publicKeys = main;
+  "paperless.age".publicKeys = main;
 
   "linkwarden/nextauth.age".publicKeys = main;
   "linkwarden/postgres_password.age".publicKeys = main;

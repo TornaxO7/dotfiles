@@ -20,10 +20,11 @@ in
     ./services/meilisearch.nix
     # 49202
     ./services/linkwarden.nix
+    # 49203
+    ./services/paperless.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     (loadService ./services/watchtower.nix)
-    (loadService ./services/paperless.nix)
     (loadService ./services/syncthing.nix)
     (loadService ./services/jellyfin.nix)
     (loadService ./services/filebrowser.nix)
@@ -32,6 +33,7 @@ in
   ];
 
   config = {
+
     environment.systemPackages = with pkgs; [
       podman
       podman-compose

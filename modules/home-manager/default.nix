@@ -37,8 +37,10 @@ system-home-config: { self, inputs, config, unstable, ... }:
         colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
 
         home = {
-          username = config.users.users.main.name;
-          homeDirectory = "/home/${config.users.users.main.name}";
+          # username = config.users.users.main.name;
+          username = "tornax";
+          # homeDirectory = "/home/${config.users.users.main.name}";
+          homeDirectory = "/home/tornax";
 
           keyboard = {
             layout = "de";

@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }:
+{ config, inputs, pkgs, lib, ... }:
 let
   inherit (lib) makeBinPath;
 
