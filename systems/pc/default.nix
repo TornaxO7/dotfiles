@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # disabledModules = [ "services/security/crowdsec.nix" ];
 
@@ -32,6 +32,10 @@
       #   package = pkgs.callPackage (import ./crowdsec-package.nix) { };
       # };
     };
+
+    environment.systemPackage = with pkgs; [
+      age
+    ];
 
     programs.ausweisapp = {
       enable = true;
