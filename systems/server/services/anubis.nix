@@ -45,13 +45,11 @@ in
           store.backend = "memory";
 
           thresholds = [
-
             {
               name = "no-suspicion";
               expression = "weight <= 0";
               action = "ALLOW";
             }
-
             {
               name = "mild-suspicion";
               expression.all = [
