@@ -1,4 +1,4 @@
-username: { config, pkgs, ... }:
+{ config, ... }:
 {
   # disabledModules = [ "services/security/crowdsec.nix" ];
 
@@ -7,7 +7,7 @@ username: { config, pkgs, ... }:
     ./wireguard.nix
     # ./crowdsec.nix
 
-    ((import ../../modules/default_main.nix) username)
+    ../../modules/default_main.nix
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
     ../../modules/desktop/wayland/cosmic.nix
@@ -23,7 +23,7 @@ username: { config, pkgs, ... }:
         defaultSession = "cosmic";
         autoLogin = {
           enable = true;
-          user = username;
+          user = config.users.users.main.name;
         };
       };
 

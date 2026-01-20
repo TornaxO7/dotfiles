@@ -1,11 +1,10 @@
-username:
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./wireguard.nix
 
-    ((import ../../modules/default_main.nix) username)
+    ../../modules/default_main.nix
     ../../modules/desktop/default.nix
     ../../modules/desktop/xorg/default.nix
     ../../modules/desktop/xorg/i3.nix
@@ -33,7 +32,7 @@ username:
         defaultSession = "cosmic";
         autoLogin = {
           enable = true;
-          user = username;
+          user = config.users.users.main.name;
         };
       };
 

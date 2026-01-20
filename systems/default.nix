@@ -1,6 +1,5 @@
 { self, inputs, lib, ... }:
 let
-  username = "tornax";
   unstable = import inputs.unstable {
     system = "x86_64-linux";
     config.allowUnfree = true;
@@ -52,7 +51,7 @@ let
       hm-module =
         if home-configuration == null then
           ({ ... }: { })
-        else (hmModule username home-configuration);
+        else (hmModule home-configuration);
     in
     inputs.stable.lib.nixosSystem {
       specialArgs = lib.attrsets.recursiveUpdate specialArgs {
@@ -68,19 +67,19 @@ in
   flake = {
     nixosConfigurations = {
       pc = mkSystem {
-        config-modules = [ ((import ./pc) username) ];
+        config-modules = [ ./pc ];
         home-configuration = ./pc/home;
         hostname = "pc";
       };
 
       laptop = mkSystem {
-        config-modules = [ ((import ./laptop) username) ];
+        config-modules = [ ./laptop ];
         home-configuration = ./laptop/home;
         hostname = "laptop";
       };
 
       nas = mkSystem {
-        config-modules = [ ((import ./nas) username) ];
+        config-modules = [ ./nas ];
         home-configuration = ./nas/home;
         hostname = "nas";
         specialArgs = rec {

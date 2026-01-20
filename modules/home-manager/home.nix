@@ -1,4 +1,4 @@
-username: { inputs, ... }:
+{ config, inputs, ... }:
 {
   imports = [
     ./packages.nix
@@ -6,16 +6,14 @@ username: { inputs, ... }:
     ./session_variables.nix
     ./programs
     ./services.nix
-
-    inputs.nix-colors.homeManagerModules.default
   ];
 
   config = {
     colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
 
     home = {
-      inherit username;
-      homeDirectory = "/home/${username}";
+      username = config.users.users.main.name;
+      homeDirectory = "/home/${config.users.users.main.name}";
 
       keyboard = {
         layout = "de";

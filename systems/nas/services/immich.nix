@@ -1,5 +1,4 @@
-username:
-{ config, zpool-root, root-domain, unstable, ... }:
+{ zpool-root, root-domain, unstable, ... }:
 let
   domain = "immich.${root-domain}";
 in

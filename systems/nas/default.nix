@@ -1,4 +1,3 @@
-username:
 { config, pkgs, services-root, ... }:
 let
   utils = import ../utils.nix;
@@ -7,7 +6,7 @@ let
 in
 {
   imports = [
-    ((import ../../modules/default_main.nix) username)
+    ../../modules/default_main.nix
     ./hardware-configuration.nix
     ./wireguard.nix
 
@@ -17,7 +16,7 @@ in
 
     ./services/traefik.nix
     # 49200
-    (import ./services/immich.nix username)
+    ./services/immich.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     (loadService ./services/watchtower.nix)
