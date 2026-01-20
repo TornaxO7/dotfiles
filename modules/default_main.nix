@@ -11,6 +11,9 @@
       wheelNeedsPassword = false;
     };
 
+    # to use the substituters
+    nix.settings.trusted-users = [ "@wheel" ];
+
     networking.hosts = {
       "${wg.pc.addr}" = [ "pc.vpn.${wg.domain}" ];
       "${wg.laptop.addr}" = [ "laptop.vpn.${wg.domain}" ];
