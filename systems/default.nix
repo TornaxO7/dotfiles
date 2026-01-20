@@ -1,10 +1,5 @@
 { self, inputs, lib, ... }:
 let
-  unstable = import inputs.unstable {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
-
   hmModule = import ../modules/home-manager;
   sharedMainModule = import ../modules/default.nix;
 
@@ -45,6 +40,7 @@ let
     { config-modules
     , hostname
     , home-configuration ? null
+    , system ? "x86_64-linux"
     , specialArgs ? { }
     }:
     let
@@ -52,9 +48,14 @@ let
         if home-configuration == null then
           ({ ... }: { })
         else (hmModule home-configuration);
+
+      unstable = import inputs.unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     inputs.stable.lib.nixosSystem {
-      specialArgs = lib.attrsets.recursiveUpdate specialArgs {
+      specialArgs = lib.recursiveUpdate specialArgs {
         inherit self inputs unstable ssh-keys wg;
       };
       modules = [
