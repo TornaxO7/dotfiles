@@ -33,10 +33,6 @@
       # };
     };
 
-    environment.systemPackage = with pkgs; [
-      age
-    ];
-
     programs.ausweisapp = {
       enable = true;
       openFirewall = true;

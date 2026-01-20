@@ -13,10 +13,13 @@ in
     ./zfs
 
     # == services ==
-
     ./services/traefik.nix
     # 49200
     ./services/immich.nix
+    # 49201
+    ./services/meilisearch.nix
+    # 49202
+    ./services/linkwarden.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     (loadService ./services/watchtower.nix)

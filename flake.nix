@@ -21,7 +21,6 @@
     bs.url = "github:godzie44/BugStalker";
     wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 
-
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     flake-parts.url = "github:hercules-ci/flake-parts";

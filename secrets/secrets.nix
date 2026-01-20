@@ -11,6 +11,10 @@ in
   "deepl.age".publicKeys = main;
   "gotify-token.age".publicKeys = main;
 
+  "linkwarden/nextauth.age".publicKeys = main;
+  "linkwarden/postgres_password.age".publicKeys = main;
+  "linkwarden/meili_master_key.age".publicKeys = main;
+
   "grafana.age".publicKeys = all;
   "crowdsec.age".publicKeys = all;
 
