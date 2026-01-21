@@ -1,9 +1,6 @@
 [submodule "config/nushell/scripts/nu_scripts"]
 	path = config/nushell/scripts/nu_scripts
 	url = https://github.com/nushell/nu_scripts.git
-[submodule "config/yazi/plugins/bookmarks.yazi"]
-	path = config/yazi/plugins/bookmarks.yazi
-	url = https://github.com/dedukun/bookmarks.yazi.git
-[submodule "config/yazi/plugins/smart-enter.yazi"]
-	path = config/yazi/plugins/smart-enter.yazi
-	url = https://github.com/Ape/smart-enter.yazi.git
+[submodule "modules/home-manager/programs/yazi/tokyo-night.yazi"]
+	path = modules/home-manager/programs/yazi/tokyo-night.yazi
+	url = https://github.com/BennyOe/tokyo-night.yazi.git
