@@ -41,16 +41,16 @@ rules = [
 	{ mime = "video/*", use = ["ffplay"] },
 	{ mime = "audio/*", use = ["ffplay"] },
 
-	{ name = "*.xopp", use = ["xournalpp"] },
+	{ url = "*.xopp", use = ["xournalpp"] },
 
 	# workarounds since mime types don't work here :(
-	{ name = "*.zip", use = ["ouch"] },
-	{ name = "*.gz", use = ["ouch"] },
-	{ name = "*.tar", use = ["ouch"] },
-	{ name = "*.bz", use = ["ouch"] },
-	{ name = "*.bz2", use = ["ouch"] },
+	{ url = "*.zip", use = ["ouch"] },
+	{ url = "*.gz", use = ["ouch"] },
+	{ url = "*.tar", use = ["ouch"] },
+	{ url = "*.bz", use = ["ouch"] },
+	{ url = "*.bz2", use = ["ouch"] },
 
-	{ name = "*.rnote", use = ["rnote"] },
+	{ url = "*.rnote", use = ["rnote"] },
 	{ mime = "application/pdf", use = ["evince"] },
 ]
 
@@ -74,7 +74,7 @@ preloaders = [
 ]
 
 previewers = [
-	{ name = "*/", run = "folder", sync = true },
+	{ url = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*", run = "code" },
 	{ mime = "*/xml", run = "code" },
@@ -99,7 +99,7 @@ previewers = [
 	{ mime = "application/x-rar", run = "ouch l" },
 	{ mime = "application/xz", run = "ouch l" },
 	# Fallback
-	{ name = "*", run = "file" },
+	{ url = "*", run = "file" },
 ]
 
 [input]
