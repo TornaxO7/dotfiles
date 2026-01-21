@@ -8,8 +8,7 @@
       settings = {
         scrollback_editor = "hx";
         show_startup_tips = false;
-
-
+        theme = "tokyo-night-storm";
       };
 
       extraConfig = ''

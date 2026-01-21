@@ -9,6 +9,11 @@
           bindings = [{ key = "="; mods = "Control"; action = "ResetFontSize"; }];
         };
 
+        font.normal = {
+          family = "FiraCode Nerd Font";
+          style = "Regular";
+        };
+
         general.live_config_reload = false;
         window.opacity = 0.9;
       };
