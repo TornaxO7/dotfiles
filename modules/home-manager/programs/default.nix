@@ -5,7 +5,7 @@
     ./helix.nix
     ./zathura.nix
     # ./bugstalker.nix
-    ./zellij
+    ./zellij.nix
   ];
 
   config.programs = {
