@@ -30,6 +30,7 @@ in
     (loadService ./services/filebrowser.nix)
     (loadService ./services/vikunja.nix)
     (loadService ./services/gotify.nix)
+    ./services/traggo.nix
   ];
 
   config = {
