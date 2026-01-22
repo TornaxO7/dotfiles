@@ -117,7 +117,7 @@ in
     };
 
     traefik = {
-      staticConfigOptions.entryPoints.https.http.middlewares = "anubis@file";
+      # staticConfigOptions.entryPoints.https.http.middlewares = "anubis@file";
 
       dynamicConfigOptions.http =
         let
