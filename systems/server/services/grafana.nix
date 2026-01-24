@@ -1,6 +1,6 @@
-{ config, root-domain, ... }:
+{ config, wg, ... }:
 let
-  domain = "grafana.${root-domain}";
+  domain = "grafana.${wg.server.host}";
   port = 49163;
 
   user = config.users.users.grafana.name;
@@ -74,7 +74,7 @@ in
     routers.grafana = {
       rule = "Host(`${domain}`)";
       service = "grafana";
-      middlewares = [ "authelia@file" ];
+      entryPoints = [ "http-vpn" ];
     };
 
     services.grafana.loadbalancer.servers = [
