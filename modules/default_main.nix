@@ -15,11 +15,11 @@
     nix.settings.trusted-users = [ "@wheel" ];
 
     networking.hosts = {
-      "${wg.pc.addr}" = [ "pc.vpn.${wg.domain}" ];
-      "${wg.laptop.addr}" = [ "laptop.vpn.${wg.domain}" ];
-      "${wg.nas.addr}" = [ "nas.vpn.${wg.domain}" ];
-      "${wg.server.addr}" = [ "server.vpn.${wg.domain}" ];
-      "${wg.mobile.addr}" = [ "mobile.vpn.${wg.domain}" ];
+      "${wg.pc.addr}" = [ wg.pc.host ];
+      "${wg.laptop.addr}" = [ wg.laptop.host ];
+      "${wg.nas.addr}" = [ wg.nas.host ];
+      "${wg.server.addr}" = [ wg.server.host ];
+      "${wg.mobile.addr}" = [ wg.mobile.host ];
     };
 
     users = {
