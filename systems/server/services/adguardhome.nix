@@ -62,6 +62,7 @@ in
           bind_hosts = [ wg.server.addr ];
           port = 53;
           ratelimit = 0;
+          enable_dnssec = true;
           anonymize_client_ip = false;
           edns_client_subnet.enabled = true;
           upstream_dns = [
