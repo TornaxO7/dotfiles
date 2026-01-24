@@ -84,6 +84,10 @@ in
             "sdns://AQMAAAAAAAAAElsyNjIwOmZlOjpmZV06ODQ0MyBnyEe4yHWM0SAkVUO-dWdG3zTfHYTAC4xHA2jfgh2GPhkyLmRuc2NyeXB0LWNlcnQucXVhZDkubmV0"
             "https://dns.quad9.net/dns-query"
             "tls://dns.quad9.net"
+
+            # -- dns.sb
+            "https://doh.dns.sb/dns-query"
+            "tls://dot.sb"
           ];
 
           bootstrap_dns = [
@@ -110,6 +114,12 @@ in
             "149.112.112.112"
             "2620:fe::fe"
             "2620:fe::9"
+
+            # -- dns.sb
+            "185.222.222.222"
+            "45.11.45.11"
+            "2a09::"
+            "2a11::"
           ];
 
           fallback_dns = bootstrap_dns;
