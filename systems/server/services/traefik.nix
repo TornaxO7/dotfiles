@@ -1,6 +1,6 @@
-{ config, root-domain, ... }:
+{ config, root-domain, wg, ip4, ip6, ... }:
 let
-  domain = "traefik.${root-domain}";
+  domain = "traefik.${wg.server.host}";
 
   root-path = "/var/lib/traefik";
 
@@ -27,27 +27,38 @@ in
 
     staticConfigOptions = {
       entryPoints = {
-        http = {
-          address = ":${toString ports.http}";
+
+        http-ip4 = {
+          address = "${ip4}:${toString ports.http}";
           http.redirections.entryPoint = {
             to = "https";
             scheme = "https";
           };
         };
 
+        http-ip6 = {
+          address = "[${ip6}]:${toString ports.http}";
+          http.redirections.entryPoint = {
+            to = "https";
+            scheme = "https";
+          };
+        };
+
+        http-vpn = {
+          address = "${wg.server.addr}:${toString ports.http}";
+        };
+
         https = {
           address = ":${toString ports.https}";
-          forwardedHeaders = {
-            insecure = false;
-          };
+          asDefault = true;
           http = {
             tls.certResolver = "main";
           };
         };
+
       };
 
       log = {
-        # filepath = "${root-path}/traefik.log";
         level = "INFO";
       };
 
@@ -73,11 +84,9 @@ in
     dynamicConfigOptions = {
       http = {
         routers.dashboard = {
+          entryPoints = [ "http-vpn" ];
           rule = "Host(`${domain}`)";
           service = "api@internal";
-          middlewares = [
-            "authelia"
-          ];
         };
       };
     };
