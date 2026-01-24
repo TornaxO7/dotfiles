@@ -144,6 +144,10 @@
       matchBlocks."*".forwardAgent = true;
     };
 
+    obsidian = {
+      enable = true;
+    };
+
     starship = {
       enable = true;
       settings = {
