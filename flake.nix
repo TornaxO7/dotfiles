@@ -17,7 +17,6 @@
     wired.url = "github:Toqozz/wired-notify";
     rio.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
-    gtt.url = "github:TornaxO7/gtt/add-flake";
     bs.url = "github:godzie44/BugStalker";
     wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 

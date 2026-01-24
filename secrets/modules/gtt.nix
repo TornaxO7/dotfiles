@@ -1,4 +1,4 @@
-{ self, config, inputs, pkgs, ... }:
+{ self, config, pkgs, ... }:
 {
   home-manager = {
     sharedModules = [
@@ -8,7 +8,7 @@
     users.main = { ... }: {
       programs.gtt = {
         enable = true;
-        package = inputs.gtt.packages.${pkgs.system}.default;
+        package = pkgs.gtt;
         settings.api_key.DeepL.file = config.age.secrets.deepl.path;
         keymap = {
           clear = "C-l";
