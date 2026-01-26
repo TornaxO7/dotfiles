@@ -1,4 +1,4 @@
-{ config, pkgs, services-root, ip6, ... }:
+{ config, pkgs, services-root, ip6, ssh-keys, ... }:
 {
   imports = [
     ./secrets.nix
@@ -36,7 +36,6 @@
 
   config = {
     environment.systemPackages = with pkgs; [
-      podman
       podman-compose
       helix
       bottom
@@ -79,6 +78,8 @@
           name = "main";
           isNormalUser = true;
           description = "General user for the server";
+          extraGroups = [ "podman" ];
+          openssh.authorizedKeys.keys = ssh-keys;
         };
 
         root.hashedPassword = "!";
