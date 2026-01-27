@@ -27,9 +27,7 @@
         plugdev = { };
       };
 
-      users.main = {
-        name = "tornax";
-        isNormalUser = true;
+      users.tornax = {
         extraGroups = [
           "audio"
           "lp"
@@ -41,7 +39,6 @@
           "wheel"
           "docker"
         ];
-        openssh.authorizedKeys.keys = ssh-keys;
       };
     };
   };

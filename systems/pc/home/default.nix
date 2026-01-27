@@ -24,10 +24,12 @@
     # pointerCursor.size = 20;
   };
 
-  services.picom = {
-    enable = false;
-    backend = "glx";
-    vSync = true;
+  services = {
+    picom = {
+      enable = false;
+      backend = "glx";
+      vSync = true;
+    };
   };
 
   xdg.configFile = {

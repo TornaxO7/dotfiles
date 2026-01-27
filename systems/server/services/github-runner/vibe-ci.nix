@@ -1,4 +1,8 @@
 { config, inputs, ... }:
+let
+  user = config.users.users.tornax.name;
+  group = config.users.users.tornax.group;
+in
 {
   age.secrets = {
     github-nix-ci = {
@@ -25,9 +29,9 @@
           inputs.agenix.nixosModules.default
         ];
 
-        config = rec {
+        config = {
           systemd.tmpfiles.rules = [
-            "d ${workDir} 0755 ${users.users.main.name} ${users.users.main.group} -"
+            "d ${workDir} 0755 ${user} ${group} -"
           ];
 
           users = {
@@ -57,7 +61,7 @@
             github-runners.vibe = {
               enable = true;
               url = "https://github.com/TornaxO7/vibe";
-              user = users.users.main.name;
+              user = user;
               tokenFile = config.containers.vibe-ci.bindMounts.token.mountPoint;
               workDir = workDir;
             };

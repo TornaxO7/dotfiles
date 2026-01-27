@@ -23,7 +23,7 @@
         defaultSession = "cosmic";
         autoLogin = {
           enable = true;
-          user = config.users.users.main.name;
+          user = config.users.users.tornax.name;
         };
       };
 
@@ -39,7 +39,7 @@
     };
 
     virtualisation.virtualbox.host.enable = true;
-    users.extraGroups.vboxusers.members = [ config.users.users.main.name ];
+    users.extraGroups.vboxusers.members = [ config.users.users.tornax.name ];
 
     boot.initrd.kernelModules = [ "amdgpu" ];
     services.xserver.videoDrivers = [ "amdgpu" ];

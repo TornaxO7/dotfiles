@@ -1,4 +1,4 @@
-{ config, pkgs, services-root, ip6, ssh-keys, ... }:
+{ config, pkgs, services-root, ip6, ... }:
 {
   imports = [
     ./secrets.nix
@@ -74,12 +74,10 @@
     users = {
       mutableUsers = false;
       users = {
-        main = {
-          name = "main";
-          isNormalUser = true;
-          description = "General user for the server";
-          extraGroups = [ "podman" ];
-          openssh.authorizedKeys.keys = ssh-keys;
+        tornax = {
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwQ1FO2lkd7ecYc/3GCo2yTWgo1V86uYUpX87bzFPhU tornax@pc"
+          ];
         };
 
         root.hashedPassword = "!";

@@ -1,4 +1,4 @@
-system-home-config: { self, inputs, config, unstable, ... }:
+system-home-config: { self, lib, inputs, config, unstable, ... }:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -22,7 +22,7 @@ system-home-config: { self, inputs, config, unstable, ... }:
       backupFileExtension = "backup";
     };
 
-    home-manager.users.main = { ... }: {
+    home-manager.users.tornax = { ... }: {
       imports = [
         system-home-config
 
@@ -37,10 +37,8 @@ system-home-config: { self, inputs, config, unstable, ... }:
         colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
 
         home = {
-          # username = config.users.users.main.name;
           username = "tornax";
-          # homeDirectory = "/home/${config.users.users.main.name}";
-          homeDirectory = "/home/tornax";
+          homeDirectory = lib.mkDefault "/home/tornax";
 
           keyboard = {
             layout = "de";

@@ -5,7 +5,7 @@
       self.homeManagerModules.gtt
     ];
 
-    users.main = { ... }: {
+    users.tornax = { ... }: {
       programs.gtt = {
         enable = true;
         package = pkgs.gtt;

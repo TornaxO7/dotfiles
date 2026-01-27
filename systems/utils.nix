@@ -2,7 +2,7 @@ rec {
   # Create directories with the paths provided in `dir-paths` with the user-owner `username`.
   createDirs = config: dir-paths:
     let
-      username = config.users.users.main.name;
+      username = config.users.users.tornax.name;
     in
     createDirsWith username dir-paths;
 

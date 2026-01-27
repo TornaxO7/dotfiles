@@ -11,7 +11,7 @@ let
 in
 {
   systemd.tmpfiles.rules = [
-    "d ${paths.root} 755 ${config.users.users.main.name} root -"
+    "d ${paths.root} 755 ${config.users.users.tornax.name} root -"
   ];
 
   virtualisation.oci-containers.containers.website = {

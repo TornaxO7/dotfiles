@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   config = {
-    users.users.main.packages = with pkgs; [
+    users.users.tornax.packages = with pkgs; [
       wl-clipboard
     ];
 

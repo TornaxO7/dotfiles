@@ -1,6 +1,6 @@
 utils: { config, pkgs, zpool-name, zpool-root, root-domain, ... }:
 let
-  username = config.users.users.main.name;
+  username = config.users.users.tornax.name;
 
   prefix = "jellyfin";
 

@@ -3,7 +3,7 @@ let
   inherit (lib) makeBinPath;
 
   add-secret = path: {
-    owner = config.users.users.main.name;
+    owner = config.users.users.tornax.name;
     file = path;
   };
 in

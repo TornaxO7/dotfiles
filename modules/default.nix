@@ -90,7 +90,15 @@ hostname:
 
     users = {
       defaultUserShell = pkgs.fish;
-      users.root.openssh.authorizedKeys.keys = ssh-keys;
+      users = {
+        tornax = {
+          isNormalUser = true;
+          extraGroups = [ ];
+          openssh.authorizedKeys.keys = ssh-keys;
+        };
+
+        root.openssh.authorizedKeys.keys = ssh-keys;
+      };
     };
 
     services = {
