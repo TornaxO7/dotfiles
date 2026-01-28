@@ -1,8 +1,5 @@
 { self, inputs, lib, ... }:
 let
-  hmModule = import ../modules/home-manager;
-  sharedMainModule = import ../modules/default.nix;
-
   ssh-keys = [
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIKYt8yowEzE4esfqvtHUz3xssgpe2IOGpsN/Vo5PtRD1AAAABHNzaDo="
     "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAILKD6K2md+9ItTDpBjk2sXldOZNCcKV013PExYOfoJqsAAAABHNzaDo="
@@ -42,18 +39,12 @@ let
   };
 
   mkSystem =
-    { config-modules
+    { config-module
     , hostname
-    , home-configuration ? null
     , system ? "x86_64-linux"
     , specialArgs ? { }
     }:
     let
-      hm-module =
-        if home-configuration == null then
-          ({ ... }: { })
-        else (hmModule home-configuration);
-
       unstable = import inputs.unstable {
         inherit system;
         config.allowUnfree = true;
@@ -61,32 +52,30 @@ let
     in
     inputs.stable.lib.nixosSystem {
       specialArgs = lib.recursiveUpdate specialArgs {
-        inherit self inputs unstable ssh-keys wg;
+        inherit self inputs unstable ssh-keys wg hostname;
       };
+
       modules = [
-        hm-module
-        (sharedMainModule hostname)
-      ] ++ config-modules;
+        ../modules/default.nix
+        config-module
+      ];
     };
 in
 {
   flake = {
     nixosConfigurations = {
       pc = mkSystem {
-        config-modules = [ ./pc ];
-        home-configuration = ./pc/home;
+        config-module = ./pc;
         hostname = "pc";
       };
 
       laptop = mkSystem {
-        config-modules = [ ./laptop ];
-        home-configuration = ./laptop/home;
+        config-module = ./laptop;
         hostname = "laptop";
       };
 
       nas = mkSystem {
-        config-modules = [ ./nas ];
-        home-configuration = ./nas/home;
+        config-module = ./nas;
         hostname = "nas";
         specialArgs = rec {
           zpool-name = "hdds";
@@ -98,7 +87,7 @@ in
       };
 
       server = mkSystem {
-        config-modules = [ ./server ];
+        config-module = ./server;
         hostname = "server";
         specialArgs = {
           services-root = "/services";
@@ -113,7 +102,7 @@ in
       # Just enter root automatically...
       iso = mkSystem {
         hostname = "iso";
-        config-modules = [
+        config-module =
           ({ modulesPath, ... }: {
             imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
             config = {
@@ -126,7 +115,7 @@ in
               };
             };
           })
-        ];
+        ;
       };
     };
 

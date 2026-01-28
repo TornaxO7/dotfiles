@@ -1,8 +1,8 @@
-hostname:
-{ self, config, pkgs, unstable, inputs, ssh-keys, wg, ... }:
+{ self, config, pkgs, unstable, inputs, ssh-keys, wg, hostname, ... }:
 {
   imports = [
     self.nixosModules.bustd
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   config = {
@@ -56,8 +56,6 @@ hostname:
 
     environment = {
       systemPackages = with pkgs; [
-        cacert
-        just
         systemctl-tui
       ];
       shellAliases = {
@@ -93,11 +91,43 @@ hostname:
       users = {
         tornax = {
           isNormalUser = true;
-          extraGroups = [ ];
           openssh.authorizedKeys.keys = ssh-keys;
         };
 
-        root.openssh.authorizedKeys.keys = ssh-keys;
+        root = {
+          hashedPassword = "!";
+          openssh.authorizedKeys.keys = ssh-keys;
+        };
+      };
+    };
+
+    home-manager = {
+      useUserPackages = true;
+      sharedModules = [
+        inputs.nix-colors.homeManagerModules.default
+      ];
+
+      extraSpecialArgs = {
+        inherit inputs unstable;
+        age = config.age;
+        my_flake = self;
+      };
+
+      users.tornax = { ... }: {
+        colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-storm;
+
+        home = {
+          username = "tornax";
+          homeDirectory = "/home/tornax";
+
+          keyboard = {
+            layout = "de";
+            variant = "bone";
+          };
+
+          language.base = "en_US.UTF-8";
+          stateVersion = "23.05";
+        };
       };
     };
 

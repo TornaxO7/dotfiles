@@ -9,6 +9,7 @@ in
     ../../modules/default_main.nix
     ./hardware-configuration.nix
     ./wireguard.nix
+    ./home
 
     ./zfs
 

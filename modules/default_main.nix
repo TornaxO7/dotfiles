@@ -1,4 +1,4 @@
-{ ssh-keys, wg, ... }:
+{ wg, ... }:
 {
   imports = [
     ../secrets
@@ -39,6 +39,20 @@
           "wheel"
           "docker"
         ];
+      };
+    };
+
+    home-manager.users.tornax = { ... }: {
+      imports = [
+        ./home-manager/packages.nix
+        ./home-manager/session_paths.nix
+        ./home-manager/session_variables.nix
+        ./home-manager/programs
+        ./home-manager/services.nix
+      ];
+
+      config = {
+        nixpkgs.config.allowUnfree = true;
       };
     };
   };

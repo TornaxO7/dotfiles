@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 {
   config.services.wired = {
-    enable = true;
+    enable = false;
     package = inputs.wired.packages.${pkgs.system}.default;
     config = ./config-files/wired.ron;
   };

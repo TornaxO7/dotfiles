@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   # disabledModules = [ "services/security/crowdsec.nix" ];
 
   imports = [
     ./hardware-configuration.nix
     ./wireguard.nix
+    ./home
     # ./crowdsec.nix
 
     ../../modules/default_main.nix

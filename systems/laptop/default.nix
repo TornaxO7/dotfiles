@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./wireguard.nix
+    ./home
 
     ../../modules/default_main.nix
     ../../modules/desktop/default.nix
