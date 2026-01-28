@@ -18,6 +18,7 @@ let
 
   stable-packages = with pkgs; [
     difftastic
+    dig
     distrobox
     evcxr
     fend

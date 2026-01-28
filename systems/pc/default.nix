@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 {
   # disabledModules = [ "services/security/crowdsec.nix" ];
 
@@ -35,7 +35,7 @@
     };
 
     environment = {
-      systemPackage = with pkgs; [
+      systemPackages = with pkgs; [
         nps
       ];
       shellAliases = {
