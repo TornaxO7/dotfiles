@@ -59,7 +59,7 @@
         systemctl-tui
       ];
       shellAliases = {
-        "stui" = "${pkgs.systemctl-tui}/bin/systemctl-tui";
+        "stui" = "systemctl-tui";
       };
     };
 

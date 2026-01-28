@@ -1,16 +1,11 @@
-{ my_flake, pkgs, unstable, ... }:
+{ pkgs, unstable, ... }:
 let
-  custom-packages = with my_flake.packages.${pkgs.system}; [
-  ];
-
   unstable-packages = with unstable; [
-    compose2nix
     crates-tui
     dust
     fd
     jless
     mergiraf
-    nps
     ouch
     ripgrep
     ripgrep-all
@@ -21,9 +16,7 @@ let
     tokei
   ];
 
-  nixpkgs-packages = with pkgs; [
-    bandwhich
-    choose
+  stable-packages = with pkgs; [
     difftastic
     distrobox
     evcxr
@@ -40,7 +33,6 @@ let
     liberation_ttf
     magic-wormhole-rs
     mdcat
-    nodejs_20
     onefetch
     openvpn
     pastel
@@ -54,5 +46,5 @@ let
   ];
 in
 {
-  home.packages = custom-packages ++ nixpkgs-packages ++ unstable-packages;
+  home.packages = stable-packages ++ unstable-packages;
 }

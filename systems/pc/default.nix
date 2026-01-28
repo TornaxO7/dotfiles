@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, lib, ... }:
 {
   # disabledModules = [ "services/security/crowdsec.nix" ];
 
@@ -32,6 +32,15 @@
       #   enable = true;
       #   package = pkgs.callPackage (import ./crowdsec-package.nix) { };
       # };
+    };
+
+    environment = {
+      systemPackage = with pkgs; [
+        nps
+      ];
+      shellAliases = {
+        "nsp" = "nps -e=true";
+      };
     };
 
     programs.ausweisapp = {
