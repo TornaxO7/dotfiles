@@ -1,4 +1,4 @@
-{ config, root-domain, ... }:
+{ config, root-domain, unstable, ... }:
 let
   port = 49191;
   domain = "anubis.${root-domain}";
@@ -6,6 +6,7 @@ in
 {
   services = {
     anubis = {
+      package = unstable.anubis;
       defaultOptions = {
         settings = {
           WEBMASTER_EMAIL = "tornax@pm.me";
@@ -47,13 +48,7 @@ in
           thresholds = [
             {
               name = "no-suspicion";
-              expression = "weight <= 0";
-              action = "ALLOW";
-            }
-            {
-              name = "mild-suspicion";
               expression.all = [
-                # "weight >= 0"
                 "weight < 10"
               ];
               action = "CHALLENGE";
@@ -106,9 +101,9 @@ in
           settings = {
             TARGET = " ";
             REDIRECT_DOMAINS = "*.${root-domain}";
-            PUBLIC_URL = "https://${domain}";
             COOKIE_DOMAIN = root-domain;
 
+            # PUBLIC_URL = "http://";
             BIND_NETWORK = "tcp";
             BIND = "127.0.0.1:${builtins.toString port}";
           };
