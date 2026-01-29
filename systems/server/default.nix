@@ -6,7 +6,6 @@
 
     # ports: 80, 443
     ./services/traefik.nix
-    ./services/filebrowser.nix
     ./services/website.nix
 
     ./services/github-runner/vibe-ci.nix
@@ -32,6 +31,8 @@
     ./services/anubis.nix
     # port: 49192
     ./services/emojis.nix
+    # port: 49193
+    ./services/public-files.nix
 
     # (loadService ./services/stalwart.nix)
   ];
