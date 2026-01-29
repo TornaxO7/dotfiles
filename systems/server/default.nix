@@ -30,6 +30,8 @@
     ./services/wireguard.nix
     # port: 49191
     ./services/anubis.nix
+    # port: 49192
+    ./services/emojis.nix
 
     # (loadService ./services/stalwart.nix)
   ];
