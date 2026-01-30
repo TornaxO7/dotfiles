@@ -34,6 +34,21 @@
         };
       };
 
+      obsidian = {
+        enable = true;
+        # defaultSettings.hotkeys = {
+        #   "app:delete-file" = [
+        #     {
+        #       "modifiers" = [ "Mod" ];
+        #       "key" = "Delete";
+        #     }
+        #   ];
+        #   "switcher:open" = [
+
+        #   ];
+        # };
+      };
+
       rofi = {
         enable = true;
         font = "FiraCode Nerd Font 12";

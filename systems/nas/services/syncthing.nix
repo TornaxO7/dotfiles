@@ -1,47 +1,30 @@
-utils: { config, pkgs, zpool-name, zpool-root, root-domain, ... }:
+{ root-domain, ... }:
 let
-  username = config.users.users.tornax.name;
   domain = "syncthing.${root-domain}";
-
-  binds = {
-    main = "${zpool-root}/syncthing";
-    my-wiki = "${zpool-root}/my-wiki";
-  };
+  port = 49204;
 in
 {
-  systemd = {
-    tmpfiles.settings.syncthing = {
-      "/var/lib/syncthing".d.user = username;
-    };
-  }
-  //
-  (utils.createSystemdZfsSnapshot pkgs "syncthing" "${zpool-name}/syncthing");
-
-  virtualisation.oci-containers.containers.syncthing = {
-    image = "syncthing/syncthing";
-    hostname = "nas-syncthing";
-
-    environment = {
-      USER = "1000";
-      GROUP = "1000";
+  services = {
+    syncthing = {
+      enable = true;
+      user = "tornax";
+      openDefaultPorts = true;
+      guiAddress = "127.0.0.1:${toString port}";
+      settings = {
+        gui.insecureSkipHostcheck = true;
+      };
     };
 
-    volumes = [
-      "/var/lib/syncthing:/var/syncthing"
-      "${binds.main}:/sync-dir"
-      "${binds.my-wiki}:/my-wiki"
-    ];
-
-    labels = {
-      "traefik.enable" = "true";
-      "traefik.http.routers.syncthing.rule" = "Host(`${domain}`)";
-      "traefik.http.routers.syncthing.service" = "syncthing";
-      "traefik.http.services.syncthing.loadbalancer.server.port" = "8384";
+    traefik.dynamicConfigOptions.http = {
+      routers.syncthing = {
+        rule = "Host(`${domain}`)";
+        service = "syncthing";
+      };
+      services.syncthing.loadbalancer.servers = [
+        {
+          url = "http://127.0.0.1:${toString port}";
+        }
+      ];
     };
-
-    ports = [
-      "22000:22000" # Sync protocol port
-      "21027:21027/udp" # Local discovery port 
-    ];
   };
 }

@@ -23,10 +23,11 @@ in
     ./services/linkwarden.nix
     # 49203
     ./services/paperless.nix
+    # 49204
+    ./services/syncthing.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     (loadService ./services/watchtower.nix)
-    (loadService ./services/syncthing.nix)
     (loadService ./services/jellyfin.nix)
     (loadService ./services/filebrowser.nix)
     (loadService ./services/vikunja.nix)

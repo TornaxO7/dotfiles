@@ -52,7 +52,7 @@ let
     in
     inputs.stable.lib.nixosSystem {
       specialArgs = lib.recursiveUpdate specialArgs {
-        inherit self inputs unstable ssh-keys wg hostname;
+        inherit self inputs unstable ssh-keys wg hostname system;
       };
 
       modules = [
