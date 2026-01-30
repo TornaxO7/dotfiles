@@ -36,14 +36,14 @@ in
 
           users = {
             users = {
-              main = {
-                name = "main";
-                group = "main";
+              tornax = {
+                name = user;
+                group = group;
                 isSystemUser = true;
               };
             };
 
-            groups.main = { };
+            groups.tornax = { };
           };
 
           nix = {
