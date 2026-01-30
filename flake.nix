@@ -17,7 +17,6 @@
     rio.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
     bs.url = "github:godzie44/BugStalker";
-    wgsl-analyzer.url = "github:wgsl-analyzer/wgsl-analyzer";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 

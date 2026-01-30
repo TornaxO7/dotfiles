@@ -1,7 +1,6 @@
 { pkgs, inputs, lib, unstable, ... }:
 let
   lspmux-pkg = unstable.lspmux;
-  # wgsl-pkg = inputs.wgsl-analyzer.packages.${pkgs.system}.default;
 in
 {
   nix.settings = {
@@ -56,7 +55,7 @@ in
         };
 
         nil = {
-          command = "${pkgs.nil}/bin/nil";
+          command = "${lib.getExe pkgs.nil}";
           args = [ ];
         };
 
@@ -75,16 +74,16 @@ in
         };
 
         clangd = {
-          command = "${pkgs.clang-tools}/bin/clangd";
+          command = "${lib.getExe' pkgs.clang-tools "clangd"}";
         };
 
         # typst-lsp = {
         #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
         # };
 
-        # wgsl = {
-        #   command = "${wgsl-pkg}/bin/wgsl_analyzer";
-        # };
+        wgsl = {
+          command = "${lib.getExe pkgs.wgsl-analyzer}";
+        };
 
         css = {
           command = "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server";
@@ -109,7 +108,7 @@ in
         };
 
         jdtls = {
-          command = "${pkgs.jdt-language-server}/bin/jdt-language-server";
+          command = "${lib.getExe pkgs.jdt-language-server}";
         };
       };
 
@@ -120,7 +119,7 @@ in
           file-types = [ "css" ];
           language-servers = [ "css" ];
           formatter = {
-            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            command = "${lib.getExe pkgs.nodePackages.prettier}";
             args = [ "--stdin-filepath" "rofl.css" ];
           };
         }
@@ -136,7 +135,7 @@ in
           file-types = [ "html" ];
           language-servers = [ "html" ];
           formatter = {
-            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            command = "${lib.getExe pkgs.nodePackages.prettier}";
             args = [ "--stdin-filepath" "rofl.html" ];
           };
         }
@@ -156,7 +155,7 @@ in
           name = "nix";
           auto-format = true;
           formatter = {
-            command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+            command = "${lib.getExe pkgs.nixpkgs-fmt}";
           };
           file-types = [ "nix" ];
           language-servers = [ "nil" ];
@@ -173,7 +172,7 @@ in
           file-types = [ "c" "cpp" ];
           language-servers = [ "clangd" ];
           formatter = {
-            command = "${pkgs.clang-tools}/bin/clang-format";
+            command = "${lib.getExe' pkgs.clang-tools "clang-format"}";
           };
         }
         {
@@ -181,7 +180,7 @@ in
           auto-format = true;
           file-types = [ "typst" ];
           formatter = {
-            command = "${pkgs.typstyle}/bin/typstyle";
+            command = "${lib.getExe pkgs.typstyle}";
           };
           # language-servers = [ "typst-lsp" ];
         }
@@ -190,7 +189,7 @@ in
           auto-format = true;
           file-types = [ "toml" ];
           formatter = {
-            command = "${pkgs.taplo}/bin/taplo format";
+            command = "${lib.getExe pkgs.taplo} format";
           };
           language-servers = [ "taplo" ];
         }
@@ -203,11 +202,14 @@ in
             command = "${pkgs.jaq}/bin/jaq";
           };
         }
-        # {
-        #   name = "wgsl";
-        #   file-types = [ "wgsl" ];
-        #   language-servers = [ "wgsl" ];
-        # }
+        {
+          name = "wgsl";
+          file-types = [ "wgsl" ];
+          language-servers = [ "wgsl" ];
+          formatter = {
+            command = "${lib.getExe' pkgs.wgsl-analyzer "wgslfmt"}";
+          };
+        }
         {
           name = "java";
           file-types = [ "java" ];
@@ -219,7 +221,7 @@ in
           file-types = [ "markdown" "md" ];
           language-servers = [ "markdown-oxide" "marksman" ];
           formatter = {
-            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            command = "${lib.getExe pkgs.nodePackages.prettier}/bin/prettier";
             args = [ "--stdin-filepath" "rofl.md" ];
           };
         }
