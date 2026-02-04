@@ -18,6 +18,7 @@
 
   config = {
     hardware.bluetooth.enable = true;
+    documentation.dev.enable = true;
 
     environment = {
       variables = {

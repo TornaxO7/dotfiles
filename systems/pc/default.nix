@@ -34,6 +34,8 @@
       # };
     };
 
+    documentation.dev.enable = true;
+
     environment = {
       systemPackages = with pkgs; [
         nps
