@@ -202,14 +202,14 @@ in
             command = "${pkgs.jaq}/bin/jaq";
           };
         }
-        {
-          name = "wgsl";
-          file-types = [ "wgsl" ];
-          language-servers = [ "wgsl" ];
-          formatter = {
-            command = "${lib.getExe' pkgs.wgsl-analyzer "wgslfmt"}";
-          };
-        }
+        # {
+        #   name = "wgsl";
+        #   file-types = [ "wgsl" ];
+        #   language-servers = [ "wgsl" ];
+        #   formatter = {
+        #     command = "${lib.getExe' pkgs.wgsl-analyzer "wgslfmt"}";
+        #   };
+        # }
         {
           name = "java";
           file-types = [ "java" ];
