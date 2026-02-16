@@ -16,6 +16,7 @@
           obs-studio
           podman-compose
           poppler-utils
+          pwntools
           rpi-imager
           steamcmd
           xsane
