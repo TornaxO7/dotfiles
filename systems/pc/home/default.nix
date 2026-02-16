@@ -10,6 +10,7 @@
       home = {
         packages = with pkgs; [
           easyeffects
+          gdb
           lact
           nvtopPackages.amd
           obs-studio
