@@ -11,6 +11,8 @@ let
       addr = "10.0.0.1";
       publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
       host = "server.vpn.${domain}";
+
+      ip6 = "2a03:4000:3e:26f::";
     };
     pc = {
       addr = "10.0.0.2";
@@ -93,7 +95,7 @@ in
           services-root = "/services";
           root-domain = wg.domain;
           ip4 = "2.56.97.207";
-          ip6 = "2a03:4000:3e:26f::";
+          ip6 = wg.server.ip6;
         };
       };
 
