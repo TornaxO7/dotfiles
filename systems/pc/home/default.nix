@@ -21,6 +21,7 @@
           xsane
 
           github-copilot-cli
+          yubikey-personalization
         ];
 
         # pointerCursor.size = 20;
@@ -32,6 +33,9 @@
           backend = "glx";
           vSync = true;
         };
+
+        ssh-agent.enable = true;
+        # yubikey-agent.enable = true;
       };
 
       xdg.configFile = {

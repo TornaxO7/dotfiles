@@ -45,16 +45,21 @@
       };
     };
 
-    programs.ausweisapp = {
-      enable = true;
-      openFirewall = true;
+    programs = {
+      ausweisapp = {
+        enable = true;
+        openFirewall = true;
+      };
     };
 
     virtualisation.virtualbox.host.enable = true;
     users.extraGroups.vboxusers.members = [ config.users.users.tornax.name ];
 
     boot.initrd.kernelModules = [ "amdgpu" ];
-    services.xserver.videoDrivers = [ "amdgpu" ];
+    services = {
+      xserver.videoDrivers = [ "amdgpu" ];
+      gnome.gnome-keyring.enable = false;
+    };
 
     hardware.graphics.enable = true;
 

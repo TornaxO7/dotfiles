@@ -6,9 +6,11 @@
 
   services = {
     udev.packages = with pkgs; [
-      # yubikey-personalization
+      yubikey-personalization
     ];
 
     pcscd.enable = true;
   };
+
+  programs.yubikey-manager.enable = true;
 }

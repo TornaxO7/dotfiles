@@ -65,13 +65,16 @@
       enable = true;
       package = unstable.gitoxide;
       signing = {
-        key = "7559 3129 41F8 AAAD 9EB6  D913 F652 0002 D62D 6194";
+        format = "ssh";
         signByDefault = true;
       };
       settings = {
         branch = {
           autoSetupMerge = "always";
         };
+
+        commit.gpgSign = true;
+        tag.forceSignAnnotated = true;
 
         core = {
           editor = "hx";
@@ -93,6 +96,7 @@
         user = {
           email = "tornax@proton.me";
           name = "TornaxO7";
+          signingkey = "~/.ssh/id_ed25519_sk_rk.pub";
         };
       };
 

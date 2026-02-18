@@ -6,6 +6,6 @@
       pinentry.package = pkgs.pinentry-curses;
     };
 
-    ssh-agent.enable = true;
+    # ssh-agent.enable = true;
   };
 }
