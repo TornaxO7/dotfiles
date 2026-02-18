@@ -96,7 +96,7 @@
         user = {
           email = "tornax@proton.me";
           name = "TornaxO7";
-          signingkey = "~/.ssh/id_ed25519_sk_rk.pub";
+          signingkey = "~/.ssh/id_ed25519_sk_git_signing.pub";
         };
       };
 
