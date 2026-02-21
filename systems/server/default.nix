@@ -33,6 +33,8 @@
     ./services/emojis.nix
     # port: 49193
     ./services/public-files.nix
+    # port: 49194
+    # other wireguard
 
     # (loadService ./services/stalwart.nix)
   ];

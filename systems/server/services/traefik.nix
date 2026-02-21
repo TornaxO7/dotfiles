@@ -1,6 +1,6 @@
-{ config, root-domain, wg, ip4, ip6, ... }:
+{ config, root-domain, wg0, ip4, ip6, ... }:
 let
-  domain = "traefik.${wg.server.host}";
+  domain = "traefik.${wg0.server.host}";
 
   root-path = "/var/lib/traefik";
 
@@ -45,7 +45,7 @@ in
         };
 
         http-vpn = {
-          address = "${wg.server.addr}:${toString ports.http}";
+          address = "${wg0.server.addr}:${toString ports.http}";
         };
 
         https = {

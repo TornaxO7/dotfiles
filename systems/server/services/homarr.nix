@@ -1,8 +1,8 @@
-{ config, wg, ... }:
+{ config, wg0, ... }:
 let
   prefix = "homarr";
 
-  domain = "${prefix}.${wg.server.host}";
+  domain = "${prefix}.${wg0.server.host}";
 
   volume-name = "homarr";
 in

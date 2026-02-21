@@ -1,12 +1,12 @@
-{ wg, ... }:
+{ wg0, ... }:
 {
   networking.wg-quick.interfaces.wg0 = {
-    address = [ "${wg.laptop.addr}/32" ];
+    address = [ "${wg0.laptop.addr}/32" ];
     peers = [
       {
-        publicKey = wg.server.publicKey;
-        allowedIPs = [ wg.netmask ];
-        endpoint = "${wg.server.ip6}:${builtins.toString wg.port}";
+        publicKey = wg0.server.publicKey;
+        allowedIPs = [ wg0.netmask ];
+        endpoint = "${wg0.server.ip6}:${builtins.toString wg0.port}";
         persistentKeepalive = 30;
       }
     ];

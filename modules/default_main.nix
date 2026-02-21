@@ -1,4 +1,4 @@
-{ wg, ... }:
+{ wg0, ... }:
 {
   imports = [
     ../secrets
@@ -15,11 +15,11 @@
     nix.settings.trusted-users = [ "@wheel" ];
 
     networking.hosts = {
-      "${wg.pc.addr}" = [ wg.pc.host ];
-      "${wg.laptop.addr}" = [ wg.laptop.host ];
-      "${wg.nas.addr}" = [ wg.nas.host ];
-      "${wg.server.addr}" = [ wg.server.host ];
-      "${wg.mobile.addr}" = [ wg.mobile.host ];
+      "${wg0.pc.addr}" = [ wg0.pc.host ];
+      "${wg0.laptop.addr}" = [ wg0.laptop.host ];
+      "${wg0.nas.addr}" = [ wg0.nas.host ];
+      "${wg0.server.addr}" = [ wg0.server.host ];
+      "${wg0.mobile.addr}" = [ wg0.mobile.host ];
     };
 
     users = {

@@ -1,6 +1,6 @@
-{ config, wg, ... }:
+{ config, wg0, ... }:
 let
-  domain = "grafana.${wg.server.host}";
+  domain = "grafana.${wg0.server.host}";
   port = 49163;
 
   user = config.users.users.grafana.name;

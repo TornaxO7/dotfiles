@@ -1,4 +1,4 @@
-{ self, config, pkgs, unstable, inputs, ssh-keys, wg, hostname, ... }:
+{ self, config, pkgs, unstable, inputs, ssh-keys, wg0, hostname, ... }:
 {
   imports = [
     self.nixosModules.bustd
@@ -40,7 +40,7 @@
       wg-quick.interfaces.wg0 = {
         generatePrivateKeyFile = true;
         privateKeyFile = "/etc/wireguard/private.key";
-        dns = [ wg.server.addr ];
+        dns = [ wg0.server.addr ];
       };
     };
 

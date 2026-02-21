@@ -1,6 +1,6 @@
-{ config, lib, wg, ... }:
+{ config, lib, wg0, ... }:
 let
-  domain = "dns.${wg.server.host}";
+  domain = "dns.${wg0.server.host}";
 in
 {
   networking.firewall.interfaces."wg0" = {
@@ -13,10 +13,10 @@ in
   services = {
     adguardhome = {
       enable = true;
-      host = wg.server.addr;
+      host = wg0.server.addr;
       settings = {
         http = {
-          address = wg.server.addr;
+          address = wg0.server.addr;
           pprof.enabled = false;
         };
 
@@ -47,19 +47,19 @@ in
 
         filtering.rewrites = [
           {
-            domain = "*.${wg.nas.host}";
-            answer = wg.nas.addr;
+            domain = "*.${wg0.nas.host}";
+            answer = wg0.nas.addr;
             enabled = true;
           }
           {
-            domain = "*.${wg.server.host}";
-            answer = wg.server.addr;
+            domain = "*.${wg0.server.host}";
+            answer = wg0.server.addr;
             enabled = true;
           }
         ];
 
         dns = rec {
-          bind_hosts = [ wg.server.addr ];
+          bind_hosts = [ wg0.server.addr ];
           port = 53;
           ratelimit = 0;
           enable_dnssec = true;
@@ -131,23 +131,23 @@ in
         clients.persistent = map (lib.mergeAttrs { use_global_settings = true; }) [
           {
             name = "server";
-            ids = [ wg.server.addr ];
+            ids = [ wg0.server.addr ];
           }
           {
             name = "pc";
-            ids = [ wg.pc.addr ];
+            ids = [ wg0.pc.addr ];
           }
           {
             name = "nas";
-            ids = [ wg.nas.addr ];
+            ids = [ wg0.nas.addr ];
           }
           {
             name = "laptop";
-            ids = [ wg.laptop.addr ];
+            ids = [ wg0.laptop.addr ];
           }
           {
             name = "mobile";
-            ids = [ wg.mobile.addr ];
+            ids = [ wg0.mobile.addr ];
           }
         ];
 
