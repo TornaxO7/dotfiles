@@ -19,6 +19,7 @@
           rpi-imager
           steamcmd
           xsane
+          bugstalker
 
           github-copilot-cli
           yubikey-personalization
