@@ -53,6 +53,7 @@ in
           asDefault = true;
           http = {
             tls.certResolver = "main";
+            middlewares = "tornax07-redirect-to-tornaxo7@file";
           };
         };
 
@@ -83,6 +84,15 @@ in
 
     dynamicConfigOptions = {
       http = {
+        middlewares = {
+          tornax07-redirect-to-tornaxo7 = {
+            redirectRegex = {
+              regex = "^https://(.*)tornax07.de/(.*)";
+              replacement = "https://\${1}${root-domain}\${2}";
+            };
+          };
+        };
+
         routers.dashboard = {
           entryPoints = [ "http-vpn" ];
           rule = "Host(`${domain}`)";
