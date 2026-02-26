@@ -27,7 +27,7 @@ in
 
     labels = {
       "traefik.enable" = "true";
-      "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
+      "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`) || Host(`tornax07.de`)";
       "traefik.http.routers.${names.containers.server}.service" = names.containers.server;
       # "traefik.http.routers.${names.containers.server}.middlewares" = "anubis@file";
       "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "80";
