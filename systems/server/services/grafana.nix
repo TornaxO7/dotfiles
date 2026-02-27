@@ -64,7 +64,7 @@ in
         admin_user = "tornax";
         admin_password = "$__file{${config.age.secrets.grafana.path}}";
         admin_email = "tornax@pm.me";
-        cookie_secure = true;
+        cookie_secure = false;
         domain = domain;
       };
     };
