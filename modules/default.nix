@@ -134,6 +134,7 @@
     services = {
       openssh.enable = true;
       bustd.enable = true;
+      gnome.gnome-keyring.enable = false;
     };
 
     systemd.services.NetworkManager-wait-online.enable = false;

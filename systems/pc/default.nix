@@ -58,7 +58,6 @@
     boot.initrd.kernelModules = [ "amdgpu" ];
     services = {
       xserver.videoDrivers = [ "amdgpu" ];
-      gnome.gnome-keyring.enable = false;
     };
 
     hardware.graphics.enable = true;
