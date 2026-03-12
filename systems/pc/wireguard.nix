@@ -7,7 +7,7 @@
         {
           publicKey = wg0.server.publicKey;
           allowedIPs = [ wg0.netmask ];
-          endpoint = "${wg0.server.ip6}:${builtins.toString wg0.port}";
+          endpoint = "${wg0.server.ip4}:${builtins.toString wg0.port}";
           persistentKeepalive = 60;
         }
       ];

@@ -12,6 +12,7 @@ let
       publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
       host = "server.vpn.${domain}";
 
+      ip4 = "2.56.97.207";
       ip6 = "2a03:4000:3e:26f::";
     };
     pc = {
@@ -94,7 +95,7 @@ in
         specialArgs = {
           services-root = "/services";
           root-domain = wg0.domain;
-          ip4 = "2.56.97.207";
+          ip4 = wg0.server.ip4;
           ip6 = wg0.server.ip6;
         };
       };
