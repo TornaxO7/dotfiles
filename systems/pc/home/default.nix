@@ -14,6 +14,7 @@
           lact
           nvtopPackages.amd
           obs-studio
+          godot
           podman-compose
           poppler-utils
           rpi-imager
