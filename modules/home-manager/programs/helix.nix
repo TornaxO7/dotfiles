@@ -110,6 +110,10 @@ in
         jdtls = {
           command = "${lib.getExe pkgs.jdt-language-server}";
         };
+
+        gopls = {
+          command = "${lib.getExe pkgs.gopls}";
+        };
       };
 
       language = [
@@ -230,6 +234,12 @@ in
           auto-format = true;
           file-types = [ "matlab" ];
           language-servers = [ "matlab" ];
+        }
+        {
+          name = "go";
+          auto-format = true;
+          file-types = [ "go" ];
+          language-servers = [ "gopls" ];
         }
       ];
     };
