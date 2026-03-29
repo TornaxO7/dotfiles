@@ -89,6 +89,10 @@ in
             # -- dns.sb
             "https://doh.dns.sb/dns-query"
             "tls://dot.sb"
+
+            # -- joindns4.eu
+            "https://noads.joindns4.eu/dns-query"
+            "noads.joindns4.eu"
           ];
 
           bootstrap_dns = [
@@ -121,6 +125,10 @@ in
             "45.11.45.11"
             "2a09::"
             "2a11::"
+
+            # --joindns4.eu
+            "86.54.11.13"
+            "2a13:1001::86:54:11:13"
           ];
 
           fallback_dns = bootstrap_dns;
