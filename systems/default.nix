@@ -43,6 +43,23 @@ let
     port = 49190;
   };
 
+  wg1 = {
+    pc = {
+      addr = "10.0.1.2";
+    };
+    nas = {
+      addr = "10.0.1.3";
+    };
+    mobile = {
+      addr = "10.0.1.5";
+    };
+    ipad = {
+      addr = "10.0.1.6";
+      publicKey = "";
+    };
+    netmask = "10.0.1.0/24";
+  };
+
   mkSystem =
     { config-module
     , hostname
@@ -57,7 +74,7 @@ let
     in
     inputs.stable.lib.nixosSystem {
       specialArgs = lib.recursiveUpdate specialArgs {
-        inherit self inputs unstable ssh-keys wg0 hostname system;
+        inherit self inputs unstable ssh-keys wg0 wg1 hostname system;
       };
 
       modules = [

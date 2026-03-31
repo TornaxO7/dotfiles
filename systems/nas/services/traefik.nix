@@ -1,4 +1,4 @@
-{ root-domain, ... }:
+{ wg0, root-domain, ... }:
 let
   domain = "traefik.${root-domain}";
 in
@@ -12,7 +12,7 @@ in
     group = "podman";
 
     staticConfigOptions = {
-      entryPoints.http.address = ":80";
+      entryPoints.http.address = "${wg0.nas.addr}:80";
 
       api = {
         dashboard = true;

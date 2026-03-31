@@ -26,6 +26,8 @@ in
     ./services/paperless.nix
     # 49204
     ./services/syncthing.nix
+    # 49205
+    ./services/memos.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     (loadService ./services/watchtower.nix)
