@@ -34,6 +34,12 @@
             "${wg1.mobile.addr}/32"
           ];
         }
+        {
+          publicKey = wg1.ipad.publicKey;
+          allowedIPs = [
+            "${wg1.ipad.addr}/32"
+          ];
+        }
       ];
     };
   };
