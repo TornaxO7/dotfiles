@@ -12,6 +12,7 @@
     config = {
       home.packages = with pkgs; [
         cacert
+        finamp
         font-awesome
         xournalpp
         rnote
