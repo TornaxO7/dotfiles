@@ -24,6 +24,7 @@
 
           github-copilot-cli
           yubikey-personalization
+          waypipe
         ];
 
         # pointerCursor.size = 20;
