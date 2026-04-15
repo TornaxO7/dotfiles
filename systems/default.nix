@@ -55,7 +55,7 @@ let
     };
     ipad = {
       addr = "10.0.1.6";
-      publicKey = "";
+      publicKey = "xXEMsTTfRS9iWxkNrS5IQgjVVCDrhceXxxVN6+mxdVo=";
     };
     netmask = "10.0.1.0/24";
   };
