@@ -247,7 +247,7 @@ in
     themes = {
       tokyonight_storm_transparent = {
         "inherits" = "tokyonight_storm";
-        "ui.background" = "none";
+        "ui.background" = [ ];
       };
     };
 
