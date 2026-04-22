@@ -113,12 +113,12 @@
               # JSON
               { mime = "application/json"; run = "json"; }
               # Image
-              { mime = "image/vnd.djvu"; run = "noop"; }
-              { mime = "image/*"; run = "image"; }
+              # { mime = "image/vnd.djvu"; run = "noop"; }
+              # { mime = "image/*"; run = "image"; }
               # Video
-              { mime = "video/*"; run = "video"; }
+              # { mime = "video/*"; run = "video"; }
               # PDF
-              { mime = "application/pdf"; run = "pdf"; }
+              # { mime = "application/pdf"; run = "pdf"; }
               # Archive
               { mime = "application/zip"; run = "ouch l"; }
               { mime = "application/gzip"; run = "ouch l"; }
