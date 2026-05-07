@@ -14,7 +14,7 @@
     agenix.inputs.nixpkgs.follows = "unstable";
 
     helix.url = "github:helix-editor/helix/master";
-    rio.url = "github:raphamorim/rio";
+    # rio.url = "github:raphamorim/rio";
     yazi.url = "github:sxyazi/yazi";
     bs.url = "github:godzie44/BugStalker";
 
