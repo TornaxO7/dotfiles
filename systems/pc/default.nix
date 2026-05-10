@@ -38,11 +38,8 @@
 
     environment = {
       systemPackages = with pkgs; [
-        nps
+        qemu
       ];
-      shellAliases = {
-        "nsp" = "nps -e=true";
-      };
     };
 
     programs = {
