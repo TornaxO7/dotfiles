@@ -42,7 +42,7 @@
 
         packages = {
           bustd = pkgs.callPackage ./pkgs/bustd.nix { };
-          paperless-ngx = pkgs.callPackage ./pkgs/paperless-ngx.nix { };
+          # paperless-ngx = pkgs.callPackage ./pkgs/paperless-ngx.nix { };
         };
       };
 

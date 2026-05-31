@@ -1,4 +1,4 @@
-{ self, config, zpool-root, root-domain, system, ... }:
+{ config, zpool-root, root-domain, ... }:
 let
   domain = "paperless.${root-domain}";
 in
@@ -14,7 +14,7 @@ in
         enable = true;
         address = "127.0.0.1";
         port = 49203;
-        package = self.packages.${system}.paperless-ngx;
+        # package = self.packages.${pkgs.stdenv.hostPlatform.system}.paperless-ngx;
         passwordFile = config.age.secrets.paperless.path;
         domain = domain;
         settings = {

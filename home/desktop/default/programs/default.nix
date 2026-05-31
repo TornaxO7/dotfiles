@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./alacritty.nix
@@ -54,7 +54,10 @@
         font = "FiraCode Nerd Font 12";
       };
 
-      firefox.enable = true;
+      firefox = {
+        enable = true;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
+      };
     };
   };
 }

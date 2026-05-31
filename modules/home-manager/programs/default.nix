@@ -141,12 +141,21 @@
 
     man.enable = true;
 
-    password-store.enable = true;
-
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks."*".forwardAgent = true;
+      settings."*" = {
+        ForwardAgent = false;
+        AddKeysToAgent = "no";
+        Compression = false;
+        ServerAliveInterval = 0;
+        ServerAliveCountMax = 3;
+        HashKnownHosts = false;
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ControlMaster = "no";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
+        ControlPersist = "no";
+      };
     };
 
     starship = {

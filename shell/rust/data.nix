@@ -31,14 +31,14 @@ rec {
 
     libGL
 
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXrandr
-    xorg.libXi
-    xorg.libxkbfile
-    xorg.xkbutils
-    xorg.xkbevd
-    xorg.libXScrnSaver
+    libX11
+    libXcursor
+    libXrandr
+    libXi
+    libxkbfile
+    xkbutils
+    xkbevd
+    libXScrnSaver
     libxkbcommon
   ];
 

@@ -18,7 +18,7 @@
     # port: 49162
     ./services/authelia
     # port: 49163
-    ./services/grafana.nix
+    # ./services/grafana.nix
     # ports: [49170 - 49180)
     ./services/victoria-metrics
     # ports: [49180 - 49190)

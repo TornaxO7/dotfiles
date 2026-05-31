@@ -63,18 +63,17 @@ let
   mkSystem =
     { config-module
     , hostname
-    , system ? "x86_64-linux"
     , specialArgs ? { }
     }:
     let
       unstable = import inputs.unstable {
-        inherit system;
+        system = "x86_64-linux";
         config.allowUnfree = true;
       };
     in
     inputs.stable.lib.nixosSystem {
       specialArgs = lib.recursiveUpdate specialArgs {
-        inherit self inputs unstable ssh-keys wg0 wg1 hostname system;
+        inherit self inputs unstable ssh-keys wg0 wg1 hostname;
       };
 
       modules = [
@@ -122,25 +121,25 @@ in
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage
       #
       # Just enter root automatically...
-      iso = mkSystem {
-        hostname = "iso";
-        config-module =
-          ({ modulesPath, ... }: {
-            imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
-            config = {
-              nixpkgs.hostPlatform = "x86_64-linux";
-              isoImage.squashfsCompression = "lz4";
+      # iso = mkSystem {
+      #   hostname = "iso";
+      #   config-module =
+      #     ({ modulesPath, ... }: {
+      #       imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
+      #       config = {
+      #         nixpkgs.hostPlatform = "x86_64-linux";
+      #         isoImage.squashfsCompression = "lz4";
 
-              security = {
-                sudo.enable = false;
-                sudo-rs.enable = true;
-              };
-            };
-          })
-        ;
-      };
+      #         security = {
+      #           sudo.enable = false;
+      #           sudo-rs.enable = true;
+      #         };
+      #       };
+      #     })
+      #   ;
+      # };
     };
 
-    packages.x86_64-linux.iso = self.nixosConfigurations.iso.config.system.build.isoImage;
+    # packages.x86_64-linux.iso = self.nixosConfigurations.iso.config.system.build.isoImage;
   };
 }

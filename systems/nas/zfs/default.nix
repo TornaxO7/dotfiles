@@ -17,7 +17,10 @@ in
   config = {
     boot = {
       supportedFilesystems = [ "zfs" ];
-      zfs.extraPools = [ zpool-name ];
+      zfs = {
+        extraPools = [ zpool-name ];
+        forceImportRoot = false;
+      };
     };
 
     systemd = {
