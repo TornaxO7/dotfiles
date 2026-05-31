@@ -1,4 +1,4 @@
-{ unstable, pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   config = {
     nix.settings = {
@@ -9,10 +9,10 @@
     programs = {
       yazi = {
         enable = true;
-        package = unstable.yazi;
-        extraPackages = with pkgs; [
-          ouch
-        ];
+        package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        # extraPackages = with pkgs; [
+        #   ouch
+        # ];
         shellWrapperName = "y";
 
         initLua = ''
