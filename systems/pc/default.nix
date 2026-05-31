@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   # disabledModules = [ "services/security/crowdsec.nix" ];
 
@@ -35,11 +35,6 @@
     };
 
     documentation.dev.enable = true;
-
-    environment = {
-      systemPackages = with pkgs; [
-      ];
-    };
 
     programs = {
       ausweisapp = {
