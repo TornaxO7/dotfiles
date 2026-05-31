@@ -63,11 +63,12 @@ let
   mkSystem =
     { config-module
     , hostname
+    , system ? "x86_64-linux"
     , specialArgs ? { }
     }:
     let
       unstable = import inputs.unstable {
-        system = "x86_64-linux";
+        inherit system;
         config.allowUnfree = true;
       };
     in
