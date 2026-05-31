@@ -69,7 +69,7 @@ in
         };
 
         yaml = {
-          command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
+          command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
           args = [ "--stdio" ];
         };
 
@@ -123,7 +123,7 @@ in
           file-types = [ "css" ];
           language-servers = [ "css" ];
           formatter = {
-            command = "${lib.getExe pkgs.nodePackages.prettier}";
+            command = "${lib.getExe pkgs.prettier}";
             args = [ "--stdin-filepath" "rofl.css" ];
           };
         }
@@ -139,7 +139,7 @@ in
           file-types = [ "html" ];
           language-servers = [ "html" ];
           formatter = {
-            command = "${lib.getExe pkgs.nodePackages.prettier}";
+            command = "${lib.getExe pkgs.prettier}";
             args = [ "--stdin-filepath" "rofl.html" ];
           };
         }
@@ -225,7 +225,7 @@ in
           file-types = [ "markdown" "md" ];
           language-servers = [ "markdown-oxide" "marksman" ];
           formatter = {
-            command = "${lib.getExe pkgs.nodePackages.prettier}/bin/prettier";
+            command = "${lib.getExe pkgs.prettier}/bin/prettier";
             args = [ "--stdin-filepath" "rofl.md" ];
           };
         }
