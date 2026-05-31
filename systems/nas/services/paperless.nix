@@ -1,5 +1,6 @@
 { config, zpool-root, root-domain, ... }:
 let
+  user = "tornax";
   domain = "paperless.${root-domain}";
 in
 {
@@ -12,9 +13,9 @@ in
     services = {
       paperless = {
         enable = true;
+        user = user;
         address = "127.0.0.1";
         port = 49203;
-        # package = self.packages.${pkgs.stdenv.hostPlatform.system}.paperless-ngx;
         passwordFile = config.age.secrets.paperless.path;
         domain = domain;
         settings = {
