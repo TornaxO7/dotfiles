@@ -13,7 +13,7 @@ in
   ];
 
   config = {
-    environment.systemPackages = [ inputs.agenix.packages.${pkgs.system}.default ];
+    environment.systemPackages = [ inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
     age.ageBin = "PATH=${makeBinPath [pkgs.age-plugin-yubikey]}:$PATH ${pkgs.rage}/bin/rage";
     age.identityPaths = [
