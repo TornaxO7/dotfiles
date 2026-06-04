@@ -80,6 +80,13 @@ in
         storage = "${config.services.traefik.dataDir}/acme.json";
         tlsChallenge = { };
       };
+
+      metrics.otlp = {
+        addRoutersLabels = true;
+
+        # victoriametrics
+        http.endpoint = "http://127.0.0.1:49170/opentelemetry/v1/metrics";
+      };
     };
 
     dynamicConfigOptions = {
