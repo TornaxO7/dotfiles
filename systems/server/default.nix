@@ -13,7 +13,7 @@
     # ports: 53, 3000
     ./services/adguardhome.nix
     ./services/homarr.nix
-    # ./services/watchtower.nix
+    ./services/watchtower.nix
 
     # port: 49162
     ./services/authelia
@@ -35,6 +35,8 @@
     ./services/public-files.nix
     # port: 49194
     # other wireguard
+    # port: 49195
+    ./services/miasma.nix
 
     # (loadService ./services/stalwart.nix)
   ];
