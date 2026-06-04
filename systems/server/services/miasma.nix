@@ -13,6 +13,14 @@ in
       "/naughty-bots"
       "--max-in-flight"
       "64"
+      "--metrics-db-path"
+      "/metrics/data.db"
+      "--metrics-credentials"
+      "tornax:tornax"
+    ];
+
+    volumes = [
+      "miasma-metrics:/metrics"
     ];
 
     ports = [
