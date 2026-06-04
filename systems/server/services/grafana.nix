@@ -27,7 +27,8 @@ in
       };
     in
     {
-      grafana = add-secret ../../../secrets/grafana.age;
+      grafana-admin-password = add-secret ../../../secrets/grafana/admin-password.age;
+      grafana-secret-key = add-secret ../../../secrets/grafana/secret-key.age;
     };
 
   services.grafana = {
@@ -62,10 +63,11 @@ in
 
       security = {
         admin_user = "tornax";
-        admin_password = "$__file{${config.age.secrets.grafana.path}}";
+        admin_password = "$__file{${config.age.secrets.grafana-admin-password.path}}";
         admin_email = "tornax@pm.me";
         cookie_secure = false;
         domain = domain;
+        secret_key = "$__file{${config.age.secrets.grafana-secret-key.path}}";
       };
     };
   };

@@ -16,7 +16,9 @@ in
   "linkwarden/postgres_password.age".publicKeys = main;
   "linkwarden/meili_master_key.age".publicKeys = main;
 
-  "grafana.age".publicKeys = all;
+  "grafana/admin-password.age".publicKeys = all;
+  "grafana/secret-key.age".publicKeys = all;
+
   "crowdsec.age".publicKeys = all;
 
   "authelia-jwt.age".publicKeys = all;
