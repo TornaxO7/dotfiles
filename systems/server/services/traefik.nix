@@ -76,7 +76,7 @@ in
       };
 
       certificatesResolvers.main.acme = {
-        email = "postmaster@${root-domain}";
+        email = "tornax@pm.me";
         storage = "${config.services.traefik.dataDir}/acme.json";
         tlsChallenge = { };
       };

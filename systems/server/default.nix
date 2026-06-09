@@ -38,7 +38,7 @@
     # port: 49195
     ./services/miasma.nix
 
-    # (loadService ./services/stalwart.nix)
+    ./services/stalwart.nix
   ];
 
   config = {
