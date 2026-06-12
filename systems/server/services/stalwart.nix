@@ -1,11 +1,11 @@
-{ root-domain, ... }:
+{ root-domain, wg0, ... }:
 let
   services = {
     smtp = "stallwart-smtp";
     smtps = "stallwart-smtps";
     jmaps = "stallwart-jmaps";
     http = "stallwart-http";
-    admin = "stallwart-admin";
+    vpn = "stallwart-vpn";
   };
 
   ports = {
@@ -14,6 +14,7 @@ let
   };
 
   domain = "mail.${root-domain}";
+  vpn-domain = "mail.${wg0.server.host}";
 in
 {
   networking.firewall.allowedTCPPorts = builtins.attrValues ports;
@@ -75,13 +76,14 @@ in
         "traefik.tcp.services.${services.jmaps}.loadbalancer.proxyProtocol.version" = "2";
         # "traefik.tcp.routers.${services.jmaps}.tls.passthrough" = "true";
 
-        "traefik.http.routers.${services.admin}.rule" = "Host(`${domain}`) && PathPrefix(`/admin`)";
-        "traefik.http.routers.${services.admin}.entrypoints" = "http-vpn";
-        "traefik.http.routers.${services.admin}.service" = "${services.http}";
+        # vpn http
+        "traefik.http.routers.${services.vpn}.rule" = "Host(`${vpn-domain}`) || Host(`autodiscover.${vpn-domain}`) || Host(`autoconfig.${vpn-domain}`)";
+        "traefik.http.routers.${services.vpn}.entrypoints" = "http-vpn";
+        "traefik.http.routers.${services.vpn}.service" = "${services.http}";
 
         # https
-        "traefik.http.routers.${services.http}.rule" = "(Host(`${domain}`) && !PathPrefix(`/admin`)) || Host(`autodiscover.${root-domain}`) || Host(`autoconfig.${root-domain}`) || Host(`mta-sts.${root-domain}`)";
-        # "traefik.http.routers.${services.http}.rule" = "Host(`${domain}`) || Host(`autodiscover.${root-domain}`) || Host(`autoconfig.${root-domain}`) || Host(`mta-sts.${root-domain}`)";
+        # "traefik.http.routers.${services.http}.rule" = "(Host(`${domain}`) && !PathPrefix(`/vpn`)) || Host(`autodiscover.${root-domain}`) || Host(`autoconfig.${root-domain}`) || Host(`mta-sts.${root-domain}`)";
+        "traefik.http.routers.${services.http}.rule" = "Host(`mta-sts.${root-domain}`)";
         "traefik.http.routers.${services.http}.entrypoints" = "https";
         "traefik.http.routers.${services.http}.service" = "${services.http}";
         "traefik.http.services.${services.http}.loadbalancer.server.port" = "8080";
