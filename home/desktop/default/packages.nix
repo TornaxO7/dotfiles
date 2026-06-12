@@ -7,7 +7,6 @@ let
     anki-bin
     arandr
     evince
-    flameshot
     inlyne
     pavucontrol
     playerctl

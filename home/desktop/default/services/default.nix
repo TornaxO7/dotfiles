@@ -4,8 +4,6 @@
   ];
 
   config.services = {
-    flameshot.enable = true;
-
     playerctld.enable = true;
 
     kdeconnect.enable = true;
