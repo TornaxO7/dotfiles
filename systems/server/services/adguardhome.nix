@@ -65,6 +65,7 @@ in
           enable_dnssec = true;
           anonymize_client_ip = false;
           edns_client_subnet.enabled = true;
+          cache_ttl_max = 3600;
           upstream_dns = [
             # -- adguard
             "https://dns.adguard-dns.com/dns-query"
