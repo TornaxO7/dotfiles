@@ -48,6 +48,10 @@ in
         STALWART_PUBLIC_URL = "https://${domain}";
       };
 
+      # capabilities = {
+      #   "NET_RAW" = true;
+      # };
+
       labels = {
         "traefik.enable" = "true";
 
@@ -72,14 +76,13 @@ in
         "traefik.tcp.routers.${services.jmaps}.entrypoints" = "https";
         "traefik.tcp.routers.${services.jmaps}.service" = "${services.jmaps}";
         "traefik.tcp.services.${services.jmaps}.loadbalancer.server.port" = "8080";
-        # "traefik.tcp.services.${services.jmaps}.loadbalancer.server.port" = "443";
         "traefik.tcp.services.${services.jmaps}.loadbalancer.proxyProtocol.version" = "2";
-        # "traefik.tcp.routers.${services.jmaps}.tls.passthrough" = "true";
 
         # vpn http
         "traefik.http.routers.${services.vpn}.rule" = "Host(`${vpn-domain}`) || Host(`autodiscover.${vpn-domain}`) || Host(`autoconfig.${vpn-domain}`)";
         "traefik.http.routers.${services.vpn}.entrypoints" = "http-vpn";
         "traefik.http.routers.${services.vpn}.service" = "${services.http}";
+        "traefik.http.services.${services.http}.loadbalancer.server.port" = "8080";
 
         # https
         # "traefik.http.routers.${services.http}.rule" = "(Host(`${domain}`) && !PathPrefix(`/vpn`)) || Host(`autodiscover.${root-domain}`) || Host(`autoconfig.${root-domain}`) || Host(`mta-sts.${root-domain}`)";
