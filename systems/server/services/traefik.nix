@@ -14,6 +14,7 @@ in
 
   systemd.tmpfiles.rules = [
     "d ${root-path} 0750 traefik traefik -"
+    "d ${root-path}/certs 0750 traefik traefik -"
   ];
 
   # so that plugins can be stored
