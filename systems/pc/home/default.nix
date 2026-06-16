@@ -20,6 +20,7 @@
           rpi-imager
           steamcmd
           xsane
+          meli
           bugstalker
 
           github-copilot-cli

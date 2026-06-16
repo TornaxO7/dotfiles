@@ -71,7 +71,7 @@ in
       ];
 
       environment = {
-        STALWART_PUBLIC_URL = "https://${domain}";
+        STALWART_PUBLIC_URL = "http://${vpn-domain}";
       };
 
       labels = {
