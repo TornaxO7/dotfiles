@@ -53,7 +53,10 @@
     ];
 
     services = {
-      openssh.settings.PasswordAuthentication = false;
+      openssh = {
+        openFirewall = false;
+        settings.PasswordAuthentication = false;
+      };
       qemuGuest.enable = true;
     };
 

@@ -1,7 +1,10 @@
 { wg0, wg1, ... }:
 {
   networking = {
-    firewall.interfaces.ens3.allowedUDPPorts = [ wg0.port ];
+    firewall.interfaces = {
+      ens3.allowedUDPPorts = [ wg0.port ];
+      wg0.allowedTCPPorts = [ 22 ];
+    };
 
     wg-quick.interfaces.wg0 = {
       address = [ "${wg0.server.addr}/32" ];
