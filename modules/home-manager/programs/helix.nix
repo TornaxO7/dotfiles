@@ -28,6 +28,9 @@ in
     enable = true;
     text = ''
       pass_environment = ["PATH", "LD_LIBRARY_PATH", "PKG_CONFIG_PATH"]
+
+      listen = "/var/run/lspmux.sock"
+      connect = "/var/run/lspmux.sock"
     '';
     target = "lspmux/config.toml";
   };
