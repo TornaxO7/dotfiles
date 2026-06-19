@@ -27,8 +27,7 @@ in
   xdg.configFile.lspmux = {
     enable = true;
     text = ''
-      # pass_environment = ["PATH", "LD_LIBRARY_PATH", "PKG_CONFIG_PATH"]
-      pass_environment = ["*", "!DESKTOP_STARTUP_ID", "!WINDOWID", "!ALACRITTY_*"]
+      pass_environment = ["PATH", "LD_LIBRARY_PATH", "PKG_CONFIG_PATH"]
     '';
     target = "lspmux/config.toml";
   };
