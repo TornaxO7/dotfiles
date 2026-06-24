@@ -45,6 +45,9 @@ in
         lspmux = {
           command = "${lspmux-pkg}/bin/lspmux";
           args = [ "client" ];
+          config = {
+            cargo.targetDir = true;
+          };
         };
 
         matlab = {
