@@ -16,6 +16,8 @@
         font-awesome
         xournalpp
         rnote
+        github-cli
+        nixpkgs-review
       ];
     };
   };
