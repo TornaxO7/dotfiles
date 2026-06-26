@@ -26,6 +26,8 @@
           github-copilot-cli
           yubikey-personalization
           waypipe
+          github-cli
+          nixpkgs-review
         ];
 
         # pointerCursor.size = 20;
