@@ -15,8 +15,10 @@ in
       "64"
       "--metrics-db-path"
       "/metrics/data.db"
-      "--metrics-credentials"
-      "tornax:tornax"
+      "--metrics-username"
+      "tornax"
+      "--metrics-password"
+      "tornax"
     ];
 
     volumes = [
