@@ -15,7 +15,7 @@ in
   ];
 
   virtualisation.oci-containers.containers.website = {
-    image = "joseluisq/static-web-server:latest";
+    image = "docker.io/joseluisq/static-web-server:latest";
 
     volumes = [
       "${paths.root}/public:/public:ro"
@@ -26,6 +26,8 @@ in
     };
 
     labels = {
+      "io.containers.autoupdate" = "registry";
+
       "traefik.enable" = "true";
       "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`) || Host(`tornax07.de`)";
       "traefik.http.routers.${names.containers.server}.service" = names.containers.server;

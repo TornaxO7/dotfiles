@@ -6,7 +6,7 @@ let
 in
 {
   virtualisation.oci-containers.containers.miasma = {
-    image = "austinweeks/miasma:latest";
+    image = "docker.io/austinweeks/miasma:latest";
 
     cmd = [
       "--link-prefix"
@@ -30,6 +30,8 @@ in
     ];
 
     labels = {
+      "io.containers.autoupdate" = "registry";
+
       "traefik.enable" = "true";
       "traefik.http.routers.${prefix}.rule" = "Host(`${domain}`) && PathPrefix(`/naughty-bots`)";
       "traefik.http.routers.${prefix}.service" = prefix;

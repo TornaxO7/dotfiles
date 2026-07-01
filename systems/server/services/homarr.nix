@@ -22,6 +22,8 @@ in
       ];
 
       labels = {
+        "io.containers.autoupdate" = "registry";
+
         "traefik.enable" = "true";
         "traefik.http.routers.${prefix}.rule" = "Host(`${domain}`)";
         "traefik.http.routers.${prefix}.entrypoints" = "http-vpn";

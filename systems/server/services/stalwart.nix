@@ -61,7 +61,7 @@ in
     };
 
     stalwart = {
-      image = "stalwartlabs/stalwart:v0.16";
+      image = "docker.io/stalwartlabs/stalwart:v0.16";
       volumes = [
         "stalwart-etc:/etc/stalwart"
         "stalwart-data:/var/lib/stalwart"
@@ -75,6 +75,8 @@ in
       };
 
       labels = {
+        "io.containers.autoupdate" = "registry";
+
         "traefik.enable" = "true";
 
         # smtp

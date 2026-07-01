@@ -13,7 +13,7 @@
     # ports: 53, 3000
     ./services/adguardhome.nix
     ./services/homarr.nix
-    ./services/watchtower.nix
+    # ./services/watchtower.nix
 
     # port: 49162
     ./services/authelia
@@ -78,6 +78,8 @@
 
       oci-containers.backend = "podman";
     };
+
+    systemd.services.podman-auto-update.wantedBy = [ "multi-user.target" ];
 
     security.sudo-rs.enable = true;
 
