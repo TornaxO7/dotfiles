@@ -23,9 +23,9 @@
     ./services/syncthing.nix
     # 49205
     ./services/memos.nix
-    ./services/audiobookshelf.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
+    ./services/audiobookshelf.nix
     ./services/jellyfin.nix
     ./services/filebrowser.nix
     ./services/vikunja.nix
