@@ -30,6 +30,7 @@
     ./services/vikunja.nix
     ./services/gotify.nix
     ./services/timetagger.nix
+    ./services/upsnap.nix
   ];
 
   config = {
