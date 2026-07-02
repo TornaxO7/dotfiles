@@ -3,7 +3,7 @@ let
   domain = "upsnap.${root-domain}";
 in
 {
-  virtualisation.oci-containers.conatiners.upsnap = {
+  virtualisation.oci-containers.containers.upsnap = {
     image = "ghcr.io/seriousm4x/upsnap:5";
 
     cmd = [
@@ -14,7 +14,7 @@ in
       "upsnap:/app/pb_data"
     ];
 
-    capabilties = {
+    capabilities = {
       NET_RAW = true;
     };
 
