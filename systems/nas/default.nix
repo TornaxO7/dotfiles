@@ -30,7 +30,6 @@ in
     ./services/memos.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
-    (loadService ./services/watchtower.nix)
     ./services/jellyfin.nix
     (loadService ./services/filebrowser.nix)
     (loadService ./services/vikunja.nix)
