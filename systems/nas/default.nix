@@ -1,9 +1,4 @@
 { config, pkgs, services-root, ... }:
-let
-  utils = import ../utils.nix;
-
-  loadService = path: (import path) utils;
-in
 {
   imports = [
     ../../modules/default_main.nix
@@ -30,12 +25,13 @@ in
     ./services/memos.nix
     ./services/audiobookshelf.nix
 
-    (loadService ./services/watchtower.nix)
-    (loadService ./services/jellyfin.nix)
-    (loadService ./services/filebrowser.nix)
-    (loadService ./services/vikunja.nix)
-    (loadService ./services/gotify.nix)
+    # each service here, can have a port, starting from 49200 (incrementing 10)
+    ./services/jellyfin.nix
+    ./services/filebrowser.nix
+    ./services/vikunja.nix
+    ./services/gotify.nix
     ./services/timetagger.nix
+    ./services/upsnap.nix
   ];
 
   config = {
@@ -45,7 +41,12 @@ in
       podman-compose
     ];
 
-    systemd.tmpfiles.settings.services-dir = utils.createDirs config [ services-root ];
+    systemd.tmpfiles.settings.services-dir = {
+      "${services-root}".d = {
+        user = config.users.users.tornax.name;
+        group = config.users.users.tornax.name;
+      };
+    };
 
     networking = {
       hostId = "17b02087";

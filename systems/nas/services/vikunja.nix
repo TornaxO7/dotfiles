@@ -1,24 +1,26 @@
-utils: { config, lib, pkgs, zpool-root, zpool-name, root-domain, ... }:
+{ config, zpool-root, root-domain, ... }:
 let
-  names = utils.createContainerNames "vikunja" [ "server" ];
-
   bind-root = "${zpool-root}/vikunja";
   binds = {
     files = "${bind-root}/files";
     db = "${bind-root}/db";
   };
 
+  tmpfiles-entry = {
+    user = config.users.users.tornax.name;
+    group = config.users.users.tornax.name;
+  };
+
   domain = "vikunja.${root-domain}";
 in
 {
-  systemd = lib.attrsets.recursiveUpdate
-    {
-      tmpfiles.settings.vikunja = utils.createDirs config (builtins.attrValues binds);
-    }
-    (utils.createSystemdZfsSnapshot pkgs "vikunja" "${zpool-name}/vikunja");
+  systemd.tmpfiles.settings.vikunja = {
+    "${binds.files}".d = tmpfiles-entry;
+    "${binds.db}".d = tmpfiles-entry;
+  };
 
   virtualisation.oci-containers.containers = {
-    "${names.containers.server}" = {
+    vikunja = {
       image = "vikunja/vikunja";
       environment = {
         VIKUNJA_SERVICE_PUBLICURL = "http://${domain}/";
@@ -33,9 +35,9 @@ in
 
       labels = {
         "traefik.enable" = "true";
-        "traefik.http.routers.${names.containers.server}.rule" = "Host(`${domain}`)";
-        "traefik.http.routers.${names.containers.server}.service" = "${names.containers.server}";
-        "traefik.http.services.${names.containers.server}.loadbalancer.server.port" = "3456";
+        "traefik.http.routers.vikunja.rule" = "Host(`${domain}`)";
+        "traefik.http.routers.vikunja.service" = "vikunja";
+        "traefik.http.services.vikunja.loadbalancer.server.port" = "3456";
       };
     };
   };

@@ -1,4 +1,4 @@
-utils: { config, zpool-root, root-domain, ... }:
+{ zpool-root, root-domain, ... }:
 let
   prefix = "filebrowser";
 
