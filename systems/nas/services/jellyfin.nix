@@ -1,4 +1,4 @@
-utils: { config, pkgs, zpool-name, zpool-root, root-domain, ... }:
+{ config, zpool-root, root-domain, ... }:
 let
   username = config.users.users.tornax.name;
 
@@ -21,12 +21,13 @@ in
 {
   config = {
     systemd = {
-      tmpfiles.rules = [
-        "d ${binds.music} - ${username} ${username} -"
-      ];
-    }
-    //
-    (utils.createSystemdZfsSnapshot pkgs "jellyfin" "${zpool-name}/jellyfin");
+      tmpfiles.settings.jellyfin = {
+        "${binds.music}".d = {
+          user = username;
+          group = username;
+        };
+      };
+    };
 
     virtualisation.oci-containers.containers = {
       jellyfin = {
