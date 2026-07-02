@@ -31,7 +31,7 @@ in
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     ./services/jellyfin.nix
-    (loadService ./services/filebrowser.nix)
+    ./services/filebrowser.nix
     (loadService ./services/vikunja.nix)
     (loadService ./services/gotify.nix)
     ./services/timetagger.nix
