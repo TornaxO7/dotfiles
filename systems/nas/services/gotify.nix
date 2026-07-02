@@ -1,4 +1,4 @@
-utils: { config, root-domain, services-root, ... }:
+{ config, root-domain, services-root, ... }:
 let
   prefix = "gotify";
 

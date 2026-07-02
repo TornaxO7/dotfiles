@@ -1,9 +1,4 @@
 { config, pkgs, services-root, ... }:
-let
-  utils = import ../utils.nix;
-
-  loadService = path: (import path) utils;
-in
 {
   imports = [
     ../../modules/default_main.nix
@@ -33,7 +28,7 @@ in
     ./services/jellyfin.nix
     ./services/filebrowser.nix
     ./services/vikunja.nix
-    (loadService ./services/gotify.nix)
+    ./services/gotify.nix
     ./services/timetagger.nix
   ];
 
@@ -44,7 +39,12 @@ in
       podman-compose
     ];
 
-    systemd.tmpfiles.settings.services-dir = utils.createDirs config [ services-root ];
+    systemd.tmpfiles.settings.services-dir = {
+      "${services-root}".d = {
+        user = config.users.users.tornax.name;
+        group = config.users.users.tornax.name;
+      };
+    };
 
     networking = {
       hostId = "17b02087";
