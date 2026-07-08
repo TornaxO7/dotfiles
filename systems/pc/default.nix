@@ -51,7 +51,10 @@
       xserver.videoDrivers = [ "amdgpu" ];
     };
 
-    hardware.graphics.enable = true;
+    hardware = {
+      amdgpu.opencl.enable = true;
+      graphics.enable = true;
+    };
 
     networking = {
       networkmanager.enable = false;
