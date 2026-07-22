@@ -6,7 +6,6 @@
   ];
 
   config = {
-
     programs = {
       sioyek = {
         enable = false;
