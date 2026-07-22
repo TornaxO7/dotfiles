@@ -231,7 +231,7 @@ in
           file-types = [ "markdown" "md" ];
           language-servers = [ "markdown-oxide" "marksman" ];
           formatter = {
-            command = "${lib.getExe pkgs.prettier}/bin/prettier";
+            command = "${lib.getExe pkgs.prettier}";
             args = [ "--stdin-filepath" "rofl.md" ];
           };
         }
