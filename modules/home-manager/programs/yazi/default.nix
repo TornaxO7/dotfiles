@@ -72,13 +72,14 @@
             vimiv = [{ run = "vimiv \"$@\""; block = false; orphan = true; }];
             xournalpp = [{ run = "xournalpp \"$@\""; block = false; orphan = true; }];
             ffplay = [{ run = "ffplay \"$@\""; block = false; orphan = true; }];
+            vlc = [{ run = "vlc \"$@\""; block = false; orphan = true; }];
             rnote = [{ run = "rnote \"$@\""; block = false; orphan = true; }];
           };
           # mime types: https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types
           open.rules = [
             { mime = "text/*"; use = [ "helix" ]; }
             { mime = "image/*"; use = [ "vimiv" ]; }
-            { mime = "video/*"; use = [ "ffplay" ]; }
+            { mime = "video/*"; use = [ "vlc" ]; }
             { mime = "audio/*"; use = [ "ffplay" ]; }
             { url = "*.xopp"; use = [ "xournalpp" ]; }
             # workarounds since mime types don't work here :
