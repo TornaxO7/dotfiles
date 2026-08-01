@@ -66,7 +66,7 @@
             evince = [{ run = "evince \"$@\""; block = false; orphan = true; }];
             helix = [{ run = "$EDITOR \"$@\""; block = true; }];
             xdg-open = [{ run = "xdg-open \"$@\""; }];
-            ouch = [{ run = "ouch d \"$1\""; desc = "Extract with ouch"; }];
+            ouch = [{ run = "ouch d -y \"$@\""; desc = "Extract with ouch"; }];
             # for debugging purposes;
             # test = [{ run = "notify-send \"he\llo"" }];
             vimiv = [{ run = "vimiv \"$@\""; block = false; orphan = true; }];
