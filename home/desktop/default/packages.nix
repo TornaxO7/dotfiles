@@ -15,6 +15,7 @@ let
     simplescreenrecorder
     spotify
     vimiv-qt
+    vlc
     xclip
     xournalpp
     # yubikey-manager-qt
