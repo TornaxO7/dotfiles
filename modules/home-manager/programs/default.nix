@@ -1,4 +1,4 @@
-{ pkgs, lib, unstable, ... }:
+{ config, pkgs, lib, unstable, ... }:
 {
   imports = [
     ./yazi
@@ -14,6 +14,15 @@
     bat.enable = true;
 
     bottom.enable = true;
+
+    cargo = {
+      enable = true;
+      settings = {
+        build = {
+          target-dir = "${config.home.homeDirectory}/.cache/cargo/target";
+        };
+      };
+    };
 
     eza = {
       enable = true;
