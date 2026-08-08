@@ -46,17 +46,17 @@
             ueberzug_offset = [ 0 0 0 0 ];
           };
           opener = {
-            evince = [{ run = "evince \"$@\""; block = false; orphan = true; }];
-            helix = [{ run = "$EDITOR \"$@\""; block = true; }];
-            xdg-open = [{ run = "xdg-open \"$@\""; }];
-            ouch = [{ run = "ouch d -y \"$@\""; desc = "Extract with ouch"; }];
+            evince = [{ run = "evince %s"; block = false; orphan = true; }];
+            helix = [{ run = "$EDITOR %s"; block = true; }];
+            xdg-open = [{ run = "xdg-open %s"; }];
+            ouch = [{ run = "ouch d -y %s"; desc = "Extract with ouch"; }];
             # for debugging purposes;
             # test = [{ run = "notify-send \"he\llo"" }];
-            vimiv = [{ run = "vimiv \"$@\""; block = false; orphan = true; }];
-            xournalpp = [{ run = "xournalpp \"$@\""; block = false; orphan = true; }];
-            ffplay = [{ run = "ffplay \"$@\""; block = false; orphan = true; }];
-            vlc = [{ run = "vlc \"$@\""; block = false; orphan = true; }];
-            rnote = [{ run = "rnote \"$@\""; block = false; orphan = true; }];
+            vimiv = [{ run = "vimiv %s"; block = false; orphan = true; }];
+            xournalpp = [{ run = "xournalpp %s"; block = false; orphan = true; }];
+            ffplay = [{ run = "ffplay %s"; block = false; orphan = true; }];
+            vlc = [{ run = "vlc %s"; block = false; orphan = true; }];
+            rnote = [{ run = "rnote %s"; block = false; orphan = true; }];
           };
           # mime types: https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types
           open.rules = [
