@@ -15,23 +15,6 @@
         # ];
         shellWrapperName = "y";
 
-        initLua = ''
-          require("bookmarks"):setup({
-          	last_directory = { enable = true, persist = false },
-          	persist = "all",
-          	desc_format = "full",
-          	notify = {
-          		enable = false,
-          		timeout = 1,
-          		message = {
-          			new = "New bookmark '<key>' -> '<folder>'",
-          			delete = "Deleted bookmark in '<key>'",
-          			delete_all = "Deleted all bookmarks",
-          		},
-          	},
-          })
-        '';
-
         flavors = {
           tokyo-night = ./tokyo-night.yazi;
         };
@@ -230,7 +213,7 @@
               { on = [ "s" "s" ]; run = "sort size --dir-first"; desc = "Sort by size"; }
               { on = [ "s" "S" ]; run = "sort size --reverse --dir-first"; desc = "Sort by size (reverse)"; }
               # tasks
-              { on = [ "w" ]; run = "tasks_show"; desc = "Show the tasks manager"; }
+              { on = [ "w" ]; run = "tasks:show"; desc = "Show the tasks manager"; }
               # actions
               { on = [ "c" "d" ]; run = "cd --interactive"; desc = "Go to a directory interactively"; }
               { on = [ "g" "g" ]; run = "arrow top"; desc = "Move cursor to the top"; }
@@ -244,7 +227,8 @@
             ];
 
             prepend_keymap = [
-              { on = [ "m" ]; run = "plugin bookmarks save"; desc = "Save current position as a bookmark"; }
+              { on = [ "ma" ]; run = "plugin bookmarks save"; desc = "Save current position as a bookmark"; }
+              { on = [ "md" ]; run = "plugin bookmarks delete"; desc = "Delete bookmark"; }
               { on = [ "'" ]; run = "plugin bookmarks jump"; desc = "Jump to a bookmark"; }
               { on = [ "f" ]; run = "plugin jump-to-char"; desc = "Jump to char"; }
             ];
