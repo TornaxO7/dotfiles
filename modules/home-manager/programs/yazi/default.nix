@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, self, pkgs, ... }:
 {
   config = {
     nix.settings = {
@@ -15,12 +15,25 @@
         # ];
         shellWrapperName = "y";
 
+        initLua = ''
+          local bookmarks = {}
+          table.insert(bookmarks, {
+            tag = "home",
+            path = os.getenv("HOME"),
+            key = "h"
+          })
+
+          require("yamb"):setup {
+            bookmarks = bookmarks
+          }
+        '';
+
         flavors = {
           tokyo-night = ./tokyo-night.yazi;
         };
 
         plugins = {
-          bookmarks = pkgs.yaziPlugins.bookmarks;
+          yamb = self.packages.${pkgs.stdenv.hostPlatform.system}.yamb;
           smart-enter = pkgs.yaziPlugins.smart-enter;
           jump-to-char = pkgs.yaziPlugins.jump-to-char;
         };
@@ -28,7 +41,7 @@
         settings = {
           mgr = {
             ratio = [ 1 4 3 ];
-            sort_by = "alphabetical";
+            sort_by = "natural";
             sort_sensitive = true;
             sort_reverse = false;
             sort_dir_first = true;
@@ -227,9 +240,9 @@
             ];
 
             prepend_keymap = [
-              { on = [ "ma" ]; run = "plugin bookmarks save"; desc = "Save current position as a bookmark"; }
-              { on = [ "md" ]; run = "plugin bookmarks delete"; desc = "Delete bookmark"; }
-              { on = [ "'" ]; run = "plugin bookmarks jump"; desc = "Jump to a bookmark"; }
+              { on = [ "m" "a" ]; run = "plugin yamb -- save"; desc = "Save current position as a bookmark"; }
+              { on = [ "m" "d" ]; run = "plugin yamb -- delete_by_key"; desc = "Delete bookmark"; }
+              { on = [ "'" ]; run = "plugin yamb -- jump_by_key"; desc = "Jump to a bookmark"; }
               { on = [ "f" ]; run = "plugin jump-to-char"; desc = "Jump to char"; }
             ];
           };

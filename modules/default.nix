@@ -108,9 +108,8 @@
       ];
 
       extraSpecialArgs = {
-        inherit inputs unstable;
+        inherit inputs unstable self;
         age = config.age;
-        my_flake = self;
       };
 
       users.tornax = { ... }: {
