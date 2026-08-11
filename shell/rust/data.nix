@@ -5,6 +5,8 @@ rec {
   ] ++ [ rust-toolchain ];
 
   buildInputs = with pkgs; [
+    alsa-lib
+
     rustup
     dbus
     pango
@@ -30,6 +32,7 @@ rec {
     vulkan-loader
 
     libGL
+    libudev-zero
 
     libX11
     libXcursor
