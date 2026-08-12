@@ -26,6 +26,10 @@
           require("yamb"):setup {
             bookmarks = bookmarks
           }
+
+          require("zoxide"):setup {
+            update_db = true,
+          }
         '';
 
         flavors = {
