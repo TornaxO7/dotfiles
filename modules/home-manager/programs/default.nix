@@ -19,6 +19,7 @@
       enable = true;
       settings = {
         build = {
+          rustdocflags = [ "--default-theme=ayu" ];
           target-dir = "${config.home.homeDirectory}/.cache/cargo/target";
         };
       };
