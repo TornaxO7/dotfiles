@@ -79,7 +79,16 @@
       oci-containers.backend = "podman";
     };
 
-    systemd.services.podman-auto-update.wantedBy = [ "multi-user.target" ];
+    systemd = {
+      services.podman-auto-update.wantedBy = [ "multi-user.target" ];
+      timers.podman-auto-update = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "daily";
+          RandomizedDelaySec = "1h";
+        };
+      };
+    };
 
     security.sudo-rs.enable = true;
 
