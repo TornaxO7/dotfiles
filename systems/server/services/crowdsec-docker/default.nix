@@ -44,14 +44,14 @@ in
       ];
 
       environment = {
-        COLLECTIONS = "\
-          crowdsecurity/linux\
-          crowdsecurity/iptables\
-          crowdsecurity/traefik\
-          crowdsecurity/http-dos\
-          crowdsecurity/http-cve\
-          LePresidente/grafana\
-          LePresidente/authelia\
+        COLLECTIONS = "
+          crowdsecurity/linux
+          crowdsecurity/iptables
+          crowdsecurity/traefik
+          crowdsecurity/http-dos
+          crowdsecurity/http-cve
+          LePresidente/grafana
+          LePresidente/authelia
           ";
       };
 
