@@ -20,6 +20,15 @@
       "${wg0.nas.addr}" = [ wg0.nas.host ];
       "${wg0.server.addr}" = [ wg0.server.host ];
       "${wg0.mobile.addr}" = [ wg0.mobile.host ];
+
+      "202.61.242.79" = [ "mini-ip4" ];
+      "2a03:4000:52:316::" = [ "mini-ip6" ];
+
+      "202.61.242.142" = [ "small-ip4" ];
+      "2a03:4000:52:ebc::" = [ "small-ip6" ];
+
+      "2.56.97.207" = [ "big-ip4" ];
+      "2a03:4000:3e:26f::" = [ "big-ip6" ];
     };
 
     users = {
