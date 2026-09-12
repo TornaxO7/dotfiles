@@ -5,15 +5,24 @@
     ../../modules/netcup.nix
     ./secrets
 
-    # ./services/wireguard.nix
-    # ./services/adguardhome.nix
+    # 53
+    ./services/wireguard.nix
+    # 3000, 49200
+    ./services/adguardhome.nix
+
     # ./services/traefik.nix
+    # ./services/stalwart.nix
+    # ./services/homer.nix
   ];
 
   config = {
     networking = {
       useDHCP = false;
       useNetworkd = true;
+    };
+
+    services = {
+      resolved.enable = false;
     };
 
     systemd.network = {

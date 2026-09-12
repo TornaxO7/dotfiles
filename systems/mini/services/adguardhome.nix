@@ -1,13 +1,35 @@
 { config, lib, wg0, ... }:
 let
   domain = "dns.${wg0.server.host}";
+  dns-port = 49200;
 in
 {
-  networking.firewall.interfaces."wg0" = {
-    # for ui
-    allowedTCPPorts = [ 3000 ];
-    # for dns requests
-    allowedUDPPorts = [ 53 ];
+  networking = {
+    firewall.interfaces.wg0 = {
+      # for ui
+      allowedTCPPorts = [ 3000 ];
+      # for dns requests
+      allowedUDPPorts = [ 53 ];
+    };
+
+    nameservers = [
+      "127.0.0.7"
+    ];
+
+    nftables.tables.wg0-dns-server = {
+      family = "ip";
+      content = ''
+        chain wg0-dns-server {
+          type nat hook prerouting priority dstnat;
+          udp dport 53 ip daddr ${wg0.server.addr} dnat to 127.0.0.1:${toString dns-port} comment "Incoming wg0 dns requests";
+        }
+
+        chain wg0-dns-server-from-mini-itself {
+          type nat hook output priority dstnat;
+          udp dport 53 ip daddr ${wg0.server.addr} dnat to 127.0.0.1:${toString dns-port} comment "Outgoig (from `mini` itself) wg0 dns requests";
+        }
+      '';
+    };
   };
 
   services = {
@@ -59,8 +81,8 @@ in
         ];
 
         dns = rec {
-          bind_hosts = [ wg0.server.addr ];
-          port = 53;
+          bind_hosts = [ "127.0.0.1" ];
+          port = dns-port;
           ratelimit = 0;
           enable_dnssec = true;
           anonymize_client_ip = false;

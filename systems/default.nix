@@ -11,12 +11,17 @@ let
   wg0 = rec {
     server = {
       addr = "10.0.0.1";
-      # publicKey = "Gird3QH1s/eOpHJ2i2Xv3flYEOVSorKLFN3vsoL41nU="; (mini)
-      publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
       host = "server.vpn.${domain}";
 
+      # mini
+      # publicKey = "Gird3QH1s/eOpHJ2i2Xv3flYEOVSorKLFN3vsoL41nU=";
+      # ip4 = "202.61.242.79";
+      # ip6 = "2a03:4000:52:316::";
+
+      # server
       ip4 = "2.56.97.207";
       ip6 = "2a03:4000:3e:26f::";
+      publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
     };
     pc = {
       addr = "10.0.0.2";
@@ -42,7 +47,7 @@ let
     netmask = "10.0.0.0/24";
     domain = "tornaxo7.de";
     port = 49190;
-    # port = 53; (mini)
+    # port = 53; # (mini)
   };
 
   wg1 = {

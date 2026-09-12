@@ -32,7 +32,6 @@ in
 
     staticConfigOptions = {
       entryPoints = {
-
         http-ip4 = {
           address = "${ip4}:${toString ports.http}";
           http.redirections.entryPoint = {
