@@ -11,6 +11,7 @@ let
   wg0 = rec {
     server = {
       addr = "10.0.0.1";
+      # publicKey = "Gird3QH1s/eOpHJ2i2Xv3flYEOVSorKLFN3vsoL41nU="; (mini)
       publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
       host = "server.vpn.${domain}";
 
@@ -41,6 +42,7 @@ let
     netmask = "10.0.0.0/24";
     domain = "tornaxo7.de";
     port = 49190;
+    # port = 53; (mini)
   };
 
   wg1 = {

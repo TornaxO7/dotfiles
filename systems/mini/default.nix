@@ -3,8 +3,11 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/netcup.nix
+    ./secrets
 
     # ./services/wireguard.nix
+    # ./services/adguardhome.nix
+    # ./services/traefik.nix
   ];
 
   config = {
