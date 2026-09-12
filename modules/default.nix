@@ -37,6 +37,7 @@
       hostName = hostname;
       nftables.enable = true;
 
+      # TODO: Move to `main`
       wg-quick.interfaces.wg0 = {
         generatePrivateKeyFile = true;
         privateKeyFile = "/etc/wireguard/private.key";

@@ -119,26 +119,40 @@ in
         };
       };
 
+      mini = mkSystem {
+        config-module = ./mini;
+        hostname = "mini";
+      };
+
+      small = mkSystem {
+        config-module = ./small;
+        hostname = "small";
+      };
+
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage
       #
       # Just enter root automatically...
-      # iso = mkSystem {
-      #   hostname = "iso";
-      #   config-module =
-      #     ({ modulesPath, ... }: {
-      #       imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
-      #       config = {
-      #         nixpkgs.hostPlatform = "x86_64-linux";
-      #         isoImage.squashfsCompression = "lz4";
+      iso = mkSystem {
+        hostname = "iso";
+        config-module =
+          ({ modulesPath, pkgs, ... }: {
+            imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
+            config = {
+              nixpkgs.hostPlatform = "x86_64-linux";
+              isoImage.squashfsCompression = "lz4";
 
-      #         security = {
-      #           sudo.enable = false;
-      #           sudo-rs.enable = true;
-      #         };
-      #       };
-      #     })
-      #   ;
-      # };
+              environment.systemPackages = with pkgs; [
+                helix
+              ];
+
+              security = {
+                sudo.enable = false;
+                sudo-rs.enable = true;
+              };
+            };
+          })
+        ;
+      };
     };
 
     # packages.x86_64-linux.iso = self.nixosConfigurations.iso.config.system.build.isoImage;
