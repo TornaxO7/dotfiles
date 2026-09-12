@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    helix
     bottom
+    dnsutils
+    helix
     systemctl-tui
   ];
 
@@ -13,10 +14,21 @@
       defaultNetwork.settings.dns_enabled = true;
     };
 
+    # avoid collapse with wg0
+    containers.containersConf.settings.network.dns_bind_port = 54;
+
     oci-containers.backend = "podman";
   };
 
-  services.qemuGuest.enable = true;
+  networking = {
+    useDHCP = false;
+    useNetworkd = true;
+  };
+
+  services = {
+    qemuGuest.enable = true;
+    resolved.enable = false;
+  };
 
   users = {
     mutableUsers = false;

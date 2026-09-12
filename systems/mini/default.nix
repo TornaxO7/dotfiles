@@ -1,4 +1,4 @@
-{ pkgs, ip4, ip6, ... }:
+{ ip4, ip6, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -16,22 +16,6 @@
   ];
 
   config = {
-    networking = {
-      useDHCP = false;
-      useNetworkd = true;
-    };
-
-    services = {
-      resolved.enable = false;
-    };
-
-    environment.systemPackages = with pkgs; [
-      dnsutils
-    ];
-
-    # avoid collapse with wg0
-    virtualisation.containers.containersConf.settings.network.dns_bind_port = 54;
-
     systemd.network = {
       enable = true;
 
