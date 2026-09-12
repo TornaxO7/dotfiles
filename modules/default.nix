@@ -37,7 +37,7 @@
       hostName = hostname;
       nftables.enable = true;
 
-      # TODO: Move to `main`
+      # TODO: exclude from iso
       wg-quick.interfaces.wg0 = {
         generatePrivateKeyFile = true;
         privateKeyFile = "/etc/wireguard/private.key";
