@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ip4, ip6, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -10,9 +10,9 @@
     # 3000, 49200
     ./services/adguardhome.nix
 
-    # ./services/traefik.nix
-    # ./services/stalwart.nix
-    # ./services/homer.nix
+    ./services/traefik.nix
+    ./services/stalwart-docker.nix
+    ./services/homer
   ];
 
   config = {
@@ -24,6 +24,13 @@
     services = {
       resolved.enable = false;
     };
+
+    environment.systemPackages = with pkgs; [
+      dnsutils
+    ];
+
+    # avoid collapse with wg0
+    virtualisation.containers.containersConf.settings.network.dns_bind_port = 54;
 
     systemd.network = {
       enable = true;
@@ -37,8 +44,8 @@
           DHCPServer = "no";
         };
         address = [
-          "202.61.242.79/22"
-          "2a03:4000:52:316::/64"
+          "${ip4}/22"
+          "${ip6}/64"
         ];
         routes = [
           { Gateway = "202.61.240.1"; }

@@ -191,7 +191,6 @@ in
     traefik.dynamicConfigOptions.http = {
       routers.dns = {
         rule = "Host(`${domain}`)";
-        entryPoints = [ "http-vpn" ];
         service = "adguard";
       };
 

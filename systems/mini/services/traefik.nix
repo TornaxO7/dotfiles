@@ -1,6 +1,6 @@
-{ config, root-domain, wg0, ip4, ip6, ... }:
+{ config, root-domain, wg0, ... }:
 let
-  domain = "mini.traefik.${wg0.server.host}";
+  domain = "traefik.${wg0.server.host}";
 
   root-path = "/var/lib/traefik";
 
@@ -12,10 +12,17 @@ in
 {
   networking.firewall.interfaces.wg0.allowedTCPPorts = builtins.attrValues ports;
 
-  systemd.tmpfiles.rules = [
-    "d ${root-path} 0750 traefik traefik -"
-    "d ${root-path}/certs 0750 traefik traefik -"
-  ];
+  age.secrets.traefik-dns = {
+    owner = "traefik";
+    file = ../secrets/traefik-dns-challenge.age;
+  };
+
+  systemd = {
+    tmpfiles.rules = [
+      "d ${root-path} 0750 traefik traefik -"
+      "d ${root-path}/certs 0750 traefik traefik -"
+    ];
+  };
 
   # so that plugins can be stored
   systemd.services.traefik.serviceConfig.WorkingDirectory = config.services.traefik.dataDir;
@@ -27,33 +34,21 @@ in
     group = "podman";
 
     environmentFiles = [
-      config.age.secrets.traefik-dns-challenge.path
+      config.age.secrets.traefik-dns.path
     ];
 
     staticConfigOptions = {
       entryPoints = {
-        http-ip4 = {
-          address = "${ip4}:${toString ports.http}";
-          http.redirections.entryPoint = {
-            to = "https";
-            scheme = "https";
-          };
-        };
-
-        http-ip6 = {
-          address = "[${ip6}]:${toString ports.http}";
-          http.redirections.entryPoint = {
-            to = "https";
-            scheme = "https";
-          };
-        };
-
-        http-vpn = {
+        http = {
           address = "${wg0.server.addr}:${toString ports.http}";
+          http.redirections.entryPoint = {
+            to = "https";
+            scheme = "https";
+          };
         };
 
         https = {
-          address = ":${toString ports.https}";
+          address = "${wg0.server.addr}:${toString ports.https}";
           asDefault = true;
           http = {
             tls.certResolver = "main";
@@ -81,7 +76,14 @@ in
       certificatesResolvers.main.acme = {
         email = "tornax@pm.me";
         storage = "${config.services.traefik.dataDir}/acme.json";
-        dnsChallenge = { };
+        dnsChallenge = {
+          provider = "netcup";
+          resolvers = [
+            "second-dns.netcup.net"
+            "root-dns.netcup.net"
+            "third-dns.netcup.net"
+          ];
+        };
       };
     };
 
@@ -97,7 +99,7 @@ in
         };
 
         routers.dashboard = {
-          entryPoints = [ "http-vpn" ];
+          entryPoints = [ "https" ];
           rule = "Host(`${domain}`)";
           service = "api@internal";
         };

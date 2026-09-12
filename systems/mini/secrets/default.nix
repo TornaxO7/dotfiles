@@ -5,6 +5,8 @@
   ];
 
   config = {
-    age.identityPaths = [ "/etc/ssh/mini" ];
+    age = {
+      identityPaths = [ "/etc/ssh/mini" ];
+    };
   };
 }

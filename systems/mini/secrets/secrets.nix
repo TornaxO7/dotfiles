@@ -5,4 +5,5 @@ let
 in
 {
   "traefik-dns-challenge.age".publicKeys = main;
+  "homer-config.age".publicKeys = main;
 }

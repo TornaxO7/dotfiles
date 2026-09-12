@@ -17,6 +17,7 @@ in
 
     age.ageBin = "PATH=${makeBinPath [pkgs.age-plugin-yubikey]}:$PATH ${pkgs.rage}/bin/rage";
     age.identityPaths = [
+      # TODO: Set path to host themself
       "/etc/ssh/pc"
       "/etc/ssh/laptop"
       "/etc/ssh/nas"
