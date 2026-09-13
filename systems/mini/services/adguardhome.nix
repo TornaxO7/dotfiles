@@ -78,6 +78,16 @@ in
             answer = wg0.mini.addr;
             enabled = true;
           }
+          {
+            domain = "*.${wg0.small.host}";
+            answer = wg0.small.addr;
+            enabled = true;
+          }
+          {
+            domain = "*.${wg0.big.host}";
+            answer = wg0.big.addr;
+            enabled = true;
+          }
         ];
 
         dns = rec {

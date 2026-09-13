@@ -14,7 +14,7 @@ in
     # ./services/traefik.nix
     # ./services/website.nix
     # ./services/gokapi.nix
-    # ./services/crowdsec.nix
+    ./services/crowdsec.nix
     # ./services/public-files.nix
   ];
 

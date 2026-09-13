@@ -9,6 +9,8 @@ in
   "gotify-token.age".publicKeys = main;
   "paperless.age".publicKeys = main;
 
+  "crowdsec-enrollkey.age".publicKeys = with keys; [ pc laptop small big ];
+
   "linkwarden/nextauth.age".publicKeys = main;
   "linkwarden/postgres_password.age".publicKeys = main;
   "linkwarden/meili_master_key.age".publicKeys = main;

@@ -1,9 +1,9 @@
 { wg0, ... }:
 {
-  services.openssh = {
-    openFirewall = false;
-    settings.PasswordAuthentication = false;
-  };
+  # services.openssh = {
+  #   openFirewall = false;
+  #   settings.PasswordAuthentication = false;
+  # };
 
   networking = {
     firewall.interfaces = {
