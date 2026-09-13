@@ -61,18 +61,14 @@
     },
     "crowdsec": {
       "locked": {
-        "lastModified": 1789200394,
-        "narHash": "sha256-tXHfmSVsg66nkxmprLQjvEB2p3MvH/gRU40qTT+R17Y=",
-        "owner": "TornaxO7",
-        "repo": "nixpkgs",
-        "rev": "e6e023e061141defdf50b5230c4b6c3c1c7fb36c",
-        "type": "github"
+        "lastModified": 1789321552,
+        "narHash": "sha256-DRgOTFWENWhJxjNZ30CEKMVb6+8zyNYesHxBBAnrRvw=",
+        "path": "/home/tornax/projects/nixpkgs",
+        "type": "path"
       },
       "original": {
-        "owner": "TornaxO7",
-        "ref": "saltsprint",
-        "repo": "nixpkgs",
-        "type": "github"
+        "path": "/home/tornax/projects/nixpkgs",
+        "type": "path"
       }
     },
     "darwin": {

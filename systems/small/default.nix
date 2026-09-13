@@ -10,12 +10,14 @@ in
 
     # 53
     ./services/wireguard.nix
-
-    # ./services/traefik.nix
-    # ./services/website.nix
-    # ./services/gokapi.nix
     ./services/crowdsec.nix
-    # ./services/public-files.nix
+    ./services/traefik.nix
+    ./services/website.nix
+    ./services/gokapi.nix
+    ./services/miasma.nix
+
+    # 49192
+    ./services/emojis.nix
   ];
 
   config = {

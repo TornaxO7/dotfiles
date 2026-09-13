@@ -1,8 +1,8 @@
-{ config, root-domain, wg0, ... }:
+{ config, tld, wg0, ... }:
 let
-  domain = "traefik.${wg0.server.host}";
-
+  domain = "traefik.${wg0.small.host}";
   root-path = "/var/lib/traefik";
+  ips = import ../ips.nix;
 
   ports = {
     http = 80;
@@ -10,7 +10,7 @@ let
   };
 in
 {
-  networking.firewall.interfaces.wg0.allowedTCPPorts = builtins.attrValues ports;
+  networking.firewall.allowedTCPPorts = builtins.attrValues ports;
 
   age.secrets.traefik-dns = {
     owner = "traefik";
@@ -39,17 +39,50 @@ in
 
     staticConfigOptions = {
       entryPoints = {
-        http-vpn = {
-          address = "${wg0.server.addr}:${toString ports.http}";
+        http-ip4 = {
+          address = "${ips.ip4}:${toString ports.http}";
           http.redirections.entryPoint = {
-            to = "https";
+            to = "https-ip4";
             scheme = "https";
           };
         };
 
-        https-vpn = {
-          address = "${wg0.server.addr}:${toString ports.https}";
+        http-ip6 = {
+          address = "[${ips.ip6}]:${toString ports.http}";
+          http.redirections.entryPoint = {
+            to = "https-ip6";
+            scheme = "https";
+          };
+        };
+
+        http-vpn = {
+          address = "${wg0.small.addr}:${toString ports.http}";
+          http.redirections.entryPoint = {
+            to = "https-vpn";
+            scheme = "https";
+          };
+        };
+
+        https-ip4 = {
+          address = "${ips.ip4}:${toString ports.https}";
           asDefault = true;
+          http = {
+            tls.certResolver = "main";
+            middlewares = "tornax07-redirect-to-tornaxo7@file";
+          };
+        };
+
+        https-ip6 = {
+          address = "[${ips.ip6}]:${toString ports.https}";
+          asDefault = true;
+          http = {
+            tls.certResolver = "main";
+            middlewares = "tornax07-redirect-to-tornaxo7@file";
+          };
+        };
+
+        https-vpn = {
+          address = "${wg0.small.addr}:${toString ports.https}";
           http = {
             tls.certResolver = "main";
             middlewares = "tornax07-redirect-to-tornaxo7@file";
@@ -93,7 +126,7 @@ in
           tornax07-redirect-to-tornaxo7 = {
             redirectRegex = {
               regex = "^https://(.*)tornax07.de/(.*)";
-              replacement = "https://\${1}${root-domain}\${2}";
+              replacement = "https://\${1}${tld}\${2}";
             };
           };
         };
