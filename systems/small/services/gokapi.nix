@@ -10,7 +10,7 @@ in
 
     volumes = [
       "gokapi-data:/app/data"
-      "gokapi-config:/app/config/config.json"
+      "gokapi-config:/app/config"
     ];
 
     environment = {
