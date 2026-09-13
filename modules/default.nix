@@ -1,11 +1,24 @@
-{ self, config, pkgs, unstable, inputs, ssh-keys, wg0, hostname, ... }:
+{ self, config, pkgs, unstable, inputs, wg0, hostname, ... }:
 {
+  disabledModules = [
+    "services/security/crowdsec.nix"
+    "services/security/crowdsec-firewall-bouncer.nix"
+  ];
+
   imports = [
     self.nixosModules.bustd
     inputs.home-manager.nixosModules.home-manager
+
+    "${inputs.crowdsec}/nixos/modules/services/security/crowdec.nix"
+    "${inputs.crowdsec}/nixos/modules/services/security/crowdec-firewall-bouncer.nix"
   ];
 
   config = {
+    services = {
+      crowdsec.package = pkgs.callPackage "${inputs.crowdsec}/pkgs/by-name/cr/crowdsec/package.nix" { };
+      crowdsec-firewall-bouncer.package = pkgs.callPackage "${inputs.crowdsec}/pkgs/by-name/cr/crowdsec-firewall-bouncer/package.nix" { };
+    };
+
     boot = {
       tmp.cleanOnBoot = true;
       loader = {
@@ -89,17 +102,27 @@
 
     users = {
       defaultUserShell = pkgs.fish;
-      users = {
-        tornax = {
-          isNormalUser = true;
-          openssh.authorizedKeys.keys = ssh-keys;
-        };
+      users =
+        let
+          all-ssh-keys = import ./ssh-keys.nix;
+          ssh-keys = with all-ssh-keys; [
+            pc
+            pc-file
+            laptop
+            mobile
+          ];
+        in
+        {
+          tornax = {
+            isNormalUser = true;
+            openssh.authorizedKeys.keys = ssh-keys;
+          };
 
-        root = {
-          hashedPassword = "!";
-          openssh.authorizedKeys.keys = ssh-keys;
+          root = {
+            hashedPassword = "!";
+            openssh.authorizedKeys.keys = ssh-keys;
+          };
         };
-      };
     };
 
     home-manager = {

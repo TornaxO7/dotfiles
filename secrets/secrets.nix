@@ -2,7 +2,7 @@ let
   keys = import ../modules/ssh-keys.nix;
 
   main = with keys; [ pc laptop nas ];
-  all = main ++ [ keys.server ];
+  all = main ++ (with keys; [ mini small big ]);
 in
 {
   "deepl.age".publicKeys = main;
@@ -23,6 +23,8 @@ in
   "authelia-storage.age".publicKeys = all;
 
   "homarr.age".publicKeys = all;
+
+  "traefik-dns-challenge.age".publicKeys = all;
 
   "github-runner/TornaxO7.token.age".publicKeys = all;
 }

@@ -39,7 +39,7 @@ in
 
     staticConfigOptions = {
       entryPoints = {
-        http = {
+        http-vpn = {
           address = "${wg0.server.addr}:${toString ports.http}";
           http.redirections.entryPoint = {
             to = "https";
@@ -47,7 +47,7 @@ in
           };
         };
 
-        https = {
+        https-vpn = {
           address = "${wg0.server.addr}:${toString ports.https}";
           asDefault = true;
           http = {
@@ -99,7 +99,7 @@ in
         };
 
         routers.dashboard = {
-          entryPoints = [ "https" ];
+          entryPoints = [ "https-vpn" ];
           rule = "Host(`${domain}`)";
           service = "api@internal";
         };
