@@ -1,4 +1,4 @@
-{ wg0, ... }:
+{ wg0, tld, ... }:
 {
   imports = [
     ../secrets
@@ -15,11 +15,14 @@
     nix.settings.trusted-users = [ "@wheel" ];
 
     networking.hosts = {
-      "${wg0.pc.addr}" = [ wg0.pc.host ];
-      "${wg0.laptop.addr}" = [ wg0.laptop.host ];
-      "${wg0.nas.addr}" = [ wg0.nas.host ];
-      "${wg0.server.addr}" = [ wg0.server.host ];
-      "${wg0.mobile.addr}" = [ wg0.mobile.host ];
+      "${wg0.pc.addr}" = [ "pc.vpn.${tld}" ];
+      "${wg0.laptop.addr}" = [ "laptop.vpn.${tld}" ];
+      "${wg0.nas.addr}" = [ "nas.vpn.${tld}" ];
+      "${wg0.mobile.addr}" = [ "mobile.vpn.${tld}" ];
+
+      "${wg0.mini.addr}" = [ "mini.vpn.${tld}" ];
+      "${wg0.small.addr}" = [ "small.vpn.${tld}" ];
+      "${wg0.big.addr}" = [ "big.vpn.${tld}" ];
 
       "202.61.242.79" = [ "mini" "mini4" ];
       "2a03:4000:52:316::" = [ "mini6" ];

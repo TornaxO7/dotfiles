@@ -1,4 +1,4 @@
-{ self, config, pkgs, unstable, inputs, wg0, hostname, ... }:
+{ self, config, pkgs, unstable, inputs, hostname, ... }:
 {
   disabledModules = [
     "services/security/crowdsec.nix"
@@ -9,8 +9,8 @@
     self.nixosModules.bustd
     inputs.home-manager.nixosModules.home-manager
 
-    "${inputs.crowdsec}/nixos/modules/services/security/crowdec.nix"
-    "${inputs.crowdsec}/nixos/modules/services/security/crowdec-firewall-bouncer.nix"
+    "${inputs.crowdsec}/nixos/modules/services/security/crowdsec.nix"
+    "${inputs.crowdsec}/nixos/modules/services/security/crowdsec-firewall-bouncer.nix"
   ];
 
   config = {
@@ -50,11 +50,9 @@
       hostName = hostname;
       nftables.enable = true;
 
-      # TODO: exclude from iso
       wg-quick.interfaces.wg0 = {
         generatePrivateKeyFile = true;
         privateKeyFile = "/etc/wireguard/private.key";
-        dns = [ wg0.server.addr ];
       };
     };
 

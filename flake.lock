@@ -59,6 +59,22 @@
         "type": "github"
       }
     },
+    "crowdsec": {
+      "locked": {
+        "lastModified": 1789200394,
+        "narHash": "sha256-tXHfmSVsg66nkxmprLQjvEB2p3MvH/gRU40qTT+R17Y=",
+        "owner": "TornaxO7",
+        "repo": "nixpkgs",
+        "rev": "e6e023e061141defdf50b5230c4b6c3c1c7fb36c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TornaxO7",
+        "ref": "saltsprint",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -345,6 +361,7 @@
       "inputs": {
         "agenix": "agenix",
         "bs": "bs",
+        "crowdsec": "crowdsec",
         "flake-parts": "flake-parts_2",
         "helix": "helix",
         "home-manager": "home-manager_2",

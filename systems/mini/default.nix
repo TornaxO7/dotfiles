@@ -1,4 +1,7 @@
-{ ip4, ip6, ... }:
+{ ... }:
+let
+  ips = import ./ips.nix;
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -28,8 +31,8 @@
           DHCPServer = "no";
         };
         address = [
-          "${ip4}/22"
-          "${ip6}/64"
+          "${ips.ip4}/22"
+          "${ips.ip6}/64"
         ];
         routes = [
           { Gateway = "202.61.240.1"; }

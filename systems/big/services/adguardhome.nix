@@ -3,11 +3,13 @@ let
   domain = "dns.${wg0.server.host}";
 in
 {
-  networking.firewall.interfaces."wg0" = {
-    # for ui
-    allowedTCPPorts = [ 3000 ];
-    # for dns requests
-    allowedUDPPorts = [ 53 ];
+  networking = {
+    firewall.interfaces."wg0" = {
+      # for ui
+      allowedTCPPorts = [ 3000 ];
+      # for dns requests
+      allowedUDPPorts = [ 53 ];
+    };
   };
 
   services = {

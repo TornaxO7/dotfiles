@@ -1,6 +1,6 @@
 { config, wg0, ... }:
 let
-  domain = "homer.${wg0.server.host}";
+  domain = "homer.${wg0.mini.host}";
 in
 {
   age.secrets.homer-config = {

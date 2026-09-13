@@ -1,4 +1,4 @@
-{ config, root-domain, wg0, ... }:
+{ config, tld, wg0, ... }:
 let
   services = {
     smtp = "stallwart-smtp";
@@ -15,8 +15,8 @@ let
 
   uid = 2000;
 
-  domain = "mail.${root-domain}";
-  vpn-domain = "mail.${wg0.server.host}";
+  domain = "mail.${tld}";
+  vpn-domain = "mail.${wg0.mini.host}";
 in
 {
   # networking.firewall.allowedTCPPorts = builtins.attrValues ports;
@@ -112,7 +112,7 @@ in
         # "traefik.http.routers.${services.vpn}.service" = "${services.http}";
 
         # https
-        "traefik.http.routers.${services.http}.rule" = "Host(`mta-sts.${root-domain}`)";
+        "traefik.http.routers.${services.http}.rule" = "Host(`mta-sts.${tld}`)";
         "traefik.http.routers.${services.http}.service" = "${services.http}";
         "traefik.http.services.${services.http}.loadbalancer.server.port" = "8080";
       };

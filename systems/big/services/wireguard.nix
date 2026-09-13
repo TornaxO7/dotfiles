@@ -1,10 +1,5 @@
 { wg0, ... }:
 {
-  # services.openssh = {
-  #   openFirewall = false;
-  #   settings.PasswordAuthentication = false;
-  # };
-
   networking = {
     firewall.interfaces = {
       ens3.allowedUDPPorts = [ wg0.port ];
@@ -12,19 +7,13 @@
     };
 
     wg-quick.interfaces.wg0 = {
-      address = [ "${wg0.mini.addr}/32" ];
+      address = [ "${wg0.big.addr}/32" ];
       listenPort = wg0.port;
       peers = [
         {
           publicKey = wg0.pc.publicKey;
           allowedIPs = [
             "${wg0.pc.addr}/32"
-          ];
-        }
-        {
-          publicKey = wg0.nas.publicKey;
-          allowedIPs = [
-            "${wg0.nas.addr}/32"
           ];
         }
         {
@@ -37,12 +26,6 @@
           publicKey = wg0.mobile.publicKey;
           allowedIPs = [
             "${wg0.mobile.addr}/32"
-          ];
-        }
-        {
-          publicKey = wg0.ipad.publicKey;
-          allowedIPs = [
-            "${wg0.ipad.addr}/32"
           ];
         }
       ];

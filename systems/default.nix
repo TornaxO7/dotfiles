@@ -1,66 +1,51 @@
 { self, inputs, lib, ... }:
 let
-  wg-keys = import ../modules/wg-keys.nix;
+  tld = "tornaxo7.de";
 
-  # todo: declare wg networks
-  wg0 = rec {
-    server = {
-      addr = "10.0.0.1";
-
-      # mini
-      # publicKey = "Gird3QH1s/eOpHJ2i2Xv3flYEOVSorKLFN3vsoL41nU=";
-      # ip4 = "202.61.242.79";
-      # ip6 = "2a03:4000:52:316::";
-      # host = "mini.vpn.${domain}";
-
-      # server
-      ip4 = "2.56.97.207";
-      ip6 = "2a03:4000:3e:26f::";
-      publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
-      host = "server.vpn.${domain}";
-    };
+  wg0 = {
+    # clients
     pc = {
-      addr = "10.0.0.2";
+      addr = "10.0.0.1";
       publicKey = "9ZdXIaUIlq6RZJiJvDGgOGzKjtz09VGRUgnmxsjUa1U=";
-      host = "pc.vpn.${domain}";
     };
     nas = {
-      addr = "10.0.0.3";
+      addr = "10.0.0.2";
       publicKey = "iq//654gWYsvFKAOcYNDRmbaYlsgk46NyX4vY2qOPxM=";
-      host = "nas.vpn.${domain}";
     };
     laptop = {
-      addr = "10.0.0.4";
+      addr = "10.0.0.3";
       publicKey = "uv2QNQNv5qpyh21Hj3cawSWHhz1SK2VgcfECk7fnCgc=";
-      host = "laptop.vpn.${domain}";
     };
     mobile = {
-      addr = "10.0.0.5";
+      addr = "10.0.0.4";
       publicKey = "ifkaiOHyvb99Za8kaI/MD0WV39WyvTJ4o5YCGrCv1yE=";
-      host = "mobile.vpn.${domain}";
+    };
+    ipad = {
+      addr = "10.0.0.5";
+      publicKey = "xXEMsTTfRS9iWxkNrS5IQgjVVCDrhceXxxVN6+mxdVo=";
+    };
+
+    # servers
+    mini = {
+      addr = "10.0.0.10";
+      publicKey = "Gird3QH1s/eOpHJ2i2Xv3flYEOVSorKLFN3vsoL41nU=";
+      host = "mini.vpn.${tld}";
+    };
+
+    small = {
+      addr = "10.0.0.11";
+      publicKey = "WLpImVPTt11gjkEcs5TpdzHDUWPm8vdMlHOGSNNx8Es=";
+      host = "small.vpn.${tld}";
+    };
+
+    big = {
+      addr = "10.0.0.12";
+      publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
+      host = "big.vpn.${tld}";
     };
 
     netmask = "10.0.0.0/24";
-    domain = "tornaxo7.de";
-    port = 49200;
-    # port = 53; # (mini)
-  };
-
-  wg1 = {
-    pc = {
-      addr = "10.0.1.2";
-    };
-    nas = {
-      addr = "10.0.1.3";
-    };
-    mobile = {
-      addr = "10.0.1.5";
-    };
-    ipad = {
-      addr = "10.0.1.6";
-      publicKey = "xXEMsTTfRS9iWxkNrS5IQgjVVCDrhceXxxVN6+mxdVo=";
-    };
-    netmask = "10.0.1.0/24";
+    port = 53;
   };
 
   mkSystem =
@@ -77,7 +62,7 @@ let
     in
     inputs.stable.lib.nixosSystem {
       specialArgs = lib.recursiveUpdate specialArgs {
-        inherit self inputs unstable wg0 wg1 hostname;
+        inherit self inputs unstable wg0 hostname tld;
       };
 
       modules = [
@@ -111,28 +96,21 @@ in
         };
       };
 
-      server = mkSystem {
-        config-module = ./server;
-        hostname = "server";
-        specialArgs = {
-          services-root = "/services";
-          root-domain = "toranxo7.de";
-        };
-      };
-
       mini = mkSystem {
         config-module = ./mini;
         hostname = "mini";
-        specialArgs = {
-          root-domain = "tornaxo7.de";
-        };
       };
 
       small = mkSystem {
         config-module = ./small;
         hostname = "small";
+      };
+
+      big = mkSystem {
+        config-module = ./big;
+        hostname = "big";
         specialArgs = {
-          root-domain = "tornaxo7.de";
+          services-root = "/services";
         };
       };
 

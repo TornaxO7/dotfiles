@@ -1,6 +1,6 @@
-{ config, root-domain, wg0, ... }:
+{ config, tld, wg0, ... }:
 let
-  domain = "traefik.${wg0.server.host}";
+  domain = "traefik.${wg0.mini.host}";
 
   root-path = "/var/lib/traefik";
 
@@ -40,7 +40,7 @@ in
     staticConfigOptions = {
       entryPoints = {
         http = {
-          address = "${wg0.server.addr}:${toString ports.http}";
+          address = "${wg0.mini.addr}:${toString ports.http}";
           http.redirections.entryPoint = {
             to = "https";
             scheme = "https";
@@ -48,7 +48,7 @@ in
         };
 
         https = {
-          address = "${wg0.server.addr}:${toString ports.https}";
+          address = "${wg0.mini.addr}:${toString ports.https}";
           asDefault = true;
           http = {
             tls.certResolver = "main";
@@ -93,7 +93,7 @@ in
           tornax07-redirect-to-tornaxo7 = {
             redirectRegex = {
               regex = "^https://(.*)tornax07.de/(.*)";
-              replacement = "https://\${1}${root-domain}\${2}";
+              replacement = "https://\${1}${tld}\${2}";
             };
           };
         };

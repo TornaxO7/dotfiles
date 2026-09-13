@@ -1,15 +1,22 @@
-{ wg0, wg1, ... }:
+{ wg0, ... }:
+let
+  mini =
+    let
+      mini-ips = import ../mini/ips.nix;
+      ip4 = mini-ips.ip4;
+    in
+    {
+      publicKey = wg0.mini.publicKey;
+      allowedIPs = [ wg0.netmask ];
+      endpoint = "${ip4}:${builtins.toString wg0.port}";
+      persistentKeepalive = 30;
+    };
+in
 {
   networking.wg-quick.interfaces.wg0 = {
-    address = [ "${wg0.nas.addr}/32" "${wg1.nas.addr}/32" ];
+    dns = [ wg0.mini.addr ];
+    address = [ "${wg0.nas.addr}/32" ];
     mtu = 1400;
-    peers = [
-      {
-        publicKey = wg0.server.publicKey;
-        allowedIPs = [ wg0.netmask wg1.netmask ];
-        endpoint = "${wg0.server.ip4}:${builtins.toString wg0.port}";
-        persistentKeepalive = 60;
-      }
-    ];
+    peers = [ mini ];
   };
 }

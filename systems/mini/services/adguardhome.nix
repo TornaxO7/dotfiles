@@ -1,6 +1,6 @@
-{ config, lib, wg0, ... }:
+{ config, lib, wg0, tld, ... }:
 let
-  domain = "dns.${wg0.server.host}";
+  domain = "dns.${wg0.mini.host}";
   dns-port = 49200;
 in
 {
@@ -9,11 +9,11 @@ in
       # for ui
       allowedTCPPorts = [ 3000 ];
       # for dns requests
-      allowedUDPPorts = [ 53 ];
+      allowedUDPPorts = [ 53 dns-port ];
     };
 
     nameservers = [
-      "127.0.0.7"
+      wg0.mini.addr
     ];
 
     nftables.tables.wg0-dns-server = {
@@ -21,12 +21,12 @@ in
       content = ''
         chain wg0-dns-server {
           type nat hook prerouting priority dstnat;
-          udp dport 53 ip daddr ${wg0.server.addr} dnat to 127.0.0.1:${toString dns-port} comment "Incoming wg0 dns requests";
+          iifname "wg0" udp dport 53 redirect to :${toString dns-port} comment "Incoming wg0 dns requests";
         }
 
         chain wg0-dns-server-from-mini-itself {
           type nat hook output priority dstnat;
-          udp dport 53 ip daddr ${wg0.server.addr} dnat to 127.0.0.1:${toString dns-port} comment "Outgoig (from `mini` itself) wg0 dns requests";
+          ip daddr ${wg0.mini.addr} udp dport 53 dnat to ${wg0.mini.addr}:${toString dns-port} comment "Outgoig (from `mini` itself) wg0 dns requests";
         }
       '';
     };
@@ -35,10 +35,10 @@ in
   services = {
     adguardhome = {
       enable = true;
-      host = wg0.server.addr;
+      host = wg0.mini.addr;
       settings = {
         http = {
-          address = wg0.server.addr;
+          address = wg0.mini.addr;
           pprof.enabled = false;
         };
 
@@ -69,19 +69,19 @@ in
 
         filtering.rewrites = [
           {
-            domain = "*.${wg0.nas.host}";
+            domain = "*.nas.vpn.${tld}";
             answer = wg0.nas.addr;
             enabled = true;
           }
           {
-            domain = "*.${wg0.server.host}";
-            answer = wg0.server.addr;
+            domain = "*.${wg0.mini.host}";
+            answer = wg0.mini.addr;
             enabled = true;
           }
         ];
 
         dns = rec {
-          bind_hosts = [ "127.0.0.1" ];
+          bind_hosts = [ wg0.mini.addr ];
           port = dns-port;
           ratelimit = 0;
           enable_dnssec = true;
@@ -161,8 +161,8 @@ in
 
         clients.persistent = map (lib.mergeAttrs { use_global_settings = true; }) [
           {
-            name = "server";
-            ids = [ wg0.server.addr ];
+            name = "mini";
+            ids = [ wg0.mini.addr ];
           }
           {
             name = "pc";
