@@ -20,11 +20,11 @@
       "${wg0.nas.addr}" = [ "nas.vpn.${tld}" ];
       "${wg0.mobile.addr}" = [ "mobile.vpn.${tld}" ];
 
-      "${wg0.mini.addr}" = [ "mini.vpn.${tld}" ];
+      "${wg0.mini.addr}" = [ "mini" "mini.vpn.${tld}" ];
       "${wg0.small.addr}" = [ "small.vpn.${tld}" ];
       "${wg0.big.addr}" = [ "big.vpn.${tld}" ];
 
-      "202.61.242.79" = [ "mini" "mini4" ];
+      "202.61.242.79" = [ "mini4" ];
       "2a03:4000:52:316::" = [ "mini6" ];
 
       "202.61.242.142" = [ "small" "small4" ];
