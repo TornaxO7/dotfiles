@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     ./wireguard.nix
     ./home
-    # ./led.nix
+    ./led.nix
 
     ./zfs
 
