@@ -92,7 +92,7 @@ in
           zpool-root = "/${zpool-name}";
 
           services-root = "/services";
-          root-domain = "nas.vpn.tornaxo7.de";
+          root-domain = "nas.vpn.${tld}";
         };
       };
 
