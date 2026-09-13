@@ -6,6 +6,10 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../modules/netcup.nix
+    ./secrets
+
+    # 53
+    ./services/wireguard.nix
 
     # ./services/traefik.nix
     # ./services/website.nix
@@ -15,23 +19,27 @@ in
   ];
 
   config = {
-    systemd.network.networks."10-main" = {
-      matchConfig = {
-        Name = "ens3";
+    systemd.network = {
+      enable = true;
+
+      networks."10-main" = {
+        matchConfig = {
+          Name = "ens3";
+        };
+        networkConfig = {
+          DHCP = "no";
+          DHCPServer = "no";
+        };
+        address = [
+          "${ips.ip4}/22"
+          "${ips.ip6}/64"
+        ];
+        routes = [
+          { Gateway = "202.61.240.1"; }
+          { Gateway = "fe80::1"; }
+        ];
+        linkConfig.RequiredForOnline = "routable";
       };
-      networkConfig = {
-        DHCP = "no";
-        DHCPServer = "no";
-      };
-      addresses = [
-        "${ips.ip4}/22"
-        "${ips.ip6}/64"
-      ];
-      routes = [
-        { Gateway = "202.61.240.1"; }
-        { Gateway = "fe80::1"; }
-      ];
-      linkConfig.RequiredForOnline = "routable";
     };
   };
 }

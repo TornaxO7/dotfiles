@@ -1,5 +1,10 @@
 { wg0, ... }:
 {
+  services.openssh = {
+    openFirewall = false;
+    settings.PasswordAuthentication = false;
+  };
+
   networking = {
     firewall.interfaces = {
       ens3.allowedUDPPorts = [ wg0.port ];

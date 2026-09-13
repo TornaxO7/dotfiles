@@ -21,13 +21,13 @@
       "${wg0.mobile.addr}" = [ "mobile.vpn.${tld}" ];
 
       "${wg0.mini.addr}" = [ "mini" "mini.vpn.${tld}" ];
-      "${wg0.small.addr}" = [ "small.vpn.${tld}" ];
+      "${wg0.small.addr}" = [ "small" "small.vpn.${tld}" ];
       "${wg0.big.addr}" = [ "big.vpn.${tld}" ];
 
       "202.61.242.79" = [ "mini4" ];
       "2a03:4000:52:316::" = [ "mini6" ];
 
-      "202.61.242.142" = [ "small" "small4" ];
+      "202.61.242.142" = [ "small4" ];
       "2a03:4000:52:ebc::" = [ "small6" ];
 
       "2.56.97.207" = [ "big" "big4" ];
