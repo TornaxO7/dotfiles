@@ -4,7 +4,7 @@
     ./yazi
     ./helix.nix
     ./zathura.nix
-    ./opencode
+    # ./opencode
     # ./bugstalker.nix
     ./claude-code.nix
     ./zellij.nix
