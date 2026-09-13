@@ -20,7 +20,7 @@ let
     {
 
       publicKey = wg0.small.publicKey;
-      allowedIPs = [ wg0.netmask ];
+      allowedIPs = [ wg0.small.addr ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
       persistentKeepalive = 30;
     };
@@ -33,7 +33,7 @@ let
     {
 
       publicKey = wg0.big.publicKey;
-      allowedIPs = [ wg0.netmask ];
+      allowedIPs = [ wg0.big.addr ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
       persistentKeepalive = 30;
     };
