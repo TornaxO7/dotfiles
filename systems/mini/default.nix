@@ -15,7 +15,7 @@ in
 
     ./services/traefik.nix
     ./services/stalwart-docker.nix
-    ./services/homer
+    ./services/homarr.nix
   ];
 
   config = {

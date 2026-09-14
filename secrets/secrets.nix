@@ -15,6 +15,8 @@ in
   "linkwarden/postgres_password.age".publicKeys = main;
   "linkwarden/meili_master_key.age".publicKeys = main;
 
+  "homarr.age".publicKeys = with keys; [ pc laptop mini ];
+
   "grafana/admin-password.age".publicKeys = all;
   "grafana/secret-key.age".publicKeys = all;
 
@@ -23,8 +25,6 @@ in
   "authelia-jwt.age".publicKeys = all;
   "authelia-session.age".publicKeys = all;
   "authelia-storage.age".publicKeys = all;
-
-  "homarr.age".publicKeys = all;
 
   "traefik-dns-challenge.age".publicKeys = all;
 
