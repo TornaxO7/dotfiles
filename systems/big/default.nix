@@ -7,6 +7,8 @@ in
     ./hardware-configuration.nix
     ../../modules/netcup.nix
     ./secrets.nix
+
+    ./services/wireguard.nix
   ];
 
   config = {
