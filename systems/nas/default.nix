@@ -6,6 +6,7 @@
     ./wireguard.nix
     ./home
     ./led.nix
+    ./secrets.nix
 
     ./zfs
 

@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./wireguard.nix
     ./home
+    ./secrets.nix
     # ./crowdsec.nix
 
     ../../modules/default_main.nix

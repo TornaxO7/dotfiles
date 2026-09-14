@@ -16,13 +16,6 @@ in
     environment.systemPackages = [ inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
     age.ageBin = "PATH=${makeBinPath [pkgs.age-plugin-yubikey]}:$PATH ${pkgs.rage}/bin/rage";
-    age.identityPaths = [
-      # TODO: Set path to host themself
-      "/etc/ssh/pc"
-      "/etc/ssh/laptop"
-      "/etc/ssh/nas"
-    ];
-
     age.secrets = {
       deepl = add-secret ./deepl.age;
       gotify-token = add-secret ./gotify-token.age;
