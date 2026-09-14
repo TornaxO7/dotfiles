@@ -105,8 +105,9 @@
           all-ssh-keys = import ./ssh-keys.nix;
           ssh-keys = with all-ssh-keys; [
             pc
-            pc-file
+            pc-sk
             laptop
+            laptop-sk
             mobile
           ];
         in

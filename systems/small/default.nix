@@ -17,7 +17,7 @@ in
     ./services/miasma.nix
 
     # 49192
-    ./services/emojis.nix
+    ./services/public-files.nix
   ];
 
   config = {

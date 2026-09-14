@@ -1,45 +1,45 @@
 { config, pkgs, lib, tld, ... }:
 let
-  domain = "emojis.${tld}";
+  domain = "public-files.${tld}";
   port = 49192;
 in
 {
   users = {
     users = {
-      emojis = {
+      public-files = {
         isSystemUser = true;
-        home = "/var/lib/emojis";
+        home = "/var/lib/public-files";
         createHome = true;
-        group = "emojis";
+        group = "public-files";
       };
 
-      tornax.extraGroups = [ "emojis" ];
+      tornax.extraGroups = [ "public-files" ];
     };
 
-    groups.emojis = { };
+    groups.public-files = { };
   };
 
   systemd = {
-    tmpfiles.settings.emojis = {
-      "/var/lib/emojis".d = {
-        user = "emojis";
-        group = "emojis";
+    tmpfiles.settings.public-files = {
+      "/var/lib/public-files".d = {
+        user = "public-files";
+        group = "public-files";
         mode = "0770";
       };
 
-      "/var/lib/emojis/files".d = {
-        user = "emojis";
-        group = "emojis";
+      "/var/lib/public-files/files".d = {
+        user = "public-files";
+        group = "public-files";
         mode = "0770";
       };
     };
 
-    services.emojis = {
+    services.public-files = {
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
-        User = "emojis";
-        Group = "emojis";
+        User = "public-files";
+        Group = "public-files";
 
         DynamicUser = true;
         ProtectHome = true;
@@ -62,21 +62,21 @@ in
         SystemCallArchitectures = "native";
         RestrictAddressFamilies = [ ];
 
-        ReadOnlyPaths = [ "/var/lib/emojis/files" ];
+        ReadOnlyPaths = [ "/var/lib/public-files/files" ];
 
         Type = "simple";
-        ExecStart = "${lib.getExe pkgs.caddy} file-server --browse --root ${config.users.users.emojis.home}/files --listen 127.0.0.1:${toString port}";
+        ExecStart = "${lib.getExe pkgs.caddy} file-server --browse --root ${config.users.users.public-files.home}/files --listen 127.0.0.1:${toString port}";
       };
     };
   };
 
   services.traefik.dynamicConfigOptions.http = {
-    routers.emojis = {
+    routers.public-files = {
       rule = "Host(`${domain}`)";
-      service = "emojis";
+      service = "public-files";
     };
 
-    services.emojis.loadbalancer.servers = [
+    services.public-files.loadbalancer.servers = [
       {
         url = "http://127.0.0.1:${toString port}";
       }
