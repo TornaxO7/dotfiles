@@ -1,4 +1,4 @@
-{ config, zpool-root, root-domain, ... }:
+{ config, zpool-root, wg0, ... }:
 let
   username = config.users.users.tornax.name;
 
@@ -15,8 +15,8 @@ let
     cartoons = "${root}/cartoons";
   };
 
-  domain = "jellyfin.${root-domain}";
-  metube-domain = "metube.${root-domain}";
+  domain = "jellyfin.${wg0.nas.host}";
+  metube-domain = "metube.${wg0.nas.host}";
 in
 {
   config = {

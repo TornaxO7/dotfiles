@@ -20,6 +20,8 @@ in
   "grafana/admin-password.age".publicKeys = all;
   "grafana/secret-key.age".publicKeys = all;
 
+  "n8n-runners-auth-token.age".publicKeys = with keys; [ pc laptop nas ];
+
   "crowdsec.age".publicKeys = all;
 
   "authelia-jwt.age".publicKeys = all;

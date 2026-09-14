@@ -1,6 +1,6 @@
-{ root-domain, zpool-root, ... }:
+{ wg0, zpool-root, ... }:
 let
-  domain = "timetagger.${root-domain}";
+  domain = "timetagger.${wg0.nas.host}";
 in
 {
   virtualisation.oci-containers.containers.timetagger = {

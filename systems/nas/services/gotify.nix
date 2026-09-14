@@ -1,11 +1,11 @@
-{ config, root-domain, services-root, ... }:
+{ config, wg0, ... }:
 let
   prefix = "gotify";
 
-  domain = "${prefix}.${root-domain}";
+  domain = "${prefix}.${wg0.nas.host}";
 
   paths = {
-    root = "${services-root}/${prefix}";
+    root = "/var/lib/${prefix}";
   };
 in
 {

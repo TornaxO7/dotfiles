@@ -1,6 +1,6 @@
-{ root-domain, ... }:
+{ wg0, ... }:
 let
-  domain = "syncthing.${root-domain}";
+  domain = "syncthing.${wg0.nas.host}";
   port = 49204;
 in
 {

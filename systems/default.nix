@@ -11,6 +11,7 @@ let
     nas = {
       addr = "10.0.0.2";
       publicKey = "iq//654gWYsvFKAOcYNDRmbaYlsgk46NyX4vY2qOPxM=";
+      host = "nas.vpn.${tld}";
     };
     laptop = {
       addr = "10.0.0.3";
@@ -91,7 +92,6 @@ in
           zpool-name = "hdds";
           zpool-root = "/${zpool-name}";
 
-          services-root = "/services";
           root-domain = "nas.vpn.${tld}";
         };
       };

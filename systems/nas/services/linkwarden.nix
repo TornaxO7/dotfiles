@@ -1,6 +1,6 @@
-{ config, root-domain, zpool-root, ... }:
+{ config, wg0, zpool-root, ... }:
 let
-  domain = "linkwarden.${root-domain}";
+  domain = "linkwarden.${wg0.nas.host}";
 
   add-secret = path: {
     owner = config.services.linkwarden.user;

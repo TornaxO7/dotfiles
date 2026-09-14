@@ -1,8 +1,8 @@
-{ zpool-root, root-domain, ... }:
+{ zpool-root, wg0, ... }:
 let
   prefix = "filebrowser";
 
-  domain = "${prefix}.${root-domain}";
+  domain = "${prefix}.${wg0.nas.host}";
 in
 {
   config = {

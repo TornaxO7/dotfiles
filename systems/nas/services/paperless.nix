@@ -1,7 +1,7 @@
-{ config, zpool-root, root-domain, ... }:
+{ config, zpool-root, wg0, ... }:
 let
   user = "tornax";
-  domain = "paperless.${root-domain}";
+  domain = "paperless.${wg0.nas.host}";
 in
 {
   config = {

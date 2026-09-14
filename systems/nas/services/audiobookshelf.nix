@@ -1,6 +1,6 @@
-{ config, zpool-root, root-domain, ... }:
+{ config, zpool-root, wg0, ... }:
 let
-  domain = "audiobookshelf.${root-domain}";
+  domain = "audiobookshelf.${wg0.nas.host}";
 
   dir = "${zpool-root}/audiobookshelf";
 in

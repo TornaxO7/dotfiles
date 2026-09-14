@@ -1,4 +1,4 @@
-{ config, pkgs, services-root, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../../modules/default_main.nix
@@ -24,6 +24,8 @@
     ./services/syncthing.nix
     # 49205
     ./services/memos.nix
+    # 49206
+    ./services/n8n.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     ./services/audiobookshelf.nix
@@ -35,20 +37,13 @@
   ];
 
   config = {
-
     environment.systemPackages = with pkgs; [
       podman
       podman-compose
     ];
 
-    systemd.tmpfiles.settings.services-dir = {
-      "${services-root}".d = {
-        user = config.users.users.tornax.name;
-        group = config.users.users.tornax.name;
-      };
-    };
-
     networking = {
+      # for zfs
       hostId = "17b02087";
 
       # allow DNS resolver for the docker networks

@@ -1,6 +1,6 @@
-{ zpool-root, root-domain, unstable, ... }:
+{ zpool-root, wg0, unstable, ... }:
 let
-  domain = "immich.${root-domain}";
+  domain = "immich.${wg0.nas.host}";
 in
 {
   services = rec {

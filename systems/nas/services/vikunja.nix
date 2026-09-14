@@ -1,4 +1,4 @@
-{ config, zpool-root, root-domain, ... }:
+{ config, zpool-root, wg0, ... }:
 let
   bind-root = "${zpool-root}/vikunja";
   binds = {
@@ -11,7 +11,7 @@ let
     group = config.users.users.tornax.name;
   };
 
-  domain = "vikunja.${root-domain}";
+  domain = "vikunja.${wg0.nas.host}";
 in
 {
   systemd.tmpfiles.settings.vikunja = {
