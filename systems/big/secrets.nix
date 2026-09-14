@@ -7,7 +7,7 @@
   config = {
     age = {
       identityPaths = [
-        "/etc/ssh/server"
+        "/etc/ssh/big"
       ];
     };
   };

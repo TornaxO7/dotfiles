@@ -109,9 +109,6 @@ in
       big = mkSystem {
         config-module = ./big;
         hostname = "big";
-        specialArgs = {
-          services-root = "/services";
-        };
       };
 
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage

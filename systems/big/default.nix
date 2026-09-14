@@ -1,114 +1,42 @@
-{ config, pkgs, services-root, ... }:
+{ ... }:
+let
+  ips = import ./ips.nix;
+in
 {
   imports = [
-    ./secrets.nix
     ./hardware-configuration.nix
-
-    # ports: 80, 443
-    ./services/traefik.nix
-    ./services/website.nix
-
-    ./services/github-runner/vibe-ci.nix
-
-    # ports: 53, 3000
-    ./services/adguardhome.nix
-    ./services/homarr.nix
-    # ./services/watchtower.nix
-
-    # port: 49162
-    ./services/authelia
-    # port: 49163
-    ./services/grafana.nix
-    # ports: [49170 - 49180)
-    ./services/victoria-metrics
-    # ports: [49180 - 49190)
-    # soon: Switch to crowdsec (in a good way)
-    ./services/crowdsec-docker
-
-    # port: 49190
-    ./services/wireguard.nix
-    # port: 49191
-    ./services/anubis.nix
-    # port: 49192
-    ./services/emojis.nix
-    # port: 49193
-    ./services/public-files.nix
-    # port: 49194
-    # other wireguard
-    # port: 49195
-    ./services/miasma.nix
-
-    ./services/stalwart.nix
+    ../../modules/netcup.nix
+    ./secrets.nix
   ];
 
   config = {
-    environment.systemPackages = with pkgs; [
-      podman-compose
-      helix
-      bottom
-    ];
-
-    systemd.tmpfiles.rules = [
-      "d ${services-root} 0751 root ${config.users.groups.services.name} -"
-    ];
-
-    services = {
-      openssh = {
-        openFirewall = false;
-        settings.PasswordAuthentication = false;
-      };
-      qemuGuest.enable = true;
-    };
-
-    networking =
-      let
-        ips = import ./ips.nix;
-      in
+    services.openssh.hostKeys = [
       {
-        interfaces.ens3.ipv6.addresses = [
-          {
-            address = ips.ip6;
-            prefixLength = 64;
-          }
-        ];
-      };
+        path = "/etc/ssh/big";
+        type = "ed25519";
+      }
+    ];
 
-    virtualisation = {
-      podman = {
-        enable = true;
-        dockerCompat = true;
-        defaultNetwork.settings.dns_enabled = true;
-      };
+    systemd.network = {
+      enable = true;
 
-      oci-containers.backend = "podman";
-    };
-
-    systemd = {
-      services.podman-auto-update.wantedBy = [ "multi-user.target" ];
-      # timers.podman-auto-update = {
-      #   wantedBy = [ "timers.target" ];
-      #   timerConfig = {
-      #     OnCalendar = "daily";
-      #     RandomizedDelaySec = "1h";
-      #   };
-      # };
-    };
-
-    security.sudo-rs.enable = true;
-
-    users = {
-      mutableUsers = false;
-      users = {
-        tornax = {
-          openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEwQ1FO2lkd7ecYc/3GCo2yTWgo1V86uYUpX87bzFPhU tornax@pc"
-          ];
+      networks."10-main" = {
+        matchConfig = {
+          Name = "ens3";
         };
-      };
-
-      groups = {
-        # To access `services-root`
-        services = { };
+        networkConfig = {
+          DHCP = "no";
+          DHCPServer = "no";
+        };
+        address = [
+          "${ips.ip4}/22"
+          "${ips.ip6}/64"
+        ];
+        routes = [
+          { Gateway = "2.56.96.1"; }
+          { Gateway = "fe80::1"; }
+        ];
+        linkConfig.RequiredForOnline = "routable";
       };
     };
   };
