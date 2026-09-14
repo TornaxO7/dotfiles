@@ -31,7 +31,6 @@ let
       ip4 = big-ips.ip4;
     in
     {
-
       publicKey = wg0.big.publicKey;
       allowedIPs = [ wg0.big.addr ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
