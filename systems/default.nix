@@ -40,7 +40,7 @@ let
 
     big = {
       addr = "10.0.0.12";
-      publicKey = "PHvgf7n+aPJpJVxLz0g9H2JadIPCRvOeeN0azVsfXnw=";
+      publicKey = "4FFlZXFzV7qa4Vsiqc+XbuuWOGK/Zi+7EIXEU1WkvW8=";
       host = "big.vpn.${tld}";
     };
 

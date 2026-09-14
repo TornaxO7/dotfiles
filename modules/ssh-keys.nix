@@ -9,5 +9,5 @@
 
   mini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAjL+ebrqmJ+XrlDdUH63GZKcCTrZGOvmO1EqtsLWFjp root@mini";
   small = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPWscSLfKZRm9poJGiINGsgSob4k7ekPCHcepLmcPHbP root@small";
-  big = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMsm8adwS6SbUwBDhOTqpmzbC+s9oqmtkNAP7DO/txos root@big";
+  big = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARaOWEj0m6LRXVPUxyw+bGbacIxbEVfN2vF9oCW3nO9 root@big";
 }
