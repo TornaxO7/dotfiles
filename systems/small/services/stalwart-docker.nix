@@ -16,10 +16,10 @@ let
   uid = 2000;
 
   domain = "mail.${tld}";
-  vpn-domain = "mail.${wg0.mini.host}";
+  vpn-domain = "mail.${wg0.small.host}";
 in
 {
-  # networking.firewall.allowedTCPPorts = builtins.attrValues ports;
+  networking.firewall.allowedTCPPorts = builtins.attrValues ports;
 
   users = {
     users.stalwart = {
@@ -77,7 +77,7 @@ in
       ];
 
       environment = {
-        STALWART_PUBLIC_URL = "http://${vpn-domain}";
+        STALWART_PUBLIC_URL = "https://${vpn-domain}";
       };
 
       labels = {

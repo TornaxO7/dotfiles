@@ -14,7 +14,6 @@ in
     ./services/adguardhome.nix
 
     ./services/traefik.nix
-    ./services/stalwart-docker.nix
     ./services/homarr.nix
   ];
 

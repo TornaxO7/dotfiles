@@ -15,6 +15,7 @@ in
     ./services/website.nix
     ./services/gokapi.nix
     ./services/miasma.nix
+    # ./services/stalwart-docker.nix
 
     # 49192
     ./services/public-files.nix
