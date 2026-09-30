@@ -24,6 +24,8 @@ in
 
   "crowdsec.age".publicKeys = all;
 
+  "happier-env-vars.age".publicKeys = with keys; [ pc laptop nas big ];
+
   "authelia-jwt.age".publicKeys = all;
   "authelia-session.age".publicKeys = all;
   "authelia-storage.age".publicKeys = all;

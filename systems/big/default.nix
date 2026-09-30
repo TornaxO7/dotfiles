@@ -1,4 +1,4 @@
-{ ... }:
+{ wg0, ... }:
 let
   ips = import ./ips.nix;
 in
@@ -8,9 +8,10 @@ in
     ../../modules/netcup.nix
     ./secrets.nix
 
+    # 53
     ./services/wireguard.nix
     ./services/traefik.nix
-    ./services/openhands.nix
+    ./services/happier.nix
 
     # 49192
     ./services/forgejo.nix
@@ -59,6 +60,8 @@ in
       "86.54.11.13"
       "2a13:1001::86:54:11:13"
     ];
+
+    programs.nix-ld.enable = true;
 
     systemd.network = {
       enable = true;
