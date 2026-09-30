@@ -1,4 +1,4 @@
-{ wg0, ... }:
+{ ... }:
 let
   ips = import ./ips.nix;
 in
