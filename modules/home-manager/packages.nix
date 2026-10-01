@@ -20,6 +20,7 @@ let
     difftastic
     dig
     distrobox
+    dua
     evcxr
     fend
     ffmpeg_6-full
