@@ -9,7 +9,7 @@
     self.nixosModules.bustd
     inputs.home-manager.nixosModules.home-manager
 
-    "${inputs.crowdsec}/nixos/modules/services/security/crowdsec.nix"
+    "${inputs.crowdsec}/nixos/modules/services/security/crowdsec"
     "${inputs.crowdsec}/nixos/modules/services/security/crowdsec-firewall-bouncer.nix"
   ];
 
@@ -64,7 +64,11 @@
     ];
 
     # disable due to fish: https://discourse.nixos.org/t/slow-build-at-building-man-cache/52365/2?u=tornaxo7
-    documentation.man.cache.enable = false;
+    documentation = {
+      man.cache.enable = false;
+      # until crowdsec doc has been released in stable
+      nixos.enable = false;
+    };
 
     environment = {
       systemPackages = with pkgs; [
