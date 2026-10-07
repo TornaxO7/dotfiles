@@ -34,8 +34,6 @@
       "2a03:4000:3e:26f::" = [ "big6" ];
     };
 
-    environment.localBinInPath = true;
-
     users = {
       groups = {
         plugdev = { };
