@@ -40,7 +40,6 @@ let
     pastel
     pkg-config
     powertop
-    python312
     rsync
     speedtest-cli
     trippy

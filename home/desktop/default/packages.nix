@@ -14,6 +14,7 @@ let
     signal-desktop
     simplescreenrecorder
     spotify
+    uv
     vimiv-qt
     vlc
     xclip
