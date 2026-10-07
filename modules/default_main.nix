@@ -54,6 +54,8 @@
       };
     };
 
+    programs.nix-ld.enable = true;
+
     home-manager.users.tornax = { ... }: {
       imports = [
         ./home-manager/packages.nix
