@@ -69,9 +69,9 @@ in
           command = "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server";
         };
 
-        pylyzer = {
-          command = "${pkgs.pylyzer}/bin/pylyzer";
-          args = [ "--server" ];
+        ty = {
+          command = "${lib.getExe pkgs.ty}";
+          args = [ "server" ];
         };
 
         yaml = {
@@ -159,7 +159,7 @@ in
           name = "python";
           auto-format = true;
           file-types = [ "python" "py" ];
-          language-servers = [ "pylyzer" ];
+          language-servers = [ "ty" ];
         }
         {
           name = "nix";
