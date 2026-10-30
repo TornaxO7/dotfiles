@@ -18,6 +18,7 @@ in
   ];
 
   config = {
+    # TODO: Move to `modules/default.nix`
     services.openssh.hostKeys = [
       {
         path = "/etc/ssh/mini";

@@ -4,7 +4,6 @@
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-26.05";
-    crowdsec.url = "path:/home/tornax/projects/nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "stable";

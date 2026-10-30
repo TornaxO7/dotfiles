@@ -23,6 +23,7 @@
       "${wg0.mini.addr}" = [ "mini" "mini.vpn.${tld}" ];
       "${wg0.small.addr}" = [ "small" "small.vpn.${tld}" ];
       "${wg0.big.addr}" = [ "big" "big.vpn.${tld}" ];
+      "${wg0.chungus.addr}" = [ "chungus" "chungus.vpn.${tld}" ];
 
       "202.61.242.79" = [ "mini4" ];
       "2a03:4000:52:316::" = [ "mini6" ];
@@ -32,6 +33,9 @@
 
       "2.56.97.207" = [ "big4" ];
       "2a03:4000:3e:26f::" = [ "big6" ];
+
+      "62.83.39.133" = [ "chungus4" ];
+      "2a03:4000:6:a207::" = [ "chungus6" ];
     };
 
     users = {

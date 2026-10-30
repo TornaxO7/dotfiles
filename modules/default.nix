@@ -9,14 +9,14 @@
     self.nixosModules.bustd
     inputs.home-manager.nixosModules.home-manager
 
-    "${inputs.crowdsec}/nixos/modules/services/security/crowdsec"
-    "${inputs.crowdsec}/nixos/modules/services/security/crowdsec-firewall-bouncer.nix"
+    "${inputs.unstable}/nixos/modules/services/security/crowdsec"
+    "${inputs.unstable}/nixos/modules/services/security/crowdsec-firewall-bouncer.nix"
   ];
 
   config = {
     services = {
-      crowdsec.package = pkgs.callPackage "${inputs.crowdsec}/pkgs/by-name/cr/crowdsec/package.nix" { };
-      crowdsec-firewall-bouncer.package = pkgs.callPackage "${inputs.crowdsec}/pkgs/by-name/cr/crowdsec-firewall-bouncer/package.nix" { };
+      crowdsec.package = pkgs.callPackage "${inputs.unstable}/pkgs/by-name/cr/crowdsec/package.nix" { };
+      crowdsec-firewall-bouncer.package = pkgs.callPackage "${inputs.unstable}/pkgs/by-name/cr/crowdsec-firewall-bouncer/package.nix" { };
     };
 
     boot = {

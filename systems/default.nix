@@ -45,6 +45,12 @@ let
       host = "big.vpn.${tld}";
     };
 
+    chungus = {
+      addr = "10.0.0.13";
+      publicKey = "06ceXFxDtO6NNawTfbZjKr1itaJQS8XUABOvlO7UHQU=";
+      host = "chungus.vpn.${tld}";
+    };
+
     netmask = "10.0.0.0/24";
     port = 53;
   };
@@ -111,6 +117,11 @@ in
         hostname = "big";
       };
 
+      chungus = mkSystem {
+        config-module = ./chungus;
+        hostname = "chungus";
+      };
+
       # nix build .#nixosConfigurations.iso.config.system.build.isoImage
       #
       # Just enter root automatically...
@@ -126,6 +137,8 @@ in
               environment.systemPackages = with pkgs; [
                 helix
               ];
+
+              documentation.doc.enable = false;
 
               security = {
                 sudo.enable = false;
