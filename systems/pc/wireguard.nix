@@ -37,18 +37,17 @@ let
       persistentKeepalive = 30;
     };
 
-  chungus =
-
-    let
-      chungus-ips = import ../chungus/ips.nix;
-      ip4 = chungus-ips.ip4;
-    in
-    {
-      publicKey = wg0.chungus.publicKey;
-      allowedIPs = [ wg0.chungus.addr ];
-      endpoint = "${ip4}:${builtins.toString wg0.port}";
-      persistentKeepalive = 30;
-    };
+  # chungus =
+  #   let
+  #     chungus-ips = import ../chungus/ips.nix;
+  #     ip4 = chungus-ips.ip4;
+  #   in
+  #   {
+  #     publicKey = wg0.chungus.publicKey;
+  #     allowedIPs = [ wg0.chungus.addr ];
+  #     endpoint = "${ip4}:${builtins.toString wg0.port}";
+  #     persistentKeepalive = 30;
+  #   };
 in
 {
   networking = {
@@ -56,7 +55,7 @@ in
       dns = [ wg0.mini.addr ];
       address = [ "${wg0.pc.addr}/32" ];
       mtu = 1400;
-      peers = [ mini small big chungus ];
+      peers = [ mini small big ];
     };
   };
 }

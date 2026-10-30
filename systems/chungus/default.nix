@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 let
   ips = import ./ips.nix;
 in
@@ -7,10 +7,9 @@ in
     ./hardware-configuration.nix
     ../../modules/netcup.nix
     ./secrets.nix
-
-    ./services/wireguard.nix
   ];
 
+  environment.systemPackages = with pkgs; [ podman-compose ];
   # minecraft
   networking.firewall = {
     # server
@@ -20,6 +19,12 @@ in
     allowedUDPPorts = [ 24454 ];
   };
 
+  services.openssh = {
+    # openFirewall = false;
+    settings.PasswordAuthentication = false;
+  };
+
+  virtualisation.containers.containersConf.settings.network.dns_bind_port = 53;
   networking.nameservers = [
     # -- adguard
     "94.140.14.14"

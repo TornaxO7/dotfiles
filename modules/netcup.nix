@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   environment.systemPackages = with pkgs; [
     bottom
@@ -15,7 +15,7 @@
     };
 
     # avoid collapse with wg0
-    containers.containersConf.settings.network.dns_bind_port = 54;
+    containers.containersConf.settings.network.dns_bind_port = lib.mkDefault 54;
 
     oci-containers.backend = "podman";
   };
