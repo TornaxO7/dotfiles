@@ -18,14 +18,6 @@ in
   ];
 
   config = {
-    # TODO: Move to `modules/default.nix`
-    services.openssh.hostKeys = [
-      {
-        path = "/etc/ssh/mini";
-        type = "ed25519";
-      }
-    ];
-
     systemd.network = {
       enable = true;
 

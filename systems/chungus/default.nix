@@ -11,13 +11,6 @@ in
     ./services/wireguard.nix
   ];
 
-  services.openssh.hostKeys = [
-    {
-      path = "/etc/ssh/chungus";
-      type = "ed25519";
-    }
-  ];
-
   # minecraft
   networking.firewall = {
     # server

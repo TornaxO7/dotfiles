@@ -18,13 +18,6 @@ in
   ];
 
   config = {
-    services.openssh.hostKeys = [
-      {
-        path = "/etc/ssh/big";
-        type = "ed25519";
-      }
-    ];
-
     networking.nameservers = [
       # -- adguard
       "94.140.14.14"

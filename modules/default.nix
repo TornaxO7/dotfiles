@@ -17,6 +17,13 @@
     services = {
       crowdsec.package = pkgs.callPackage "${inputs.unstable}/pkgs/by-name/cr/crowdsec/package.nix" { };
       crowdsec-firewall-bouncer.package = pkgs.callPackage "${inputs.unstable}/pkgs/by-name/cr/crowdsec-firewall-bouncer/package.nix" { };
+
+      services.openssh.hostKeys = [
+        {
+          path = "/etc/ssh/${hostname}";
+          type = "ed25519";
+        }
+      ];
     };
 
     boot = {

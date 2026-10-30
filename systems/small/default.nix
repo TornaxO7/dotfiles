@@ -22,13 +22,6 @@ in
   ];
 
   config = {
-    services.openssh.hostKeys = [
-      {
-        path = "/etc/ssh/small";
-        type = "ed25519";
-      }
-    ];
-
     systemd.network = {
       enable = true;
 
