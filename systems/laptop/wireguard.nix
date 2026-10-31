@@ -1,5 +1,7 @@
 { wg0, ... }:
 let
+  keepalive = 10;
+
   mini =
     let
       mini-ips = import ../mini/ips.nix;
@@ -9,7 +11,7 @@ let
       publicKey = wg0.mini.publicKey;
       allowedIPs = [ wg0.netmask ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
-      persistentKeepalive = 30;
+      persistentKeepalive = keepalive;
     };
 
   small =
@@ -22,7 +24,7 @@ let
       publicKey = wg0.small.publicKey;
       allowedIPs = [ wg0.small.addr ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
-      persistentKeepalive = 30;
+      persistentKeepalive = keepalive;
     };
 
   big =
@@ -35,7 +37,7 @@ let
       publicKey = wg0.big.publicKey;
       allowedIPs = [ wg0.big.addr ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
-      persistentKeepalive = 30;
+      persistentKeepalive = keepalive;
     };
 in
 {
