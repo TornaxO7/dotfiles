@@ -18,6 +18,7 @@
         rnote
         github-cli
         nixpkgs-review
+        typst
       ];
     };
   };
