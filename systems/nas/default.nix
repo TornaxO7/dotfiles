@@ -25,7 +25,7 @@
     # 49205
     ./services/memos.nix
     # 49206
-    ./services/n8n.nix
+    # ./services/n8n.nix
 
     # each service here, can have a port, starting from 49200 (incrementing 10)
     ./services/audiobookshelf.nix
