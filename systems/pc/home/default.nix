@@ -22,6 +22,7 @@
           xsane
           meli
           bugstalker
+          typst
 
           github-copilot-cli
           yubikey-personalization

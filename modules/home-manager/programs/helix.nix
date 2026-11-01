@@ -83,9 +83,9 @@ in
           command = "${lib.getExe' pkgs.clang-tools "clangd"}";
         };
 
-        # typst-lsp = {
-        #   command = "${pkgs.typst-lsp}/bin/typst-lsp";
-        # };
+        typst-lsp = {
+          command = "${lib.getExe pkgs.tinymist}";
+        };
 
         wgsl = {
           command = "${lib.getExe pkgs.wgsl-analyzer}";
@@ -188,11 +188,11 @@ in
         {
           name = "typst";
           auto-format = true;
-          file-types = [ "typst" ];
+          file-types = [ "typst" "typ" ];
           formatter = {
             command = "${lib.getExe pkgs.typstyle}";
           };
-          # language-servers = [ "typst-lsp" ];
+          language-servers = [ "typst-lsp" ];
         }
         {
           name = "toml";
