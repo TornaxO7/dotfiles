@@ -20,6 +20,8 @@ in
   config = {
     programs.nix-ld.enable = true;
 
+    users.users.tornax.linger = true;
+
     systemd.network = {
       enable = true;
 
