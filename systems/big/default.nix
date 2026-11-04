@@ -44,5 +44,11 @@ in
         linkConfig.RequiredForOnline = "routable";
       };
     };
+
+    home-manager.users.tornax = { ... }: {
+      config = {
+        services.ssh-agent.enable = true;
+      };
+    };
   };
 }
