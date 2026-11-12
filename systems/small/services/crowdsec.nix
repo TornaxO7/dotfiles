@@ -31,6 +31,19 @@
         console = {
           enrollKeyFile = config.age.secrets.crowdsec-enrollkey.path;
         };
+
+        acquisitions = [
+          {
+            journalctl_filter = [
+              "_SYSTEMD_UNIT=traefik.service"
+            ];
+            labels = {
+              type = "syslog";
+            };
+            source = "journalctl";
+          }
+        ];
+
       };
     };
 
