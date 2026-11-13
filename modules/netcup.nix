@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     bottom
@@ -13,9 +13,6 @@
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-
-    # avoid collapse with wg0
-    containers.containersConf.settings.network.dns_bind_port = lib.mkDefault 54;
 
     oci-containers.backend = "podman";
   };

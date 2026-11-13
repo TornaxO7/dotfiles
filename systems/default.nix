@@ -52,7 +52,7 @@ let
     };
 
     netmask = "10.0.0.0/24";
-    port = 53;
+    port = 443;
   };
 
   mkSystem =
