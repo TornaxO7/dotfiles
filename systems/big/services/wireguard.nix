@@ -1,4 +1,16 @@
 { wg0, ... }:
+let
+  mini =
+    let
+      mini-ips = import ../../mini/ips.nix;
+      ip4 = mini-ips.ip4;
+    in
+    {
+      publicKey = wg0.mini.publicKey;
+      allowedIPs = [ wg0.netmask ];
+      endpoint = "${ip4}:${builtins.toString wg0.port}";
+    };
+in
 {
   services.openssh = {
     openFirewall = false;
@@ -13,27 +25,7 @@
 
     wg-quick.interfaces.wg0 = {
       address = [ "${wg0.big.addr}/32" ];
-      listenPort = wg0.port;
-      peers = [
-        {
-          publicKey = wg0.pc.publicKey;
-          allowedIPs = [
-            "${wg0.pc.addr}/32"
-          ];
-        }
-        {
-          publicKey = wg0.laptop.publicKey;
-          allowedIPs = [
-            "${wg0.laptop.addr}/32"
-          ];
-        }
-        {
-          publicKey = wg0.mobile.publicKey;
-          allowedIPs = [
-            "${wg0.mobile.addr}/32"
-          ];
-        }
-      ];
+      peers = [ mini ];
     };
   };
 }

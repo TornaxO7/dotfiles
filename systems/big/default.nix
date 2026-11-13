@@ -14,7 +14,7 @@ in
     ./services/happier.nix
 
     # 49192
-    ./services/forgejo.nix
+    # ./services/forgejo.nix
   ];
 
   config = {
