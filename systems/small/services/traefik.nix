@@ -109,6 +109,7 @@ in
       certificatesResolvers.main.acme = {
         email = "tornax@pm.me";
         storage = "${config.services.traefik.dataDir}/acme.json";
+        keyType = "EC256";
         dnsChallenge = {
           provider = "netcup";
           resolvers = [
