@@ -42,6 +42,15 @@
             };
             source = "journalctl";
           }
+          {
+            journalctl_filter = [
+              "_SYSTEMD_UNIT=sshd.service"
+            ];
+            labels = {
+              type = "syslog";
+            };
+            source = "journalctl";
+          }
         ];
 
       };
