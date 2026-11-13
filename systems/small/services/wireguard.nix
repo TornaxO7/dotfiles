@@ -9,11 +9,12 @@ let
       publicKey = wg0.mini.publicKey;
       allowedIPs = [ wg0.netmask ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
+      persistentKeepalive = 30;
     };
 in
 {
   services.openssh = {
-    # openFirewall = false;
+    openFirewall = false;
     settings.PasswordAuthentication = false;
   };
 
@@ -24,9 +25,7 @@ in
     };
 
     wg-quick.interfaces.wg0 = {
-      address = [
-        "${wg0.small.addr}/32"
-      ];
+      address = [ "${wg0.small.addr}/32" ];
       peers = [ mini ];
     };
   };

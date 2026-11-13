@@ -9,6 +9,7 @@ let
       publicKey = wg0.mini.publicKey;
       allowedIPs = [ wg0.netmask ];
       endpoint = "${ip4}:${builtins.toString wg0.port}";
+      persistentKeepalive = 30;
     };
 in
 {

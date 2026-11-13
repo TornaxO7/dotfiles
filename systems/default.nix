@@ -140,6 +140,8 @@ in
 
               documentation.doc.enable = false;
 
+              services.openssh.settings.PasswordAuthentication = false;
+
               security = {
                 sudo.enable = false;
                 sudo-rs.enable = true;

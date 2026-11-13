@@ -25,6 +25,7 @@
   services = {
     qemuGuest.enable = true;
     resolved.enable = false;
+    openssh.settings.PasswordAuthentication = false;
   };
 
   users = {
